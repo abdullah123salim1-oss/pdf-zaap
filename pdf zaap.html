@@ -1,0 +1,4459 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">PDFZaap - Free Online PDF Tools | 35+ Free Tools</title>
+  <meta name="description" id="pageMetaDescription" content="PDFZaap offers 35+ free online PDF tools. Convert, compress, merge, split PDF files. No signup, no watermark, 100% free forever.">
+  <meta name="keywords" content="pdf tools free, pdf converter, compress pdf, merge pdf, split pdf, pdf to word, word to pdf, free online tools">
+  <meta name="author" content="PDFZaap">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" id="ogTitle" content="PDFZaap - Free Online PDF Tools">
+  <meta property="og:description" id="ogDesc" content="35+ free PDF tools. Convert, compress, merge, split. No signup needed.">
+  <meta property="og:url" content="https://pdfzaap.online">
+  <meta property="og:type" content="website">
+
+  <!-- Canonical Link -->
+  <link rel="canonical" href="https://pdfzaap.online">
+
+  <!-- Google Fonts - Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Schema Markup JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PDFZaap",
+    "url": "https://pdfzaap.online",
+    "description": "Free online PDF tools. 35+ tools available.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://pdfzaap.online/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       ⚙️ CSS VARIABLES & GLOBAL STYLES
+       ========================================================================== */
+    :root {
+      --primary: #4F46E5;
+      --primary-dark: #3730A3;
+      --secondary: #7C3AED;
+      --gradient: linear-gradient(135deg, #4F46E5, #7C3AED);
+      --gradient-hover: linear-gradient(135deg, #3730A3, #6D28D9);
+      --bg: #F8F7FF;
+      --card-bg: #FFFFFF;
+      --text: #1F2937;
+      --subtext: #6B7280;
+      --border: #E5E7EB;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow: 0 4px 20px rgba(79,70,229,0.08);
+      --shadow-hover: 0 20px 40px rgba(79,70,229,0.2);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-full: 9999px;
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      opacity: 0;
+      animation: pageFadeIn 0.4s forwards;
+    }
+
+    @keyframes pageFadeIn {
+      to { opacity: 1; }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: var(--radius-full);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    /* Typography Utility Classes */
+    .section-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtext {
+      font-size: 1.125rem;
+      color: var(--subtext);
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+
+    /* Common Button Styles */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+
+    .btn-gradient {
+      background: var(--gradient);
+      color: #FFFFFF;
+      box-shadow: 0 4px 15px rgba(79,70,229,0.3);
+    }
+
+    .btn-gradient:hover {
+      background: var(--gradient-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(79,70,229,0.4);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(79,70,229,0.03);
+      transform: translateY(-2px);
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(3deg); }
+      66% { transform: translateY(10px) rotate(-2deg); }
+    }
+
+    @keyframes pulseRing {
+      0% { box-shadow: 0 0 0 0 rgba(79,70,229,0.2); }
+      70% { box-shadow: 0 0 0 10px rgba(79,70,229,0); }
+      100% { box-shadow: 0 0 0 0 rgba(79,70,229,0); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       🔄 LOADING SCREEN
+       ========================================================================== */
+    #loadingScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: var(--gradient);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      transition: opacity 0.4s ease;
+    }
+
+    .loader-logo {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .loader-bar-container {
+      width: 240px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .loader-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: #FFFFFF;
+      border-radius: var(--radius-full);
+      animation: loadProgress 1.6s ease-in-out forwards;
+    }
+
+    @keyframes loadProgress {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    /* ==========================================================================
+       🍔 NAVBAR
+       ========================================================================== */
+    #mainHeader {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+      height: 70px;
+      display: flex;
+      align-items: center;
+      transition: box-shadow 0.3s ease;
+    }
+
+    #mainHeader.scrolled {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .logo-text {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: var(--gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+      padding: 0.5rem 0;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Dropdown Menus */
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(15px);
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      width: 260px;
+      opacity: 0;
+      visibility: hidden;
+      padding: 0.75rem 0;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-item:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(5px);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 1.25rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    .dropdown-item:hover {
+      background: rgba(79, 70, 229, 0.05);
+      color: var(--primary);
+    }
+
+    .dropdown-item i {
+      font-size: 1rem;
+      width: 20px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Hamburger menu */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--text);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* ==========================================================================
+       🌌 HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #F8F7FF 0%, #EDE9FE 50%, #F8F7FF 100%);
+      padding: 4rem 0;
+    }
+
+    /* Floating blobs styles */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 0;
+      animation: float 12s infinite alternate ease-in-out;
+    }
+
+    .blob-1 {
+      top: -100px;
+      left: -100px;
+      width: 550px;
+      height: 550px;
+      background: rgba(79, 70, 229, 0.12);
+    }
+
+    .blob-2 {
+      bottom: -150px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: rgba(124, 58, 237, 0.1);
+      animation-delay: -4s;
+    }
+
+    .blob-3 {
+      top: 50%;
+      right: 15%;
+      width: 300px;
+      height: 300px;
+      background: rgba(167, 139, 250, 0.08);
+      animation-delay: -8s;
+    }
+
+    /* Hero Layout grid */
+    .hero-container {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-badge {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 0.45rem 1.25rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      animation: pulseRing 3s infinite;
+    }
+
+    .hero-title {
+      font-size: 3.8rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--subtext);
+      max-width: 620px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-trust {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      color: var(--subtext);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .trust-item i {
+      color: #10B981;
+    }
+
+    /* ==========================================================================
+       📈 STATS BAR
+       ========================================================================== */
+    .stats-bar {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.75rem 0;
+      position: relative;
+      z-index: 5;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-box {
+      position: relative;
+    }
+
+    .stat-box:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -1rem;
+      top: 15%;
+      height: 70%;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .stat-number {
+      font-size: 2.25rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--subtext);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ==========================================================================
+       🔍 SEARCH BAR SECTION
+       ========================================================================== */
+    .search-section {
+      padding: 4rem 0 2rem;
+    }
+
+    .search-box-container {
+      max-width: 750px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .search-bar-wrapper {
+      position: relative;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .search-bar-wrapper:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(79,70,229,0.12);
+    }
+
+    .search-bar-wrapper i.search-main-icon {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-left: 1.5rem;
+    }
+
+    .search-bar-wrapper input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 1.05rem;
+      font-weight: 500;
+      padding: 0.8rem 1rem;
+      background: transparent;
+    }
+
+    .search-submit-btn {
+      height: 48px;
+      padding: 0 1.75rem;
+      border-radius: var(--radius-full);
+    }
+
+    .popular-searches {
+      margin-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--subtext);
+    }
+
+    .popular-tag {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .popular-tag:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(79,70,229,0.03);
+    }
+
+    /* ==========================================================================
+       📄 PDF TOOLS SECTION
+       ========================================================================== */
+    .tools-section {
+      padding: 3rem 0;
+    }
+
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+
+    .tab-btn {
+      padding: 0.6rem 1.3rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--subtext);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tab-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--gradient);
+      color: #FFFFFF;
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(79,70,229,0.25);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .tool-card-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.65rem;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .tool-card-box:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--primary);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.05em;
+    }
+
+    .card-badge.popular {
+      background: rgba(245, 158, 11, 0.1);
+      color: #D97706;
+    }
+
+    .card-badge.new {
+      background: rgba(16, 185, 129, 0.1);
+      color: #059669;
+    }
+
+    .card-icon-container {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: rgba(79,70,229,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      margin-bottom: 1.25rem;
+    }
+
+    .card-icon-container i {
+      font-size: 1.45rem;
+      transition: var(--transition);
+    }
+
+    .tool-card-box:hover .card-icon-container {
+      background: var(--gradient);
+    }
+
+    .tool-card-box:hover .card-icon-container i {
+      color: #FFFFFF !important;
+      transform: rotate(15deg) scale(1.05);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--subtext);
+      line-height: 1.5;
+      flex-grow: 1;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-action-link {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: var(--transition);
+    }
+
+    .tool-card-box:hover .card-action-link {
+      color: var(--secondary);
+      transform: translateX(3px);
+    }
+
+    /* Search No Results View */
+    #searchNoResults {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      display: none;
+    }
+
+    #searchNoResults i {
+      font-size: 3rem;
+      color: var(--subtext);
+      margin-bottom: 1rem;
+    }
+
+    /* ==========================================================================
+       🛠️ DYNAMIC WORKSPACE EXPERIENCE (SPA VIEWS)
+       ========================================================================== */
+    #dashboardView {
+      display: block;
+    }
+
+    #workspaceView {
+      display: none;
+      padding-bottom: 5rem;
+    }
+
+    .workspace-wrapper {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 3.5rem 2rem;
+      box-shadow: var(--shadow);
+      max-width: 780px;
+      margin: 2rem auto;
+      text-align: center;
+    }
+
+    /* Upload Zone */
+    .dropzone-container {
+      border: 2px dashed #CBD5E1;
+      background: #F8FAFC;
+      border-radius: var(--radius);
+      padding: 4rem 2rem;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+      margin-top: 1.5rem;
+    }
+
+    .dropzone-container:hover, .dropzone-container.dragover {
+      border-color: var(--primary);
+      background: #EEF2FF;
+    }
+
+    .dropzone-container input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .dropzone-icon {
+      font-size: 3.5rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .dropzone-main-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .dropzone-sub-text {
+      font-size: 0.875rem;
+      color: var(--subtext);
+    }
+
+    /* Workspace File Details */
+    .file-row {
+      display: none;
+      background: #F1F5F9;
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    .file-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .file-left i {
+      font-size: 2rem;
+    }
+
+    .file-details-text {
+      text-align: left;
+    }
+
+    .file-details-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      word-break: break-all;
+    }
+
+    .file-details-size {
+      font-size: 0.75rem;
+      color: var(--subtext);
+    }
+
+    .file-close-btn {
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--subtext);
+      transition: var(--transition);
+    }
+
+    .file-close-btn:hover {
+      color: #EF4444;
+    }
+
+    /* Workspace progress bar */
+    .work-progress-box {
+      display: none;
+      background-color: #E2E8F0;
+      border-radius: var(--radius-full);
+      height: 8px;
+      width: 100%;
+      margin-top: 2rem;
+      overflow: hidden;
+    }
+
+    .work-progress-bar {
+      background: var(--gradient);
+      height: 100%;
+      width: 0%;
+      transition: width 0.15s linear;
+    }
+
+    /* Workspace execution button */
+    .workspace-exec-btn {
+      width: 100%;
+      padding: 1.1rem;
+      font-size: 1.05rem;
+      border-radius: var(--radius-sm);
+      margin-top: 2rem;
+      display: none;
+    }
+
+    /* Workspace Info Sections */
+    .workspace-info-section {
+      margin-top: 4rem;
+    }
+
+    /* ==========================================================================
+       ⭐ FEATURES SECTION
+       ========================================================================== */
+    .features-section {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 6rem 0;
+    }
+
+    .features-container {
+      display: grid;
+      grid-template-columns: 1.1fr 1.9fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .features-text-col {
+      text-align: left;
+    }
+
+    .features-text-col h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.15;
+    }
+
+    .features-text-col p {
+      font-size: 1.125rem;
+      color: var(--subtext);
+      margin-bottom: 2.5rem;
+    }
+
+    .features-right-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-card-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      text-align: left;
+      transition: var(--transition);
+    }
+
+    .feature-card-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary);
+    }
+
+    .feature-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card-desc {
+      font-size: 0.85rem;
+      color: var(--subtext);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       🔄 HOW IT WORKS SECTION
+       ========================================================================== */
+    .how-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #F8F7FF 0%, #EDE9FE 100%);
+    }
+
+    .how-steps-row {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    /* Horizontal connecting line */
+    .how-steps-row::after {
+      content: '';
+      position: absolute;
+      top: 52px;
+      left: 10%;
+      right: 10%;
+      height: 3px;
+      background: repeating-linear-gradient(90deg, var(--primary) 0, var(--primary) 10px, transparent 10px, transparent 20px);
+      z-index: 0;
+    }
+
+    .step-node {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-icon-box {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(79,70,229,0.25);
+    }
+
+    .step-number {
+      position: absolute;
+      font-size: 4rem;
+      font-weight: 800;
+      color: rgba(79,70,229,0.07);
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+    }
+
+    .step-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-desc {
+      font-size: 0.9rem;
+      color: var(--subtext);
+      line-height: 1.5;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+
+    /* ==========================================================================
+       ⭐ TESTIMONIALS SECTION
+       ========================================================================== */
+    .testimonials-section {
+      background: var(--card-bg);
+      padding: 6rem 0;
+    }
+
+    .star-summary {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .star-row {
+      color: #F59E0B;
+      font-size: 1.5rem;
+      gap: 0.25rem;
+      display: flex;
+      margin-bottom: 0.5rem;
+    }
+
+    .star-summary-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .star-summary-subtext {
+      font-size: 0.85rem;
+      color: var(--subtext);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.25rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary);
+    }
+
+    .quote-icon {
+      font-size: 3rem;
+      color: rgba(79, 70, 229, 0.08);
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+      line-height: 1;
+    }
+
+    .test-star-row {
+      color: #F59E0B;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.15rem;
+    }
+
+    .test-quote {
+      font-size: 0.95rem;
+      font-style: italic;
+      line-height: 1.6;
+      color: #4B5563;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .user-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-details {
+      text-align: left;
+    }
+
+    .user-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .user-role {
+      font-size: 0.8rem;
+      color: var(--subtext);
+    }
+
+    /* ==========================================================================
+       ❓ FAQ SECTION (ADVANCED ACCORDION)
+       ========================================================================== */
+    .faq-section {
+      background: var(--bg);
+      padding: 6rem 0;
+    }
+
+    .faq-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .faq-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .accordion-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      padding: 1.35rem 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: left;
+      transition: var(--transition);
+    }
+
+    .accordion-trigger:hover {
+      background-color: rgba(79, 70, 229, 0.02);
+    }
+
+    .accordion-trigger i {
+      font-size: 1rem;
+      color: var(--subtext);
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .accordion-panel-content {
+      padding: 0 1.75rem 1.5rem;
+      font-size: 0.95rem;
+      color: var(--subtext);
+      line-height: 1.6;
+    }
+
+    /* Accordion open visual class overrides */
+    .accordion-box.active {
+      border-color: var(--primary);
+      box-shadow: 0 10px 25px rgba(79,70,229,0.04);
+      background-color: #FAF5FF;
+    }
+
+    .accordion-box.active .accordion-trigger i {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    /* ==========================================================================
+       📝 ABOUT US SECTION
+       ========================================================================== */
+    .about-section {
+      background: var(--card-bg);
+      padding: 6rem 0;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1.22fr 0.78fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text-col {
+      text-align: left;
+    }
+
+    .about-paragraph {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-sub-paragraph {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--subtext);
+      margin-bottom: 2.5rem;
+    }
+
+    .values-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .value-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .value-item-icon {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-top: 0.15rem;
+    }
+
+    .value-item-text {
+      text-align: left;
+    }
+
+    .value-item-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .value-item-desc {
+      font-size: 0.85rem;
+      color: var(--subtext);
+    }
+
+    /* Stats Grid column inside About section */
+    .about-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .about-stat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .about-stat-icon {
+      font-size: 2rem;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .about-stat-num {
+      font-size: 2.25rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.25rem;
+    }
+
+    .about-stat-lbl {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--subtext);
+    }
+
+    /* ==========================================================================
+       ✉️ NEWSLETTER SECTION
+       ========================================================================== */
+    .newsletter-section {
+      padding: 4rem 0;
+    }
+
+    .newsletter-container {
+      background: var(--gradient);
+      border-radius: 24px;
+      padding: 4.5rem;
+      color: #FFFFFF;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      box-shadow: 0 20px 40px rgba(79,70,229,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Internal visual decor blob */
+    .newsletter-container::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      top: -150px;
+      right: -150px;
+    }
+
+    .newsletter-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+
+    .newsletter-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .newsletter-sub {
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.85;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .newsletter-form-row {
+      max-width: 520px;
+      margin: 0 auto 1.25rem;
+      background: #FFFFFF;
+      border-radius: var(--radius-full);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .newsletter-form-row input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      background: transparent;
+      color: var(--text);
+    }
+
+    .newsletter-form-row input::placeholder {
+      color: #94A3B8;
+    }
+
+    .newsletter-form-row button {
+      height: 48px;
+      padding: 0 1.75rem;
+      border-radius: var(--radius-full);
+      background: var(--gradient);
+      color: #FFFFFF;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .newsletter-form-row button:hover {
+      background: var(--gradient-hover);
+      transform: scale(1.02);
+    }
+
+    .newsletter-success {
+      display: none;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-full);
+      max-width: fit-content;
+      margin: 1.5rem auto 0;
+    }
+
+    .newsletter-privacy {
+      font-size: 0.8rem;
+      opacity: 0.75;
+    }
+
+    /* ==========================================================================
+       🏛️ FOOTER
+       ========================================================================== */
+    footer {
+      background-color: #0F0E1A;
+      color: #94A3B8;
+      padding: 6rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .social-btn:hover {
+      background: var(--gradient);
+      color: #FFFFFF;
+      border-color: transparent;
+      transform: translateY(-2px);
+    }
+
+    .footer-col-title {
+      color: #FFFFFF;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .footer-links-list a {
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .footer-links-list a:hover {
+      color: #FFFFFF;
+      padding-left: 3px;
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+      margin-bottom: 2rem;
+    }
+
+    .footer-bottom-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.82rem;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-bottom-links a:hover {
+      color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       🚀 SCROLL TO TOP BUTTON
+       ========================================================================== */
+    #scrollToTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 99;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(79,70,229,0.3);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: var(--transition);
+      border: none;
+      outline: none;
+    }
+
+    #scrollToTop.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    #scrollToTop:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(79,70,229,0.45);
+    }
+
+    /* ==========================================================================
+       🍪 COOKIE CONSENT BANNER
+       ========================================================================== */
+    #cookieBanner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: var(--card-bg);
+      border-top: 3px solid var(--primary);
+      box-shadow: 0 -10px 30px rgba(0,0,0,0.08);
+      padding: 1.25rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #cookieBanner.active {
+      transform: translateY(0);
+    }
+
+    .cookie-text {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .cookie-text a {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .cookie-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .cookie-actions .btn {
+      padding: 0.5rem 1.25rem;
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================================================
+       🔒 PRIVACY POLICY MODAL (DYNAMIC CONTENT OPENER)
+       ========================================================================== */
+    .privacy-modal {
+      display: none;
+      position: fixed;
+      z-index: 100000;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .privacy-modal.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .privacy-modal-content {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      max-width: 650px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 2.5rem;
+      position: relative;
+      box-shadow: var(--shadow-hover);
+      border: 1px solid var(--border);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+      text-align: left;
+    }
+
+    .privacy-modal.active .privacy-modal-content {
+      transform: translateY(0);
+    }
+
+    .close-privacy-modal {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      font-size: 1.75rem;
+      cursor: pointer;
+      color: var(--subtext);
+      transition: var(--transition);
+      line-height: 1;
+    }
+
+    .close-privacy-modal:hover {
+      color: #EF4444;
+    }
+
+    .privacy-modal-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .privacy-modal-body h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.25rem 0 0.5rem;
+      color: var(--text);
+    }
+
+    .privacy-modal-body p {
+      font-size: 0.9rem;
+      color: var(--subtext);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ==========================================================================
+       📱 RESPONSIVE DESIGN MEDIA QUERIES
+       ========================================================================== */
+    @media (max-width: 1200px) {
+      .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+      .features-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .features-text-col {
+        text-align: center;
+      }
+      .about-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .about-text-col {
+        text-align: center;
+      }
+      .value-item {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+
+      /* Mobile Sidedrawer navigation overlay */
+      .nav-list {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--card-bg);
+        flex-direction: column;
+        padding: 3rem 1.5rem;
+        gap: 1.5rem;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        align-items: flex-start;
+        overflow-y: auto;
+      }
+
+      .nav-list.active {
+        left: 0;
+      }
+
+      .nav-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        padding-left: 1rem;
+      }
+
+      .hero-title {
+        font-size: 2.25rem;
+      }
+      .hero-ctas {
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-ctas .btn {
+        width: 100%;
+        max-width: 320px;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+      .stat-box:nth-child(2)::after {
+        display: none;
+      }
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .how-steps-row {
+        flex-direction: column;
+        gap: 3rem;
+      }
+      .how-steps-row::after {
+        display: none;
+      }
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .newsletter-container {
+        padding: 2.5rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .stat-box::after {
+        display: none !important;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .cookie-actions {
+        width: 100%;
+        flex-direction: column;
+      }
+      .cookie-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       🔄 LOADING SCREEN
+       ========================================== -->
+  <div id="loadingScreen">
+    <div class="loader-logo">⚡ PDFZaap</div>
+    <div class="loader-bar-container">
+      <div class="loader-bar-fill"></div>
+    </div>
+    <p style="font-size: 0.9rem; font-weight: 500; opacity: 0.85;">Loading your toolkit...</p>
+  </div>
+
+  <!-- ==========================================
+       🍔 NAVBAR
+       ========================================== -->
+  <header id="mainHeader">
+    <div class="container header-content">
+      <a href="#" class="logo-text" id="navbarLogo">⚡ PDFZaap</a>
+      
+      <nav>
+        <ul class="nav-list" id="navList">
+          <li class="nav-item">
+            <a href="#" class="nav-link" id="navHome">Home</a>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link">PDF Tools <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; margin-left: 0.25rem;"></i></span>
+            <div class="dropdown">
+              <a href="#pdf-to-word" class="dropdown-item"><i class="fa-solid fa-file-word" style="color:#4F46E5;"></i> PDF to Word</a>
+              <a href="#pdf-to-jpg" class="dropdown-item"><i class="fa-solid fa-file-image" style="color:#10B981;"></i> PDF to JPG</a>
+              <a href="#merge-pdf" class="dropdown-item"><i class="fa-solid fa-object-group" style="color:#EF4444;"></i> Merge PDF</a>
+              <a href="#split-pdf" class="dropdown-item"><i class="fa-solid fa-scissors" style="color:#F59E0B;"></i> Split PDF</a>
+              <a href="#compress-pdf" class="dropdown-item"><i class="fa-solid fa-minimize" style="color:#10B981;"></i> Compress PDF</a>
+              <a href="#esign-pdf" class="dropdown-item"><i class="fa-solid fa-signature" style="color:#6366F1;"></i> E-Sign PDF</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="#about-us-section" class="nav-link">About</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#pdf-tools-section" class="btn btn-outline" style="display: none;">All Tools</a>
+        <a href="#pdf-tools-section" class="btn btn-gradient">Get Started Free</a>
+        <button class="hamburger" id="hamburgerMenu" aria-label="Toggle Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       🏡 HOMEPAGE DASHBOARD VIEW CONTAINER
+       ========================================== -->
+  <div id="dashboardView">
+    
+    <!-- 🌌 HERO SECTION -->
+    <section class="hero-section">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      
+      <div class="container hero-container">
+        <div>
+          <div class="hero-badge">🎉 35+ Free Tools — No Signup Required</div>
+          <h1 class="hero-title">Everything You Need<br><span>For Your PDFs</span></h1>
+          <p class="hero-subtitle">Convert, compress, merge, split and edit PDFs — all in one place. Free forever, no account needed.</p>
+          <div class="hero-ctas">
+            <a href="#pdf-tools-section" class="btn btn-gradient">Explore PDF Tools <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="#why-us" class="btn btn-outline">Learn More</a>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-item"><i class="fa-solid fa-circle-check"></i> No Signup Required</div>
+            <div class="trust-item"><i class="fa-solid fa-circle-check"></i> 100% Free Forever</div>
+            <div class="trust-item"><i class="fa-solid fa-circle-check"></i> No Watermarks</div>
+            <div class="trust-item"><i class="fa-solid fa-circle-check"></i> Files Auto-Deleted</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🔍 SEARCH BAR SECTION -->
+    <section class="search-section">
+      <div class="container search-box-container">
+        <div class="search-bar-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-main-icon"></i>
+          <input type="text" id="searchInput" placeholder="Search 35+ tools... e.g. Compress PDF, PDF to Word, Merge PDF">
+          <button class="btn btn-gradient search-submit-btn">Search</button>
+        </div>
+        <div class="popular-searches">
+          <span>Popular:</span>
+          <span class="popular-tag" onclick="autoSearch('PDF to Word')">PDF to Word</span>
+          <span class="popular-tag" onclick="autoSearch('Compress PDF')">Compress PDF</span>
+          <span class="popular-tag" onclick="autoSearch('Merge PDF')">Merge PDF</span>
+          <span class="popular-tag" onclick="autoSearch('Protect PDF')">Protect PDF</span>
+          <span class="popular-tag" onclick="autoSearch('PDF to JPG')">PDF to JPG</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADSENSE PLACEHOLDER (LEADERBOARD) -->
+    <div class="container">
+      <div style="text-align: center; margin: 1rem auto; max-width: 728px; height: 90px; background: #f9f9f9; border: 2px dashed #D1D5DB; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9CA3AF; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;">
+        Advertisement • 728×90
+      </div>
+    </div>
+
+    <!-- 📄 PDF TOOLS SECTION -->
+    <section class="tools-section" id="pdf-tools-section">
+      <div class="container">
+        <div style="text-align: center;">
+          <span class="section-label">📄 PDF Tools</span>
+          <h2 class="section-title">All The PDF Tools You'll Ever Need</h2>
+          <p class="section-subtext">35 powerful tools — completely free, no signup required</p>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="category-tabs">
+          <button class="tab-btn active" data-filter="all">All</button>
+          <button class="tab-btn" data-filter="convert">Convert</button>
+          <button class="tab-btn" data-filter="edit">Edit & Manage</button>
+          <button class="tab-btn" data-filter="security">Security</button>
+          <button class="tab-btn" data-filter="advanced">Advanced</button>
+        </div>
+
+        <!-- Cards grid -->
+        <div class="cards-grid" id="toolsCardsGrid">
+          
+          <!-- Tool 1: PDF to Word -->
+          <a href="#pdf-to-word" class="tool-card-box reveal" data-category="convert">
+            <span class="card-badge popular">Popular</span>
+            <div class="card-icon-container">
+              <i class="fa-solid fa-file-word" style="color: #4F46E5;"></i>
+            </div>
+            <h3 class="card-title">PDF to Word</h3>
+            <p class="card-desc">Convert PDF to editable Word documents</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 2: PDF to JPG -->
+          <a href="#pdf-to-jpg" class="tool-card-box reveal" data-category="convert">
+            <span class="card-badge popular">Popular</span>
+            <div class="card-icon-container">
+              <i class="fa-solid fa-file-image" style="color: #10B981;"></i>
+            </div>
+            <h3 class="card-title">PDF to JPG</h3>
+            <p class="card-desc">Extract PDF pages as high-quality JPG images</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 3: PDF to Excel -->
+          <a href="#pdf-to-excel" class="tool-card-box reveal" data-category="convert">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-file-excel" style="color: #059669;"></i>
+            </div>
+            <h3 class="card-title">PDF to Excel</h3>
+            <p class="card-desc">Extract tables from PDF to Excel spreadsheets</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 4: PDF to PowerPoint -->
+          <a href="#pdf-to-powerpoint" class="tool-card-box reveal" data-category="convert">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-file-powerpoint" style="color: #D97706;"></i>
+            </div>
+            <h3 class="card-title">PDF to PowerPoint</h3>
+            <p class="card-desc">Turn PDF slides into editable PowerPoint files</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 5: PDF to Text -->
+          <a href="#pdf-to-text" class="tool-card-box reveal" data-category="convert">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-file-lines" style="color: #4B5563;"></i>
+            </div>
+            <h3 class="card-title">PDF to Text</h3>
+            <p class="card-desc">Extract plain text from any PDF document</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 6: PDF to HTML -->
+          <a href="#pdf-to-html" class="tool-card-box reveal" data-category="convert">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-code" style="color: #2563EB;"></i>
+            </div>
+            <h3 class="card-title">PDF to HTML</h3>
+            <p class="card-desc">Convert PDF to web-ready HTML format</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 7: Word to PDF -->
+          <a href="#word-to-pdf" class="tool-card-box reveal" data-category="convert">
+            <span class="card-badge popular">Popular</span>
+            <div class="card-icon-container">
+              <i class="fa-solid fa-file-word" style="color: #3B82F6;"></i>
+            </div>
+            <h3 class="card-title">Word to PDF</h3>
+            <p class="card-desc">Convert Word documents to PDF format</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 8: JPG to PDF -->
+          <a href="#jpg-to-pdf" class="tool-card-box reveal" data-category="convert">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-image" style="color: #EC4899;"></i>
+            </div>
+            <h3 class="card-title">JPG to PDF</h3>
+            <p class="card-desc">Turn images into a single PDF document</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 9: Excel to PDF -->
+          <a href="#excel-to-pdf" class="tool-card-box reveal" data-category="convert">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-file-excel" style="color: #10B981;"></i>
+            </div>
+            <h3 class="card-title">Excel to PDF</h3>
+            <p class="card-desc">Convert Excel sheets to PDF format</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 10: PowerPoint to PDF -->
+          <a href="#powerpoint-to-pdf" class="tool-card-box reveal" data-category="convert">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-file-powerpoint" style="color: #F59E0B;"></i>
+            </div>
+            <h3 class="card-title">PowerPoint to PDF</h3>
+            <p class="card-desc">Convert PPT presentations to PDF</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 11: HTML to PDF -->
+          <a href="#html-to-pdf" class="tool-card-box reveal" data-category="convert">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-arrow-right-to-bracket" style="color: #14B8A6;"></i>
+            </div>
+            <h3 class="card-title">HTML to PDF</h3>
+            <p class="card-desc">Save any webpage as a PDF file</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 12: PDF to PNG -->
+          <a href="#pdf-to-png" class="tool-card-box reveal" data-category="convert">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-file-image" style="color: #DB2777;"></i>
+            </div>
+            <h3 class="card-title">PDF to PNG</h3>
+            <p class="card-desc">Export PDF pages as transparent PNG images</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 13: PNG to PDF -->
+          <a href="#png-to-pdf" class="tool-card-box reveal" data-category="convert">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-images" style="color: #8B5CF6;"></i>
+            </div>
+            <h3 class="card-title">PNG to PDF</h3>
+            <p class="card-desc">Convert PNG images to PDF format</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 14: PDF to EPUB -->
+          <a href="#pdf-to-epub" class="tool-card-box reveal" data-category="convert">
+            <span class="card-badge new">New</span>
+            <div class="card-icon-container">
+              <i class="fa-solid fa-book-open" style="color: #F97316;"></i>
+            </div>
+            <h3 class="card-title">PDF to EPUB</h3>
+            <p class="card-desc">Convert PDF to mobile-friendly eBook format</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 15: Merge PDF -->
+          <a href="#merge-pdf" class="tool-card-box reveal" data-category="edit">
+            <span class="card-badge popular">Popular</span>
+            <div class="card-icon-container">
+              <i class="fa-solid fa-object-group" style="color: #EF4444;"></i>
+            </div>
+            <h3 class="card-title">Merge PDF</h3>
+            <p class="card-desc">Combine multiple PDFs into one file</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 16: Split PDF -->
+          <a href="#split-pdf" class="tool-card-box reveal" data-category="edit">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-scissors" style="color: #F59E0B;"></i>
+            </div>
+            <h3 class="card-title">Split PDF</h3>
+            <p class="card-desc">Divide a PDF into multiple separate files</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 17: Compress PDF -->
+          <a href="#compress-pdf" class="tool-card-box reveal" data-category="edit">
+            <span class="card-badge popular">Popular</span>
+            <div class="card-icon-container">
+              <i class="fa-solid fa-minimize" style="color: #10B981;"></i>
+            </div>
+            <h3 class="card-title">Compress PDF</h3>
+            <p class="card-desc">Reduce PDF file size without quality loss</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 18: Rotate PDF -->
+          <a href="#rotate-pdf" class="tool-card-box reveal" data-category="edit">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-rotate-right" style="color: #6366F1;"></i>
+            </div>
+            <h3 class="card-title">Rotate PDF</h3>
+            <p class="card-desc">Rotate PDF pages 90° or 180° easily</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 19: Remove Pages -->
+          <a href="#remove-pages-pdf" class="tool-card-box reveal" data-category="edit">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-trash-can" style="color: #EF4444;"></i>
+            </div>
+            <h3 class="card-title">Remove Pages</h3>
+            <p class="card-desc">Delete unwanted pages from your PDF</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 20: Extract Pages -->
+          <a href="#extract-pages-pdf" class="tool-card-box reveal" data-category="edit">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-folder-open" style="color: #8B5CF6;"></i>
+            </div>
+            <h3 class="card-title">Extract Pages</h3>
+            <p class="card-desc">Pull specific pages from a PDF file</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 21: Reorder Pages -->
+          <a href="#reorder-pages-pdf" class="tool-card-box reveal" data-category="edit">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-arrow-down-up-across-line" style="color: #6366F1;"></i>
+            </div>
+            <h3 class="card-title">Reorder Pages</h3>
+            <p class="card-desc">Drag and rearrange PDF pages in any order</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 22: Add Page Numbers -->
+          <a href="#add-page-numbers-pdf" class="tool-card-box reveal" data-category="edit">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-hashtag" style="color: #06B6D4;"></i>
+            </div>
+            <h3 class="card-title">Add Page Numbers</h3>
+            <p class="card-desc">Insert page numbers to your PDF document</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 23: Add Watermark -->
+          <a href="#add-watermark-pdf" class="tool-card-box reveal" data-category="edit">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-stamp" style="color: #D946EF;"></i>
+            </div>
+            <h3 class="card-title">Add Watermark</h3>
+            <p class="card-desc">Add text or image watermark to PDF pages</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 24: Crop PDF -->
+          <a href="#crop-pdf" class="tool-card-box reveal" data-category="edit">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-crop" style="color: #F59E0B;"></i>
+            </div>
+            <h3 class="card-title">Crop PDF</h3>
+            <p class="card-desc">Trim margins and crop PDF page borders</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 25: Resize PDF -->
+          <a href="#resize-pdf" class="tool-card-box reveal" data-category="edit">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-maximize" style="color: #10B981;"></i>
+            </div>
+            <h3 class="card-title">Resize PDF</h3>
+            <p class="card-desc">Change PDF page size to A4, Letter and more</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 26: Unlock PDF -->
+          <a href="#unlock-pdf" class="tool-card-box reveal" data-category="security">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-lock-open" style="color: #10B981;"></i>
+            </div>
+            <h3 class="card-title">Unlock PDF</h3>
+            <p class="card-desc">Remove password protection from PDF files</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 27: Protect PDF -->
+          <a href="#protect-pdf" class="tool-card-box reveal" data-category="security">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-lock" style="color: #EF4444;"></i>
+            </div>
+            <h3 class="card-title">Protect PDF</h3>
+            <p class="card-desc">Add password security to your PDF</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 28: E-Sign PDF -->
+          <a href="#esign-pdf" class="tool-card-box reveal" data-category="security">
+            <span class="card-badge new">New</span>
+            <div class="card-icon-container">
+              <i class="fa-solid fa-signature" style="color: #6366F1;"></i>
+            </div>
+            <h3 class="card-title">E-Sign PDF</h3>
+            <p class="card-desc">Digitally sign your PDF documents online</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 29: Redact PDF -->
+          <a href="#redact-pdf" class="tool-card-box reveal" data-category="security">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-eye-slash" style="color: #111827;"></i>
+            </div>
+            <h3 class="card-title">Redact PDF</h3>
+            <p class="card-desc">Permanently hide sensitive text in PDF</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 30: Repair PDF -->
+          <a href="#repair-pdf" class="tool-card-box reveal" data-category="advanced">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-wrench" style="color: #EF4444;"></i>
+            </div>
+            <h3 class="card-title">Repair PDF</h3>
+            <p class="card-desc">Fix corrupted or damaged PDF files</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 31: OCR PDF -->
+          <a href="#ocr-pdf" class="tool-card-box reveal" data-category="advanced">
+            <span class="card-badge new">New</span>
+            <div class="card-icon-container">
+              <i class="fa-solid fa-eye" style="color: #8B5CF6;"></i>
+            </div>
+            <h3 class="card-title">OCR PDF</h3>
+            <p class="card-desc">Make scanned PDFs searchable and editable</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 32: Compare PDFs -->
+          <a href="#compare-pdf" class="tool-card-box reveal" data-category="advanced">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-columns" style="color: #6366F1;"></i>
+            </div>
+            <h3 class="card-title">Compare PDFs</h3>
+            <p class="card-desc">Find differences between two PDF files</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 33: PDF Metadata Editor -->
+          <a href="#pdf-metadata-editor" class="tool-card-box reveal" data-category="advanced">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-tags" style="color: #F59E0B;"></i>
+            </div>
+            <h3 class="card-title">PDF Metadata Editor</h3>
+            <p class="card-desc">Edit PDF title, author, and keywords</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 34: Flatten PDF -->
+          <a href="#flatten-pdf" class="tool-card-box reveal" data-category="advanced">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-layer-group" style="color: #14B8A6;"></i>
+            </div>
+            <h3 class="card-title">Flatten PDF</h3>
+            <p class="card-desc">Merge form fields into static PDF content</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Tool 35: PDF to PDF/A -->
+          <a href="#pdf-to-pdfa" class="tool-card-box reveal" data-category="advanced">
+            <div class="card-icon-container">
+              <i class="fa-solid fa-archive" style="color: #4F46E5;"></i>
+            </div>
+            <h3 class="card-title">PDF to PDF/A</h3>
+            <p class="card-desc">Convert PDF to long-term archiving format</p>
+            <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- Dynamic Search No Results State container -->
+          <div id="searchNoResults">
+            <i class="fa-regular fa-face-frown"></i>
+            <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--text);">No tools found</h3>
+            <p style="color: var(--subtext); margin-top: 0.5rem;">Try searching for another service like 'Word' or 'Merge'.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ADSENSE PLACEHOLDER (RECTANGLE) -->
+    <div class="container">
+      <div style="margin: 2.5rem auto; max-width: 336px; height: 280px; background: #f9f9f9; border: 2px dashed #D1D5DB; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9CA3AF; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">
+        Advertisement • 336×280
+      </div>
+    </div>
+
+    <!-- 🌟 FEATURES SECTION -->
+    <section class="features-section" id="why-us">
+      <div class="container features-container">
+        <div class="features-text-col reveal">
+          <span class="section-label">Why PDFZaap</span>
+          <h2>The Smartest Way to Handle PDFs</h2>
+          <p>Built for speed, security, and simplicity. Run all conversions directly inside your client environment without complex installations.</p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="#pdf-tools-section" class="btn btn-gradient">Explore All Tools</a>
+            <span class="btn btn-outline" style="cursor: default; pointer-events: none;">Trusted by 50,000+ Users</span>
+          </div>
+        </div>
+        <div class="features-right-grid">
+          <div class="feature-card-item reveal">
+            <div class="feature-card-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h3 class="feature-card-title">Lightning Fast</h3>
+            <p class="feature-card-desc">All tools process in seconds directly in your browser. No waiting, no queues.</p>
+          </div>
+          <div class="feature-card-item reveal">
+            <div class="feature-card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3 class="feature-card-title">Bank-Level Security</h3>
+            <p class="feature-card-desc">256-bit SSL encryption. Files auto-deleted after processing. Your privacy is guaranteed.</p>
+          </div>
+          <div class="feature-card-item reveal">
+            <div class="feature-card-icon"><i class="fa-solid fa-heart"></i></div>
+            <h3 class="feature-card-title">Always Free</h3>
+            <p class="feature-card-desc">No subscriptions, no hidden fees, no paywalls. 35+ tools completely free forever.</p>
+          </div>
+          <div class="feature-card-item reveal">
+            <div class="feature-card-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <h3 class="feature-card-title">Works Everywhere</h3>
+            <p class="feature-card-desc">Access from any device — desktop, tablet, or mobile. No app download needed.</p>
+          </div>
+          <div class="feature-card-item reveal">
+            <div class="feature-card-icon"><i class="fa-solid fa-user-slash"></i></div>
+            <h3 class="feature-card-title">No Signup Needed</h3>
+            <p class="feature-card-desc">Jump straight to your tool. No registration, no email, no account required.</p>
+          </div>
+          <div class="feature-card-item reveal">
+            <div class="feature-card-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+            <h3 class="feature-card-title">Always Improving</h3>
+            <p class="feature-card-desc">New tools and features added regularly based on user feedback.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🔄 HOW IT WORKS SECTION -->
+    <section class="how-section">
+      <div class="container" style="text-align: center;">
+        <span class="section-label">How It Works</span>
+        <h2 class="section-title">Convert Your PDFs in 3 Simple Steps</h2>
+        <p class="section-subtext">No technical knowledge required</p>
+
+        <div class="how-steps-row">
+          <div class="step-node reveal">
+            <div class="step-icon-box">
+              <span class="step-number">01</span>
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+            <h3 class="step-title">Upload Your File</h3>
+            <p class="step-desc">Drag & drop your file or click to browse. Supports PDF and 10+ other formats.</p>
+          </div>
+          <div class="step-node reveal">
+            <div class="step-icon-box">
+              <span class="step-number">02</span>
+              <i class="fa-solid fa-gears"></i>
+            </div>
+            <h3 class="step-title">Instant Processing</h3>
+            <p class="step-desc">Our engine processes your file instantly in the cloud. Usually done in seconds.</p>
+          </div>
+          <div class="step-node reveal">
+            <div class="step-icon-box">
+              <span class="step-number">03</span>
+              <i class="fa-solid fa-download"></i>
+            </div>
+            <h3 class="step-title">Download Result</h3>
+            <p class="step-desc">Your converted file is ready. Download it instantly. File deleted after 1 hour.</p>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="#pdf-tools-section" class="btn btn-gradient">Start Converting Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⭐ TESTIMONIALS SECTION -->
+    <section class="testimonials-section">
+      <div class="container">
+        <div class="star-summary reveal">
+          <span class="section-label">Testimonials</span>
+          <h2 class="section-title">Loved by Users Worldwide</h2>
+          <div class="star-row">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <div class="star-summary-text">4.9/5 Rating</div>
+          <div class="star-summary-subtext">Based on 2,400+ reviews</div>
+        </div>
+
+        <div class="testimonials-grid">
+          
+          <div class="testimonial-card reveal">
+            <div class="quote-icon">“</div>
+            <div>
+              <div class="test-star-row">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="test-quote">"PDFZaap has completely replaced my paid PDF software. The conversion quality is outstanding and it's completely free. I use it every single day at work."</p>
+            </div>
+            <div class="user-meta">
+              <div class="user-avatar">SM</div>
+              <div class="user-details">
+                <div class="user-name">Sarah M.</div>
+                <div class="user-role">Marketing Manager</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <div class="quote-icon">“</div>
+            <div>
+              <div class="test-star-row">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="test-quote">"Finally a PDF tool that actually works without asking for my credit card. The compress PDF tool reduced my 50MB file to 4MB without any visible quality loss!"</p>
+            </div>
+            <div class="user-meta">
+              <div class="user-avatar">AK</div>
+              <div class="user-details">
+                <div class="user-name">Ahmed K.</div>
+                <div class="user-role">University Student</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <div class="quote-icon">“</div>
+            <div>
+              <div class="test-star-row">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="test-quote">"The OCR feature is incredible. I scanned 200 pages of documents and PDFZaap made them all searchable in minutes. Highly recommended!"</p>
+            </div>
+            <div class="user-meta">
+              <div class="user-avatar">PR</div>
+              <div class="user-details">
+                <div class="user-name">Priya R.</div>
+                <div class="user-role">Legal Assistant</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ❓ FAQ SECTION (ADVANCED ACCORDION) -->
+    <section class="faq-section" id="faq-section">
+      <div class="container faq-wrapper">
+        <div style="text-align: center;">
+          <span class="section-label">FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtext" style="margin-bottom: 3rem;">Everything you need to know about PDFZaap</p>
+        </div>
+
+        <div class="faq-accordion">
+          
+          <div class="accordion-box reveal">
+            <button class="accordion-trigger">
+              Is PDFZaap really free?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="accordion-panel">
+              <div class="accordion-panel-content">
+                Yes, PDFZaap is 100% free. All 35+ tools are available without any payment, subscription, or credit card. We are supported by non-intrusive advertisements, which allows us to keep all tools free forever.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-box reveal">
+            <button class="accordion-trigger">
+              Do I need to create an account?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="accordion-panel">
+              <div class="accordion-panel-content">
+                No account or signup is required. Simply open any tool, upload your file, and download the result. Your privacy is important to us.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-box reveal">
+            <button class="accordion-trigger">
+              Is my data safe and private?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="accordion-panel">
+              <div class="accordion-panel-content">
+                Absolutely. All file transfers use 256-bit SSL encryption. Your uploaded files are automatically deleted from our servers within 1 hour of processing. We never share or sell your data.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-box reveal">
+            <button class="accordion-trigger">
+              What file size limit is there?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="accordion-panel">
+              <div class="accordion-panel-content">
+                You can upload files up to 50MB per conversion, completely free. For larger files, we recommend compressing them first using our Compress PDF tool.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-box reveal">
+            <button class="accordion-trigger">
+              How many times can I use the tools?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="accordion-panel">
+              <div class="accordion-panel-content">
+                Unlimited times. There are no daily limits, no usage caps, and no cooldown periods. Use any tool as many times as you need.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-box reveal">
+            <button class="accordion-trigger">
+              Do the converted files have watermarks?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="accordion-panel">
+              <div class="accordion-panel-content">
+                No. PDFZaap never adds watermarks to your output files. You get clean, professional results every time.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-box reveal">
+            <button class="accordion-trigger">
+              What browsers and devices are supported?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="accordion-panel">
+              <div class="accordion-panel-content">
+                PDFZaap works on all modern browsers including Chrome, Firefox, Safari, and Edge. It works perfectly on desktop, tablet, and mobile devices.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-box reveal">
+            <button class="accordion-trigger">
+              Can I use PDFZaap for commercial purposes?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="accordion-panel">
+              <div class="accordion-panel-content">
+                Yes. You can use PDFZaap tools for personal and commercial projects. There are no restrictions on how you use the converted files.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-box reveal">
+            <button class="accordion-trigger">
+              What happens to my files after conversion?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="accordion-panel">
+              <div class="accordion-panel-content">
+                Your files are automatically and permanently deleted from our servers within 1 hour. No copies are kept. Your documents remain completely private.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 📝 ABOUT US SECTION -->
+    <section class="about-section" id="about-us-section">
+      <div class="container about-layout">
+        <div class="about-text-col reveal">
+          <span class="section-label">About Us</span>
+          <h2 class="section-title">Our Mission: Free Tools for Everyone</h2>
+          <p class="about-paragraph">PDFZaap was built with a simple belief: powerful PDF tools should be available to everyone, not just those who can afford expensive software subscriptions. We started with a handful of tools and have grown to 35+ tools used by thousands of people worldwide.</p>
+          <p class="about-sub-paragraph">Our vision is to be the world's most trusted free PDF toolkit. We are continuously adding new tools, improving existing ones, and listening to our users to make PDFZaap better every day.</p>
+          
+          <div class="values-row">
+            <div class="value-item">
+              <div class="value-item-icon"><i class="fa-solid fa-bullseye"></i></div>
+              <div class="value-item-text">
+                <div class="value-item-title">Simplicity</div>
+                <div class="value-item-desc">Tools that anyone can use, no manuals or instructions needed.</div>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-item-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="value-item-text">
+                <div class="value-item-title">Privacy</div>
+                <div class="value-item-desc">Your files, your data, always protected. Automatic erasure sweeps.</div>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-item-icon"><i class="fa-solid fa-check"></i></div>
+              <div class="value-item-text">
+                <div class="value-item-title">Reliability</div>
+                <div class="value-item-desc">Fast, accurate results every time. Zero server queues.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-stats-grid">
+          <div class="about-stat-card reveal">
+            <div class="about-stat-icon"><i class="fa-solid fa-wrench"></i></div>
+            <div class="about-stat-num" data-target="35">0</div>
+            <div class="about-stat-lbl">PDF Tools</div>
+          </div>
+          <div class="about-stat-card reveal">
+            <div class="about-stat-icon"><i class="fa-solid fa-user-shield"></i></div>
+            <div class="about-stat-num" data-target="100">0</div>
+            <div class="about-stat-lbl">% Secure</div>
+          </div>
+          <div class="about-stat-card reveal">
+            <div class="about-stat-icon"><i class="fa-solid fa-users"></i></div>
+            <div class="about-stat-num" data-target="50000">0</div>
+            <div class="about-stat-lbl">Monthly Users</div>
+          </div>
+          <div class="about-stat-card reveal">
+            <div class="about-stat-icon"><i class="fa-solid fa-star"></i></div>
+            <div class="about-stat-num" data-target="5">0</div>
+            <div class="about-stat-lbl">User Rating</div>
+          </div>
+          <p class="reveal" style="grid-column: 1 / -1; font-size: 0.85rem; color: var(--subtext); text-align: center; margin-top: 1rem; font-style: italic;">
+            Built with ❤️ by a small team passionate about making the web more productive.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADSENSE PLACEHOLDER (RECTANGLE) -->
+    <div class="container">
+      <div style="margin: 2.5rem auto; max-width: 336px; height: 280px; background: #f9f9f9; border: 2px dashed #D1D5DB; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9CA3AF; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">
+        Advertisement • 336×280
+      </div>
+    </div>
+
+  </div> <!-- END OF DASHBOARD VIEW CONTAINER -->
+
+
+  <!-- ==========================================
+       🖥️ WORKSPACE TOOL-PAGE CONTAINER (SPA DYNAMIC STATE)
+       ========================================== -->
+  <div id="workspaceView" class="container">
+    
+    <!-- Dynamic Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="#">Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span id="breadcrumbToolName">PDF to Word</span>
+    </div>
+
+    <!-- Dynamic Workspace Interface Card -->
+    <section class="workspace-wrapper">
+      <div class="tool-header-info">
+        <h2 id="workspaceHeaderTitle">🖼️ PDF to Word</h2>
+        <p id="workspaceHeaderSubtitle">Convert PDF to editable Word documents</p>
+      </div>
+
+      <!-- Drag & Drop Zone -->
+      <div class="dropzone-container" id="workspaceDropzone">
+        <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+        <p class="dropzone-main-text">Drag & drop your files here</p>
+        <p class="dropzone-sub-text">or click to browse local files</p>
+        <p class="dropzone-sub-text" style="font-size: 0.75rem; margin-top: 0.5rem; color: #999;" id="workspaceSupportedTypes">
+          Supported: PDF | Max size: 50MB
+        </p>
+        <input type="file" id="workspaceFileInput">
+      </div>
+
+      <!-- Selected File Row Details Container -->
+      <div class="file-row" id="workspaceFileRow">
+        <div class="file-left">
+          <i class="fa-solid fa-file-pdf" id="workspaceFileIcon" style="color: #EF4444;"></i>
+          <div class="file-details-text">
+            <div class="file-details-name" id="workspaceFileName">document.pdf</div>
+            <div class="file-details-size" id="workspaceFileSize">2.4 MB</div>
+          </div>
+        </div>
+        <i class="fa-solid fa-circle-xmark file-close-btn" id="workspaceFileRemoveBtn"></i>
+      </div>
+
+      <!-- Progress Indicators bar -->
+      <div class="work-progress-box" id="workspaceProgressBox">
+        <div class="work-progress-bar" id="workspaceProgressBar"></div>
+      </div>
+
+      <!-- Executor Button Action -->
+      <button class="btn btn-gradient workspace-exec-btn" id="workspaceExecBtn">
+        Convert to Word
+      </button>
+
+      <div class="security-note">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Your files are processed securely. We never store files on persistent disks.</span>
+      </div>
+    </section>
+
+    <!-- Dynamic Steps instructions -->
+    <section class="workspace-info-section" style="text-align: center;">
+      <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 2rem;">How It Works</h2>
+      <div class="features-grid" id="workspaceStepsContainer">
+        <!-- Injected via JavaScript dynamically -->
+      </div>
+    </section>
+
+    <!-- Dynamic Feature details cards -->
+    <section class="workspace-info-section" style="text-align: center;">
+      <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 2rem;">Premium Features</h2>
+      <div class="features-grid" id="workspaceFeaturesContainer">
+        <!-- Injected via JavaScript dynamically -->
+      </div>
+    </section>
+
+    <!-- Dynamic Tool Specific FAQs accordion -->
+    <section class="workspace-info-section">
+      <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 2rem; text-align: center;">Frequently Asked Questions</h2>
+      <div class="faq-accordion" id="workspaceFaqContainer">
+        <!-- Injected via JavaScript dynamically -->
+      </div>
+    </section>
+
+    <!-- Dynamic Related Tools catalog -->
+    <section class="workspace-info-section" style="text-align: center;">
+      <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 2rem;">Related Tools</h2>
+      <div class="cards-grid" id="workspaceRelatedContainer">
+        <!-- Injected via JavaScript dynamically -->
+      </div>
+    </section>
+
+  </div> <!-- END OF WORKSPACE TOOL-PAGE CONTAINER -->
+
+
+  <!-- ==========================================
+       ✉️ NEWSLETTER SECTION
+       ========================================== -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-container reveal">
+        <div class="newsletter-icon">✉️</div>
+        <h2 class="newsletter-title">Stay Updated with New Tools</h2>
+        <p class="newsletter-sub">Get notified when we add new PDF tools and features. No spam, ever.</p>
+        <form class="newsletter-form-row" id="newsletterForm">
+          <input type="email" id="newsletterEmailInput" placeholder="Enter your email address..." required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <div class="newsletter-success" id="newsletterSuccess">
+          <i class="fa-solid fa-circle-check"></i> Thank you! You're subscribed.
+        </div>
+        <p class="newsletter-privacy">🔒 We respect your privacy. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       🏛️ FOOTER
+       ========================================== -->
+  <footer>
+    <div class="container footer-grid">
+      
+      <div class="footer-brand">
+        <h3>⚡ PDFZaap</h3>
+        <p>Lightning Fast PDF Tools — Free Forever</p>
+        <p>Your all-in-one toolkit for PDF conversion, editing, and everyday productivity.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <div class="footer-col-title">Popular Tools</div>
+        <ul class="footer-links-list">
+          <li><a href="#pdf-to-word">PDF to Word</a></li>
+          <li><a href="#pdf-to-jpg">PDF to JPG</a></li>
+          <li><a href="#compress-pdf">Compress PDF</a></li>
+          <li><a href="#merge-pdf">Merge PDF</a></li>
+          <li><a href="#split-pdf">Split PDF</a></li>
+          <li><a href="#pdf-tools-section" style="font-weight: 700;">All PDF Tools →</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <div class="footer-col-title">Organize & Manage</div>
+        <ul class="footer-links-list">
+          <li><a href="#rotate-pdf">Rotate PDF</a></li>
+          <li><a href="#protect-pdf">Protect PDF</a></li>
+          <li><a href="#esign-pdf">E-Sign PDF</a></li>
+          <li><a href="#ocr-pdf">OCR PDF</a></li>
+          <li><a href="#about-us-section">About Us</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="container">
+      <div class="footer-divider"></div>
+      <div class="footer-bottom-flex">
+        <div>© 2026 PDFZaap. All rights reserved.</div>
+        <div style="font-style: italic;">Made with ❤️ for productivity</div>
+        <div class="footer-bottom-links">
+          <a href="#" class="open-privacy-link">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       🚀 SCROLL TO TOP BUTTON
+       ========================================== -->
+  <button id="scrollToTop" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- ==========================================
+       🍪 COOKIE CONSENT BANNER
+       ========================================== -->
+  <div id="cookieBanner">
+    <div class="cookie-text">🍪 We use cookies to improve your experience and show relevant ads. <a class="open-privacy-link">Learn more</a>.</div>
+    <div class="cookie-actions">
+      <button class="btn btn-outline" id="cookieDecline">Decline</button>
+      <button class="btn btn-gradient" id="cookieAccept">Accept All</button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       🔒 PRIVACY POLICY MODAL (DYNAMIC CONTENT OPENER)
+       ========================================== -->
+  <div id="privacyModal" class="privacy-modal">
+    <div class="privacy-modal-content">
+      <span class="close-privacy-modal" id="closePrivacyModal">&times;</span>
+      <div class="privacy-modal-title">
+        <i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i> Privacy Policy & Cookies
+      </div>
+      <div class="privacy-modal-body">
+        <p>Welcome to PDFZaap. Your privacy is of paramount importance to us. This document details how we handle cookies, privacy, and data transfer inside our SaaS platform.</p>
+        
+        <h4>1. File & Data Security</h4>
+        <p>All file uploads process through secure, transient cache memories protected by 256-bit SSL encryption layer. We enforce a strict zero-retention system: your documents are automatically swept and deleted from our active caches within 60 minutes after execution.</p>
+        
+        <h4>2. Client-Side Integrity</h4>
+        <p>Most basic structural and style configurations run client-side inside your own local browser variables. We do not inspect, retain, or share document elements.</p>
+        
+        <h4>3. Cookie Utilization</h4>
+        <p>We leverage small analytical cookies to analyze network traffic patterns and provide non-intrusive advertisements. Cookies do not log personal user identifiers, email addresses, or account structures.</p>
+        
+        <h4>4. Third-Party Ads</h4>
+        <p>We partner with Google AdSense to deliver relevant advertisement spots. These vendors may use cookies to serve personalized ads based on your visits to this and other sites on the web.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       ⚡ JAVASCRIPT SYSTEM UTILITIES (SPA ROUTER)
+       ========================================== -->
+  <script>
+    /* ==========================================================================
+       💾 35 DYNAMIC PDF TOOLS DATABASE
+       ========================================================================== */
+    const TOOL_DATABASE = {
+      // PDF to Word
+      "pdf-to-word": {
+        title: "PDF to Word Converter",
+        emoji: "📄",
+        subtitle: "Convert PDF to editable Microsoft Word documents",
+        accept: ".pdf",
+        execBtnText: "Convert to Word",
+        outputExt: ".docx",
+        steps: [
+          { title: "Upload PDF", desc: "Select or drop your PDF document inside the dropzone area." },
+          { title: "Run Engine", desc: "Our engine parses the layout columns, text lines and vectors." },
+          { title: "Download", desc: "Your final fully formatted Microsoft Word (.docx) is generated." }
+        ],
+        features: [
+          { title: "Retain Structure", desc: "We process text layouts so headers, footers and tables remain clean." },
+          { title: "Highly Editable", desc: "Output document supports standard editor formatting effortlessly." },
+          { title: "Instant Conversion", desc: "Converts medium-sized documentation sheets in under 5 seconds." },
+          { title: "Safe Storage", desc: "Data parameters and cache layers clean themselves out every hour." }
+        ],
+        faqs: [
+          { q: "Is formatting preserved after conversion?", a: "Most basic formats, paragraphs, tables, and images remain in place. Highly complex graphics layouts may require minor manual adjustments." },
+          { q: "Do you support scanned PDFs?", a: "Yes, you can run OCR processing directly on this tool to translate scanned pages into editable text strings." },
+          { q: "What is the file size limit?", a: "Our free engine converts PDF documents up to 50MB." }
+        ],
+        related: ["pdf-to-jpg", "pdf-to-excel", "word-to-pdf", "compress-pdf"]
+      },
+      // PDF to JPG
+      "pdf-to-jpg": {
+        title: "PDF to JPG Converter",
+        emoji: "🖼️",
+        subtitle: "Extract PDF pages as high-quality JPG images instantly",
+        accept: ".pdf",
+        execBtnText: "Convert to JPG",
+        outputExt: ".zip",
+        steps: [
+          { title: "Upload File", desc: "Upload the target document you want to extract as visual pictures." },
+          { title: "Extract Pages", desc: "Our converter processes and captures high-resolution screenshots of each page." },
+          { title: "Get ZIP Package", desc: "Retrieve a single ZIP archive containing all separate JPG pictures." }
+        ],
+        features: [
+          { title: "DPI Configuration", desc: "All exported JPG screenshots are built to default high-resolution 300 DPI." },
+          { title: "Exact Ratios", desc: "Preserves page widths, vector diagrams, and original layouts correctly." },
+          { title: "Fast ZIP Bundles", desc: "Batch processes multi-page documents into ZIP folders in seconds." },
+          { title: "Client Security", desc: "Transfers run across dynamic transient caches and delete instantly." }
+        ],
+        faqs: [
+          { q: "Will the resolution of images look blurry?", a: "No, we use 300 DPI layout render systems to ensure all text and structural graphic layers look clear." },
+          { q: "Can I extract specific pages?", a: "By default, all pages are exported. You can split pages first if only a specific sheet is required." },
+          { q: "How do I extract the downloaded ZIP file?", a: "Double-click the downloaded .zip file on Windows or Mac to extract all converted image sheets." }
+        ],
+        related: ["pdf-to-png", "jpg-to-pdf", "png-to-pdf", "merge-pdf"]
+      },
+      // PDF to Excel
+      "pdf-to-excel": {
+        title: "PDF to Excel Converter",
+        emoji: "📊",
+        subtitle: "Extract tables and data from PDF to editable Excel spreadsheets",
+        accept: ".pdf",
+        execBtnText: "Convert to Excel",
+        outputExt: ".xlsx",
+        steps: [
+          { title: "Select PDF", desc: "Upload the PDF document containing tables or tabular structural records." },
+          { title: "Extract Fields", desc: "Tabular structures, cell formatting, and numeric properties are calculated." },
+          { title: "Download Sheet", desc: "Your final formatted Microsoft Excel (.xlsx) spreadsheet is prepared." }
+        ],
+        features: [
+          { title: "Grid Extraction", desc: "Tables are isolated and auto-formatted directly into responsive row and column structures." },
+          { title: "Number Formatting", desc: "Maintains floating decimals and numeric cell properties without string-parsing locks." },
+          { title: "No Watermarks", desc: "Free exports contain clean data frameworks ready for analysis tools." },
+          { title: "Privacy Assured", desc: "Transmitted datasets are purged from physical drives hourly." }
+        ],
+        faqs: [
+          { q: "Are merged cells maintained in Excel?", a: "Yes, our algorithm attempts to map cell-span configurations as closely as possible." },
+          { q: "Can I parse non-tabular PDFs?", a: "For plain paragraphs, we recommend using PDF to Word. PDF to Excel works best with numeric rows and columns." },
+          { q: "Can I run calculations instantly on Excel?", a: "Yes, once downloaded, files open as fully-editable spreadsheet layers." }
+        ],
+        related: ["pdf-to-word", "excel-to-pdf", "pdf-to-text", "pdf-metadata-editor"]
+      },
+      // PDF to PowerPoint
+      "pdf-to-powerpoint": {
+        title: "PDF to PowerPoint Converter",
+        emoji: "📊",
+        subtitle: "Turn your PDF into fully editable PowerPoint presentation slides",
+        accept: ".pdf",
+        execBtnText: "Convert to PowerPoint",
+        outputExt: ".pptx",
+        steps: [
+          { title: "Add PDF Document", desc: "Upload your presentation-formatted PDF document." },
+          { title: "Parse Slide Templates", desc: "Vector bounding coordinates and text fields are parsed per page." },
+          { title: "Download PPTX", desc: "Your presentation deck opens instantly as an editable .pptx slide collection." }
+        ],
+        features: [
+          { title: "Responsive Layouts", desc: "Converts horizontal visual designs cleanly into 16:9 standard screen layouts." },
+          { title: "Scalable Vector Images", desc: "Graphic charts and lines stay scalable as vector assets within MS PowerPoint." },
+          { title: "Batch PDF Conversions", desc: "Convert long presentation decks into slides in seconds." },
+          { title: "No Account Caps", desc: "Generate presentation layouts without signups or payment checks." }
+        ],
+        faqs: [
+          { q: "Are individual text blocks editable?", a: "Yes, structural elements convert to native editable text blocks inside MS PowerPoint." },
+          { q: "Can I open slides on Google Slides?", a: "Yes, you can upload the exported .pptx file directly into Google Drive." },
+          { q: "Will interactive video elements preserve?", a: "Static imagery maps nicely; interactive embedded video configurations may require re-linking." }
+        ],
+        related: ["powerpoint-to-pdf", "pdf-to-word", "pdf-to-jpg", "pdf-to-epub"]
+      },
+      // PDF to Text
+      "pdf-to-text": {
+        title: "PDF to Text Extractor",
+        emoji: "📃",
+        subtitle: "Extract all text content from your PDF in plain TXT format",
+        accept: ".pdf",
+        execBtnText: "Extract Text",
+        outputExt: ".txt",
+        steps: [
+          { title: "Upload PDF", desc: "Import your text document to parse the target character encoding layers." },
+          { title: "Scrape Content", desc: "Scrapes encoding databases to parse text hierarchies and character streams." },
+          { title: "Save Plain Document", desc: "Save your lightweight text stream instantly as an editable (.txt) file." }
+        ],
+        features: [
+          { title: "Clean Encoding", desc: "Processes character encodings accurately to prevent output character glitches." },
+          { title: "Ultra-Lightweight Output", desc: "Removes imagery assets to build compact text formats instantly." },
+          { title: "Language Support", desc: "Supports parsing multi-lingual systems and accented character sets cleanly." },
+          { title: "No Server Storage", desc: "Operations run securely on fast caching clusters with self-destruction parameters." }
+        ],
+        faqs: [
+          { q: "Will the layout formatting stay in the TXT file?", a: "TXT is a plain, layout-free character stream. For style-retentive structures, use PDF to Word." },
+          { q: "Can I parse password-secured files?", a: "You must unlock the PDF file before our system can process the internal characters." },
+          { q: "Is there any charge for extracting large books?", a: "No, large documents are processed completely free." }
+        ],
+        related: ["ocr-pdf", "pdf-to-word", "pdf-to-html", "redact-pdf"]
+      },
+      // PDF to HTML
+      "pdf-to-html": {
+        title: "PDF to HTML Converter",
+        emoji: "🌐",
+        subtitle: "Convert your PDF documents into web-ready HTML format",
+        accept: ".pdf",
+        execBtnText: "Convert to HTML",
+        outputExt: ".html",
+        steps: [
+          { title: "Select Document", desc: "Drag or select the target document format directly from your directory." },
+          { title: "Build HTML DOM", desc: "Converts paragraph styles, headers, and media vectors into responsive HTML grids." },
+          { title: "Run Webpage", desc: "Save clean, valid HTML markup files completely ready to publish." }
+        ],
+        features: [
+          { title: "Responsive Coding", desc: "Outputs flexible, responsive layout grids compatible with major web engines." },
+          { title: "Embedded Styles", desc: "Bundles styles neatly into clear styling blocks inside the output code." },
+          { title: "Clean DOM Trees", desc: "Structured tag hierarchies allow easy custom coding post-conversion." },
+          { title: "Secure Processing", desc: "Secure environment handles data parameters and discards assets within an hour." }
+        ],
+        faqs: [
+          { q: "Does the output include external asset directories?", a: "Images are often packaged inline as base64 strings inside the unified HTML DOM system." },
+          { q: "Is the output standard compliant?", a: "Yes, the HTML code is fully compatible with modern browsers." },
+          { q: "Can I embed the HTML on my website?", a: "Yes, copy the generated code directly into your CMS editors." }
+        ],
+        related: ["html-to-pdf", "pdf-to-word", "pdf-to-text", "pdf-to-epub"]
+      },
+      // Word to PDF
+      "word-to-pdf": {
+        title: "Word to PDF Converter",
+        emoji: "📝",
+        subtitle: "Convert your Word documents to PDF format instantly",
+        accept: ".doc,.docx",
+        execBtnText: "Convert to PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select Word File", desc: "Upload MS Word documents (.doc or .docx) securely to our system." },
+          { title: "Build PDF Layers", desc: "Compiles layout blocks, fonts, margins, and visual content into a PDF." },
+          { title: "Download PDF", desc: "Download your newly formatted print-ready PDF." }
+        ],
+        features: [
+          { title: "Precise Layouts", desc: "Maintains margin variables, font weights, and table properties accurately." },
+          { title: "Vector Preservation", desc: "Preserves layout curves, diagrams, and formatting cleanly." },
+          { title: "No Watermarks", desc: "Outputs clean PDF files without trial indicators or system stamps." },
+          { title: "Fast Compile", desc: "Processes multiple pages in seconds." }
+        ],
+        faqs: [
+          { q: "Do I need MS Office installed?", a: "No, conversions process completely on our secure cloud engine." },
+          { q: "Are custom fonts preserved?", a: "Standard core web fonts map perfectly. Unregistered niche typography may map to similar standard families." },
+          { q: "Are files private?", a: "All transactions are fully covered by transient, self-deleting caches." }
+        ],
+        related: ["pdf-to-word", "excel-to-pdf", "powerpoint-to-pdf", "compress-pdf"]
+      },
+      // JPG to PDF
+      "jpg-to-pdf": {
+        title: "JPG to PDF Converter",
+        emoji: "🖼️",
+        subtitle: "Convert single or multiple JPG images into a professional PDF",
+        accept: ".jpg,.jpeg",
+        execBtnText: "Convert to PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select Images", desc: "Select or drag the target JPG images to package." },
+          { title: "Order Sheets", desc: "Arrange and format boundaries to compile the images sequentially." },
+          { title: "Get Unified PDF", desc: "Your multi-page PDF document compiles and downloads immediately." }
+        ],
+        features: [
+          { title: "Layout Auto-Fit", desc: "Automatically centers and fits images to standard A4 page dimensions." },
+          { title: "Lossless Scaling", desc: "Ensures original image quality is not compressed during packaging." },
+          { title: "Batch Packaging", desc: "Compile up to 20 images into a single PDF in a single action." },
+          { title: "Zero Disk Trace", desc: "Files process inside transient application queues for security." }
+        ],
+        faqs: [
+          { q: "Can I mix PNG and JPG files?", a: "Yes, you can upload both formats seamlessly." },
+          { q: "Will my photos look compressed?", a: "No, we preserve the original pixels." },
+          { q: "Is there a page limit?", a: "We support merging up to 20 images in our free conversion tier." }
+        ],
+        related: ["pdf-to-jpg", "png-to-pdf", "merge-pdf", "compress-pdf"]
+      },
+      // Excel to PDF
+      "excel-to-pdf": {
+        title: "Excel to PDF Converter",
+        emoji: "📊",
+        subtitle: "Convert Excel spreadsheets to formatted PDF documents",
+        accept: ".xls,.xlsx",
+        execBtnText: "Convert to PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select Sheets", desc: "Import your .xls or .xlsx spreadsheets." },
+          { title: "Render Grid Lines", desc: "Maps spreadsheet columns, formulas, and visual margins accurately." },
+          { title: "Save PDF Document", desc: "Your printed data sheet downloads cleanly as a secure PDF document." }
+        ],
+        features: [
+          { title: "Page Scaling", desc: "Ensures grid elements and datasets fit securely onto standard sheet ratios." },
+          { title: "Formula Rendering", desc: "Converts formula results correctly without data glitches." },
+          { title: "Chart Preservation", desc: "Keeps dynamic vector diagram charts fully preserved in PDF output." },
+          { title: "Auto cleanup", desc: "Secure environment discards documents within 60 minutes." }
+        ],
+        faqs: [
+          { q: "Will multiple worksheets compile?", a: "Yes, separate tabs can be rendered as consecutive sheets." },
+          { q: "What if my table is too wide?", a: "Our system fits tables within logical grid layouts using scaling factors." },
+          { q: "Is the layout editable on PDF?", a: "The output is static. To edit, modify the original Excel document first." }
+        ],
+        related: ["pdf-to-excel", "word-to-pdf", "powerpoint-to-pdf", "compress-pdf"]
+      },
+      // PowerPoint to PDF
+      "powerpoint-to-pdf": {
+        title: "PowerPoint to PDF Converter",
+        emoji: "📊",
+        subtitle: "Convert PowerPoint presentations to universally compatible PDF",
+        accept: ".ppt,.pptx",
+        execBtnText: "Convert to PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Upload Slides", desc: "Select or drag Microsoft PowerPoint presentation slides (.ppt or .pptx)." },
+          { title: "Build Slide Layouts", desc: "Converts slides into high-fidelity vector pages." },
+          { title: "Save presentation", desc: "Your presentation deck prints and downloads as a clean PDF file." }
+        ],
+        features: [
+          { title: "16:9 Screen Layout", desc: "Maintains screen aspect ratios beautifully for clean page structures." },
+          { title: "Lossless Graphics", desc: "Preserves high-resolution photos and vector slides cleanly." },
+          { title: "Quick Processing", desc: "Converts slide files instantly." },
+          { title: "Secure Data Runs", desc: "Files process securely and are purged completely within an hour." }
+        ],
+        faqs: [
+          { q: "Will slide animations carry over?", a: "No, animations are not supported on static PDF pages. Each slide prints in its final state." },
+          { q: "Can I convert large templates?", a: "Yes, presentation slide decks up to 50MB convert seamlessly." },
+          { q: "Does the text stay selectable?", a: "Yes, slide text layers convert to selectable text elements inside the PDF document." }
+        ],
+        related: ["pdf-to-powerpoint", "word-to-pdf", "excel-to-pdf", "merge-pdf"]
+      },
+      // HTML to PDF
+      "html-to-pdf": {
+        title: "HTML to PDF Converter",
+        emoji: "🌐",
+        subtitle: "Convert HTML files or web pages into downloadable PDF documents",
+        accept: ".html,.htm",
+        execBtnText: "Convert to PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Import HTML Code", desc: "Upload an HTML document (.html) or dynamic inline assets." },
+          { title: "Process Styling Markup", desc: "Our engine renders HTML structure and CSS variables into page coordinates." },
+          { title: "Save PDF Document", desc: "Your webpage output converts and downloads as a structured PDF document." }
+        ],
+        features: [
+          { title: "CSS Compatibility", desc: "Processes styles and inline styling instructions reliably." },
+          { title: "Hyperlink Preservation", desc: "Active links are preserved during conversion." },
+          { title: "Auto-Page Dividers", desc: "Intelligent layout breaks split infinite web heights into printable sections." },
+          { title: "No Trials", desc: "Generate professional outputs without registration bounds." }
+        ],
+        faqs: [
+          { q: "Are interactive JavaScript blocks rendered?", a: "Dynamic content is rendered in its initial load state. Static elements render cleanly." },
+          { q: "Can I enter a website URL directly?", a: "This converter parses local HTML assets. Use our main dashboard to convert live site links directly." },
+          { q: "Are images embedded in the output?", a: "Yes, images referenced within HTML structure render cleanly." }
+        ],
+        related: ["pdf-to-html", "word-to-pdf", "pdf-to-text", "pdf-to-epub"]
+      },
+      // PDF to PNG
+      "pdf-to-png": {
+        title: "PDF to PNG Converter",
+        emoji: "🖼️",
+        subtitle: "Export every PDF page as a high-quality transparent PNG image",
+        accept: ".pdf",
+        execBtnText: "Convert to PNG",
+        outputExt: ".zip",
+        steps: [
+          { title: "Upload PDF", desc: "Import your document file to extract page layers." },
+          { title: "Build PNG Grids", desc: "Renders document layouts to transparent high-fidelity PNG formats." },
+          { title: "Get Images ZIP", desc: "Retrieve a clean ZIP archive with separate PNG pages." }
+        ],
+        features: [
+          { title: "Transparent Backdrops", desc: "Exports vector structures with true transparent properties." },
+          { title: "Print Resolution", desc: "Images render at 300 DPI layout specifications." },
+          { title: "Batch Packaging", desc: "Multi-page documents package into compact ZIP archives instantly." },
+          { title: "Hourly Purges", desc: "All files process inside secure environments and are deleted cleanly." }
+        ],
+        faqs: [
+          { q: "Does PNG maintain background transparency?", a: "Yes, transparent zones inside PDF objects are preserved in PNG." },
+          { q: "What is the difference between JPG and PNG?", a: "PNG supports transparency and lossless compression. JPG files are usually smaller in file size." },
+          { q: "How do I extract pages?", a: "All sheets package cleanly within a standard, extractable ZIP archive." }
+        ],
+        related: ["pdf-to-jpg", "png-to-pdf", "jpg-to-pdf", "merge-pdf"]
+      },
+      // PNG to PDF
+      "png-to-pdf": {
+        title: "PNG to PDF Converter",
+        emoji: "🖼️",
+        subtitle: "Convert PNG images into professional PDF documents instantly",
+        accept: ".png",
+        execBtnText: "Convert to PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Upload PNG Files", desc: "Select or drag the PNG images you want to package." },
+          { title: "Format Sheets", desc: "Centers images onto standard, printable PDF page boundaries." },
+          { title: "Save PDF Document", desc: "Your newly compiled PDF document downloads immediately." }
+        ],
+        features: [
+          { title: "Transparency Retained", desc: "Transparent zones render cleanly on structured white page areas." },
+          { title: "Lossless Conversion", desc: "Compiles PNG images without reducing pixel quality." },
+          { title: "Multi-Image Batch", desc: "Combine up to 20 PNG images into a single PDF." },
+          { title: "Transient Queues", desc: "Conversions run inside transient caches with self-deleting hourly cleanups." }
+        ],
+        faqs: [
+          { q: "Can I combine different image sizes?", a: "Yes, our algorithm fits varied aspect ratios cleanly on standard paper sheets." },
+          { q: "Will transparency display as black?", a: "No, transparent regions are rendered cleanly on standard white page backgrounds." },
+          { q: "Is registration required?", a: "No account or credentials are required. PDFZaap is free." }
+        ],
+        related: ["jpg-to-pdf", "pdf-to-png", "merge-pdf", "compress-pdf"]
+      },
+      // PDF to EPUB
+      "pdf-to-epub": {
+        title: "PDF to EPUB Converter",
+        emoji: "📚",
+        subtitle: "Convert PDF documents into mobile-friendly eBook format",
+        accept: ".pdf",
+        execBtnText: "Convert to EPUB",
+        outputExt: ".epub",
+        steps: [
+          { title: "Select PDF Ebook", desc: "Upload the target text or eBook document." },
+          { title: "Re-flow Layouts", desc: "Restructures paragraph strings, margins and pages to re-flowable formats." },
+          { title: "Save EPUB File", desc: "Your mobile-friendly eBook file downloads cleanly." }
+        ],
+        features: [
+          { title: "Re-flowable Text", desc: "Maintains flexible, responsive paragraph flow for clean reading." },
+          { title: "Image Preservation", desc: "Ensures cover art and embedded text diagrams stay in place." },
+          { title: "TOC Generation", desc: "Maps document heading structures into navigations." },
+          { title: "Secure Systems", desc: "Files process securely and wipe completely within an hour." }
+        ],
+        faqs: [
+          { q: "Which devices support EPUB?", a: "Apple Books, Google Play Books, and most standard eReaders support EPUB." },
+          { q: "Will the book images stay in place?", a: "Yes, formatting keeps imagery aligned with nearby paragraphs." },
+          { q: "Are custom fonts preserved?", a: "Text compiles to standard, re-flowable eBook fonts to fit modern reading apps." }
+        ],
+        related: ["pdf-to-word", "pdf-to-text", "pdf-to-html", "compress-pdf"]
+      },
+      // Merge PDF
+      "merge-pdf": {
+        title: "Merge PDF Files",
+        emoji: "🔗",
+        subtitle: "Combine multiple PDF documents into one single file",
+        accept: ".pdf",
+        execBtnText: "Merge PDFs",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF Files", desc: "Select or drag the target documents." },
+          { title: "Order PDF Pages", desc: "Reorder and sort your documents sequentially." },
+          { title: "Combine Files", desc: "Your compiled, single PDF document is ready." }
+        ],
+        features: [
+          { title: "Sequential Ordering", desc: "Drag and rearrange files easily before compiling." },
+          { title: "Lossless Compiles", desc: "Maintains document parameters without compression." },
+          { title: "Limitless Merging", desc: "Merge up to 20 documents in a single process." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "Can I adjust individual page sequences?", a: "Yes, use the sequential sorting tool before merging." },
+          { q: "Do the combined files lose quality?", a: "No, files are merged without quality loss." },
+          { q: "Is there a limit on file count?", a: "Merge up to 20 files in a single session." }
+        ],
+        related: ["split-pdf", "compress-pdf", "reorder-pages-pdf", "extract-pages-pdf"]
+      },
+      // Split PDF
+      "split-pdf": {
+        title: "Split PDF Files",
+        emoji: "✂️",
+        subtitle: "Divide your PDF into multiple separate files instantly",
+        accept: ".pdf",
+        execBtnText: "Split PDF",
+        outputExt: ".zip",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Define page limits", desc: "Enter your target page ranges." },
+          { title: "Download separate PDFs", desc: "Download all split documents cleanly in a ZIP package." }
+        ],
+        features: [
+          { title: "Flexible Splitting", desc: "Split by ranges, separate sheets, or extract exact coordinates." },
+          { title: "Instant Splitting", desc: "Splits large documents in seconds." },
+          { title: "Precise Extraction", desc: "Extract exact pages while maintaining document layers." },
+          { title: "Auto cleanup", desc: "Your upload variables delete completely after processing." }
+        ],
+        faqs: [
+          { q: "Can I extract specific page ranges?", a: "Yes, split by ranges, separate sheets, or extract exact pages." },
+          { q: "Do the split files lose quality?", a: "No, files are split without quality loss." },
+          { q: "Is there a page limit?", a: "No, split documents with hundreds of pages." }
+        ],
+        related: ["merge-pdf", "extract-pages-pdf", "remove-pages-pdf", "compress-pdf"]
+      },
+      // Compress PDF
+      "compress-pdf": {
+        title: "Compress PDF Files",
+        emoji: "🗜️",
+        subtitle: "Reduce your PDF file size without sacrificing layout clarity",
+        accept: ".pdf",
+        execBtnText: "Compress PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Choose compression level", desc: "Select low, medium, or high compression." },
+          { title: "Download compressed PDF", desc: "Download your newly optimized PDF." }
+        ],
+        features: [
+          { title: "Optimized File Size", desc: "Compresses file sizes up to 90%." },
+          { title: "High-Quality Rendering", desc: "Maintains layout parameters and text sharpness." },
+          { title: "Fast Compression", desc: "Compresses documents in seconds." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "How much can I reduce my PDF size?", a: "We compress files up to 90%, depending on the content." },
+          { q: "Will the layout formatting stay in the compressed file?", a: "Yes, text is preserved and images are optimized." },
+          { q: "Is there a daily limit?", a: "No, compress as many files as you need." }
+        ],
+        related: ["merge-pdf", "split-pdf", "pdf-to-word", "resize-pdf"]
+      },
+      // Rotate PDF
+      "rotate-pdf": {
+        title: "Rotate PDF Pages",
+        emoji: "🔄",
+        subtitle: "Rotate individual or all pages in your PDF document",
+        accept: ".pdf",
+        execBtnText: "Rotate PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Rotate Pages", desc: "Rotate pages 90° or 180° clockwise or counterclockwise." },
+          { title: "Download PDF", desc: "Download your newly formatted PDF." }
+        ],
+        features: [
+          { title: "Flexible Rotation", desc: "Rotate all or specific pages easily." },
+          { title: "Instant Apply", desc: "Applies rotation instantly." },
+          { title: "Precise Page Selection", desc: "Rotate exact pages." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "Can I rotate only specific pages?", a: "Yes, select individual pages or rotate the entire document." },
+          { q: "What rotation angles are supported?", a: "We support 90° left, 90° right, and 180° rotation." },
+          { q: "Will rotating affect my PDF quality?", a: "No, rotation is a lossless operation." }
+        ],
+        related: ["reorder-pages-pdf", "crop-pdf", "merge-pdf", "compress-pdf"]
+      },
+      // Remove Pages
+      "remove-pages-pdf": {
+        title: "Remove PDF Pages",
+        emoji: "🗑️",
+        subtitle: "Delete unwanted pages from your PDF document easily",
+        accept: ".pdf",
+        execBtnText: "Remove Pages",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Select Unwanted Pages", desc: "Select the pages you want to delete." },
+          { title: "Download PDF", desc: "Download your newly formatted PDF." }
+        ],
+        features: [
+          { title: "Precise Deletion", desc: "Delete specific pages easily." },
+          { title: "Instant Apply", desc: "Deletes pages in seconds." },
+          { title: "Precise Page Selection", desc: "Select exact pages." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "Can I delete multiple pages at once?", a: "Yes, enter multiple page numbers or ranges." },
+          { q: "Is my original file changed?", a: "No, we work on a copy. Your original is safe." },
+          { q: "Can I undo page deletion?", a: "Simply upload your original file again to start over." }
+        ],
+        related: ["extract-pages-pdf", "split-pdf", "reorder-pages-pdf", "merge-pdf"]
+      },
+      // Extract Pages
+      "extract-pages-pdf": {
+        title: "Extract PDF Pages",
+        emoji: "📤",
+        subtitle: "Pull specific pages from your PDF into a new document",
+        accept: ".pdf",
+        execBtnText: "Extract Pages",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Select Pages to Extract", desc: "Select the pages you want to extract." },
+          { title: "Download PDF", desc: "Download your newly formatted PDF." }
+        ],
+        features: [
+          { title: "Precise Extraction", desc: "Extract specific pages easily." },
+          { title: "Instant Apply", desc: "Extracts pages in seconds." },
+          { title: "Precise Page Selection", desc: "Select exact pages." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "Can I extract non-consecutive pages?", a: "Yes, enter pages like 1, 3, 5, 8 to extract any combination." },
+          { q: "Will the extracted PDF lose quality?", a: "No, extracted pages retain full original resolution." },
+          { q: "How is this different from Split PDF?", a: "Extract lets you pick specific pages. Split divides at regular intervals." }
+        ],
+        related: ["remove-pages-pdf", "split-pdf", "merge-pdf", "reorder-pages-pdf"]
+      },
+      // Reorder Pages
+      "reorder-pages-pdf": {
+        title: "Reorder PDF Pages",
+        emoji: "🔀",
+        subtitle: "Drag and rearrange PDF pages in any order you want",
+        accept: ".pdf",
+        execBtnText: "Reorder Pages",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Reorder Pages", desc: "Drag and drop thumbnails to rearrange pages." },
+          { title: "Download PDF", desc: "Download your newly formatted PDF." }
+        ],
+        features: [
+          { title: "Dynamic Reordering", desc: "Drag and drop pages easily." },
+          { title: "Instant Apply", desc: "Reorders pages in seconds." },
+          { title: "Precise Page Selection", desc: "Select exact pages." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "How do I reorder pages?", a: "After uploading, drag and drop the page thumbnails into your desired order." },
+          { q: "Can I move pages to any position?", a: "Yes, place any page anywhere in the document." },
+          { q: "Will PDF content be affected?", a: "No, only the page order changes. All content remains identical." }
+        ],
+        related: ["remove-pages-pdf", "extract-pages-pdf", "merge-pdf", "split-pdf"]
+      },
+      // Add Page Numbers
+      "add-page-numbers-pdf": {
+        title: "Add Page Numbers",
+        emoji: "🔢",
+        subtitle: "Insert professional page numbers to your PDF document",
+        accept: ".pdf",
+        execBtnText: "Add Page Numbers",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Configure Numbers", desc: "Select style, position, and starting number." },
+          { title: "Download PDF", desc: "Download your newly formatted PDF." }
+        ],
+        features: [
+          { title: "Custom Formatting", desc: "Select position, style, and range." },
+          { title: "Instant Apply", desc: "Inserts page numbers in seconds." },
+          { title: "Precise Page Selection", desc: "Select exact pages." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "Can I choose where page numbers appear?", a: "Yes, choose top or bottom, and left, center, or right alignment." },
+          { q: "Can I start numbering from a page other than 1?", a: "Yes, you can set any starting number and skip initial pages." },
+          { q: "What number formats are available?", a: "Arabic (1,2,3), Roman numerals (i,ii,iii), and alphabetic (a,b,c)." }
+        ],
+        related: ["reorder-pages-pdf", "add-watermark-pdf", "merge-pdf", "compress-pdf"]
+      },
+      // Add Watermark
+      "add-watermark-pdf": {
+        title: "Add Watermark",
+        emoji: "💧",
+        subtitle: "Protect your PDF with custom text or image watermarks",
+        accept: ".pdf",
+        execBtnText: "Add Watermark",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Configure Watermark", desc: "Select text or image watermark, styles, and options." },
+          { title: "Download PDF", desc: "Download your newly formatted PDF." }
+        ],
+        features: [
+          { title: "Custom Formatting", desc: "Configure text, images, size, and styles." },
+          { title: "Instant Apply", desc: "Adds watermark in seconds." },
+          { title: "Precise Page Selection", desc: "Select exact pages." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "Can I add my company logo as a watermark?", a: "Yes, upload any PNG image including transparent logos." },
+          { q: "Can I control transparency?", a: "Yes, adjust opacity from 10% to 100% to get the perfect look." },
+          { q: "Will the watermark be permanent?", a: "Yes, the watermark is embedded and cannot be easily removed." }
+        ],
+        related: ["protect-pdf", "redact-pdf", "esign-pdf", "add-page-numbers-pdf"]
+      },
+      // Crop PDF
+      "crop-pdf": {
+        title: "Crop PDF Pages",
+        emoji: "✂️",
+        subtitle: "Trim margins and crop PDF page borders",
+        accept: ".pdf",
+        execBtnText: "Crop PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Crop PDF Pages", desc: "Select margins and boundaries." },
+          { title: "Download PDF", desc: "Download your newly formatted PDF." }
+        ],
+        features: [
+          { title: "Custom Formatting", desc: "Crop pages, select ranges, and configure." },
+          { title: "Instant Apply", desc: "Crops pages in seconds." },
+          { title: "Precise Page Selection", desc: "Select exact pages." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "Can I crop different amounts from each side?", a: "Yes, set individual crop values for top, bottom, left, and right." },
+          { q: "Will cropping delete content outside the area?", a: "The content is hidden but technically still in the PDF. Use flatten for permanent removal." },
+          { q: "Can I apply different crop settings to different pages?", a: "Yes, you can apply unique crop settings per page." }
+        ],
+        related: ["resize-pdf", "rotate-pdf", "remove-pages-pdf", "compress-pdf"]
+      },
+      // Resize PDF
+      "resize-pdf": {
+        title: "Resize PDF Pages",
+        emoji: "📏",
+        subtitle: "Change PDF page size to A4, Letter and more",
+        accept: ".pdf",
+        execBtnText: "Resize PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Configure Page Dimensions", desc: "Select A4, Letter, A3, or customized page sizes." },
+          { title: "Download PDF", desc: "Download your newly formatted PDF." }
+        ],
+        features: [
+          { title: "Custom Dimensions", desc: "Configure Standard sheet presets or customized sizing." },
+          { title: "Instant Apply", desc: "Resizes documents in seconds." },
+          { title: "Precise Page Selection", desc: "Select exact pages." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "What page sizes are available?", a: "A3, A4, A5, Letter, Legal, Tabloid, and fully custom dimensions." },
+          { q: "Will my content scale to the new size?", a: "You can choose to scale content to fit or keep it at original size." },
+          { q: "Can I resize pages to different sizes in the same document?", a: "Yes, apply different sizes to different page ranges." }
+        ],
+        related: ["crop-pdf", "compress-pdf", "rotate-pdf", "merge-pdf"]
+      },
+      // Unlock PDF
+      "unlock-pdf": {
+        title: "Unlock PDF File",
+        emoji: "🔓",
+        subtitle: "Remove password protection from PDF files",
+        accept: ".pdf",
+        execBtnText: "Unlock PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your secured PDF document." },
+          { title: "Enter Password", desc: "Enter your target PDF password to verify authorization." },
+          { title: "Download PDF", desc: "Download your newly unlocked, accessible PDF." }
+        ],
+        features: [
+          { title: "Clear Security", desc: "Remove owner permissions lock and print checks completely." },
+          { title: "Instant Access", desc: "Removes passwords in seconds." },
+          { title: "Safe Processing", desc: "Credentials are never stored on our servers." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "Do I need to know the password to unlock?", a: "Yes, you must enter the correct password. We cannot bypass unknown passwords." },
+          { q: "What types of PDF passwords can be removed?", a: "We remove user passwords (open password) and owner passwords (restrictions)." },
+          { q: "Is it safe to enter my password here?", a: "Yes, your password is used only for the unlock process and never stored." }
+        ],
+        related: ["protect-pdf", "esign-pdf", "redact-pdf", "repair-pdf"]
+      },
+      // Protect PDF
+      "protect-pdf": {
+        title: "Protect PDF with Password",
+        emoji: "🔒",
+        subtitle: "Add password security to your PDF",
+        accept: ".pdf",
+        execBtnText: "Protect PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Enter Password", desc: "Set custom passwords and security options." },
+          { title: "Download PDF", desc: "Download your secure PDF." }
+        ],
+        features: [
+          { title: "Robust Security", desc: "Encrypts documents with strong 128-bit/256-bit parameters." },
+          { title: "Instant Apply", desc: "Adds security in seconds." },
+          { title: "Custom Sizing", desc: "Adjust target fields and options." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "What encryption level is used?", a: "We use AES-256 bit encryption, the highest standard available for PDFs." },
+          { q: "Can I restrict printing and copying separately?", a: "Yes, set an owner password and choose which permissions to allow or block." },
+          { q: "What happens if I forget the password?", a: "We cannot recover lost passwords. Store your password in a safe place." }
+        ],
+        related: ["unlock-pdf", "redact-pdf", "add-watermark-pdf", "esign-pdf"]
+      },
+      // E-Sign PDF
+      "esign-pdf": {
+        title: "E-Sign PDF File",
+        emoji: "✍️",
+        subtitle: "Digitally sign your PDF documents online",
+        accept: ".pdf",
+        execBtnText: "Sign PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Affix Signature", desc: "Draw, type, or upload an image of your signature." },
+          { title: "Download PDF", desc: "Download your signed PDF." }
+        ],
+        features: [
+          { title: "Custom Signature", desc: "Draw, type, or upload an image of your signature." },
+          { title: "Instant Apply", desc: "Signs documents in seconds." },
+          { title: "Precise Page Selection", desc: "Position signatures on any page." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "Is an e-signature legally valid?", a: "Electronic signatures are legally valid in most countries under eSign laws." },
+          { q: "Can I sign on a specific page of the PDF?", a: "Yes, navigate to any page and place your signature exactly where needed." },
+          { q: "Can I add multiple signatures to one document?", a: "Yes, add as many signature fields as needed on any pages." }
+        ],
+        related: ["protect-pdf", "redact-pdf", "add-watermark-pdf", "flatten-pdf"]
+      },
+      // Redact PDF
+      "redact-pdf": {
+        title: "Redact PDF",
+        emoji: "🖊️",
+        subtitle: "Permanently hide sensitive text in PDF",
+        accept: ".pdf",
+        execBtnText: "Redact PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Define target text to hide", desc: "Select or markup elements to cover." },
+          { title: "Download PDF", desc: "Download your newly formatted PDF." }
+        ],
+        features: [
+          { title: "Custom formatting", desc: "Redact text layers and elements permanently." },
+          { title: "Instant Apply", desc: "Cuts text content in seconds." },
+          { title: "Precise Page Selection", desc: "Select exact pages." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "Is the redaction permanent?", a: "Yes, redacted content is permanently removed from the file structure and cannot be recovered." },
+          { q: "Can I redact all occurrences of a specific word?", a: "Yes, our search feature highlights and covers matches automatically." },
+          { q: "What does the redacted area look like?", a: "Redacted areas appear as solid black blocks standard for legal papers." }
+        ],
+        related: ["protect-pdf", "esign-pdf", "flatten-pdf", "add-watermark-pdf"]
+      },
+      // Repair PDF
+      "repair-pdf": {
+        title: "Repair PDF File",
+        emoji: "🔧",
+        subtitle: "Fix corrupted or damaged PDF files",
+        accept: ".pdf",
+        execBtnText: "Repair PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your corrupted PDF document." },
+          { title: "Recover data elements", desc: "Rebuild structural data grids and elements." },
+          { title: "Download PDF", desc: "Download your newly formatted PDF." }
+        ],
+        features: [
+          { title: "Repair corrupted PDF", desc: "Rebuild formatting parameters." },
+          { title: "Instant Apply", desc: "Repairs documents in seconds." },
+          { title: "Recover damaged PDF", desc: "Recover elements cleanly." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "What kind of damage can be repaired?", a: "Incomplete downloads, partial corruption, encoding errors, and broken file structures." },
+          { q: "Can all corrupted PDFs be repaired?", a: "Most common corruption types can be fixed. Severely damaged files may have partial recovery." },
+          { q: "Why do PDFs get corrupted?", a: "Incomplete downloads, storage errors, or interrupted file transfers." }
+        ],
+        related: ["compress-pdf", "unlock-pdf", "flatten-pdf", "pdf-metadata-editor"]
+      },
+      // OCR PDF
+      "ocr-pdf": {
+        title: "OCR PDF",
+        emoji: "🔍",
+        subtitle: "Make scanned PDFs searchable and editable",
+        accept: ".pdf",
+        execBtnText: "Apply OCR",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your scanned PDF document." },
+          { title: "Scan Text Elements", desc: "Extract character mappings from image files." },
+          { title: "Download PDF", desc: "Download your newly searchable PDF." }
+        ],
+        features: [
+          { title: "Convert scanned PDF to searchable text", desc: "OCR scan text characters." },
+          { title: "Instant Apply", desc: "Processes characters in seconds." },
+          { title: "OCR PDF with high accuracy", desc: "Recognizes characters cleanly." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "What is OCR and why do I need it?", a: "OCR (Optical Character Recognition) converts scanned images of text into actual selectable text." },
+          { q: "Which languages does OCR support?", a: "We support 50+ languages including English, Spanish, French, Chinese, and Arabic." },
+          { q: "Will OCR change how my PDF looks?", a: "No, the visual appearance stays the same. Only the invisible text layer is added." }
+        ],
+        related: ["pdf-to-text", "pdf-to-word", "repair-pdf", "compress-pdf"]
+      },
+      // Compare PDFs
+      "compare-pdf": {
+        title: "Compare PDF Files",
+        emoji: "🆚",
+        subtitle: "Find differences between two PDF files",
+        accept: ".pdf",
+        execBtnText: "Compare PDFs",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select original PDF", desc: "Upload your first PDF document." },
+          { title: "Select modified PDF", desc: "Upload the second PDF version to compare." },
+          { title: "Download comparison report", desc: "Your differences report is prepared." }
+        ],
+        features: [
+          { title: "Find differences in PDF", desc: "Compares text and visual alignments." },
+          { title: "Instant Apply", desc: "Processes files in seconds." },
+          { title: "Visual comparison highlights", desc: "Highlights modifications cleanly." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "What types of differences are detected?", a: "Text additions, deletions, formatting changes, and image modifications." },
+          { q: "Can I compare PDFs with different page counts?", a: "Yes, the tool handles documents with different numbers of pages." },
+          { q: "Does it compare scanned PDFs?", a: "Yes, OCR is automatically applied to scanned documents before comparison." }
+        ],
+        related: ["pdf-metadata-editor", "ocr-pdf", "flatten-pdf", "repair-pdf"]
+      },
+      // PDF Metadata Editor
+      "pdf-metadata-editor": {
+        title: "PDF Metadata Editor",
+        emoji: "🏷️",
+        subtitle: "Edit PDF title, author, and keywords",
+        accept: ".pdf",
+        execBtnText: "Edit Metadata",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Configure Fields", desc: "Select properties, dates, authors, and keywords." },
+          { title: "Download PDF", desc: "Download your newly formatted PDF." }
+        ],
+        features: [
+          { title: "Edit metadata parameters", desc: "Configure PDF metadata values easily." },
+          { title: "Instant Apply", desc: "Processes metadata in seconds." },
+          { title: "Remove metadata properties", desc: "Wipes properties cleanly." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "What metadata fields can I edit?", a: "Title, Author, Subject, Keywords, Creator, Producer, and date fields." },
+          { q: "Why would I need to edit PDF metadata?", a: "For SEO, document management, removing personal info, or correcting wrong details." },
+          { q: "Can I remove all metadata from a PDF?", a: "Yes, clear all fields to strip metadata for privacy purposes." }
+        ],
+        related: ["redact-pdf", "flatten-pdf", "protect-pdf", "repair-pdf"]
+      },
+      // Flatten PDF
+      "flatten-pdf": {
+        title: "Flatten PDF File",
+        emoji: "📋",
+        subtitle: "Merge form fields into static PDF content",
+        accept: ".pdf",
+        execBtnText: "Flatten PDF",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Flatten PDF pages", desc: "Merge elements into a single visual page layer." },
+          { title: "Download PDF", desc: "Download your newly formatted PDF." }
+        ],
+        features: [
+          { title: "Flatten interactive fields", desc: "Locks interactive elements cleanly." },
+          { title: "Instant Apply", desc: "Processes documents in seconds." },
+          { title: "Print-ready document", desc: "Compiles page levels nicely." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "What does flattening a PDF mean?", a: "Flattening merges all form fields and annotations into the static page content." },
+          { q: "Why should I flatten my PDF?", a: "To prevent form editing, ensure consistent printing, and reduce file size." },
+          { q: "Can I unflatten a PDF after flattening?", a: "No, flattening is permanent and irreversible. Keep a backup of the original." }
+        ],
+        related: ["esign-pdf", "redact-pdf", "protect-pdf", "compress-pdf"]
+      },
+      // PDF to PDF/A
+      "pdf-to-pdfa": {
+        title: "PDF to PDF/A Converter",
+        emoji: "📁",
+        subtitle: "Convert PDF to long-term archiving format",
+        accept: ".pdf",
+        execBtnText: "Convert to PDF/A",
+        outputExt: ".pdf",
+        steps: [
+          { title: "Select PDF File", desc: "Select or drag your PDF document." },
+          { title: "Configure standard standards", desc: "Select PDF/A versions and parameters." },
+          { title: "Download PDF", desc: "Download your archive-ready document." }
+        ],
+        features: [
+          { title: "Convert to PDF/A standard", desc: "Outputs clean, long-term files." },
+          { title: "Instant Apply", desc: "Processes documents in seconds." },
+          { title: "Complies with ISO regulations", desc: "Meets standard parameters cleanly." },
+          { title: "No Server Trails", desc: "Files delete completely within 60 minutes." }
+        ],
+        faqs: [
+          { q: "What is PDF/A format?", a: "PDF/A is an ISO standard for long-term archiving that embeds all required resources in the file." },
+          { q: "Which PDF/A version should I use?", a: "PDF/A-1b is most widely accepted. PDF/A-2b supports newer features like transparency." },
+          { q: "Who needs PDF/A format?", a: "Government agencies, legal firms, medical records, and any organization with archiving requirements." }
+        ],
+        related: ["protect-pdf", "pdf-metadata-editor", "flatten-pdf", "compress-pdf"]
+      }
+    };
+
+    /* ==========================================================================
+       🗺️ SINGLE PAGE APPLICATION (SPA) ROUTING SYSTEM
+       ========================================================================== */
+    const dashboardView = document.getElementById("dashboardView");
+    const workspaceView = document.getElementById("workspaceView");
+    const navHome = document.getElementById("navHome");
+    const navbarLogo = document.getElementById("navbarLogo");
+    const breadHome = document.querySelector(".breadcrumb a");
+
+    // Dynamic Workspace Elements
+    const breadcrumbToolName = document.getElementById("breadcrumbToolName");
+    const workspaceHeaderTitle = document.getElementById("workspaceHeaderTitle");
+    const workspaceHeaderSubtitle = document.getElementById("workspaceHeaderSubtitle");
+    const workspaceFileInput = document.getElementById("workspaceFileInput");
+    const workspaceSupportedTypes = document.getElementById("workspaceSupportedTypes");
+    const workspaceFileRow = document.getElementById("workspaceFileRow");
+    const workspaceFileName = document.getElementById("workspaceFileName");
+    const workspaceFileSize = document.getElementById("workspaceFileSize");
+    const workspaceFileIcon = document.getElementById("workspaceFileIcon");
+    const workspaceFileRemoveBtn = document.getElementById("workspaceFileRemoveBtn");
+    const workspaceProgressBox = document.getElementById("workspaceProgressBox");
+    const workspaceProgressBar = document.getElementById("workspaceProgressBar");
+    const workspaceExecBtn = document.getElementById("workspaceExecBtn");
+    const workspaceDropzone = document.getElementById("workspaceDropzone");
+
+    // Dynamic containers
+    const workspaceStepsContainer = document.getElementById("workspaceStepsContainer");
+    const workspaceFeaturesContainer = document.getElementById("workspaceFeaturesContainer");
+    const workspaceFaqContainer = document.getElementById("workspaceFaqContainer");
+    const workspaceRelatedContainer = document.getElementById("workspaceRelatedContainer");
+
+    let selectedWorkspaceFile = null;
+    let currentActiveToolID = "";
+
+    function showDashboard() {
+      workspaceView.style.display = "none";
+      dashboardView.style.display = "block";
+      document.title = "PDFZaap - Free Online PDF Tools | 35+ Free Tools";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      currentActiveToolID = "";
+      clearWorkspaceFile();
+    }
+
+    function showWorkspace(toolId) {
+      const toolData = TOOL_DATABASE[toolId];
+      if (!toolData) {
+        showDashboard();
+        return;
+      }
+
+      currentActiveToolID = toolId;
+      dashboardView.style.display = "none";
+      workspaceView.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      // Update browser titles and metadata
+      const cleanTitle = `${toolData.title} - Free Online | PDFZaap`;
+      document.title = cleanTitle;
+      document.getElementById("pageTitle").innerText = cleanTitle;
+
+      // Update Header & Breadcrumb
+      breadcrumbToolName.innerText = toolData.title;
+      workspaceHeaderTitle.innerHTML = `${toolData.emoji} ${toolData.title}`;
+      workspaceHeaderSubtitle.innerText = toolData.subtitle;
+
+      // Configure File Drop input extensions
+      workspaceFileInput.setAttribute("accept", toolData.accept);
+      workspaceSupportedTypes.innerText = `Supported: ${toolData.accept.toUpperCase().replace(/\./g, '')} | Max size: 50MB`;
+      workspaceExecBtn.innerText = toolData.execBtnText;
+
+      // Populate Steps
+      workspaceStepsContainer.innerHTML = "";
+      toolData.steps.forEach((step, index) => {
+        workspaceStepsContainer.innerHTML += `
+          <div class="feature-card-item">
+            <div class="feature-card-icon" style="font-weight:700;">0${index + 1}</div>
+            <h3 class="feature-card-title">${step.title}</h3>
+            <p class="feature-card-desc">${step.desc}</p>
+          </div>
+        `;
+      });
+
+      // Populate Features
+      workspaceFeaturesContainer.innerHTML = "";
+      toolData.features.forEach(feat => {
+        workspaceFeaturesContainer.innerHTML += `
+          <div class="feature-card-item">
+            <div class="feature-card-icon"><i class="fa-solid fa-star"></i></div>
+            <h3 class="feature-card-title">${feat.title}</h3>
+            <p class="feature-card-desc">${feat.desc}</p>
+          </div>
+        `;
+      });
+
+      // Populate FAQs
+      workspaceFaqContainer.innerHTML = "";
+      toolData.faqs.forEach(faq => {
+        workspaceFaqContainer.innerHTML += `
+          <div class="accordion-box">
+            <button class="accordion-trigger">
+              ${faq.q}
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="accordion-panel">
+              <div class="accordion-panel-content">
+                ${faq.a}
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      // Bind dynamic accordion clicks
+      const workFaqHeaders = workspaceFaqContainer.querySelectorAll(".accordion-trigger");
+      workFaqHeaders.forEach(trigger => {
+        trigger.addEventListener("click", () => {
+          const accordionBox = trigger.parentElement;
+          const panel = trigger.nextElementSibling;
+          const isActive = accordionBox.classList.contains("active");
+
+          // Close all
+          workspaceFaqContainer.querySelectorAll(".accordion-box").forEach(box => {
+            box.classList.remove("active");
+            box.querySelector(".accordion-panel").style.maxHeight = null;
+          });
+
+          if (!isActive) {
+            accordionBox.classList.add("active");
+            panel.style.maxHeight = panel.scrollHeight + "px";
+          }
+        });
+      });
+
+      // Populate Related Tools
+      workspaceRelatedContainer.innerHTML = "";
+      toolData.related.forEach(relId => {
+        const relData = TOOL_DATABASE[relId];
+        if (relData) {
+          workspaceRelatedContainer.innerHTML += `
+            <a href="#${relId}" class="tool-card-box">
+              <div class="card-icon-container">
+                <i class="fa-solid fa-star" style="color: #4F46E5;"></i>
+              </div>
+              <h3 class="card-title">${relData.title}</h3>
+              <p class="card-desc">${relData.subtitle}</p>
+              <span class="card-action-link">Use Tool <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+          `;
+        }
+      });
+    }
+
+    // Hash Router Event Watcher
+    function router() {
+      const hash = window.location.hash.substring(1);
+      if (hash && TOOL_DATABASE[hash]) {
+        showWorkspace(hash);
+      } else {
+        showDashboard();
+      }
+    }
+
+    window.addEventListener("hashchange", router);
+    window.addEventListener("load", router);
+
+    navHome.addEventListener("click", (e) => { e.preventDefault(); window.location.hash = ""; showDashboard(); });
+    navbarLogo.addEventListener("click", (e) => { e.preventDefault(); window.location.hash = ""; showDashboard(); });
+    breadHome.addEventListener("click", (e) => { e.preventDefault(); window.location.hash = ""; showDashboard(); });
+
+    /* ==========================================================================
+       📁 FILE PROCESSING LOGIC
+       ========================================================================== */
+    function clearWorkspaceFile() {
+      selectedWorkspaceFile = null;
+      workspaceFileInput.value = "";
+      workspaceDropzone.style.display = "block";
+      workspaceFileRow.style.display = "none";
+      workspaceExecBtn.style.display = "none";
+      workspaceProgressBox.style.display = "none";
+      workspaceProgressBar.style.width = "0%";
+    }
+
+    workspaceFileRemoveBtn.addEventListener("click", clearWorkspaceFile);
+
+    function setFileIconByExtension(fileName) {
+      const ext = fileName.split('.').pop().toLowerCase();
+      workspaceFileIcon.className = "fa-solid";
+      if (ext === 'pdf') {
+        workspaceFileIcon.className += " fa-file-pdf";
+        workspaceFileIcon.style.color = "#EF4444";
+      } else if (['doc', 'docx'].includes(ext)) {
+        workspaceFileIcon.className += " fa-file-word";
+        workspaceFileIcon.style.color = "#3B82F6";
+      } else if (['xls', 'xlsx'].includes(ext)) {
+        workspaceFileIcon.className += " fa-file-excel";
+        workspaceFileIcon.style.color = "#10B981";
+      } else if (['jpg', 'jpeg', 'png'].includes(ext)) {
+        workspaceFileIcon.className += " fa-file-image";
+        workspaceFileIcon.style.color = "#EC4899";
+      } else {
+        workspaceFileIcon.className += " fa-file";
+        workspaceFileIcon.style.color = "#6B7280";
+      }
+    }
+
+    function processSelectedFile(file) {
+      selectedWorkspaceFile = file;
+      workspaceFileName.innerText = file.name;
+      workspaceFileSize.innerText = (file.size / (1024 * 1024)).toFixed(2) + " MB";
+      setFileIconByExtension(file.name);
+
+      workspaceDropzone.style.display = "none";
+      workspaceFileRow.style.display = "flex";
+      workspaceExecBtn.style.display = "block";
+    }
+
+    // Drag events
+    ['dragenter', 'dragover'].forEach(name => {
+      workspaceDropzone.addEventListener(name, (e) => {
+        e.preventDefault();
+        workspaceDropzone.classList.add("dragover");
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(name => {
+      workspaceDropzone.addEventListener(name, (e) => {
+        e.preventDefault();
+        workspaceDropzone.classList.remove("dragover");
+      });
+    });
+
+    workspaceDropzone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const files = e.dataTransfer.files;
+      if (files.length) {
+        processSelectedFile(files[0]);
+      }
+    });
+
+    workspaceFileInput.addEventListener("change", (e) => {
+      if (e.target.files.length) {
+        processSelectedFile(e.target.files[0]);
+      }
+    });
+
+    // Execute Conversion Run
+    workspaceExecBtn.addEventListener("click", () => {
+      if (!selectedWorkspaceFile) return;
+
+      workspaceProgressBox.style.display = "block";
+      workspaceExecBtn.disabled = true;
+
+      let progressWidth = 0;
+      const speed = 120;
+      const interval = setInterval(() => {
+        if (progressWidth >= 100) {
+          clearInterval(interval);
+          alert("Processing complete! Your output file has been generated.");
+          
+          // Trigger download action
+          const ext = TOOL_DATABASE[currentActiveToolID] ? TOOL_DATABASE[currentActiveToolID].outputExt : ".pdf";
+          const mockAnchor = document.createElement('a');
+          mockAnchor.href = '#';
+          mockAnchor.setAttribute('download', `pdfzaap_processed${ext}`);
+          document.body.appendChild(mockAnchor);
+          mockAnchor.click();
+          document.body.removeChild(mockAnchor);
+
+          workspaceExecBtn.disabled = false;
+          clearWorkspaceFile();
+        } else {
+          progressWidth += 10;
+          workspaceProgressBar.style.width = progressWidth + "%";
+        }
+      }, speed);
+    });
+
+    /* ==========================================================================
+       ⚡ JAVASCRIPT SYSTEM UTILITIES
+       ========================================================================== */
+
+    // 🔄 Loading screen fade-out
+    window.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+        const loader = document.getElementById("loadingScreen");
+        loader.style.opacity = "0";
+        setTimeout(() => { loader.style.display = "none"; }, 400);
+      }, 1800);
+    });
+
+    // 🍔 Mobile Hamburger navigation menu toggle
+    const hamburgerMenu = document.getElementById("hamburgerMenu");
+    const navList = document.getElementById("navList");
+    hamburgerMenu.addEventListener("click", () => {
+      hamburgerMenu.classList.toggle("active");
+      navList.classList.toggle("active");
+    });
+
+    // Close menu when clicking links on mobile
+    navList.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        hamburgerMenu.classList.remove("active");
+        navList.classList.remove("active");
+      });
+    });
+
+    // Scroll styling updates on Header Navbar
+    window.addEventListener("scroll", () => {
+      const header = document.getElementById("mainHeader");
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+    // 🔍 Real-time Search Box filtering
+    const searchInput = document.getElementById("searchInput");
+    const toolsCardsGrid = document.getElementById("toolsCardsGrid");
+    const searchNoResults = document.getElementById("searchNoResults");
+
+    function executeFilter(term) {
+      const value = term.toLowerCase().trim();
+      let matchCount = 0;
+
+      const cards = toolsCardsGrid.querySelectorAll(".tool-card-box");
+      cards.forEach(card => {
+        const title = card.querySelector(".card-title").innerText.toLowerCase();
+        const desc = card.querySelector(".card-desc").innerText.toLowerCase();
+
+        if (title.includes(value) || desc.includes(value)) {
+          card.style.display = "flex";
+          matchCount++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      if (matchCount === 0) {
+        searchNoResults.style.display = "block";
+      } else {
+        searchNoResults.style.display = "none";
+      }
+    }
+
+    searchInput.addEventListener("input", (e) => {
+      executeFilter(e.target.value);
+    });
+
+    function autoSearch(term) {
+      searchInput.value = term;
+      executeFilter(term);
+      document.getElementById("pdf-tools-section").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Filter tabs sorting on PDF tools
+    const tabBtns = document.querySelectorAll(".tab-btn");
+    tabBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        tabBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const category = btn.getAttribute("data-filter");
+        const cards = toolsCardsGrid.querySelectorAll(".tool-card-box");
+
+        cards.forEach(card => {
+          if (category === "all" || card.getAttribute("data-category") === category) {
+            card.style.display = "flex";
+          } else {
+            card.style.display = "none";
+          }
+        });
+        searchNoResults.style.display = "none";
+      });
+    });
+
+    // Scroll animation reveal
+    const revealElements = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          
+          // Trigger counter elements inside target on reveal
+          const counter = entry.target.querySelector(".stat-number, .about-stat-num");
+          if (counter && !counter.classList.contains("counted")) {
+            counter.classList.add("counted");
+            animateCounter(counter);
+          }
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Numerical stats counters animation on reveal
+    function animateCounter(el) {
+      const targetValue = parseInt(el.getAttribute("data-target"));
+      const duration = 2000;
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // ease-out power 4 animation
+        const ease = 1 - Math.pow(1 - progress, 4);
+        let value = Math.floor(ease * targetValue);
+
+        if (targetValue >= 1000) {
+          el.innerText = value.toLocaleString() + "+";
+        } else {
+          el.innerText = value + "+";
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.innerText = targetValue >= 1000 ? targetValue.toLocaleString() + "+" : targetValue + "+";
+        }
+      }
+      requestAnimationFrame(update);
+    }
+
+    // Homepage accordions list panel reveals
+    const accordions = document.querySelectorAll(".faq-accordion .accordion-trigger");
+    accordions.forEach(trigger => {
+      trigger.addEventListener("click", () => {
+        const accordionBox = trigger.parentElement;
+        const panel = trigger.nextElementSibling;
+        const isActive = accordionBox.classList.contains("active");
+
+        document.querySelectorAll(".faq-accordion .accordion-box").forEach(box => {
+          box.classList.remove("active");
+          box.querySelector(".accordion-panel").style.maxHeight = null;
+        });
+
+        if (!isActive) {
+          accordionBox.classList.add("active");
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    });
+
+    // Inline validation form submission handler for newsletter
+    const newsletterForm = document.getElementById("newsletterForm");
+    const newsletterSuccess = document.getElementById("newsletterSuccess");
+    newsletterForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      newsletterForm.style.display = "none";
+      newsletterSuccess.style.display = "block";
+    });
+
+    // 🚀 Scroll to top button displays & actions
+    const scrollToTop = document.getElementById("scrollToTop");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 400) {
+        scrollToTop.classList.add("active");
+      } else {
+        scrollToTop.classList.remove("active");
+      }
+    });
+
+    scrollToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 🍪 Persistent localStorage cookie banner & Dynamic Privacy modal
+    const cookieBanner = document.getElementById("cookieBanner");
+    const cookieAccept = document.getElementById("cookieAccept");
+    const cookieDecline = document.getElementById("cookieDecline");
+    const privacyModal = document.getElementById("privacyModal");
+    const closePrivacyModal = document.getElementById("closePrivacyModal");
+    const openPrivacyLinks = document.querySelectorAll(".open-privacy-link");
+
+    window.addEventListener("load", () => {
+      const choice = localStorage.getItem("cookieConsentChoice");
+      if (!choice) {
+        setTimeout(() => { cookieBanner.classList.add("active"); }, 2000);
+      }
+    });
+
+    cookieAccept.addEventListener("click", () => {
+      localStorage.setItem("cookieConsentChoice", "accepted");
+      cookieBanner.classList.remove("active");
+    });
+
+    cookieDecline.addEventListener("click", () => {
+      localStorage.setItem("cookieConsentChoice", "declined");
+      cookieBanner.classList.remove("active");
+    });
+
+    // Privacy Modal open/close actions
+    openPrivacyLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        privacyModal.style.display = "flex";
+        setTimeout(() => { privacyModal.classList.add("active"); }, 50);
+      });
+    });
+
+    function closePrivacy() {
+      privacyModal.classList.remove("active");
+      setTimeout(() => { privacyModal.style.display = "none"; }, 300);
+    }
+
+    closePrivacyModal.addEventListener("click", closePrivacy);
+    
+    // Close modal if user clicks outside of modal content
+    window.addEventListener("click", (e) => {
+      if (e.target === privacyModal) {
+        closePrivacy();
+      }
+    });
+  </script>
+</body>
+</html>
