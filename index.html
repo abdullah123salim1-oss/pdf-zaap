@@ -1152,7 +1152,7 @@
       .workspace-wrapper { grid-template-columns: 1fr; }
       #sidebar-200-400 { display: none; }
       #banner-728-90 { width: 100%; height: auto; display: none; }
-      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+      .blog-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
@@ -1170,11 +1170,10 @@
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
       .blog-grid { grid-template-columns: 1fr; }
       .blog-post-header h1 { font-size: 2rem; }
-      .blog-post-banner-large { height: 200px; font-size: 3rem; }
       .newsletter-form { flex-direction: column; }
     }
 
-    /* Blog Section Styles */
+    /* Blogger-Style Blog List View Layout */
     .blog-hero {
       text-align: center;
       padding: 4rem 2rem 2rem;
@@ -1193,11 +1192,13 @@
       font-size: 1.15rem;
       color: var(--subtext);
     }
+    
+    /* stream-based list view to match screenshot structure exactly */
     .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-direction: column;
       gap: 2rem;
-      max-width: 1200px;
+      max-width: 850px;
       margin: 2rem auto 5rem;
       padding: 0 2rem;
     }
@@ -1205,74 +1206,78 @@
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      overflow: hidden;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
+      gap: 0.8rem;
       transition: var(--transition);
       cursor: pointer;
       text-decoration: none;
       color: inherit;
+      position: relative;
     }
     .blog-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(79, 70, 229, 0.12);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
       border-color: var(--primary);
     }
-    .blog-card-banner {
-      height: 180px;
-      width: 100%;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 800;
-      font-size: 2.5rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    .blog-card-share-icon {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      color: var(--subtext);
+      opacity: 0.7;
     }
-    .blog-card-body {
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-    .blog-card-tag {
-      align-self: flex-start;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      background: rgba(79, 70, 229, 0.08);
+    .blog-card-share-icon:hover {
+      opacity: 1;
       color: var(--primary);
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
     }
     .blog-card h3 {
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       font-weight: 700;
-      line-height: 1.4;
-      margin-bottom: 0.5rem;
+      line-height: 1.35;
+      color: #111827;
+      padding-right: 2rem;
+      margin: 0;
       transition: var(--transition);
     }
     .blog-card:hover h3 {
       color: var(--primary);
     }
-    .blog-card p {
-      font-size: 0.9rem;
+    .blog-card-date {
+      font-size: 0.85rem;
       color: var(--subtext);
-      line-height: 1.5;
-      margin-bottom: 1.5rem;
-      flex-grow: 1;
+      font-weight: 500;
+      margin-top: -0.25rem;
     }
-    .blog-card-meta {
+    .blog-card p {
+      font-size: 0.95rem;
+      color: #4B5563;
+      line-height: 1.6;
+      margin: 0.5rem 0 1rem;
+    }
+    .blog-card-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.8rem;
-      color: var(--subtext);
       border-top: 1px solid var(--border);
-      padding-top: 0.75rem;
-      font-weight: 500;
+      padding-top: 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .blog-card-comment {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+    }
+    .blog-card-comment svg {
+      color: var(--subtext);
+    }
+    .blog-card-readmore {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
     
     /* Blog Post Detail View Styles */
@@ -1310,10 +1315,10 @@
       margin-bottom: 1rem;
     }
     .blog-post-header h1 {
-      font-size: 2.75rem;
+      font-size: 2.5rem;
       font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
       color: var(--text);
     }
     .blog-post-author-meta {
@@ -1325,40 +1330,6 @@
       font-size: 0.95rem;
       color: var(--subtext);
     }
-    .blog-post-author-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem;
-    }
-    .blog-post-author-info {
-      display: flex;
-      flex-direction: column;
-    }
-    .blog-post-author-name {
-      font-weight: 700;
-      color: var(--text);
-    }
-    .blog-post-banner-large {
-      height: 350px;
-      width: 100%;
-      border-radius: var(--radius);
-      overflow: hidden;
-      margin-bottom: 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 5rem;
-      font-weight: 800;
-      text-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
     .blog-post-content {
       font-size: 1.1rem;
       line-height: 1.8;
@@ -1366,6 +1337,14 @@
     }
     .blog-post-content p {
       margin-bottom: 1.5rem;
+    }
+    .blog-post-content a {
+      color: var(--primary);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    .blog-post-content a:hover {
+      color: var(--primary-dark);
     }
     .blog-post-content h2 {
       font-size: 1.75rem;
@@ -1784,7 +1763,7 @@
         <p>Expert tips, security guides, and resources for client-side PDF document manipulation.</p>
       </div>
       <div class="blog-grid" id="main-blog-grid">
-        <!-- Populated dynamically via JavaScript -->
+        <!-- Populated dynamically via JavaScript (List Style) -->
       </div>
     </section>
 
@@ -1797,22 +1776,15 @@
         <article class="blog-post-detail">
           <header class="blog-post-header">
             <span class="blog-post-category" id="post-category">Security</span>
-            <h1 id="post-title">Why Client-Side PDF Processing is the Future of Privacy</h1>
+            <h1 id="post-title">Post Title</h1>
             <div class="blog-post-author-meta">
-              <div class="blog-post-author-avatar" id="post-avatar">SC</div>
-              <div class="blog-post-author-info">
-                <span class="blog-post-author-name" id="post-author">Sarah Chen</span>
-                <span id="post-meta-details">June 18, 2026 • 5 min read</span>
-              </div>
+              <span id="post-meta-details">June 18, 2026 • 5 min read</span>
             </div>
           </header>
-          <div class="blog-post-banner-large" id="post-banner">🔒</div>
           <div class="blog-post-content" id="post-content">
             <!-- Populated dynamically via JavaScript -->
           </div>
           
-        </article>
-      </div>
     </section>
 
   </main>
@@ -2862,18 +2834,59 @@
       { q: "How secure is client-side processing?", a: "It is highly secure. Your sensitive documents never leave your computer, avoiding server-side data leaks." }
     ];
 
-    // Blog Posts Data (Optimized with high-volume search query matches)
+    // Blog Posts Data (Optimized with target keywords naturally interlinked with tool hashes)
     const BLOG_POSTS = {
+      "ways-to-manage-pdf-files": {
+        title: "7 Easy Ways to Manage PDF Files Free — Convert, Compress, Merge & Split PDFs Online 2026",
+        category: "Tutorial",
+        date: "June 18, 2026",
+        readTime: "5 min read",
+        excerpt: "Managing files online should not require costly subscriptions. Discover how to easily organize, compress, merge, and split PDF documents completely free with zero page limit boundaries.",
+        content: `
+          <p>In today's fast-paced digital world, PDF files are absolutely everywhere—serving as modern standard formats for office documents, assignments, tax invoices, legal contracts, and more. But managing these file matrices can quickly feel overwhelming. How do you <a href="#compress-pdf">compress a PDF</a> for email attachments? How do you assemble separate pages into one cohesive file? Or how do you convert your documents into editable elements without ruining the layout?</p>
+          
+          <p>The good news is that organizing, altering, and handling your documents is much easier than you think. Best of all, you can do it completely free on PDFZaap, with no account registration required and no watermarks added. Let us break down your document tasks one at a time:</p>
+
+          <h2>1. Combine Pages Effortlessly</h2>
+          <p>If you have several separate pages that need to be packaged into a single structured report, you can easily <a href="#merge-pdf">merge PDF</a> layers. Our local engine pieces them together within seconds inside your secure sandbox environment.</p>
+
+          <h2>2. Separate Dense Reports</h2>
+          <p>Need to extract specific chapters, appendices, or simple page ranges? You can instantly <a href="#split-pdf">split PDF</a> structures to extract exactly what you need without keeping large, unnecessary files.</p>
+
+          <h2>3. Reduce Large File Sizes</h2>
+          <p>Large documents can easily clog email systems. Using standard formatting, you can <a href="#compress-pdf">compress PDF</a> records to shrink file sizes down by up to 80% while retaining crisp vector properties and readable text shapes.</p>
+
+          <h2>4. Make Content Editable</h2>
+          <p>Stop retyping documents manually. You can seamlessly convert a PDF back into an editable Microsoft Word document with our optimized <a href="#pdf-to-word">PDF to Word</a> tool.</p>
+        `
+      },
+      "free-pdf-tools-online": {
+        title: "Free PDF Tools Online — Convert, Compress, Merge & Edit PDFs | PDFZaap",
+        category: "Reviews",
+        date: "June 14, 2026",
+        readTime: "4 min read",
+        excerpt: "Looking for free PDF tools online? Learn how PDFZaap converts, compresses, merges, splits, and edits PDF files securely inside your local browser tab.",
+        content: `
+          <p>Finding secure and reliable <strong>free PDF tools online</strong> can often feel like an uphill battle. Most cloud editors lock their best features behind high subscription paywalls, apply intrusive watermarks, or force you to sign up for accounts just to download a single file. Worse yet, uploading sensitive personal documents to third-party web servers introduces unnecessary privacy risks.</p>
+          
+          <p>PDFZaap solves these problems by providing an entire suite of tools designed to help you edit, modify, and <strong>convert PDF</strong> documents entirely within your local device. Because our processing engines run locally inside your browser memory, your documents never upload to external servers, protecting your private data.</p>
+
+          <h2>Explore Our Complete Tool Suite</h2>
+          <ul>
+            <li><strong>Optimized Size Adjustments:</strong> Easily <strong>compress PDF</strong> layouts, allowing you to scale down large images and elements to secure easy email sharing.</li>
+            <li><strong>Document Compilation:</strong> Quickly <strong>merge PDF</strong> arrays to organize multiple files, invoices, or structural slides into one single document.</li>
+            <li><strong>Format Conversions:</strong> Safely convert to and from standard office configurations using our optimized converters, such as <a href="#word-to-pdf">Word to PDF</a>, <a href="#jpg-to-pdf">JPG to PDF</a>, and <a href="#pdf-to-excel">PDF to Excel</a>.</li>
+          </ul>
+
+          <p>No matter if you are a busy student organizing study guides, an office professional processing business invoices, or a designer compiling visual portfolios, PDFZaap is here to help. Start managing your documents with our secure, client-side tools today—completely free and with zero watermarks.</p>
+        `
+      },
       "how-to-save-google-doc-as-pdf": {
         title: "How to Save a Google Doc as a PDF",
         category: "Tutorial",
-        date: "June 20, 2026",
-        author: "Sarah Chen",
-        avatar: "SC",
-        readTime: "4 min read",
-        excerpt: "Step-by-step tutorial on how to save a google doc as a pdf, make a google doc a pdf, and convert files easily on desktop & mobile.",
-        gradient: "linear-gradient(135deg, #4F46E5, #06B6D4)",
-        icon: "📄",
+        date: "June 12, 2026",
+        readTime: "5 min read",
+        excerpt: "Learn how to save a google doc as a pdf, make a google doc a pdf, and convert files easily on desktop & mobile using these quick methods.",
         content: `
           <p>Whether you need to submit a resume, distribute an invoice, or finalize a legal draft, converting your cloud files to a secure portable format is essential. In this guide, we will cover exactly <strong>how to save a google doc as a pdf</strong> and explore the best methods on <strong>how to make a google doc a pdf</strong> in just a few clicks.</p>
           
@@ -2907,19 +2920,15 @@
             <li>In the Destination drop-down selection panel, choose <strong>Save as PDF</strong>.</li>
             <li>Click <strong>Save</strong> and select your desired local download directory path.</li>
           </ol>
-          <p>This simple workaround is a reliable way to solve the puzzle of <strong>how to make a google doc into a pdf</strong> when standard downloads fail.</p>
+          <p>This simple workaround is a reliable way to solve the puzzle of <strong>how to make a google doc into a pdf</strong> when standard downloads fail. For further offline files, you can use PDFZaap's local <a href="#word-to-pdf">Word to PDF converter</a> to get identical results instantly.</p>
         `
       },
       "how-to-open-and-edit-pdf-in-google-docs": {
         title: "How to Edit a PDF in Google Docs",
         category: "Google Docs",
-        date: "June 19, 2026",
-        author: "Alex Mercer",
-        avatar: "AM",
+        date: "June 08, 2026",
         readTime: "5 min read",
         excerpt: "Learn how to open a pdf in google docs, edit pdfs, and convert pdf to google doc formats smoothly without formatting errors.",
-        gradient: "linear-gradient(135deg, #7C3AED, #EC4899)",
-        icon: "📂",
         content: `
           <p>Many users don't realize that Google's cloud office suite features built-in OCR (Optical Character Recognition) processing engines. If you have been looking for instructions on <strong>how to open a pdf in google docs</strong> or need to know <strong>how to convert pdf to google doc</strong> formats, this tutorial will walk you through the entire process step-by-step.</p>
 
@@ -2944,18 +2953,15 @@
 
           <h2>How to Edit a PDF in Google Docs</h2>
           <p>Once you follow the steps above, you can easily figure out <strong>how to edit a pdf in google docs</strong>. The document opens inside an editable workspace. When you finish modifying your text layers, follow the steps on <strong>how to turn pdf into google doc</strong> formats to make sure your final edits are locked. You can save your document by choosing <strong>File > Download > PDF Document (.pdf)</strong> to download a finalized, secure copy of your work.</p>
+          <p>For high-fidelity conversions that retain tables and structural designs perfectly, consider using our local <a href="#pdf-to-word">PDF to Word converter</a> directly inside your browser window.</p>
         `
       },
       "how-to-insert-pdf-into-google-doc": {
-        title: "How to  Put a PDF Into Google Docs",
+        title: "How toPut a PDF Into Google Docs",
         category: "Tips & Tricks",
-        date: "June 18, 2026",
-        author: "Jordan Park",
-        avatar: "JP",
+        date: "June 04, 2026",
         readTime: "4 min read",
         excerpt: "Struggling to share raw documents? Discover how to insert a pdf into a google doc and how to upload pdf to google docs securely.",
-        gradient: "linear-gradient(135deg, #2563EB, #3B82F6)",
-        icon: "📎",
         content: `
           <p>Google Docs does not allow you to directly paste a raw PDF document file straight into the middle of a text page. However, if you are looking for guides on <strong>how to insert a pdf into a google doc</strong> or need to know <strong>how to put a pdf into google docs</strong>, there are three highly effective ways to get around this limitation.</p>
 
@@ -2973,7 +2979,7 @@
           <h2>Method 2: Convert PDF to Images &amp; Insert</h2>
           <p>If you want the actual pages of your PDF document to show up directly as images inside your document body:</p>
           <ol>
-            <li>Use a secure tool like PDFZaap's <strong>PDF to JPG</strong> converter to extract your document pages as high-quality image files.</li>
+            <li>Use PDFZaap's local <a href="#pdf-to-jpg">PDF to JPG converter</a> to extract your document pages as high-quality image files.</li>
             <li>Open your document in Google Docs.</li>
             <li>Click <strong>Insert > Image > Upload from computer</strong>.</li>
             <li>Select your converted page images and place them exactly where you need them.</li>
@@ -3048,7 +3054,7 @@
       scrollToTop();
     }
 
-    // Populate Blog List
+    // Populate Blog List in Blogger-Style layout
     function buildBlogList() {
       const mainGrid = document.getElementById('main-blog-grid');
       const homeGrid = document.getElementById('homepage-blog-grid');
@@ -3058,27 +3064,44 @@
       homeGrid.innerHTML = '';
 
       Object.entries(BLOG_POSTS).forEach(([slug, post], index) => {
+        // Stream feed style matching the Blogger layout
         const cardHtml = `
-          <a href="#blog/${slug}" class="blog-card">
-            <div class="blog-card-banner" style="background:${post.gradient}">${post.icon}</div>
-            <div class="blog-card-body">
-              <span class="blog-card-tag">${post.category}</span>
-              <h3>${post.title}</h3>
-              <p>${post.excerpt}</p>
-              <div class="blog-card-meta">
-                <span>By ${post.author}</span>
-                <span>${post.readTime}</span>
-              </div>
+          <article class="blog-card" onclick="window.location.hash = 'blog/${slug}'">
+            <!-- Share Icon -->
+            <div class="blog-card-share-icon" aria-label="Share Post">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
             </div>
-          </a>
+            
+            <span class="blog-card-tag" style="align-self: flex-start; margin-bottom: 0.25rem;">${post.category}</span>
+            <h3>${post.title}</h3>
+            <div class="blog-card-date">${post.date}</div>
+            <p class="blog-card-excerpt">${post.excerpt}</p>
+            
+            <div class="blog-card-footer">
+              <div class="blog-card-comment">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Post a Comment</span>
+              </div>
+              <span class="blog-card-readmore">Read More</span>
+            </div>
+          </article>
         `;
+        
         mainGrid.innerHTML += cardHtml;
-        // Show only 3 posts on homepage for better performance
+        // Show only the 3 latest posts on the homepage feed for visual balance
         if (index < 3) homeGrid.innerHTML += cardHtml;
       });
     }
 
-    // Show Single Blog Post
+    // Show Single Blog Post Detail
     function showBlogPost(slug) {
       const post = BLOG_POSTS[slug];
       if (!post) {
@@ -3088,14 +3111,10 @@
 
       document.getElementById('blog-post-view').classList.add('active');
       
-      // Populate UI
+      // Populate UI parameters with no author name displayed
       document.getElementById('post-category').textContent = post.category;
       document.getElementById('post-title').textContent = post.title;
-      document.getElementById('post-author').textContent = post.author;
-      document.getElementById('post-avatar').textContent = post.avatar;
       document.getElementById('post-meta-details').textContent = `${post.date} • ${post.readTime}`;
-      document.getElementById('post-banner').textContent = post.icon;
-      document.getElementById('post-banner').style.background = post.gradient;
       document.getElementById('post-content').innerHTML = post.content;
 
       // SEO OPTIMIZATION: Dynamic Meta Tags & JSON-LD
@@ -3116,12 +3135,8 @@
         "@type": "BlogPosting",
         "headline": post.title,
         "description": post.excerpt,
-        "author": {
-          "@type": "Person",
-          "name": post.author
-        },
         "datePublished": post.date,
-        "image": "https://pdfzaap.online/logo.png", // Replace with actual logo URL
+        "image": "https://pdfzaap.online/logo.png",
         "publisher": {
           "@context": "https://schema.org",
           "@type": "Organization",
@@ -3567,6 +3582,7 @@
       document.getElementById('ws-process-btn').disabled = !hasFiles;
     }
 
+    // Remove file from workspace context
     function removeWorkspaceFile(index) {
       uploadedFileArray.splice(index, 1);
       renderWorkspaceFileList();
@@ -4118,7 +4134,6 @@
       }
     }
 
-    // Save profile configurations
     function acceptCookies(state) {
       localStorage.setItem('cookie-consent-pdfzaap', state ? 'accept' : 'decline');
       document.getElementById('cookie-banner').style.display = 'none';
