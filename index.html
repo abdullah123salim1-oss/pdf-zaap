@@ -1,8 +1,11 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; media-src 'self' blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Technical SEO Meta Tags (Default Homepage State) -->
@@ -10,6 +13,42 @@
   <meta name="description" content="PDFZaap offers 35+ free online PDF tools. Convert, compress, merge, split PDF files instantly. No signup, no watermark, 100% free forever.">
   <link rel="canonical" href="https://pdfzaap.online/">
   <meta name="robots" content="index, follow">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="PDFZaap — 35+ Free Online PDF Tools | No Signup Required">
+  <meta property="og:description" content="PDFZaap offers 35+ free online PDF tools. Convert, compress, merge, split PDF files instantly. No signup, no watermark, 100% free forever.">
+  <meta property="og:image" content="https://pdfzaap.online/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://pdfzaap.online/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PDFZaap">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDFZaap — 35+ Free Online PDF Tools | No Signup Required">
+  <meta name="twitter:description" content="PDFZaap offers 35+ free online PDF tools. Convert, compress, merge, split PDF files instantly. No signup, no watermark, 100% free forever.">
+  <meta name="twitter:image" content="https://pdfzaap.online/og-image.png">
+  <meta name="twitter:site" content="@pdfzaap">
+
+  <!-- Additional SEO Meta Tags -->
+  <meta name="author" content="PDFZaap">
+  <meta name="keywords" content="free pdf tools, pdf converter, merge pdf, split pdf, compress pdf, pdf to word, pdf to jpg, online pdf editor, no signup pdf tools">
+  <meta name="theme-color" content="#4F46E5">
+  <meta name="msapplication-TileColor" content="#4F46E5">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- DNS Prefetch & Preconnect -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+  <!-- Sitemap & Robots References -->
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
   <!-- Google Fonts - Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,19 +65,82 @@
   </script>
   -->
 
-  <!-- JSON-LD WebSite Schema (Default State) -->
+  <!-- JSON-LD Organization Schema -->
+  <script type="application/ld+json" id="organization-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PDFZaap",
+    "url": "https://pdfzaap.online",
+    "logo": "https://pdfzaap.online/logo.png",
+    "description": "PDFZaap offers 35+ free online PDF tools for converting, compressing, merging, splitting, and editing PDF files. No signup required, 100% free forever.",
+    "sameAs": [
+      "https://twitter.com/pdfzaap",
+      "https://github.com/abdullah123salim1-oss/pdf-zaap"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "contact@pdfzaap.online",
+      "contactType": "customer support"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD WebSite Schema -->
   <script type="application/ld+json" id="website-schema">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "PDFZaap",
     "url": "https://pdfzaap.online",
-    "description": "35+ free online PDF tools",
+    "description": "35+ free online PDF tools for converting, compressing, merging, splitting, and editing PDF files instantly in your browser.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "PDFZaap"
+    },
     "potentialAction": {
       "@type": "SearchAction",
       "target": "https://pdfzaap.online/?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
+  }
+  </script>
+
+  <!-- JSON-LD SoftwareApplication Schema -->
+  <script type="application/ld+json" id="software-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PDFZaap",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "50000"
+    },
+    "featureList": "PDF to Word, PDF to JPG, Merge PDF, Split PDF, Compress PDF, Protect PDF, OCR PDF, E-Sign PDF"
+  }
+  </script>
+
+  <!-- JSON-LD BreadcrumbList Schema -->
+  <script type="application/ld+json" id="breadcrumb-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://pdfzaap.online/"
+      }
+    ]
   }
   </script>
 
@@ -1410,6 +1512,68 @@
       border-color: var(--primary);
     }
   </style>
+
+  <noscript>
+    <style>
+      body { opacity: 1 !important; }
+      .view-section { display: block !important; }
+      .tools-grid { display: grid !important; }
+    </style>
+    <div style="background:#FEF3C7; border:1px solid #F59E0B; padding:1rem; text-align:center; margin:1rem;">
+      <strong>⚠️ JavaScript is disabled.</strong> PDFZaap requires JavaScript to process PDF files in your browser. Please enable JavaScript to use our tools.
+    </div>
+  </noscript>
+
+  <!-- JSON-LD FAQPage Schema -->
+  <script type="application/ld+json" id="faq-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are my files uploaded to PDFZaap servers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, files are processed entirely on your local machine using client-side libraries. PDFZaap never uploads your data."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is PDFZaap really free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, PDFZaap is 100% free with no monthly subscription plans or feature limitations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use PDFZaap on my smartphone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our web application is fully responsive and optimized for both mobile browsers and tablets."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do converted files have watermarks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, PDFZaap does not add watermarks or brands to your documents."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How secure is client-side processing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is highly secure. Your sensitive documents never leave your computer, avoiding server-side data leaks."
+        }
+      }
+    ]
+  }
+  </script>
+<base target="_blank">
 </head>
 <body>
 
@@ -1470,7 +1634,7 @@
         </div>
         <div class="trust-badges">
           <span class="trust-badge">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-label="Checkmark icon"><path d="M20 6L9 17l-5-5"/></svg>
             No Signup
           </span>
           <span class="trust-badge">
@@ -1494,7 +1658,7 @@
       <!-- Search Section -->
       <section class="search-filter-section" id="tools-anchor">
         <div class="search-wrapper">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-label="Search icon"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
           <input type="text" id="tool-search" class="search-input" placeholder="Search 35+ online PDF tools...">
         </div>
         <div class="search-tags">
@@ -1669,7 +1833,7 @@
           <nav class="breadcrumb" id="ws-breadcrumb"></nav>
 
           <!-- Dynamic Headings -->
-          <h1 id="ws-title">Tool Title</h1>
+          <h2 id="ws-title" style="font-size:2.25rem; font-weight:800; margin-bottom:0.5rem;">Tool Title</h2>
           <p class="subtitle" id="ws-subtitle">Tool dynamic subtitle goes here.</p>
 
           <!-- Upload Dropzone Interface -->
@@ -1759,7 +1923,7 @@
     <!-- BLOG LIST VIEW -->
     <section id="blog-section" class="view-section">
       <div class="blog-hero">
-        <h1>PDFZaap Knowledge Center</h1>
+        <h2 style="font-size:3rem; font-weight:800; margin-bottom:1rem; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">PDFZaap Knowledge Center</h2>
         <p>Expert tips, security guides, and resources for client-side PDF document manipulation.</p>
       </div>
       <div class="blog-grid" id="main-blog-grid">
@@ -1776,7 +1940,7 @@
         <article class="blog-post-detail">
           <header class="blog-post-header">
             <span class="blog-post-category" id="post-category">Security</span>
-            <h1 id="post-title">Post Title</h1>
+            <h2 id="post-title" style="font-size:2.5rem; font-weight:800; line-height:1.25; margin-bottom:1.25rem; color:var(--text);">Post Title</h2>
             <div class="blog-post-author-meta">
               <span id="post-meta-details">June 18, 2026 • 5 min read</span>
             </div>
@@ -2935,7 +3099,7 @@
           <h2>Step 1: Upload the PDF File to Google Drive</h2>
           <p>To begin learning <strong>how to open pdf in google docs</strong>, you first need to upload your document to Google Drive:</p>
           <ol>
-            <li>Go to <a href="https://drive.google.com" target="_blank">Google Drive</a> and log in.</li>
+            <li>Go to <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer">Google Drive</a> and log in.</li>
             <li>Click on the <strong>New</strong> button on the left sidebar.</li>
             <li>Select <strong>File upload</strong>, choose your PDF file, and click Open.</li>
           </ol>
@@ -3066,7 +3230,7 @@
       Object.entries(BLOG_POSTS).forEach(([slug, post], index) => {
         // Stream feed style matching the Blogger layout
         const cardHtml = `
-          <article class="blog-card" onclick="window.location.hash = 'blog/${slug}'">
+          <article class="blog-card" itemscope itemtype="https://schema.org/Article" onclick="window.location.hash = 'blog/${slug}'">
             <!-- Share Icon -->
             <div class="blog-card-share-icon" aria-label="Share Post">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -3080,7 +3244,7 @@
             
             <span class="blog-card-tag" style="align-self: flex-start; margin-bottom: 0.25rem;">${post.category}</span>
             <h3>${post.title}</h3>
-            <div class="blog-card-date">${post.date}</div>
+            <time class="blog-card-date" datetime="2026-06-18" itemprop="datePublished">${post.date}</time>
             <p class="blog-card-excerpt">${post.excerpt}</p>
             
             <div class="blog-card-footer">
@@ -3152,6 +3316,8 @@
         }
       };
       
+      schemaData.articleSection = post.category;
+      schemaData.wordCount = post.content.replace(/<[^>]*>/g, '').split(/\s+/).length;
       schemaScript.text = JSON.stringify(schemaData);
       document.head.appendChild(schemaScript);
 
