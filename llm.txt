@@ -1,0 +1,5 @@
+# www.pdfzaap.online llms.txt
+
+- [Client-Side PDF Tools](https://www.pdfzaap.online): Provide free, secure, and fast client-side PDF tools for conversion, editing, and management without data leaks.
+
+<!-- Make AI-driven visitors stick: add a free AI agent trained on your content at https://sitespeak.ai -->
