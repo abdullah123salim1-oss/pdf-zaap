@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; media-src 'self' blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Split PDF Online Free — Extract Pages | PDFZaap</title>
+  <meta name="description" content="Extract specific pages or page ranges from a PDF document instantly in your browser. Completely free, local, and private PDF splitter.">
+  <link rel="canonical" href="https://pdfzaap.online/split-pdf.html">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Split PDF Online Free — Extract Pages | PDFZaap">
+  <meta property="og:description" content="Extract specific pages or page ranges from a PDF document instantly in your browser. Completely free, local, and private PDF splitter.">
+  <meta property="og:image" content="https://pdfzaap.online/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://pdfzaap.online/split-pdf.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PDFZaap">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Split PDF Online Free — Extract Pages | PDFZaap">
+  <meta name="twitter:description" content="Extract specific pages or page ranges from a PDF document instantly in your browser. Completely free, local, and private PDF splitter.">
+  <meta name="twitter:image" content="https://pdfzaap.online/og-image.png">
+  <meta name="twitter:site" content="@pdfzaap">
+
+  <meta name="author" content="PDFZaap">
+  <meta name="keywords" content="split pdf, extract pdf pages, pdf splitter online free, separate pdf pages">
+  <meta name="theme-color" content="#FF5200">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json" id="software-schema">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Split PDF - PDFZaap",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Extract specific pages or page ranges from a PDF document instantly in your browser. Completely free, local, and private PDF splitter."
+}
+  </script>
+
+  <script type="application/ld+json" id="breadcrumb-schema">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://pdfzaap.online/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Split PDF",
+      "item": "https://pdfzaap.online/split-pdf.html"
+    }
+  ]
+}
+  </script>
+
+  <script type="application/ld+json" id="faq-schema">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What page ranges are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can define simple ranges like '1-3' or comma-separated lists like '1,3,5'."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How fast is splitting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Splitting is processed instantly using your device's local resources."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the extracted pages lose quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, pages are copied directly without any re-rendering or compression."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <header class="navbar" id="main-nav">
+    <a href="index.html" class="logo">⚡ PDF<span>Zaap</span></a>
+    <ul class="nav-links">
+      <li><a class="nav-link" href="index.html">Home</a></li>
+      <li><a href="index.html#tools-anchor" class="btn btn-primary">All Tools</a></li>
+    </ul>
+  </header>
+
+  <main class="view-container" data-tool="split-pdf">
+    <div class="workspace-wrapper">
+      <div class="workspace-main">
+
+        <nav class="breadcrumb">
+          <a href="index.html">Home</a> <span>&gt;</span> <span>Split PDF</span>
+        </nav>
+
+        <h1 class="workspace-title">✂️ Split PDF</h1>
+        <p class="subtitle">Extract specific pages or page ranges from a PDF document instantly</p>
+
+        <div class="dropzone" id="ws-dropzone">
+          <div class="dropzone-icon">📥</div>
+          <h3>Select PDF file</h3>
+          <p>or drop file here</p>
+          <input type="file" id="ws-file-input" class="display-none" accept=".pdf">
+        </div>
+
+        <div class="file-list" id="ws-file-list"></div>
+        <div class="options-panel display-none" id="ws-options-panel"></div>
+        <div class="ws-canvas-wrapper display-none" id="ws-canvas-wrapper"></div>
+
+        <div class="progress-bar-container" id="ws-progress-container">
+          <div class="progress-bar-outer"><div class="progress-bar-inner" id="ws-progress-bar"></div></div>
+          <p class="progress-status" id="ws-progress-status">Processing document contents...</p>
+        </div>
+
+        <button class="btn btn-primary full-width" id="ws-process-btn" disabled>Split PDF</button>
+
+        <div class="security-note">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Files processed locally — zero server uploads</span>
+        </div>
+
+        <div id="ws-output-box" class="output-container"></div>
+
+        <section class="how-it-works padding-top-bot">
+          <div class="section-header margin-bot-3">
+            <h2>How to Split PDF</h2>
+          </div>
+          <div class="steps">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <h3>Upload PDF</h3>
+              <p>Select the PDF file you want to split.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <h3>Define Range</h3>
+              <p>Input the page range you need, e.g. 1-3, 5.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <h3>Download</h3>
+              <p>Download the extracted pages as a new PDF.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="padding-vert-2">
+          <div class="section-header margin-bot-3">
+            <h2>Why Use PDFZaap's Split PDF?</h2>
+          </div>
+          <p class="about-text">
+            Sometimes you only need one chapter, one invoice page, or one signed form out of a much larger document. PDFZaap lets you type a simple page range — single pages, ranges, or a mix of both — and instantly pulls out exactly those pages into a brand new PDF. The entire operation runs inside your browser's local memory, so the original document never touches an external server. There's no page limit, no watermark on the output, and no charge no matter how many times you split a file.
+          </p>
+        </section>
+
+        <section class="faq-section margin-top-3-no-pad">
+          <div class="section-header margin-bot-3">
+            <h2>Questions &amp; Answers</h2>
+          </div>
+          <div id="ws-faqs">
+            <details class="faq-item">
+              <summary class="faq-trigger">
+                <span>What page ranges are supported?</span>
+                <span class="faq-icon">▼</span>
+              </summary>
+              <div class="faq-content">
+                <p>You can define simple ranges like '1-3' or comma-separated lists like '1,3,5'.</p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-trigger">
+                <span>How fast is splitting?</span>
+                <span class="faq-icon">▼</span>
+              </summary>
+              <div class="faq-content">
+                <p>Splitting is processed instantly using your device's local resources.</p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-trigger">
+                <span>Will the extracted pages lose quality?</span>
+                <span class="faq-icon">▼</span>
+              </summary>
+              <div class="faq-content">
+                <p>No, pages are copied directly without any re-rendering or compression.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="padding-top-4">
+          <div class="section-header margin-bot-2-5">
+            <h2>Related PDF Tools</h2>
+          </div>
+          <div class="tools-grid grid-2-cols-no-pad">
+            <a href="merge-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">🔗</div>
+              <h3>Merge PDF</h3>
+              <span class="tool-card-link">Use Tool ➔</span>
+            </a>
+            <a href="remove-pages-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">❌</div>
+              <h3>Remove Pages</h3>
+              <span class="tool-card-link">Use Tool ➔</span>
+            </a>
+            <a href="extract-pages-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">📤</div>
+              <h3>Extract Pages</h3>
+              <span class="tool-card-link">Use Tool ➔</span>
+            </a>
+            <a href="reorder-pages-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">🔀</div>
+              <h3>Reorder Pages</h3>
+              <span class="tool-card-link">Use Tool ➔</span>
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>⚡ PDF<span>Zaap</span></h4>
+        <p>Your secure, browser-based assistant built for fast client-side file conversions and PDF edits. Free, safe, and completely private.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Popular Convert</h5>
+        <ul class="footer-links">
+          <li><a href="pdf-to-word.html">PDF to Word</a></li>
+          <li><a href="jpg-to-pdf.html">JPG to PDF</a></li>
+          <li><a href="pdf-to-jpg.html">PDF to JPG</a></li>
+          <li><a href="word-to-pdf.html">Word to PDF</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Edit &amp; Manage</h5>
+        <ul class="footer-links">
+          <li><a href="merge-pdf.html">Merge PDF</a></li>
+          <li><a href="split-pdf.html">Split PDF</a></li>
+          <li><a href="compress-pdf.html">Compress PDF</a></li>
+          <li><a href="add-watermark-pdf.html">Add Watermark</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Security &amp; Advanced</h5>
+        <ul class="footer-links">
+          <li><a href="protect-pdf.html">Protect PDF</a></li>
+          <li><a href="esign-pdf.html">E-Sign PDF</a></li>
+          <li><a href="ocr-pdf.html">OCR PDF</a></li>
+          <li><a href="flatten-pdf.html">Flatten PDF</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 PDFZaap. All rights reserved. Handcrafted for fast PDF editing.</p>
+      <div class="footer-legal-links">
+        <span class="cursor-pointer" onclick="toggleLegalModal('privacy')">Privacy Policy</span>
+        <span class="cursor-pointer" onclick="toggleLegalModal('terms')">Terms of Service</span>
+      </div>
+    </div>
+  </footer>
+
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
+  <script src="script.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      activeTool = 'split-pdf';
+      if (typeof setupOptionsPanel === 'function') {
+        setupOptionsPanel(activeTool);
+      }
+    });
+  </script>
+</body>
+</html>

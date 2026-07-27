@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; media-src 'self' blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>HTML to PDF Converter Online Free — Webpage to PDF | PDFZaap</title>
+  <meta name="description" content="Convert HTML code or web files into clean PDF documents for free. Fast browser rendering preserves layout styling and text formatting.">
+  <link rel="canonical" href="https://pdfzaap.online/html-to-pdf.html">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="HTML to PDF Converter Online Free — Webpage to PDF | PDFZaap">
+  <meta property="og:description" content="Convert HTML code or web files into clean PDF documents for free. Fast browser rendering preserves layout styling and text formatting.">
+  <meta property="og:image" content="https://pdfzaap.online/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://pdfzaap.online/html-to-pdf.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PDFZaap">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HTML to PDF Converter Online Free — Webpage to PDF | PDFZaap">
+  <meta name="twitter:description" content="Convert HTML code or web files into clean PDF documents for free. Fast browser rendering preserves layout styling and text formatting.">
+  <meta name="twitter:image" content="https://pdfzaap.online/og-image.png">
+  <meta name="twitter:site" content="@pdfzaap">
+
+  <meta name="author" content="PDFZaap">
+  <meta name="keywords" content="html to pdf, convert webpage to pdf, html file to pdf online free">
+  <meta name="theme-color" content="#FF5200">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json" id="software-schema">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "HTML to PDF - PDFZaap",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Convert HTML code or web files into clean PDF documents for free. Fast browser rendering preserves layout styling and text formatting."
+}
+  </script>
+
+  <script type="application/ld+json" id="breadcrumb-schema">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://pdfzaap.online/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "HTML to PDF",
+      "item": "https://pdfzaap.online/html-to-pdf.html"
+    }
+  ]
+}
+  </script>
+
+  <script type="application/ld+json" id="faq-schema">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does HTML to PDF preserve CSS styling?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, standard CSS styles, custom fonts, and image layout properties are rendered into the generated PDF."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I upload an .html file or enter raw code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can select an .html file directly or input HTML code string into the options panel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my web templates uploaded to external servers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, all HTML parsing and PDF rendering are performed locally in your browser sandbox."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <header class="navbar" id="main-nav">
+    <a href="index.html" class="logo">⚡ PDF<span>Zaap</span></a>
+    <ul class="nav-links">
+      <li><a class="nav-link" href="index.html">Home</a></li>
+      <li><a href="index.html#tools-anchor" class="btn btn-primary">All Tools</a></li>
+    </ul>
+  </header>
+
+  <main class="view-container" data-tool="html-to-pdf">
+    <div class="workspace-wrapper">
+      <div class="workspace-main">
+
+        <nav class="breadcrumb">
+          <a href="index.html">Home</a> <span>&gt;</span> <span>HTML to PDF</span>
+        </nav>
+
+        <h1 class="workspace-title">🌐 HTML to PDF</h1>
+        <p class="subtitle">Convert web pages and raw HTML code into downloadable PDF files</p>
+
+        <div class="dropzone" id="ws-dropzone">
+          <div class="dropzone-icon">📥</div>
+          <h3>Select HTML file</h3>
+          <p>or drop .html / .htm file here</p>
+          <input type="file" id="ws-file-input" class="display-none" accept=".html,.htm">
+        </div>
+
+        <div class="file-list" id="ws-file-list"></div>
+        <div class="options-panel display-none" id="ws-options-panel"></div>
+        <div class="ws-canvas-wrapper display-none" id="ws-canvas-wrapper"></div>
+
+        <div class="progress-bar-container" id="ws-progress-container">
+          <div class="progress-bar-outer"><div class="progress-bar-inner" id="ws-progress-bar"></div></div>
+          <p class="progress-status" id="ws-progress-status">Processing document contents...</p>
+        </div>
+
+        <button class="btn btn-primary full-width" id="ws-process-btn" disabled>Convert HTML to PDF</button>
+
+        <div class="security-note">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Files processed locally — zero server uploads</span>
+        </div>
+
+        <div id="ws-output-box" class="output-container"></div>
+
+        <section class="how-it-works padding-top-bot">
+          <div class="section-header margin-bot-3">
+            <h2>How to Convert HTML to PDF</h2>
+          </div>
+          <div class="steps">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <h3>Upload HTML</h3>
+              <p>Select your HTML file or paste web code.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <h3>Render Layout</h3>
+              <p>Parse styling and element positions locally.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <h3>Convert &amp; Download</h3>
+              <p>Click convert and save your HTML-generated PDF.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="padding-vert-2">
+          <div class="section-header margin-bot-3">
+            <h2>Why Use PDFZaap's HTML to PDF?</h2>
+          </div>
+          <p class="about-text">
+            Convert web templates, HTML invoices, and web pages into clean PDF documents with PDFZaap's HTML to PDF converter. Our browser-side rendering engine parses HTML markup, CSS styling, and embedded image assets locally on your device, avoiding the need to upload confidential code or invoice templates to third-party conversion servers. Generate crisp, printable PDF documents in seconds with complete control over page margins and orientation. Enjoy fast, free HTML to PDF conversion without watermarks.
+          </p>
+        </section>
+
+        <section class="faq-section margin-top-3-no-pad">
+          <div class="section-header margin-bot-3">
+            <h2>Questions &amp; Answers</h2>
+          </div>
+          <div id="ws-faqs">
+            <details class="faq-item">
+              <summary class="faq-trigger">
+                <span>Does HTML to PDF preserve CSS styling?</span>
+                <span class="faq-icon">▼</span>
+              </summary>
+              <div class="faq-content">
+                <p>Yes, standard CSS styles, custom fonts, and image layout properties are rendered into the generated PDF.</p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-trigger">
+                <span>Can I upload an .html file or enter raw code?</span>
+                <span class="faq-icon">▼</span>
+              </summary>
+              <div class="faq-content">
+                <p>You can select an .html file directly or input HTML code string into the options panel.</p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-trigger">
+                <span>Are my web templates uploaded to external servers?</span>
+                <span class="faq-icon">▼</span>
+              </summary>
+              <div class="faq-content">
+                <p>No, all HTML parsing and PDF rendering are performed locally in your browser sandbox.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="padding-top-4">
+          <div class="section-header margin-bot-2-5">
+            <h2>Related PDF Tools</h2>
+          </div>
+          <div class="tools-grid grid-2-cols-no-pad">
+            <a href="word-to-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">📄</div>
+              <h3>Word to PDF</h3>
+              <span class="tool-card-link">Use Tool ➔</span>
+            </a>
+            <a href="jpg-to-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">🖼️</div>
+              <h3>JPG to PDF</h3>
+              <span class="tool-card-link">Use Tool ➔</span>
+            </a>
+            <a href="pdf-to-word.html" class="tool-card">
+              <div class="tool-icon-wrapper">📝</div>
+              <h3>PDF to Word</h3>
+              <span class="tool-card-link">Use Tool ➔</span>
+            </a>
+            <a href="merge-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">🔗</div>
+              <h3>Merge PDF</h3>
+              <span class="tool-card-link">Use Tool ➔</span>
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>⚡ PDF<span>Zaap</span></h4>
+        <p>Your secure, browser-based assistant built for fast client-side file conversions and PDF edits. Free, safe, and completely private.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Popular Convert</h5>
+        <ul class="footer-links">
+          <li><a href="pdf-to-word.html">PDF to Word</a></li>
+          <li><a href="jpg-to-pdf.html">JPG to PDF</a></li>
+          <li><a href="pdf-to-jpg.html">PDF to JPG</a></li>
+          <li><a href="word-to-pdf.html">Word to PDF</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Edit &amp; Manage</h5>
+        <ul class="footer-links">
+          <li><a href="merge-pdf.html">Merge PDF</a></li>
+          <li><a href="split-pdf.html">Split PDF</a></li>
+          <li><a href="compress-pdf.html">Compress PDF</a></li>
+          <li><a href="add-watermark-pdf.html">Add Watermark</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Security &amp; Advanced</h5>
+        <ul class="footer-links">
+          <li><a href="protect-pdf.html">Protect PDF</a></li>
+          <li><a href="esign-pdf.html">E-Sign PDF</a></li>
+          <li><a href="ocr-pdf.html">OCR PDF</a></li>
+          <li><a href="flatten-pdf.html">Flatten PDF</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 PDFZaap. All rights reserved. Handcrafted for fast PDF editing.</p>
+      <div class="footer-legal-links">
+        <span class="cursor-pointer" onclick="toggleLegalModal('privacy')">Privacy Policy</span>
+        <span class="cursor-pointer" onclick="toggleLegalModal('terms')">Terms of Service</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+  <script src="script.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      activeTool = 'html-to-pdf';
+      if (typeof setupOptionsPanel === 'function') {
+        setupOptionsPanel(activeTool);
+      }
+    });
+  </script>
+</body>
+</html>
