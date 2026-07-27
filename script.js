@@ -2244,13 +2244,10 @@ function applyFilterTab(tabCategory, btnElement) {
 function initCookieBanner() {
   const consent = localStorage.getItem('cookie-consent-pdfzaap');
   if (!consent) {
-    setTimeout(() => {
-      const banner = document.getElementById('cookie-banner');
-      if (banner) banner.style.display = 'flex';
-    }, 2000);
+    const banner = document.getElementById('cookie-banner');
+    if (banner) banner.style.display = 'flex';
   }
 }
-
 function acceptCookies(state) {
   localStorage.setItem('cookie-consent-pdfzaap', state ? 'accept' : 'decline');
   const banner = document.getElementById('cookie-banner');
