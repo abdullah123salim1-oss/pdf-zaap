@@ -1117,16 +1117,13 @@ window.addEventListener('DOMContentLoaded', () => {
   setupSearchAndFilters();
   setupDropzone();
   initCookieBanner();
-  
-  window.addEventListener('hashchange', router);
-  router();
 });
 
 // ==========================================================================
 // ROUTER & VIEW MANAGEMENT
 // ==========================================================================
 
-function router() {
+function oldRouter()  {
   const hash = window.location.hash.substring(1);
   
   document.getElementById('mobile-menu').classList.remove('active');
@@ -1322,7 +1319,7 @@ function buildToolsGrid() {
   
   for (const [key, value] of Object.entries(TOOL_DATABASE)) {
     grid.innerHTML += `
-      <article class="tool-card" data-category="${value.category}" onclick="window.location.hash = '${key}'">
+      <article class="tool-card" data-category="${value.category}" onclick="window.location.href = '${key}.html'">
         <div class="tool-icon-wrapper">${value.emoji}</div>
         <h3>${value.title}</h3>
         <p>${value.subtitle}</p>
