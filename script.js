@@ -1126,8 +1126,8 @@ window.addEventListener('DOMContentLoaded', () => {
 function oldRouter()  {
   const hash = window.location.hash.substring(1);
   
-  document.getElementById('mobile-menu').classList.remove('active');
-  document.getElementById('hamburger-btn').classList.remove('active');
+  document.getElementById('mobile-menu')?.classList.remove('active');
+document.getElementById('hamburger-btn')?.classList.remove('active');
 
   document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active'));
 
