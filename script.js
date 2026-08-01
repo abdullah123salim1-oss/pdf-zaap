@@ -1015,7 +1015,6 @@ const BLOG_POSTS = {
 
 
 
-const BLOG_POSTS = {
   "ways-to-manage-pdf-files": {
     title: "7 Easy Ways to Manage PDF Files Free — Convert, Compress, Merge & Split PDFs Online 2026",
     category: "Tutorial",
