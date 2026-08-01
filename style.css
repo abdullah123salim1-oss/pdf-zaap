@@ -1057,40 +1057,6 @@ body {
   color: var(--text);
 }
 
-/* ==========================================================================
-   AD SLOTS
-   ========================================================================== */
-
-.ad-placeholder {
-  background-color: var(--bg);
-  border: 1px dashed var(--border);
-  color: var(--subtext);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  font-weight: 600;
-  border-radius: 8px;
-}
-
-#banner-728-90 {
-  width: 728px;
-  height: 90px;
-  margin: 2rem auto;
-}
-
-#sidebar-200-400 {
-  width: 200px;
-  height: 400px;
-  position: sticky;
-  top: 120px;
-}
-
-#rect-336-280 {
-  width: 336px;
-  height: 280px;
-  margin: 3rem auto;
-}
 
 /* ==========================================================================
    BLOG STYLING
