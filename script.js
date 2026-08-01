@@ -946,15 +946,36 @@ const TOOL_DATABASE = {
     related: ["compress-pdf", "flatten-pdf", "rotate-pdf", "add-watermark-pdf"]
   }
 };
-
-const HOMEPAGE_FAQS = { q: "What is a PDF?", a: "A PDF (Portable Document Format) is a file format developed to preserve document formatting across all devices and operating systems." },
-{ q: "What does PDF stand for?", a: "PDF stands for Portable Document Format. It allows documents to keep the same layout, fonts, and images regardless of the device used." },
-{ q: "How do I merge PDF files?", a: "Open the Merge PDF tool, upload your PDF documents, arrange them in the correct order, and download the merged file in seconds." },
-{ q: "How do I split a PDF?", a: "Use the Split PDF tool to extract specific pages or divide a PDF into multiple smaller documents quickly and securely." },
-{ q: "How do I compress a PDF?", a: "Upload your PDF to the Compress PDF tool and reduce its file size while maintaining the best possible quality." },
-{ q: "How do I convert PDF to Word?", a: "Use the PDF to Word converter to transform PDF documents into editable Word files while preserving formatting whenever possible." },
-{ q: "Can I use PDFZaap without creating an account?", a: "Yes. PDFZaap works instantly in your browser with no signup, no registration, and no software installation required." }
-
+const HOMEPAGE_FAQS = [
+    {
+        q: "What is a PDF?",
+        a: "A PDF (Portable Document Format) is a file format developed to preserve document formatting across all devices and operating systems."
+    },
+    {
+        q: "What does PDF stand for?",
+        a: "PDF stands for Portable Document Format. It allows documents to keep the same layout, fonts, and images regardless of the device used."
+    },
+    {
+        q: "How do I merge PDF files?",
+        a: "Open the Merge PDF tool, upload your PDF documents, arrange them in the correct order, and download the merged file in seconds."
+    },
+    {
+        q: "How do I split a PDF?",
+        a: "Use the Split PDF tool to extract specific pages or divide a PDF into multiple smaller documents quickly and securely."
+    },
+    {
+        q: "How do I compress a PDF?",
+        a: "Upload your PDF to the Compress PDF tool and reduce its file size while maintaining the best possible quality."
+    },
+    {
+        q: "How do I convert PDF to Word?",
+        a: "Use the PDF to Word converter to transform PDF documents into editable Word files while preserving formatting whenever possible."
+    },
+    {
+        q: "Can I use PDFZaap without creating an account?",
+        a: "Yes. PDFZaap works instantly in your browser with no signup, no registration, and no software installation required."
+    }
+];
 const BLOG_POSTS = {
   "what-is-a-pdf": {
     title: "What Is a PDF? Meaning, Format & Uses Explained (2026)",
