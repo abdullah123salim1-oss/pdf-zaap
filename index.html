@@ -7,15 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Technical SEO Meta Tags -->
-  <title>PDFZaap — Free Adobe Acrobat Alternative | 35+ PDF Tools</title>
-  <meta name="description" content="PDFZaap is a free Adobe Acrobat alternative with 35+ PDF tools. Merge, split, compress, convert — no signup, no watermark, 100% private browser-based processing.">
+  <title>PDFZaap — 35+ Free Online PDF Tools | No Signup Required</title>
+  <meta name="description" content="PDFZaap offers 35+ free online PDF tools. Convert, compress, merge, split PDF files instantly. No signup, no watermark, 100% free forever.">
   <link rel="canonical" href="https://pdfzaap.online/">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="PDFZaap — 35+ Free Online PDF Tools | No Signup Required">
   <meta property="og:description" content="PDFZaap offers 35+ free online PDF tools. Convert, compress, merge, split PDF files instantly. No signup, no watermark, 100% free forever.">
-  <meta property="og:image" content="https://www.pdfzaap.online/og-image.png">
+  <meta property="og:image" content="https://pdfzaap.online/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://pdfzaap.online/">
@@ -39,7 +39,6 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  
   <!-- DNS Prefetch & Preconnect -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -53,7 +52,8 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- Primary Stylesheet -->
   <link rel="stylesheet" href="style.css">
 
@@ -196,25 +196,27 @@
   </noscript>
 
   <!-- Sticky Navbar -->
-  <header class="navbar" id="main-nav">
-    <div class="logo" onclick="window.location.hash = ''">
-      ⚡ PDF<span>Zaap</span>
-    </div>
-    <ul class="nav-links">
-      <li><span class="nav-link" onclick="window.location.hash = ''">Home</span></li>
+<header class="navbar" id="main-nav">
+
+  <a href="index.html" class="logo">
+    ⚡ PDF<span>Zaap</span>
+  </a>
+
+  <ul class="nav-links">
+     <li><a class="nav-link" href="index.html">Home</a></li>
       <li class="nav-item">
         <span class="nav-link">PDF Tools ▾</span>
-  <div class="dropdown">
-  <a class="dropdown-link" href="/merge-pdf.html">Merge PDF</a>
-  <a class="dropdown-link" href="/split-pdf.html">Split PDF</a>
-  <a class="dropdown-link" href="/compress-pdf.html">Compress PDF</a>
-  <a class="dropdown-link" href="/pdf-to-text.html">PDF to Text</a>
-  <a class="dropdown-link" href="/jpg-to-pdf.html">JPG to PDF</a>
-  <a class="dropdown-link" href="/add-watermark-pdf.html">Add Watermark</a>
+        <div class="dropdown">
+    <a class="dropdown-link" href="merge-pdf.html">Merge PDF</a>
+    <a class="dropdown-link" href="split-pdf.html">Split PDF</a>
+    <a class="dropdown-link" href="compress-pdf.html">Compress PDF</a>
+    <a class="dropdown-link" href="pdf-to-text.html">PDF to Text</a>
+    <a class="dropdown-link" href="jpg-to-pdf.html">JPG to PDF</a>
+    <a class="dropdown-link" href="add-watermark-pdf.html">Add Watermark</a>
 </div>
       </li>
       <li><a class="nav-link" href="#about-us-section">About</a></li>
-      <li><a class="nav-link" href="#blog">Blog</a></li>
+      <li><a class="nav-link" href="blog/index.html">Blog</a></li>
       <li><span class="btn btn-primary" onclick="scrollToToolsGrid()">Get Started Free</span></li>
     </ul>
     <button class="hamburger" id="hamburger-btn" aria-label="Toggle Menu">
@@ -225,16 +227,37 @@
   </header>
 
   <!-- Mobile Hamburger Overlay Menu -->
-  <nav class="mobile-overlay" id="mobile-menu">
-    <span class="mobile-nav-link" onclick="closeMobileNav('');">Home</span>
-    <span class="mobile-nav-link" onclick="closeMobileNav('merge-pdf');">Merge PDF</span>
-    <span class="mobile-nav-link" onclick="closeMobileNav('split-pdf');">Split PDF</span>
-    <span class="mobile-nav-link" onclick="closeMobileNav('compress-pdf');">Compress PDF</span>
-    <span class="mobile-nav-link" onclick="closeMobileNav('pdf-to-text');">PDF to Text</span>
-    <span class="mobile-nav-link" onclick="closeMobileNav('about-us-section');">About</span>
-    <span class="mobile-nav-link" onclick="closeMobileNav('blog');">Blog</span>
-    <span class="btn btn-primary" onclick="closeMobileNav(''); scrollToToolsGrid();">Get Started Free</span>
-  </nav>
+<nav class="mobile-overlay" id="mobile-menu">
+
+<a class="mobile-nav-link" href="index.html">
+Home
+</a>
+
+<a class="mobile-nav-link" href="merge-pdf.html">
+Merge PDF
+</a>
+
+<a class="mobile-nav-link" href="split-pdf.html">
+Split PDF
+</a>
+
+<a class="mobile-nav-link" href="compress-pdf.html">
+Compress PDF
+</a>
+
+<a class="mobile-nav-link" href="pdf-to-text.html">
+PDF to Text
+</a>
+
+<a class="mobile-nav-link" href="blog/index.html">
+Blog
+</a>
+
+<a class="btn btn-primary" href="index.html#tools-anchor">
+Get Started Free
+</a>
+
+</nav>
 
   <!-- VIEW CONTAINER -->
   <main class="view-container">
@@ -244,7 +267,7 @@
       
       <!-- Hero Section -->
       <section class="hero">
-        <h1>The free Adobe alternative for every <span>PDF</span> tool you need</h1>
+        <h1>Every tool you need to work with <span>PDFs</span> in one place</h1>
         <p>Every tool you need to use PDFs, at your fingertips. All 100% FREE and easy to use! Merge, split, compress, convert, rotate, unlock and watermark PDFs with just a few clicks.</p>
         <div class="hero-ctas">
           <span class="btn btn-primary" onclick="scrollToToolsGrid()">Explore PDF Tools</span>
@@ -270,7 +293,6 @@
         </div>
       </section>
 
-    
 
       <!-- Search Section -->
       <section class="search-filter-section" id="tools-anchor">
@@ -299,7 +321,7 @@
         <!-- Tools cards are dynamically generated via JavaScript -->
       </section>
 
-      <!-- Why Us / Features Section -->
+        <!-- Why Us / Features Section -->
       <section class="why-us" id="why-pdfzaap-section">
         <div class="section-header">
           <h2>Why Millions Choose PDFZaap</h2>
@@ -337,7 +359,7 @@
         </div>
         </div>
       </section>
-
+      
       <!-- How It Works Section -->
       <section class="how-it-works">
         <div class="section-header">
@@ -363,6 +385,7 @@
         </div>
       </section>
 
+    
 
       <!-- Testimonials Section -->
       <section class="testimonials">
@@ -389,19 +412,7 @@
         </div>
       </section>
 
-      <!-- Recent Blog Posts Section -->
-      <section class="why-us border-top-none" id="homepage-blog-section">
-        <div class="section-header">
-          <h2>Latest Guides & Tutorials</h2>
-          <p class="subtext-muted">Master document management with our latest privacy and productivity tips.</p>
-        </div>
-        <div class="blog-grid" id="homepage-blog-grid">
-          <!-- Populated dynamically via JavaScript -->
-        </div>
-        <div class="text-center margin-top-1">
-          <a href="#blog" class="btn btn-secondary">View All Articles</a>
-        </div>
-      </section>
+      
 
       <section class="faq-section">
         <div class="section-header">
@@ -580,31 +591,31 @@
         <h4>⚡ PDF<span>Zaap</span></h4>
         <p>Your secure, browser-based assistant built for fast client-side file conversions and PDF edits. Free, safe, and completely private.</p>
       </div>
-    <div class="footer-col">
-  <h5>Popular Convert</h5>
-  <ul class="footer-links">
-    <li><a href="/pdf-to-word.html">PDF to Word</a></li>
-    <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
-    <li><a href="/pdf-to-jpg.html">PDF to JPG</a></li>
-    <li><a href="/word-to-pdf.html">Word to PDF</a></li>
-  </ul>
-</div>
+      <div class="footer-col">
+        <h5>Popular Convert</h5>
+        <ul class="footer-links">
+          <li><a href="pdf-to-word.html">PDF to Word</a></li>
+          <li><a href="jpg-to-pdf.html">JPG to PDF</a></li>
+          <li><a href="pdf-to-jpg.html">PDF to JPG</a></li>
+          <li><a href="word-to-pdf.html">Word to PDF</a></li>
+        </ul>
+      </div>
       <div class="footer-col">
         <h5>Edit &amp; Manage</h5>
         <ul class="footer-links">
-          <li><a href="/merge-pdf.html">Merge PDF</a></li>
-<li><a href="/split-pdf.html">Split PDF</a></li>
-<li><a href="/compress-pdf.html">Compress PDF</a></li>
-<li><a href="/add-watermark-pdf.html">Add Watermark</a></li>
+          <li><a href="merge-pdf.html">Merge PDF</a></li>
+          <li><a href="split-pdf.html">Split PDF</a></li>
+          <li><a href="compress-pdf.html">Compress PDF</a></li>
+          <li><a href="add-watermark-pdf.html">Add Watermark</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>Security &amp; Advanced</h5>
         <ul class="footer-links">
-      <li><a href="/protect-pdf.html">Protect PDF</a></li>
-<li><a href="/esign-pdf.html">E-Sign PDF</a></li>
-<li><a href="/ocr-pdf.html">OCR PDF</a></li>
-<li><a href="/flatten-pdf.html">Flatten PDF</a></li>
+          <li><a href="protect-pdf.html">Protect PDF</a></li>
+          <li><a href="esign-pdf.html">E-Sign PDF</a></li>
+          <li><a href="ocr-pdf.html">OCR PDF</a></li>
+          <li><a href="flatten-pdf.html">Flatten PDF</a></li>
         </ul>
       </div>
     </div>
