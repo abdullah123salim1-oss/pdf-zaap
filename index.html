@@ -50,6 +50,7 @@
 
   <!-- Sitemap Reference -->
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+  <link rel="alternate" type="application/rss+xml" title="PDFZaap Blog RSS" href="https://pdfzaap.online/blog/rss.xml">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -216,7 +217,7 @@
       <li><a class="nav-link" href="blog/index.html">Blog</a></li>
       <li><span class="btn btn-primary" onclick="scrollToToolsGrid()">Get Started Free</span></li>
     </ul>
-    <button class="hamburger" id="hamburger-btn" aria-label="Toggle Menu">
+    <button class="hamburger" id="hamburger-btn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span>
       <span></span>
       <span></span>
@@ -228,6 +229,10 @@
 
 <a class="mobile-nav-link" href="index.html">
 Home
+</a>
+
+<a class="mobile-nav-link" href="index.html#tools-anchor">
+All Tools
 </a>
 
 <a class="mobile-nav-link" href="merge-pdf.html">

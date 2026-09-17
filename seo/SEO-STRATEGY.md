@@ -130,3 +130,23 @@ All external copy uses the same proof points: no upload, no account, no watermar
 - **Bi-weekly:** CTR optimization pass (section 3), one new listicle/alternative-to/outreach push.
 - **Monthly:** internal link audit (orphans, broken, duplicate intents), keyword re-tiering (promote Tier 1 winners to Tier 2 targets), one content retro.
 - **Quarterly:** full competitive re-snapshot (traffic/AS/backlinks for the four competitors above); revisit head-term targets against the Tier 3 prerequisites.
+
+---
+
+## Appendix A — Launch checklist (week 1)
+
+- [x] 3 Tier-1 long-tail posts published: merge without Adobe, compress for email, PDF to Word formatting
+- [x] Blog cards on `blog/index.html` + `## Blog` section in `llm.txt`
+- [x] `sitemap.xml` updated (3 new blog URLs, lastmod 2026-09-17)
+- [x] `blog/rss.xml` feed live with all 4 posts
+- [x] "Deep dive" internal links on merge / compress / pdf-to-word tool pages
+- [x] `404.html` (`noindex, follow`) + RSS alternate tag on the homepage
+- [ ] Verify domain in Google Search Console + Bing Webmaster Tools and submit `sitemap.xml`
+- [ ] AlternativeTo listing created with the no-upload differentiator
+- [ ] Product Hunt launch scheduled
+- [ ] First CTR-optimization pass (bi-weekly cadence) queued for week 3
+
+## Changelog
+
+- v1.0 (2026-09-17): initial competitor gap analysis + three-tier keyword strategy + 90-day plan.
+- v1.1 (2026-09-17): launch checklist added; 3 Tier-1 posts shipped, RSS feed and 404 page live.

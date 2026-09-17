@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PDFZaap Blog</title>
+    <link>https://pdfzaap.online/blog/</link>
+    <atom:link href="https://pdfzaap.online/blog/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>Practical PDF guides and tutorials: compress, convert, merge and edit PDF files for free using fast browser-based tools. No signup required.</description>
+    <language>en</language>
+    <lastBuildDate>Thu, 17 Sep 2026 09:00:00 +0000</lastBuildDate>
+    <item>
+      <title>How to Merge PDF Files Without Adobe Acrobat (Free, 3 Ways)</title>
+      <link>https://pdfzaap.online/blog/merge-pdf-without-adobe.html</link>
+      <guid isPermaLink="true">https://pdfzaap.online/blog/merge-pdf-without-adobe.html</guid>
+      <pubDate>Thu, 17 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Combine PDFs for free without Adobe — a private in-browser tool, macOS Preview, and print-to-PDF, compared on cost, privacy, and quality.</description>
+    </item>
+    <item>
+      <title>How to Compress a PDF for Email (Under 2 MB) — Free &amp; Private</title>
+      <link>https://pdfzaap.online/blog/compress-pdf-for-email.html</link>
+      <guid isPermaLink="true">https://pdfzaap.online/blog/compress-pdf-for-email.html</guid>
+      <pubDate>Thu, 17 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Shrink any PDF to fit email attachment limits in three private steps — plus an attachment limit cheat sheet and four tricks when compression alone isn't enough.</description>
+    </item>
+    <item>
+      <title>How to Convert PDF to Word Without Losing Formatting (2026)</title>
+      <link>https://pdfzaap.online/blog/pdf-to-word-without-losing-formatting.html</link>
+      <guid isPermaLink="true">https://pdfzaap.online/blog/pdf-to-word-without-losing-formatting.html</guid>
+      <pubDate>Thu, 17 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Why PDF to Word conversions break layouts, how to tell if your file is a scan, and a 3-step local conversion that keeps formatting intact.</description>
+    </item>
+    <item>
+      <title>Cara Kompres PDF Online Gratis Tanpa Kehilangan Kualitas (2026)</title>
+      <link>https://pdfzaap.online/blog/kompres-pdf-online-gratis.html</link>
+      <guid isPermaLink="true">https://pdfzaap.online/blog/kompres-pdf-online-gratis.html</guid>
+      <pubDate>Sun, 02 Aug 2026 09:00:00 +0000</pubDate>
+      <description>Panduan lengkap cara mengecilkan ukuran PDF online gratis tanpa kehilangan kualitas teks dan gambar.</description>
+    </item>
+  </channel>
+</rss>
