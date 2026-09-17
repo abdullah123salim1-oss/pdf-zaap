@@ -45,6 +45,12 @@
 - [PDF Metadata Editor](https://pdfzaap.online/pdf-metadata-editor.html): Edit a PDF's Title, Author, Subject, and Keywords.
 - [Flatten PDF](https://pdfzaap.online/flatten-pdf.html): Merge form fields and annotations into a static, non-editable page.
 
+## Blog
+- [How to Merge PDF Files Without Adobe Acrobat (Free, 3 Ways)](https://pdfzaap.online/blog/merge-pdf-without-adobe.html): Free ways to combine PDFs without Adobe — a private in-browser tool, macOS Preview, and print-to-PDF, with step-by-step instructions.
+- [How to Compress a PDF for Email (Under 2 MB) — Free & Private](https://pdfzaap.online/blog/compress-pdf-for-email.html): Shrink PDFs to fit email attachment limits in three private steps, with an attachment limit cheat sheet and four fallback tricks.
+- [How to Convert PDF to Word Without Losing Formatting (2026)](https://pdfzaap.online/blog/pdf-to-word-without-losing-formatting.html): Why PDF to Word conversions break layouts, how to handle scanned PDFs with OCR, and when to use a different tool instead.
+- [Cara Kompres PDF Online Gratis Tanpa Kehilangan Kualitas (2026)](https://pdfzaap.online/blog/kompres-pdf-online-gratis.html): Panduan lengkap kompres PDF online gratis dalam Bahasa Indonesia tanpa mengurangi kualitas dokumen.
+
 ## About
 - [Homepage](https://pdfzaap.online/): Full tool directory, FAQs, and product overview.
 
