@@ -2,248 +2,269 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>https://www.pdfzaap.online/</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>daily</changefreq>
-<priority>1.0000</priority>
+<priority>1.0</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/merge-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/merge-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.9000</priority>
+<priority>0.9</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/split-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/split-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.9000</priority>
+<priority>0.9</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/compress-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/compress-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.9000</priority>
+<priority>0.9</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/pdf-to-word.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/pdf-to-word.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.9000</priority>
+<priority>0.9</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/word-to-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/word-to-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.9000</priority>
+<priority>0.9</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/pdf-to-jpg.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/pdf-to-jpg.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.9000</priority>
+<priority>0.9</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/jpg-to-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/jpg-to-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.9000</priority>
+<priority>0.9</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/pdf-to-text.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/pdf-to-text.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.8000</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/add-watermark-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/add-watermark-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.8000</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/protect-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/protect-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.8000</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/unlock-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/unlock-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.8000</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/esign-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/esign-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.8000</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/ocr-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/ocr-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.8000</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/flatten-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/rotate-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.8</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/reorder-pages-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/delete-pdf-pages.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/extract-pages-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/extract-pages-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/delete-pdf-pages.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/reorder-pages-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/crop-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/flatten-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/resize-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/crop-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/repair-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/resize-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/compare-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/repair-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/grayscale-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/compare-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/number-pdf-pages.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/grayscale-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/pdf-metadata-editor.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/number-pdf-pages.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.6000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/pdf-to-excel.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/pdf-to-excel.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/excel-to-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/excel-to-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/pdf-to-png.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/pdf-to-png.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/png-to-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/png-to-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.7000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/html-to-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/pdf-to-powerpoint.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.6000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/pdf-to-html.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/ppt-to-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.6000</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/ppt-to-pdf.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/html-to-pdf.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.6000</priority>
+<priority>0.6</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/pdf-to-epub.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/pdf-to-html.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.6000</priority>
+<priority>0.6</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/pdf-to-pdfa.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/pdf-to-epub.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.6000</priority>
+<priority>0.6</priority>
 </url>
 
 <url>
-<loc>https://www.pdfzaap.online/kompres-pdf-online-gratis.html</loc>
-<lastmod>2026-08-03</lastmod>
+<loc>https://pdfzaap.online/pdf-to-pdfa.html</loc>
+<lastmod>2026-09-17</lastmod>
 <changefreq>weekly</changefreq>
-<priority>0.6000</priority>
+<priority>0.6</priority>
+</url>
+
+<url>
+<loc>https://pdfzaap.online/pdf-metadata-editor.html</loc>
+<lastmod>2026-09-17</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+
+<url>
+<loc>https://pdfzaap.online/blog/index.html</loc>
+<lastmod>2026-09-17</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+
+<url>
+<loc>https://pdfzaap.online/blog/kompres-pdf-online-gratis.html</loc>
+<lastmod>2026-09-17</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
 </url>
 
 </urlset>
