@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="canonical" href="https://pdfzaap.online/404.html">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#FF5200">
+
+  <title>Page Not Found (404) | PDFZaap</title>
+  <meta name="description" content="The page you were looking for could not be found. Explore PDFZaap's free, browser-based PDF tools — merge, split, compress, and convert PDFs with no signup.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .notfound-wrap {
+      max-width: 760px;
+      margin: 4rem auto 3rem;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+    .notfound-code {
+      font-size: 7rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--primary);
+      text-shadow: 0 10px 30px rgba(255, 82, 0, 0.25);
+    }
+    .notfound-wrap h1 {
+      font-size: 1.9rem;
+      color: var(--text);
+      margin: 1rem 0 0.75rem;
+    }
+    .notfound-wrap p.lead {
+      color: var(--subtext);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 2rem;
+    }
+    .notfound-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .popular-tools {
+      text-align: left;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 1.75rem 2rem;
+    }
+    .popular-tools h2 {
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .popular-tools ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem 2rem;
+    }
+    .popular-tools a {
+      color: var(--subtext);
+      font-weight: 600;
+      padding: 0.35rem 0;
+      display: inline-block;
+    }
+    .popular-tools a:hover {
+      color: var(--primary);
+    }
+    .popular-tools a::before {
+      content: "➔ ";
+      color: var(--primary);
+    }
+    @media (max-width: 600px) {
+      .notfound-code { font-size: 5rem; }
+      .popular-tools ul { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar" id="main-nav">
+    <a href="index.html" class="logo">⚡ PDF<span>Zaap</span></a>
+    <ul class="nav-links">
+      <li><a class="nav-link" href="index.html">Home</a></li>
+      <li><a class="nav-link" href="blog/index.html">Blog</a></li>
+      <li><a href="index.html#tools-anchor" class="btn btn-primary">All Tools</a></li>
+    </ul>
+  </header>
+
+  <main class="view-container">
+    <div class="notfound-wrap">
+      <div class="notfound-code">404</div>
+      <h1>Page not found</h1>
+      <p class="lead">The page you're looking for doesn't exist or has been moved. No need to worry — every PDFZaap tool still works exactly where you expect it.</p>
+      <div class="notfound-actions">
+        <a class="btn btn-primary" href="index.html">Back to Home</a>
+        <a class="btn btn-secondary" href="index.html#tools-anchor">Browse All Tools</a>
+      </div>
+
+      <div class="popular-tools">
+        <h2>Popular tools</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="merge-pdf.html">Merge PDF</a></li>
+          <li><a href="split-pdf.html">Split PDF</a></li>
+          <li><a href="compress-pdf.html">Compress PDF</a></li>
+          <li><a href="pdf-to-word.html">PDF to Word</a></li>
+          <li><a href="jpg-to-pdf.html">JPG to PDF</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom" style="max-width:1200px;margin:0 auto;">
+      <p>&copy; 2026 PDFZaap. All rights reserved.</p>
+      <div class="footer-legal-links">
+        <a href="index.html" style="color:inherit;">Home</a>
+        <a href="blog/index.html" style="color:inherit;">Blog</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

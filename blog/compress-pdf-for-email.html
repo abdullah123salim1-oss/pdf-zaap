@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .post-container { max-width: 800px; margin: 2.5rem auto; padding: 0 1.5rem 4rem; }
+    .post-container h1 { font-size: 2.3rem; margin-bottom: 1rem; color: var(--text); }
+    .post-container h2 { font-size: 1.6rem; margin: 2.2rem 0 1rem; color: var(--text); }
+    .post-container h3 { font-size: 1.2rem; margin: 1.6rem 0 0.6rem; color: var(--text); }
+    .post-container p, .post-container li { color: var(--subtext); line-height: 1.8; margin-bottom: 1rem; }
+    .post-meta { color: var(--subtext); font-size: 0.9rem; margin-bottom: 2rem; }
+    .post-container a { color: var(--primary); font-weight: 600; }
+    .quick-box { background: var(--primary-light); border: 1px solid var(--primary-border); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .quick-box p { margin-bottom: 0; }
+    .post-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .post-table th, .post-table td { border: 1px solid var(--border); padding: 0.7rem 0.9rem; text-align: left; }
+    .post-table th { background: var(--primary-light); color: var(--text); font-weight: 700; }
+    .post-table td { color: var(--subtext); }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); background: var(--card-bg); padding: 1rem 1.25rem; margin-bottom: 0.75rem; }
+    .faq-item summary { font-weight: 700; color: var(--text); cursor: pointer; list-style: none; }
+    .faq-item summary::before { content: "▸ "; color: var(--primary); }
+    .faq-item[open] summary::before { content: "▾ "; }
+    .faq-item p { margin: 0.75rem 0 0; }
+    .related-box { margin-top: 2.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .related-box h2 { margin-top: 0; font-size: 1.25rem; }
+    .related-box ul { margin: 0; padding-left: 1.25rem; }
+    .cta-box { background: var(--primary-light); border: 1px solid var(--primary-border); border-radius: var(--radius-lg); padding: 1.75rem; margin-top: 2rem; text-align: center; }
+    .cta-box p { margin-bottom: 1rem; }
+    .cta-box a.cta-btn { display: inline-block; background: var(--primary); color: #fff; padding: 0.75rem 1.75rem; border-radius: var(--radius); font-weight: 700; }
+  </style>
+
+  <title>How to Compress a PDF for Email (Under 2 MB) — Free &amp; Private | PDFZaap</title>
+  <meta name="description" content="Shrink a PDF under 2 MB for email in three free, private steps — no upload, no account. Attachment limit cheat sheet plus 4 tricks when compression alone isn't enough.">
+  <link rel="canonical" href="https://pdfzaap.online/blog/compress-pdf-for-email.html">
+
+  <meta property="og:title" content="How to Compress a PDF for Email (Under 2 MB) — Free &amp; Private">
+  <meta property="og:description" content="Fit any PDF into email attachment limits: 3-step compression, a limit cheat sheet, and 4 fallback tricks — all without uploading files.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://pdfzaap.online/blog/compress-pdf-for-email.html">
+  <meta property="og:image" content="https://pdfzaap.online/og-image.png">
+  <meta property="og:image:alt" content="PDFZaap — free browser-based PDF tools that never upload your files">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Compress a PDF for Email (Under 2 MB) — Free &amp; Private">
+  <meta name="twitter:description" content="Fit any PDF into email attachment limits: 3-step compression, a limit cheat sheet, and 4 fallback tricks — all without uploading files.">
+  <meta name="twitter:image" content="https://pdfzaap.online/og-image.png">
+
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#FF5200">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Compress a PDF for Email (Under 2 MB) — Free & Private",
+    "description": "Shrink a PDF to fit email attachment limits in three private steps, with an attachment limit cheat sheet and four fallback tricks for stubbornly large files.",
+    "author": {
+      "@type": "Organization",
+      "name": "PDFZaap"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "PDFZaap",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://pdfzaap.online/logo.png"
+      }
+    },
+    "datePublished": "2026-09-17",
+    "dateModified": "2026-09-17",
+    "mainEntityOfPage": "https://pdfzaap.online/blog/compress-pdf-for-email.html"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are common email attachment size limits?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gmail allows up to 25 MB per message, Outlook/Hotmail up to 20 MB, many corporate mail systems cap attachments at 10 MB (sometimes as low as 2 MB), and government or public portals frequently require uploads under 2 MB."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does compressing a PDF reduce text quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Text is stored as vector data and stays sharp after compression — the quality setting mainly affects embedded images. At a middle setting like 0.5, documents remain fully legible for email and most uploads."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I compress a PDF without uploading it to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. PDFZaap's Compress PDF tool runs entirely in your browser, so the file never leaves your device — no account, no upload queue, and it keeps working on networks that block third-party file hosts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does compression work on scanned documents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It does. Scanned PDFs are mostly images, which is exactly what compression re-encodes, so the size reduction is often significant. If you need the text to be selectable afterwards, run OCR before or after compressing."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://pdfzaap.online/index.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://pdfzaap.online/blog/index.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "How to Compress a PDF for Email (Under 2 MB) — Free & Private",
+        "item": "https://pdfzaap.online/blog/compress-pdf-for-email.html"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header class="navbar" id="main-nav">
+    <a href="../index.html" class="logo">⚡ PDF<span>Zaap</span></a>
+    <ul class="nav-links">
+      <li><a class="nav-link" href="../index.html">Home</a></li>
+      <li><a class="nav-link" href="index.html">Blog</a></li>
+      <li><a href="../compress-pdf.html" class="btn btn-primary">Compress PDF</a></li>
+    </ul>
+  </header>
+
+  <main class="post-container">
+    <article>
+
+      <h1>How to Compress a PDF for Email (Under 2 MB) — Free &amp; Private</h1>
+
+      <p class="post-meta">Published September 17, 2026 · 6 min read</p>
+
+      <p>A 9 MB invoice should not be a problem. But between inbox attachment caps and corporate mail servers, "the file is too big" is one of the most common reasons a document never reaches its recipient. The fix is a quick compression pass — and you don't need to upload anything to do it.</p>
+
+      <p>This guide shows the three-step method, a cheat sheet of the attachment limits you'll actually hit, and four fallback tricks for when compression alone still isn't enough.</p>
+
+      <div class="quick-box">
+        <strong>Quick Answer:</strong>
+        <p>Open <a href="../compress-pdf.html">PDFZaap's Compress PDF tool</a>, set the quality slider to about <strong>0.5</strong>, and download the smaller file. Everything runs inside your browser — the PDF is never uploaded to a server, and no account is needed.</p>
+      </div>
+
+      <h2>Email attachment limits cheat sheet</h2>
+
+      <p>Before you compress, know the wall you're trying to fit under. (Limits are the common defaults; your specific system may differ.)</p>
+
+      <table class="post-table">
+        <tr>
+          <th>Service / context</th>
+          <th>Typical limit</th>
+        </tr>
+        <tr>
+          <td>Gmail</td>
+          <td>25 MB total per message</td>
+        </tr>
+        <tr>
+          <td>Outlook / Hotmail</td>
+          <td>20 MB</td>
+        </tr>
+        <tr>
+          <td>Corporate mail (Exchange / Office 365)</td>
+          <td>10 MB (many IT departments cap it lower, sometimes 2 MB)</td>
+        </tr>
+        <tr>
+          <td>Government &amp; public portals</td>
+          <td>2 MB (frequently enforced at upload)</td>
+        </tr>
+      </table>
+
+      <p>Practical rule of thumb: when a form or portal says "2 MB", compress to roughly 1.5 MB so you stay safely under the cap after the message wrapper adds a little overhead.</p>
+
+      <h2>3 steps to compress a PDF for email</h2>
+
+      <h3>Step 1: Open the Compress PDF tool</h3>
+      <p>Go to the <a href="../compress-pdf.html">Compress PDF tool</a> and choose your PDF. The file stays on your device — you are not uploading it anywhere.</p>
+
+      <h3>Step 2: Set quality to about 0.5</h3>
+      <p>The quality slider runs from 0.1 to 1.0. Around <strong>0.5</strong> is the sweet spot for email: images are re-encoded aggressively enough to matter, while text stays crisp and legible. Drop toward 0.3 only if you need to hit a very tight limit.</p>
+
+      <h3>Step 3: Download and check the size</h3>
+      <p>Click compress, save the result, and confirm the file size before attaching. If it fits, you're done — attach and send.</p>
+
+      <h2>Still too big? 4 tricks that work</h2>
+
+      <p>Compression alone won't shrink a 100-page scanned folder to 2 MB. When it doesn't fit, combine these instead:</p>
+
+      <h3>1. Delete pages you don't need</h3>
+      <p>Use the <a href="../delete-pdf-pages.html">Delete PDF Pages tool</a> to drop blank pages, cover sheets, or duplicate copies. Unsent pages are the cheapest kilobytes you'll ever remove.</p>
+
+      <h3>2. Convert to grayscale</h3>
+      <p>Color is expensive in image-based PDFs. The <a href="../grayscale-pdf.html">Grayscale PDF tool</a> strips color information from text-heavy documents with little visible change — often a big size win for invoices and reports.</p>
+
+      <h3>3. Split or extract only what's required</h3>
+      <p>If the recipient only needs pages 12–18, don't send the whole file. Use <a href="../split-pdf.html">Split PDF</a> or <a href="../extract-pages-pdf.html">Extract Pages</a> to send just the relevant range.</p>
+
+      <h3>4. Merge, then compress once</h3>
+      <p>If your "PDF" is actually five small PDFs you're attaching separately, <a href="../merge-pdf.html">merge them first</a> and compress the combined file once. Compressing the whole document in one pass usually beats compressing each part individually, and one attachment beats five.</p>
+
+      <h2>FAQ</h2>
+
+      <details class="faq-item">
+        <summary>What are common email attachment size limits?</summary>
+        <p>Gmail allows up to 25 MB per message, Outlook/Hotmail up to 20 MB, many corporate mail systems cap attachments at 10 MB (sometimes as low as 2 MB), and government or public portals frequently require files under 2 MB.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Does compressing a PDF reduce text quality?</summary>
+        <p>Text is vector data — it isn't degraded by image compression and stays sharp at any quality setting. The slider mainly affects embedded images, so at 0.5 your document usually looks identical to the original while being far smaller.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I compress a PDF without uploading it to a server?</summary>
+        <p>Yes. PDFZaap's compressor runs entirely in your browser: the file is read locally, re-encoded locally, and downloaded locally. Nothing is transmitted, which also keeps it usable on corporate networks that block third-party file upload sites.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Does compression work on scanned documents?</summary>
+        <p>Yes — scanned PDFs are mostly images, which is exactly what compression targets, so the reduction is often substantial. If you also need selectable text, run the <a href="../ocr-pdf.html">OCR PDF tool</a> to add a text layer.</p>
+      </details>
+
+      <div class="related-box">
+        <h2>Related guides &amp; tools</h2>
+        <ul>
+          <li><a href="../grayscale-pdf.html">Grayscale PDF tool</a> — strip color to cut size on text-heavy documents.</li>
+          <li><a href="../delete-pdf-pages.html">Delete PDF Pages tool</a> — remove pages before you compress.</li>
+          <li><a href="kompres-pdf-online-gratis.html">Cara Kompres PDF Online Gratis (Indonesian guide)</a> — the same workflow, in Bahasa Indonesia.</li>
+        </ul>
+      </div>
+
+      <div class="cta-box">
+        <p><strong>Compress your next attachment in seconds — no upload, no account, no watermark.</strong></p>
+        <a class="cta-btn" href="../compress-pdf.html">Compress PDF Now →</a>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom" style="max-width:1200px;margin:0 auto;">
+      <p>&copy; 2026 PDFZaap. All rights reserved.</p>
+      <div class="footer-legal-links">
+        <a href="../index.html" style="color:inherit;">Home</a>
+        <a href="../compress-pdf.html" style="color:inherit;">Compress PDF</a>
+        <a href="index.html" style="color:inherit;">Blog</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

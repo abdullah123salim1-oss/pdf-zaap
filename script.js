@@ -1030,6 +1030,8 @@ window.addEventListener('DOMContentLoaded', () => {
 // ==========================================================================
 
 function oldRouter()  {
+  document.body.classList.remove('no-scroll');
+
   const hash = window.location.hash.substring(1);
   
   document.getElementById('mobile-menu')?.classList.remove('active');
@@ -2515,9 +2517,30 @@ function setupMobileHamburger() {
 
   if (!btn || !menu) return;
 
+  function setMenu(open) {
+    btn.classList.toggle('active', open);
+    menu.classList.toggle('active', open);
+    document.body.classList.toggle('no-scroll', open);
+    btn.setAttribute('aria-expanded', String(open));
+  }
+
   btn.addEventListener('click', () => {
-    btn.classList.toggle('active');
-    menu.classList.toggle('active');
+    setMenu(!menu.classList.contains('active'));
+  });
+
+  // Close after navigating from the menu
+  menu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMenu(false));
+  });
+
+  // Close when clicking the menu background (not a link)
+  menu.addEventListener('click', (e) => {
+    if (e.target === menu) setMenu(false);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setMenu(false);
   });
 }
 
