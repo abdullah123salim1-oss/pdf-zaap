@@ -2,6 +2,11 @@
 // DATA CONFIGURATION & DATABASES
 // ==========================================================================
 
+// Configure the pdf.js worker to match the loaded library version (required for reliable rendering)
+if (typeof pdfjsLib !== 'undefined' && pdfjsLib.GlobalWorkerOptions) {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/' + pdfjsLib.version + '/pdf.worker.min.js';
+}
+
 const TOOL_DATABASE = {
   "pdf-to-word": {
     title: "PDF to Word",
@@ -108,7 +113,7 @@ const TOOL_DATABASE = {
     faqs: [
       { q: "Can I edit shapes after converting?", a: "Yes, shapes are mapped as distinct objects." }
     ],
-    related: ["powerpoint-to-pdf", "pdf-to-word", "pdf-to-jpg", "pdf-to-png"]
+    related: ["ppt-to-pdf", "pdf-to-word", "pdf-to-jpg", "pdf-to-png"]
   },
   "pdf-to-text": {
     title: "PDF to Text",
@@ -318,7 +323,7 @@ const TOOL_DATABASE = {
     ],
     related: ["excel-to-pdf", "pdf-to-excel", "word-to-pdf", "png-to-pdf"]
   },
-  "powerpoint-to-pdf": {
+  "ppt-to-pdf": {
     title: "PowerPoint to PDF",
     emoji: "📈",
     subtitle: "Convert presentation slide decks to PDF format",
@@ -449,7 +454,7 @@ const TOOL_DATABASE = {
       { q: "What ranges are supported?", a: "You can define simple ranges like '1-3' or comma-separated lists like '1,3,5'." },
       { q: "How fast is splitting?", a: "Splitting is processed instantly using local resources." }
     ],
-    related: ["merge-pdf", "remove-pages-pdf", "extract-pages-pdf", "reorder-pages-pdf"]
+    related: ["merge-pdf", "delete-pdf-pages", "extract-pages-pdf", "reorder-pages-pdf"]
   },
   "compress-pdf": {
     title: "Compress PDF",
@@ -503,8 +508,8 @@ const TOOL_DATABASE = {
     ],
     related: ["merge-pdf", "split-pdf", "crop-pdf", "resize-pdf"]
   },
-  "remove-pages-pdf": {
-    title: "Remove Pages",
+  "delete-pdf-pages": {
+    title: "Delete PDF Pages",
     emoji: "❌",
     subtitle: "Discard unwanted page layers within structural documents",
     accept: ".pdf",
@@ -553,7 +558,7 @@ const TOOL_DATABASE = {
     faqs: [
       { q: "Can I extract non-consecutive pages?", a: "Yes, enter list selections like '1, 4, 7' to keep only those pages." }
     ],
-    related: ["remove-pages-pdf", "split-pdf", "reorder-pages-pdf", "merge-pdf"]
+    related: ["delete-pdf-pages", "split-pdf", "reorder-pages-pdf", "merge-pdf"]
   },
   "reorder-pages-pdf": {
     title: "Reorder Pages",
@@ -579,9 +584,9 @@ const TOOL_DATABASE = {
     faqs: [
       { q: "How do I input the sequence?", a: "Enter the new order as a list of numbers, e.g., '3, 2, 1, 4'." }
     ],
-    related: ["split-pdf", "merge-pdf", "remove-pages-pdf", "extract-pages-pdf"]
+    related: ["split-pdf", "merge-pdf", "delete-pdf-pages", "extract-pages-pdf"]
   },
-  "add-page-numbers-pdf": {
+  "number-pdf-pages": {
     title: "Add Page Numbers",
     emoji: "🔢",
     subtitle: "Apply position-customized page counts to document pages",
@@ -631,7 +636,7 @@ const TOOL_DATABASE = {
     faqs: [
       { q: "What styling is used?", a: "Standard diagonal transparent Orange typography is used." }
     ],
-    related: ["protect-pdf", "add-page-numbers-pdf", "compress-pdf", "flatten-pdf"]
+    related: ["protect-pdf", "number-pdf-pages", "compress-pdf", "flatten-pdf"]
   },
   "crop-pdf": {
     title: "Crop PDF",
@@ -657,7 +662,7 @@ const TOOL_DATABASE = {
     faqs: [
       { q: "Does cropping delete text?", a: "No, cropping simply adjusts the visible boundaries of your pages." }
     ],
-    related: ["resize-pdf", "rotate-pdf", "add-watermark-pdf", "add-page-numbers-pdf"]
+    related: ["resize-pdf", "rotate-pdf", "add-watermark-pdf", "number-pdf-pages"]
   },
   "resize-pdf": {
     title: "Resize PDF",
@@ -709,7 +714,7 @@ const TOOL_DATABASE = {
     faqs: [
       { q: "Do I need to know the password?", a: "Yes, you must provide the password to authorize unlocking." }
     ],
-    related: ["protect-pdf", "redact-pdf", "esign-pdf", "pdf-metadata-editor"]
+    related: ["protect-pdf", "flatten-pdf", "esign-pdf", "pdf-metadata-editor"]
   },
   "protect-pdf": {
     title: "Protect PDF",
@@ -735,7 +740,7 @@ const TOOL_DATABASE = {
     faqs: [
       { q: "Is the password secure?", a: "Encryption is done directly in browser memory; the password is never sent online." }
     ],
-    related: ["unlock-pdf", "add-watermark-pdf", "redact-pdf", "esign-pdf"]
+    related: ["unlock-pdf", "add-watermark-pdf", "flatten-pdf", "esign-pdf"]
   },
   "esign-pdf": {
     title: "E-Sign PDF",
@@ -761,33 +766,7 @@ const TOOL_DATABASE = {
     faqs: [
       { q: "Where does the signature go?", a: "The signature is embedded cleanly onto the first page of your document." }
     ],
-    related: ["protect-pdf", "unlock-pdf", "add-watermark-pdf", "add-page-numbers-pdf"]
-  },
-  "redact-pdf": {
-    title: "Redact PDF",
-    emoji: "🪓",
-    subtitle: "Mask sensitive details or confidential text inside your PDF",
-    accept: ".pdf",
-    multiple: false,
-    execBtnText: "Apply Redaction",
-    outputExt: ".pdf",
-    category: "security",
-    metaDesc: "Mask confidential information inside PDF pages directly in your browser.",
-    steps: [
-      { title: "Upload PDF", desc: "Choose document files." },
-      { title: "Define Block", desc: "Select sections to cover with opaque black redactions." },
-      { title: "Save PDF", desc: "Retrieve your secure document." }
-    ],
-    features: [
-      { title: "Secure Masking", desc: "Covers sensitive data blocks cleanly." },
-      { title: "Browser Safety", desc: "All processing is performed locally in browser memory." },
-      { title: "Instant Redaction", desc: "Masks information in seconds." },
-      { title: "Free Always", desc: "Protect private details with zero cost." }
-    ],
-    faqs: [
-      { q: "Does this delete underlying data?", a: "Yes, redaction replaces text vectors with solid visual boxes to protect your data." }
-    ],
-    related: ["protect-pdf", "add-watermark-pdf", "unlock-pdf", "esign-pdf"]
+    related: ["protect-pdf", "unlock-pdf", "add-watermark-pdf", "number-pdf-pages"]
   },
   "repair-pdf": {
     title: "Repair PDF",
@@ -982,6 +961,7 @@ const BLOG_POSTS = {
     title: "What Is a PDF? Meaning, Format & Uses Explained (2026)",
     category: "PDF Basics",
     date: "August 01, 2026",
+    iso: "2026-08-01",
     readTime: "6 min read",
     excerpt: "Wondering what a PDF is? Learn what PDF stands for...",
     content: `
@@ -999,6 +979,7 @@ const BLOG_POSTS = {
     title: "Free PDF Tools Online — Convert, Compress, Merge & Edit PDFs | PDFZaap",
     category: "Reviews",
     date: "June 14, 2026",
+    iso: "2026-06-14",
     readTime: "4 min read",
     excerpt: "Looking for free PDF tools online?",
     content: `
@@ -1010,6 +991,7 @@ const BLOG_POSTS = {
     title: "How to Save a Google Doc as a PDF",
     category: "Tutorial",
     date: "June 12, 2026",
+    iso: "2026-06-12",
     readTime: "5 min read",
     excerpt: "Learn how to save a google doc as a pdf.",
     content: `
@@ -1040,6 +1022,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setupSearchAndFilters();
   setupDropzone();
   initCookieBanner();
+  router();
 });
 
 // ==========================================================================
@@ -1066,6 +1049,14 @@ document.getElementById('hamburger-btn')?.classList.remove('active');
     showDashboard();
   }
 }
+
+function router() {
+  // SPA hash routing only applies to the homepage document; tool pages are standalone
+  if (!document.getElementById('homepage-dashboard')) return;
+  oldRouter();
+}
+
+window.addEventListener('hashchange', router);
 
 function showDashboard() {
   document.getElementById('homepage-dashboard').classList.add('active');
@@ -1294,7 +1285,7 @@ function buildBlogList() {
         
         <span class="blog-post-category blog-card-tag">${post.category}</span>
         <h3>${post.title}</h3>
-        <time class="blog-card-date" datetime="2026-06-18" itemprop="datePublished">${post.date}</time>
+        <time class="blog-card-date" datetime="${post.iso || ''}" itemprop="datePublished">${post.date}</time>
         <p class="blog-card-excerpt">${post.excerpt}</p>
         
         <div class="blog-card-footer">
@@ -1378,7 +1369,7 @@ function setupOptionsPanel(toolId) {
     `;
     panel.classList.remove('display-none');
   }
-  else if (toolId === 'add-page-numbers-pdf') {
+  else if (toolId === 'number-pdf-pages') {
     panel.innerHTML = `
       <h4>Position Parameters</h4>
       <div class="option-row">
@@ -1408,6 +1399,93 @@ function setupOptionsPanel(toolId) {
   else if (toolId === 'esign-pdf') {
     canvasWrapper.classList.remove('display-none');
     initFabricCanvas();
+  }
+  else if (toolId === 'delete-pdf-pages' || toolId === 'extract-pages-pdf') {
+    panel.innerHTML = `
+      <h4>Page Selection</h4>
+      <div class="option-row">
+        <label for="pages-range-input">Pages (e.g. 1-3, 5, 8-10)</label>
+        <input type="text" id="pages-range-input" class="option-field" placeholder="e.g. 1-3, 5">
+      </div>
+    `;
+    panel.classList.remove('display-none');
+  }
+  else if (toolId === 'reorder-pages-pdf') {
+    panel.innerHTML = `
+      <h4>New Page Order</h4>
+      <div class="option-row">
+        <label for="pages-order-input">New order using every page exactly once (e.g. 3,1,2)</label>
+        <input type="text" id="pages-order-input" class="option-field" placeholder="e.g. 3,1,2">
+      </div>
+    `;
+    panel.classList.remove('display-none');
+  }
+  else if (toolId === 'crop-pdf') {
+    panel.innerHTML = `
+      <h4>Crop Margins (%)</h4>
+      <div class="option-row">
+        <label for="crop-left">Left %</label>
+        <input type="number" id="crop-left" class="option-field" value="5" min="0" max="45">
+      </div>
+      <div class="option-row">
+        <label for="crop-right">Right %</label>
+        <input type="number" id="crop-right" class="option-field" value="5" min="0" max="45">
+      </div>
+      <div class="option-row">
+        <label for="crop-top">Top %</label>
+        <input type="number" id="crop-top" class="option-field" value="5" min="0" max="45">
+      </div>
+      <div class="option-row">
+        <label for="crop-bottom">Bottom %</label>
+        <input type="number" id="crop-bottom" class="option-field" value="5" min="0" max="45">
+      </div>
+    `;
+    panel.classList.remove('display-none');
+  }
+  else if (toolId === 'resize-pdf') {
+    panel.innerHTML = `
+      <h4>Target Page Size</h4>
+      <div class="option-row">
+        <label for="resize-size">Page Format</label>
+        <select id="resize-size" class="option-field">
+          <option value="a4">A4 (210 &times; 297 mm)</option>
+          <option value="letter">US Letter (8.5 &times; 11 in)</option>
+        </select>
+      </div>
+    `;
+    panel.classList.remove('display-none');
+  }
+  else if (toolId === 'pdf-metadata-editor') {
+    panel.innerHTML = `
+      <h4>Document Metadata</h4>
+      <div class="option-row">
+        <label for="meta-title">Title</label>
+        <input type="text" id="meta-title" class="option-field" placeholder="Document title">
+      </div>
+      <div class="option-row">
+        <label for="meta-author">Author</label>
+        <input type="text" id="meta-author" class="option-field" placeholder="Author name">
+      </div>
+      <div class="option-row">
+        <label for="meta-subject">Subject</label>
+        <input type="text" id="meta-subject" class="option-field" placeholder="Subject">
+      </div>
+      <div class="option-row">
+        <label for="meta-keywords">Keywords</label>
+        <input type="text" id="meta-keywords" class="option-field" placeholder="keyword1, keyword2">
+      </div>
+    `;
+    panel.classList.remove('display-none');
+  }
+  else if (toolId === 'unlock-pdf') {
+    panel.innerHTML = `
+      <h4>Protection Removal</h4>
+      <div class="option-row">
+        <label for="unlock-pass">Password (leave empty for restriction-only protection)</label>
+        <input type="password" id="unlock-pass" class="option-field" placeholder="Optional password">
+      </div>
+    `;
+    panel.classList.remove('display-none');
   }
   else {
     panel.innerHTML = `
@@ -1583,8 +1661,41 @@ document.getElementById('ws-process-btn').addEventListener('click', async () => 
       case 'add-watermark-pdf':
         await runAddWatermark(validFiles[0]);
         break;
-      case 'add-page-numbers-pdf':
+      case 'number-pdf-pages':
         await runAddPageNumbers(validFiles[0]);
+        break;
+      case 'delete-pdf-pages':
+        await runDeletePages(validFiles[0]);
+        break;
+      case 'extract-pages-pdf':
+        await runExtractPages(validFiles[0]);
+        break;
+      case 'reorder-pages-pdf':
+        await runReorderPages(validFiles[0]);
+        break;
+      case 'crop-pdf':
+        await runCropPDF(validFiles[0]);
+        break;
+      case 'resize-pdf':
+        await runResizePDF(validFiles[0]);
+        break;
+      case 'flatten-pdf':
+        await runFlattenPDF(validFiles[0]);
+        break;
+      case 'pdf-metadata-editor':
+        await runMetadataEditor(validFiles[0]);
+        break;
+      case 'repair-pdf':
+        await runRepairPDF(validFiles[0]);
+        break;
+      case 'unlock-pdf':
+        await runUnlockPDF(validFiles[0]);
+        break;
+      case 'ppt-to-pdf':
+        await runPPTtoPDF(validFiles[0]);
+        break;
+      case 'pdf-to-powerpoint':
+        await runPDFToPowerPoint(validFiles[0]);
         break;
       case 'protect-pdf':
         await runProtectPDF(validFiles[0]);
@@ -1935,21 +2046,28 @@ async function runAddPageNumbers(file) {
 
 // 11. Protect PDF
 async function runProtectPDF(file) {
-  setProgressUI(30, 'Setting document options...');
+  setProgressUI(30, 'Reading document...');
   const pass = document.getElementById('protect-pass').value.trim();
   if (!pass) {
-    throw new Error("Please configure a protect security password.");
+    throw new Error('Please enter a password to protect this document with.');
+  }
+  if (pass.length < 4) {
+    throw new Error('Please use a password of at least 4 characters.');
   }
 
-  const { PDFDocument } = PDFLib;
   const fileBytes = await file.arrayBuffer();
-  const pdfDoc = await PDFDocument.load(fileBytes);
+  const pdfDoc = await PDFLib.PDFDocument.load(fileBytes);
 
-  setProgressUI(70, 'Encrypting file arrays...');
-  const outBytes = await pdfDoc.save({
+  if (typeof pdfDoc.encrypt !== 'function') {
+    throw new Error('Encryption engine failed to load. Please refresh the page and try again.');
+  }
+
+  setProgressUI(70, 'Encrypting with AES...');
+  pdfDoc.encrypt({
     userPassword: pass,
     ownerPassword: pass
   });
+  const outBytes = await pdfDoc.save();
 
   setProgressUI(100, 'Security locked!');
   createDownloadLink(outBytes, 'protected.pdf', 'application/pdf');
@@ -2037,6 +2155,312 @@ async function runGrayscalePDF(file) {
 }
 
 // Advanced Tools Simulation Handler
+
+// ==========================================================================
+// REAL CLIENT-SIDE PDF ENGINES (pdf-lib / pdf.js / JSZip / pptxgenjs)
+// ==========================================================================
+
+// Parse "1-3, 5" style selections into a sorted, unique 0-based index array
+function parsePageRanges(input, maxPages) {
+  const cleaned = (input || '').trim();
+  if (!cleaned) throw new Error('Please enter at least one page number (e.g. 1-3, 5).');
+  const picked = new Set();
+  cleaned.split(',').forEach(part => {
+    const chunk = part.trim();
+    if (!chunk) return;
+    const m = chunk.match(/^(\d+)\s*-\s*(\d+)$/);
+    if (m) {
+      let a = parseInt(m[1], 10);
+      let b = parseInt(m[2], 10);
+      if (a > b) { const tmp = a; a = b; b = tmp; }
+      for (let i = a; i <= b; i++) {
+        if (i < 1 || i > maxPages) throw new Error(`Page ${i} is out of range (this document has ${maxPages} pages).`);
+        picked.add(i - 1);
+      }
+    } else if (/^\d+$/.test(chunk)) {
+      const n = parseInt(chunk, 10);
+      if (n < 1 || n > maxPages) throw new Error(`Page ${n} is out of range (this document has ${maxPages} pages).`);
+      picked.add(n - 1);
+    } else {
+      throw new Error(`"${chunk}" is not a valid page number or range.`);
+    }
+  });
+  if (picked.size === 0) throw new Error('Please enter at least one page number.');
+  return [...picked].sort((a, b) => a - b);
+}
+
+async function runDeletePages(file) {
+  setProgressUI(25, 'Reading document...');
+  const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
+  const total = doc.getPageCount();
+  const toDelete = parsePageRanges(document.getElementById('pages-range-input').value, total);
+  if (toDelete.length >= total) throw new Error('You cannot delete every page — leave at least one page in the document.');
+  setProgressUI(60, 'Removing selected pages...');
+  const keep = [];
+  for (let i = 0; i < total; i++) if (!toDelete.includes(i)) keep.push(i);
+  const out = await PDFLib.PDFDocument.create();
+  const copied = await out.copyPages(doc, keep);
+  copied.forEach(pg => out.addPage(pg));
+  const outBytes = await out.save();
+  setProgressUI(100, 'Processing completed!');
+  createDownloadLink(outBytes, 'deleted-pages.pdf', 'application/pdf');
+}
+
+async function runExtractPages(file) {
+  setProgressUI(25, 'Reading document...');
+  const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
+  const total = doc.getPageCount();
+  const picked = parsePageRanges(document.getElementById('pages-range-input').value, total);
+  setProgressUI(60, 'Copying selected pages...');
+  const out = await PDFLib.PDFDocument.create();
+  const copied = await out.copyPages(doc, picked);
+  copied.forEach(pg => out.addPage(pg));
+  const outBytes = await out.save();
+  setProgressUI(100, 'Processing completed!');
+  createDownloadLink(outBytes, 'extracted-pages.pdf', 'application/pdf');
+}
+
+async function runReorderPages(file) {
+  setProgressUI(25, 'Reading document...');
+  const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
+  const total = doc.getPageCount();
+  const raw = (document.getElementById('pages-order-input').value || '').trim();
+  if (!raw) throw new Error('Enter the new page order using every page number exactly once, e.g. 3,1,2.');
+  const order = [];
+  raw.split(',').forEach(part => {
+    const chunk = part.trim();
+    if (!chunk) return;
+    if (!/^\d+$/.test(chunk)) throw new Error(`"${chunk}" is not a valid page number.`);
+    const n = parseInt(chunk, 10);
+    if (n < 1 || n > total) throw new Error(`Page ${n} is out of range (this document has ${total} pages).`);
+    order.push(n - 1);
+  });
+  if (order.length !== total) throw new Error(`Please list all ${total} pages exactly once (you entered ${order.length}).`);
+  setProgressUI(60, 'Rearranging pages...');
+  const out = await PDFLib.PDFDocument.create();
+  const copied = await out.copyPages(doc, order);
+  copied.forEach(pg => out.addPage(pg));
+  const outBytes = await out.save();
+  setProgressUI(100, 'Processing completed!');
+  createDownloadLink(outBytes, 'reordered.pdf', 'application/pdf');
+}
+
+async function runCropPDF(file) {
+  setProgressUI(25, 'Reading document...');
+  const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
+  const clampPct = v => Math.min(Math.max(isFinite(v) ? v : 0, 0), 45) / 100;
+  const l = clampPct(parseFloat(document.getElementById('crop-left').value));
+  const r = clampPct(parseFloat(document.getElementById('crop-right').value));
+  const t = clampPct(parseFloat(document.getElementById('crop-top').value));
+  const b = clampPct(parseFloat(document.getElementById('crop-bottom').value));
+  setProgressUI(60, 'Applying crop boxes...');
+  doc.getPages().forEach(page => {
+    const { width, height } = page.getSize();
+    const newW = width * (1 - l - r);
+    const newH = height * (1 - t - b);
+    if (newW > 10 && newH > 10) page.setCropBox(width * l, height * b, newW, newH);
+  });
+  const outBytes = await doc.save();
+  setProgressUI(100, 'Processing completed!');
+  createDownloadLink(outBytes, 'cropped.pdf', 'application/pdf');
+}
+
+async function runResizePDF(file) {
+  setProgressUI(25, 'Reading document...');
+  const bytes = await file.arrayBuffer();
+  const format = document.getElementById('resize-size') ? document.getElementById('resize-size').value : 'a4';
+  const target = format === 'letter' ? { w: 612, h: 792 } : { w: 595.28, h: 841.89 };
+  const doc = await PDFLib.PDFDocument.load(bytes);
+  const embedded = await doc.embedPdf(bytes, doc.getPageIndices());
+  const out = await PDFLib.PDFDocument.create();
+  setProgressUI(60, 'Scaling pages to the selected format...');
+  embedded.forEach(ep => {
+    const page = out.addPage([target.w, target.h]);
+    const scale = Math.min(target.w / ep.width, target.h / ep.height);
+    const w = ep.width * scale;
+    const h = ep.height * scale;
+    page.drawPage(ep, { x: (target.w - w) / 2, y: (target.h - h) / 2, width: w, height: h });
+  });
+  const outBytes = await out.save();
+  setProgressUI(100, 'Processing completed!');
+  createDownloadLink(outBytes, 'resized.pdf', 'application/pdf');
+}
+
+async function runFlattenPDF(file) {
+  setProgressUI(25, 'Reading document...');
+  const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
+  setProgressUI(60, 'Flattening form fields and annotations...');
+  try {
+    const form = doc.getForm();
+    if (form.getFields().length) form.flatten();
+  } catch (e) { /* document has no interactive form — re-serializing is still useful */ }
+  const outBytes = await doc.save({ useObjectStreams: false });
+  setProgressUI(100, 'Processing completed!');
+  createDownloadLink(outBytes, 'flattened.pdf', 'application/pdf');
+}
+
+async function runMetadataEditor(file) {
+  setProgressUI(25, 'Reading document...');
+  const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
+  const title = document.getElementById('meta-title') ? document.getElementById('meta-title').value.trim() : '';
+  const author = document.getElementById('meta-author') ? document.getElementById('meta-author').value.trim() : '';
+  const subject = document.getElementById('meta-subject') ? document.getElementById('meta-subject').value.trim() : '';
+  const keywords = document.getElementById('meta-keywords') ? document.getElementById('meta-keywords').value.trim() : '';
+  if (!title && !author && !subject && !keywords) throw new Error('Fill in at least one metadata field before processing.');
+  setProgressUI(60, 'Writing metadata...');
+  if (title) doc.setTitle(title);
+  if (author) doc.setAuthor(author);
+  if (subject) doc.setSubject(subject);
+  if (keywords) doc.setKeywords(keywords.split(',').map(k => k.trim()).filter(Boolean));
+  doc.setModificationDate(new Date());
+  const outBytes = await doc.save();
+  setProgressUI(100, 'Processing completed!');
+  createDownloadLink(outBytes, 'metadata-updated.pdf', 'application/pdf');
+}
+
+async function runRepairPDF(file) {
+  setProgressUI(30, 'Rebuilding document structure...');
+  const bytes = await file.arrayBuffer();
+  let doc;
+  try {
+    doc = await PDFLib.PDFDocument.load(bytes, { ignoreEncryption: true, throwOnInvalidObject: false });
+  } catch (e) {
+    throw new Error('This file is too damaged to recover automatically. Please try obtaining a new copy of the document.');
+  }
+  setProgressUI(70, 'Re-serializing pages and objects...');
+  const outBytes = await doc.save({ useObjectStreams: false });
+  setProgressUI(100, 'Processing completed!');
+  createDownloadLink(outBytes, 'repaired.pdf', 'application/pdf');
+}
+
+async function runUnlockPDF(file) {
+  setProgressUI(30, 'Reading protected document...');
+  const bytes = await file.arrayBuffer();
+  const passInput = document.getElementById('unlock-pass');
+  const pass = passInput ? passInput.value.trim() : '';
+
+  if (!pass) {
+    // No password given: check whether the document is actually encrypted
+    const probe = await PDFLib.PDFDocument.load(bytes, { ignoreEncryption: true });
+    if (probe.isEncrypted) {
+      throw new Error('This PDF is encrypted. Please enter its open password above, then process again to remove protection.');
+    }
+    setProgressUI(70, 'Re-saving document without restrictions...');
+    const outBytes = await probe.save();
+    setProgressUI(100, 'Processing completed!');
+    createDownloadLink(outBytes, 'unlocked.pdf', 'application/pdf');
+    return;
+  }
+
+  let doc;
+  try {
+    doc = await PDFLib.PDFDocument.load(bytes, { password: pass });
+  } catch (e) {
+    throw new Error('Could not decrypt this PDF — the password looks incorrect or the encryption type is unsupported. Please double-check the password.');
+  }
+
+  setProgressUI(70, 'Removing password protection and re-saving...');
+  // Copy every page into a brand-new document so no encryption metadata carries over
+  const clean = await PDFLib.PDFDocument.create();
+  const copied = await clean.copyPages(doc, doc.getPageIndices());
+  copied.forEach(pg => clean.addPage(pg));
+  const outBytes = await clean.save();
+  setProgressUI(100, 'Processing completed!');
+  createDownloadLink(outBytes, 'unlocked.pdf', 'application/pdf');
+}
+
+function wrapPdfText(text, font, size, maxWidth) {
+  const words = text.split(/\s+/).filter(Boolean);
+  const lines = [];
+  let line = '';
+  words.forEach(w => {
+    const test = line ? line + ' ' + w : w;
+    if (font.widthOfTextAtSize(test, size) > maxWidth && line) {
+      lines.push(line);
+      line = w;
+    } else {
+      line = test;
+    }
+  });
+  if (line) lines.push(line);
+  return lines;
+}
+
+async function runPPTtoPDF(file) {
+  if (typeof JSZip === 'undefined') throw new Error('Conversion engine failed to load. Please refresh the page and try again.');
+  if (!/\.pptx$/i.test(file.name)) throw new Error('Please upload a .pptx file. Legacy .ppt files must first be saved as .pptx in PowerPoint.');
+  setProgressUI(20, 'Unpacking presentation...');
+  const zip = await JSZip.loadAsync(await file.arrayBuffer());
+  const slideNames = Object.keys(zip.files)
+    .filter(n => /^ppt\/slides\/slide\d+\.xml$/.test(n))
+    .sort((a, b) => parseInt(a.match(/(\d+)/)[1], 10) - parseInt(b.match(/(\d+)/)[1], 10));
+  if (!slideNames.length) throw new Error('No slides were found inside this PPTX file.');
+  const pdfDoc = await PDFLib.PDFDocument.create();
+  const regular = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
+  const bold = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+  const decode = t => t.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, '&');
+  for (let i = 0; i < slideNames.length; i++) {
+    setProgressUI(20 + Math.round((i / slideNames.length) * 60), `Rendering slide ${i + 1} of ${slideNames.length}...`);
+    const xml = await zip.files[slideNames[i]].async('string');
+    const texts = [];
+    const re = /<a:t>([\s\S]*?)<\/a:t>/g;
+    let m;
+    while ((m = re.exec(xml)) !== null) {
+      const txt = decode(m[1]).trim();
+      if (txt) texts.push(txt);
+    }
+    // 10 x 7.5 inch slide canvas (720 x 540 pt)
+    const page = pdfDoc.addPage([720, 540]);
+    let y = 492;
+    if (texts.length) {
+      const title = texts.shift();
+      const tSize = title.length > 90 ? 22 : 28;
+      wrapPdfText(title, bold, tSize, 620).forEach(line => {
+        page.drawText(line, { x: 50, y, size: tSize, font: bold, color: PDFLib.rgb(0.12, 0.12, 0.14) });
+        y -= tSize * 1.3;
+      });
+      y -= 12;
+    }
+    const bSize = 14;
+    texts.slice(0, 22).forEach(t => {
+      wrapPdfText('\u2022 ' + t, regular, bSize, 620).forEach(line => {
+        if (y < 40) return;
+        page.drawText(line, { x: 58, y, size: bSize, font: regular, color: PDFLib.rgb(0.25, 0.25, 0.28) });
+        y -= bSize * 1.45;
+      });
+      y -= 6;
+    });
+  }
+  const outBytes = await pdfDoc.save();
+  setProgressUI(100, 'Processing completed!');
+  createDownloadLink(outBytes, file.name.replace(/\.pptx$/i, '') + '.pdf', 'application/pdf');
+}
+
+async function runPDFToPowerPoint(file) {
+  if (typeof pdfjsLib === 'undefined' || typeof PptxGenJS === 'undefined') throw new Error('Conversion engine failed to load. Please refresh the page and try again.');
+  setProgressUI(10, 'Reading PDF...');
+  const bytes = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: bytes }).promise;
+  const pptx = new PptxGenJS();
+  pptx.defineLayout({ name: 'PDFZAAP_SLIDES', width: 10, height: 7.5 });
+  pptx.layout = 'PDFZAAP_SLIDES';
+  for (let i = 1; i <= pdf.numPages; i++) {
+    setProgressUI(10 + Math.round((i / pdf.numPages) * 70), `Converting page ${i} of ${pdf.numPages}...`);
+    const page = await pdf.getPage(i);
+    const viewport = page.getViewport({ scale: 2 });
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+    const slide = pptx.addSlide();
+    slide.addImage({ data: canvas.toDataURL('image/jpeg', 0.92), x: 0, y: 0, w: 10, h: 7.5 });
+  }
+  setProgressUI(95, 'Building PowerPoint file...');
+  const blob = await pptx.write({ outputType: 'blob' });
+  setProgressUI(100, 'Processing completed!');
+  createDownloadLink(blob, file.name.replace(/\.pdf$/i, '') + '.pptx', 'application/vnd.openxmlformats-officedocument.presentationml.presentation');
+}
+
 async function runAdvancedSimulatedTool(files) {
   setProgressUI(35, 'Analyzing document structures...');
   await new Promise(res => setTimeout(res, 1200));

@@ -1,12 +1,12 @@
 # PDFZaap
 
-> PDFZaap is a free, browser-based PDF toolkit. All 36+ tools run entirely client-side (no file uploads to a server), require no signup, add no watermark, and are free to use with no limits. Tools cover PDF conversion, editing/organizing, security, and advanced document operations.
+> PDFZaap is a free, browser-based PDF toolkit. All 35 tools run entirely client-side (no file uploads to a server), require no signup, add no watermark, and are free to use with no limits. Tools cover PDF conversion, editing/organizing, security, and advanced document operations.
 
 ## Convert
 - [PDF to Word](https://pdfzaap.online/pdf-to-word.html): Convert PDF to editable DOCX documents, preserving layout and formatting.
 - [PDF to JPG](https://pdfzaap.online/pdf-to-jpg.html): Convert each PDF page into a JPG image.
 - [PDF to Excel](https://pdfzaap.online/pdf-to-excel.html): Extract PDF tables into an editable XLSX spreadsheet.
-- [PDF to PowerPoint](https://pdfzaap.online/pdf-to-powerpoint.html): Convert PDF pages into editable presentation slides.
+- [PDF to PowerPoint](https://pdfzaap.online/pdf-to-powerpoint.html): Convert PDF pages into presentation slides.
 - [PDF to Text](https://pdfzaap.online/pdf-to-text.html): Extract plain, copyable text from a PDF.
 - [PDF to HTML](https://pdfzaap.online/pdf-to-html.html): Convert a PDF into a responsive HTML web page.
 - [PDF to PNG](https://pdfzaap.online/pdf-to-png.html): Export PDF pages as transparent PNG images.
@@ -15,7 +15,7 @@
 - [Word to PDF](https://pdfzaap.online/word-to-pdf.html): Convert a DOCX Word document into a PDF.
 - [JPG to PDF](https://pdfzaap.online/jpg-to-pdf.html): Combine one or more JPG images into a single PDF.
 - [Excel to PDF](https://pdfzaap.online/excel-to-pdf.html): Convert an Excel spreadsheet into a PDF.
-- [PowerPoint to PDF](https://pdfzaap.online/powerpoint-to-pdf.html): Convert a PPTX presentation into a PDF.
+- [PowerPoint to PDF](https://pdfzaap.online/ppt-to-pdf.html): Convert a PPTX presentation into a PDF.
 - [HTML to PDF](https://pdfzaap.online/html-to-pdf.html): Convert HTML markup into a PDF document.
 - [PNG to PDF](https://pdfzaap.online/png-to-pdf.html): Combine one or more PNG images into a single PDF.
 
@@ -24,10 +24,10 @@
 - [Split PDF](https://pdfzaap.online/split-pdf.html): Extract specific pages or page ranges from a PDF.
 - [Compress PDF](https://pdfzaap.online/compress-pdf.html): Reduce PDF file size with adjustable image quality.
 - [Rotate PDF](https://pdfzaap.online/rotate-pdf.html): Rotate PDF pages by 90, 180, or 270 degrees.
-- [Remove Pages](https://pdfzaap.online/remove-pages-pdf.html): Delete specific pages from a PDF.
+- [Delete PDF Pages](https://pdfzaap.online/delete-pdf-pages.html): Delete specific pages from a PDF.
 - [Extract Pages](https://pdfzaap.online/extract-pages-pdf.html): Save selected pages as a new PDF.
 - [Reorder Pages](https://pdfzaap.online/reorder-pages-pdf.html): Rearrange the page order of a PDF.
-- [Add Page Numbers](https://pdfzaap.online/add-page-numbers-pdf.html): Insert page numbers into a PDF.
+- [Add Page Numbers](https://pdfzaap.online/number-pdf-pages.html): Insert page numbers into a PDF.
 - [Add Watermark](https://pdfzaap.online/add-watermark-pdf.html): Apply a text watermark across PDF pages.
 - [Crop PDF](https://pdfzaap.online/crop-pdf.html): Adjust the visible margins/crop boundaries of PDF pages.
 - [Resize PDF](https://pdfzaap.online/resize-pdf.html): Scale PDF pages to standard sizes like A4 or Letter.
@@ -37,7 +37,6 @@
 - [Unlock PDF](https://pdfzaap.online/unlock-pdf.html): Remove a restriction password from a PDF (password required).
 - [Protect PDF](https://pdfzaap.online/protect-pdf.html): Add a password to encrypt a PDF.
 - [E-Sign PDF](https://pdfzaap.online/esign-pdf.html): Draw and embed a digital signature onto a PDF.
-- [Redact PDF](https://pdfzaap.online/redact-pdf.html): Permanently mask confidential text or sections in a PDF.
 
 ## Advanced
 - [Repair PDF](https://pdfzaap.online/repair-pdf.html): Attempt to rebuild and recover a corrupt PDF file.

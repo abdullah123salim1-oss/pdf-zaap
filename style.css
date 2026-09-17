@@ -1543,3 +1543,97 @@ body {
   .blog-post-header h1, .post-detail-title { font-size: 2rem; }
   .grid-2-cols, .grid-2-cols-no-pad { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================================
+   TOOL PAGE FAQ (native <details> accordions)
+   ========================================================================== */
+
+details.faq-item summary.faq-trigger {
+  list-style: none;
+}
+
+details.faq-item summary.faq-trigger::-webkit-details-marker {
+  display: none;
+}
+
+details.faq-item .faq-content {
+  max-height: none;
+}
+
+details.faq-item[open] .faq-content {
+  padding-bottom: 1.35rem;
+}
+
+details.faq-item[open] .faq-icon {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   LANGUAGE SECTIONS (bilingual tool guides)
+   ========================================================================== */
+
+.lang-section {
+  border-top: 1px solid var(--border);
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+}
+
+.lang-section h2 {
+  font-size: 1.55rem;
+  margin-bottom: 0.9rem;
+}
+
+.lang-section h3 {
+  font-size: 1.15rem;
+  margin: 1.4rem 0 0.6rem;
+}
+
+.lang-section p,
+.lang-section li {
+  color: var(--subtext);
+  line-height: 1.75;
+}
+
+.lang-section ol,
+.lang-section ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   E-SIGN CANVAS WRAPPER (standalone tool pages)
+   ========================================================================== */
+
+.ws-canvas-wrapper {
+  margin: 1.5rem 0;
+}
+
+/* ==========================================================================
+   WORKSPACE SIDEBAR AD SLOT
+   ========================================================================== */
+
+.workspace-sidebar {
+  position: sticky;
+  top: 110px;
+  align-self: start;
+}
+
+.ad-placeholder {
+  min-height: 400px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.25rem;
+  color: var(--subtext);
+  font-size: 0.85rem;
+  background: var(--bg);
+}
+
+@media (max-width: 1024px) {
+  .workspace-sidebar {
+    display: none;
+  }
+}
