@@ -2,120 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; media-src 'self' blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>E-Sign PDF Online Free — Sign PDF Documents | PDFZaap</title>
-  <meta name="description" content="Draw or type digital signatures onto PDF contracts and forms for free. Complete browser privacy ensures your signature never leaves your machine.">
-  <link rel="canonical" href="https://pdfzaap.online/esign-pdf.html">
+  <meta name="description" content="Draw and embed a signature on a PDF in your browser. Free, private, no upload, no watermark. Perfect for forms, receipts and simple agreements.">
+  <link rel="canonical" href="https://www.pdfzaap.online/esign-pdf.html">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/logo.png">
   <meta name="robots" content="index, follow">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="theme-color" content="#FF5200">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="E-Sign PDF Online Free — Sign PDF Documents | PDFZaap">
-  <meta property="og:description" content="Draw or type digital signatures onto PDF contracts and forms for free. Complete browser privacy ensures your signature never leaves your machine.">
-  <meta property="og:image" content="https://pdfzaap.online/og-image.png">
+  <meta property="og:description" content="Draw and embed a signature on a PDF in your browser. Free, private, no upload, no watermark. Perfect for forms, receipts and simple agreements.">
+  <meta property="og:image" content="https://www.pdfzaap.online/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://pdfzaap.online/esign-pdf.html">
+  <meta property="og:url" content="https://www.pdfzaap.online/esign-pdf.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PDFZaap">
   <meta property="og:locale" content="en_US">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="E-Sign PDF Online Free — Sign PDF Documents | PDFZaap">
-  <meta name="twitter:description" content="Draw or type digital signatures onto PDF contracts and forms for free. Complete browser privacy ensures your signature never leaves your machine.">
-  <meta name="twitter:image" content="https://pdfzaap.online/og-image.png">
+  <meta name="twitter:description" content="Draw and embed a signature on a PDF in your browser. Free, private, no upload, no watermark. Perfect for forms, receipts and simple agreements.">
+  <meta name="twitter:image" content="https://www.pdfzaap.online/og-image.png">
   <meta name="twitter:site" content="@pdfzaap">
-
-  <meta name="author" content="PDFZaap">
-  <meta name="keywords" content="esign pdf, sign pdf online free, digital signature pdf">
-  <meta name="theme-color" content="#FF5200">
-
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDFZaap Sign a PDF",
+    "url": "https://www.pdfzaap.online/esign-pdf.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "description": "Draw and embed a signature on a PDF in your browser. Free, private, no upload, no watermark. Perfect for forms, receipts and simple agreements.",
+    "publisher": {"@type": "Organization", "name": "PDFZaap", "url": "https://www.pdfzaap.online/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.pdfzaap.online/"},
+      {"@type": "ListItem", "position": 2, "name": "Sign a PDF", "item": "https://www.pdfzaap.online/esign-pdf.html"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {"@type": "Question", "name": "Is this a legally valid signature?", "acceptedAnswer": {"@type": "Answer", "text": "A signed PDF is generally accepted as an electronic signature for everyday documents. For high-stakes legal or notarized contexts, check the requirements of the relevant authority — some demand certified digital signatures."}},
+    {"@type": "Question", "name": "Can I place the signature exactly where I want?", "acceptedAnswer": {"@type": "Answer", "text": "Not click-to-place — the signature is stamped at a fixed 180 × 90 pt box in the lower-left area of the first page. For precise placement over a specific line, use a desktop editor or a full e-sign platform."}},
+    {"@type": "Question", "name": "Is my signature image stored anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No — it is drawn in your browser canvas and embedded only into your document. Nothing is uploaded."}},
+    {"@type": "Question", "name": "Does it work on mobile?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the canvas accepts touch input, so you can sign directly on a phone or tablet."}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-
-  <script type="application/ld+json" id="software-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "E-Sign PDF - PDFZaap",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Web Browser",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "description": "Draw or type digital signatures onto PDF contracts and forms for free. Complete browser privacy ensures your signature never leaves your machine."
-}
-  </script>
-
-  <script type="application/ld+json" id="breadcrumb-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://pdfzaap.online/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "E-Sign PDF",
-      "item": "https://pdfzaap.online/esign-pdf.html"
-    }
-  ]
-}
-  </script>
-
-  <script type="application/ld+json" id="faq-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Can I draw or upload my own signature?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, PDFZaap allows drawing, typing, or uploading image files of your signature."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are my signed documents legally binding?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Electronic signatures applied via browser canvas are accepted for most standard agreement workflows."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my signature saved on a server?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No, your signature is embedded locally into the document and never stored on any server."
-      }
-    }
-  ]
-}
-  </script>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-
   <header class="navbar" id="main-nav">
-    <a href="index.html" class="logo">⚡ PDF<span>Zaap</span></a>
+    <a href="/" class="logo">⚡ PDF<span>Zaap</span></a>
     <ul class="nav-links">
-      <li><a class="nav-link" href="index.html">Home</a></li>
-      <li><a href="index.html#tools-anchor" class="btn btn-primary">All Tools</a></li>
+      <li><a class="nav-link" href="/">Home</a></li>
+      <li><a class="nav-link" href="/#tools-anchor">All Tools</a></li>
+      <li><a class="nav-link" href="/blog/">Blog</a></li>
+      <li><a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a></li>
     </ul>
   </header>
 
@@ -123,69 +81,102 @@
     <div class="workspace-wrapper">
       <div class="workspace-main">
 
-        <nav class="breadcrumb">
-          <a href="index.html">Home</a> <span>&gt;</span> <span>E-Sign PDF</span>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>&gt;</span> <span>✍️ E-Sign PDF</span>
         </nav>
 
-        <h1 class="workspace-title">✍️ E-Sign PDF</h1>
-        <p class="subtitle">Create digital signatures and sign PDF contracts online</p>
+        <h1 class="workspace-title">✍️ Sign a PDF — Draw Your Signature</h1>
+        <p class="subtitle">Draw and embed a signature on a PDF</p>
 
         <div class="dropzone" id="ws-dropzone">
           <div class="dropzone-icon">📥</div>
-          <h3>Select PDF file</h3>
+          <h3>Select your file</h3>
           <p>or drop file here</p>
           <input type="file" id="ws-file-input" class="display-none" accept=".pdf">
         </div>
 
         <div class="file-list" id="ws-file-list"></div>
         <div class="options-panel display-none" id="ws-options-panel"></div>
-        <div class="ws-canvas-wrapper display-none" id="ws-canvas-wrapper"></div>
+
+        <div id="ws-canvas-wrapper" class="ws-canvas-wrapper display-none">
+          <p class="canvas-label">Draw Your Signature Below:</p>
+          <div class="fabric-canvas-container">
+            <canvas id="esign-fabric-canvas" width="400" height="200"></canvas>
+          </div>
+          <button class="btn btn-secondary canvas-clear-btn" onclick="clearSignatureCanvas()">Clear Canvas</button>
+        </div>
 
         <div class="progress-bar-container" id="ws-progress-container">
           <div class="progress-bar-outer"><div class="progress-bar-inner" id="ws-progress-bar"></div></div>
           <p class="progress-status" id="ws-progress-status">Processing document contents...</p>
         </div>
 
-        <button class="btn btn-primary full-width" id="ws-process-btn" disabled>Apply Signature to PDF</button>
+        <button class="btn btn-primary full-width" id="ws-process-btn" disabled>Sign PDF</button>
 
         <div class="security-note">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span>Files processed locally — zero server uploads</span>
+          <span>Files processed locally in your browser — nothing is uploaded to a server</span>
         </div>
 
         <div id="ws-output-box" class="output-container"></div>
 
+        <section class="tool-intro padding-top-bot">
+          <p>Sign a PDF without printing, scanning or an account. Draw your signature on the canvas and the tool stamps it onto the first page of the document at a fixed 180 × 90 pt position — locally, in your browser. The signed file downloads ready to send, and the original never left your device. For multi-page documents, the signature lands on page one, which matches how most forms are signed.</p>
+        </section>
+
         <section class="how-it-works padding-top-bot">
           <div class="section-header margin-bot-3">
-            <h2>How to E-Sign PDF</h2>
+            <h2>How to sign a PDF</h2>
           </div>
           <div class="steps">
             <div class="step-item">
               <div class="step-num">1</div>
-              <h3>Upload PDF</h3>
-              <p>Select your PDF document or agreement.</p>
+              <h3>Select the PDF</h3>
+              <p>Upload the document that needs a signature.</p>
             </div>
             <div class="step-item">
               <div class="step-num">2</div>
-              <h3>Create Signature</h3>
-              <p>Draw, type, or upload your signature image.</p>
+              <h3>Draw your signature</h3>
+              <p>Use your mouse, finger or stylus on the canvas. Clear it and redraw until it looks right.</p>
             </div>
             <div class="step-item">
               <div class="step-num">3</div>
-              <h3>Sign &amp; Download</h3>
-              <p>Place signature on page and download signed PDF.</p>
+              <h3>Click Sign PDF</h3>
+              <p>The signature is embedded onto the document and saved.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <h3>Download the signed PDF</h3>
+              <p>Send it out — the signature is part of the file, not a layer.</p>
             </div>
           </div>
         </section>
 
         <section class="padding-vert-2">
           <div class="section-header margin-bot-3">
-            <h2>Why Use PDFZaap's E-Sign PDF?</h2>
+            <h2>Why use PDFZaap to sign documents without uploading them</h2>
           </div>
-          <p class="about-text">
-            Streamline legal agreements, employment offers, and client invoices with PDFZaap's E-Sign PDF tool. Easily draw your signature using a mouse or touchpad, type an styled signature, or upload a pre-drawn signature graphic to place onto any PDF page. Because signature embedding takes place exclusively within your browser sandbox, your personal signature data and legal agreements never touch remote servers. Sign important paperwork instantly and securely for free with no account creation needed.
-          </p>
-          <p class="about-text">📖 <strong>Deep dive guides:</strong> <a href="blog/how-to-sign-a-pdf-on-iphone-without-app.html">How to Sign a PDF on iPhone Without an App</a> · <a href="blog/how-to-fill-out-pdf-form-without-printing.html">How to Fill Out a PDF Form Without Printing</a></p>
+<p><strong class='subtext'>The privacy case for local signing.</strong> Documents that need a signature are often the most sensitive in your life — leases, medical consent, financial forms, contracts. Upload-based e-sign services store the document (and sometimes your signature image) on their infrastructure. Drawing the signature and embedding it in your browser means the document and the signature both stay on your device end to end.</p><p class='subtext'><strong>Know what kind of signature this is.</strong> This is a <em>visual</em> electronic signature: your drawn mark embedded in the document. It is perfectly appropriate for forms, receipts, simple agreements and internal workflows. It is not a cryptographic digital signature with certificate-based identity — for those, you need a dedicated e-sign platform that issues and verifies certificates. We would rather state that plainly than blur the two.</p>
+        </section>
+
+        <section class="padding-vert-2">
+          <div class="section-header margin-bot-3">
+            <h2>Tips &amp; common problems</h2>
+          </div>
+          <ul class="tips-list">
+            <li>Draw slowly and keep the signature compact — small, clean marks embed more cleanly than sprawling ones.</li>
+            <li>Use the Clear Canvas button as often as you like; there is no limit on redraws.</li>
+            <li>For a consistent signature across many documents, screenshot your best draw and reuse the style each time.</li>
+            <li>On a phone, a stylus or two-finger smooth drawing gives the neatest result.</li>
+            <li>For the no-app iPhone workflow in general, see <a href='/blog/how-to-sign-a-pdf-on-iphone-without-app.html'>How to sign a PDF on iPhone without an app</a>.</li>
+          </ul>
+        </section>
+
+        <section class="padding-vert-2">
+          <div class="section-header margin-bot-3">
+            <h2>When to use this vs. related tools</h2>
+          </div>
+<p>Use <strong>E-Sign PDF</strong> for a quick, private visual signature. For certificate-based digital signatures with legal verification, a dedicated e-sign service is the right tool. After signing, use <a href='/flatten-pdf.html'>Flatten PDF</a> to make the signed form fully static, and <a href='/protect-pdf.html'>Protect PDF</a> to password-lock the signed result.</p>
         </section>
 
         <section class="faq-section margin-top-3-no-pad">
@@ -194,31 +185,20 @@
           </div>
           <div id="ws-faqs">
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>Can I draw or upload my own signature?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>Yes, PDFZaap allows drawing, typing, or uploading image files of your signature.</p>
-              </div>
+              <summary class="faq-trigger"><span>Is this a legally valid signature?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>A signed PDF is generally accepted as an electronic signature for everyday documents. For high-stakes legal or notarized contexts, check the requirements of the relevant authority — some demand certified digital signatures.</p></div>
             </details>
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>Are my signed documents legally binding?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>Electronic signatures applied via browser canvas are accepted for most standard agreement workflows.</p>
-              </div>
+              <summary class="faq-trigger"><span>Can I place the signature exactly where I want?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>Not click-to-place — the signature is stamped at a fixed 180 × 90 pt box in the lower-left area of the first page. For precise placement over a specific line, use a desktop editor or a full e-sign platform.</p></div>
             </details>
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>Is my signature saved on a server?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>No, your signature is embedded locally into the document and never stored on any server.</p>
-              </div>
+              <summary class="faq-trigger"><span>Is my signature image stored anywhere?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>No — it is drawn in your browser canvas and embedded only into your document. Nothing is uploaded.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-trigger"><span>Does it work on mobile?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>Yes, the canvas accepts touch input, so you can sign directly on a phone or tablet.</p></div>
             </details>
           </div>
         </section>
@@ -228,24 +208,24 @@
             <h2>Related PDF Tools</h2>
           </div>
           <div class="tools-grid grid-2-cols-no-pad">
-            <a href="protect-pdf.html" class="tool-card">
+            <a href="/flatten-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">🥞</div>
+              <h3>Flatten PDF</h3>
+              <span class="tool-card-link">Use Tool ➔</span>
+            </a>
+            <a href="/protect-pdf.html" class="tool-card">
               <div class="tool-icon-wrapper">🔒</div>
               <h3>Protect PDF</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
-            <a href="add-watermark-pdf.html" class="tool-card">
+            <a href="/add-watermark-pdf.html" class="tool-card">
               <div class="tool-icon-wrapper">💧</div>
               <h3>Add Watermark</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
-            <a href="flatten-pdf.html" class="tool-card">
-              <div class="tool-icon-wrapper">📄</div>
-              <h3>Flatten PDF</h3>
-              <span class="tool-card-link">Use Tool ➔</span>
-            </a>
-            <a href="pdf-to-word.html" class="tool-card">
-              <div class="tool-icon-wrapper">📝</div>
-              <h3>PDF to Word</h3>
+            <a href="/merge-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">🔗</div>
+              <h3>Merge PDF</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
           </div>
@@ -259,54 +239,62 @@
     <div class="footer-grid">
       <div class="footer-col">
         <h4>⚡ PDF<span>Zaap</span></h4>
-        <p>Your secure, browser-based assistant built for fast client-side file conversions and PDF edits. Free, safe, and completely private.</p>
+        <p>Free, browser-based PDF tools that process your files locally — no uploads, no signup, no watermarks.</p>
       </div>
       <div class="footer-col">
-        <h5>Popular Convert</h5>
+        <h5>Popular Tools</h5>
         <ul class="footer-links">
-          <li><a href="pdf-to-word.html">PDF to Word</a></li>
-          <li><a href="jpg-to-pdf.html">JPG to PDF</a></li>
-          <li><a href="pdf-to-jpg.html">PDF to JPG</a></li>
-          <li><a href="word-to-pdf.html">Word to PDF</a></li>
+          <li><a href="/pdf-to-word.html">PDF to Word</a></li>
+          <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
+          <li><a href="/pdf-to-jpg.html">PDF to JPG</a></li>
+          <li><a href="/word-to-pdf.html">Word to PDF</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Edit &amp; Manage</h5>
+        <h5>Edit &amp; Organize</h5>
         <ul class="footer-links">
-          <li><a href="merge-pdf.html">Merge PDF</a></li>
-          <li><a href="split-pdf.html">Split PDF</a></li>
-          <li><a href="compress-pdf.html">Compress PDF</a></li>
-          <li><a href="add-watermark-pdf.html">Add Watermark</a></li>
+          <li><a href="/merge-pdf.html">Merge PDF</a></li>
+          <li><a href="/split-pdf.html">Split PDF</a></li>
+          <li><a href="/compress-pdf.html">Compress PDF</a></li>
+          <li><a href="/add-watermark-pdf.html">Add Watermark</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>Security &amp; Advanced</h5>
         <ul class="footer-links">
-          <li><a href="protect-pdf.html">Protect PDF</a></li>
-          <li><a href="esign-pdf.html">E-Sign PDF</a></li>
-          <li><a href="ocr-pdf.html">OCR PDF</a></li>
-          <li><a href="flatten-pdf.html">Flatten PDF</a></li>
+          <li><a href="/protect-pdf.html">Protect PDF</a></li>
+          <li><a href="/esign-pdf.html">E-Sign PDF</a></li>
+          <li><a href="/ocr-pdf.html">OCR PDF</a></li>
+          <li><a href="/flatten-pdf.html">Flatten PDF</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/blog/">Blog</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 PDFZaap. All rights reserved. Handcrafted for fast PDF editing.</p>
+      <p>&copy; 2026 PDFZaap. All rights reserved. Built for fast, private PDF work.</p>
       <div class="footer-legal-links">
-        <span class="cursor-pointer" onclick="toggleLegalModal('privacy')">Privacy Policy</span>
-        <span class="cursor-pointer" onclick="toggleLegalModal('terms')">Terms of Service</span>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
       </div>
     </div>
   </footer>
 
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
-  <script src="script.js" defer></script>
-  <script defer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js" defer></script>
+  <script src="/script.js" defer></script>
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
       activeTool = 'esign-pdf';
-      if (typeof setupOptionsPanel === 'function') {
-        setupOptionsPanel(activeTool);
-      }
+      if (typeof setupOptionsPanel === 'function') setupOptionsPanel(activeTool);
     });
   </script>
+
 </body>
 </html>

@@ -3,69 +3,100 @@
 > PDFZaap is a free, browser-based PDF toolkit. All 35 tools run entirely client-side (no file uploads to a server), require no signup, add no watermark, and are free to use with no limits. Tools cover PDF conversion, editing/organizing, security, and advanced document operations.
 
 ## Convert
-- [PDF to Word](https://pdfzaap.online/pdf-to-word.html): Convert PDF to editable DOCX documents, preserving layout and formatting.
-- [PDF to JPG](https://pdfzaap.online/pdf-to-jpg.html): Convert each PDF page into a JPG image.
-- [PDF to Excel](https://pdfzaap.online/pdf-to-excel.html): Extract PDF tables into an editable XLSX spreadsheet.
-- [PDF to PowerPoint](https://pdfzaap.online/pdf-to-powerpoint.html): Convert PDF pages into presentation slides.
-- [PDF to Text](https://pdfzaap.online/pdf-to-text.html): Extract plain, copyable text from a PDF.
-- [PDF to HTML](https://pdfzaap.online/pdf-to-html.html): Convert a PDF into a responsive HTML web page.
-- [PDF to PNG](https://pdfzaap.online/pdf-to-png.html): Export PDF pages as transparent PNG images.
-- [PDF to EPUB](https://pdfzaap.online/pdf-to-epub.html): Convert a PDF into a reflowable EPUB e-book file.
-- [PDF to PDF/A](https://pdfzaap.online/pdf-to-pdfa.html): Convert a PDF into the ISO-standard PDF/A archival format.
-- [Word to PDF](https://pdfzaap.online/word-to-pdf.html): Convert a DOCX Word document into a PDF.
-- [JPG to PDF](https://pdfzaap.online/jpg-to-pdf.html): Combine one or more JPG images into a single PDF.
-- [Excel to PDF](https://pdfzaap.online/excel-to-pdf.html): Convert an Excel spreadsheet into a PDF.
-- [PowerPoint to PDF](https://pdfzaap.online/ppt-to-pdf.html): Convert a PPTX presentation into a PDF.
-- [HTML to PDF](https://pdfzaap.online/html-to-pdf.html): Convert HTML markup into a PDF document.
-- [PNG to PDF](https://pdfzaap.online/png-to-pdf.html): Combine one or more PNG images into a single PDF.
+- [PDF to Word](https://www.pdfzaap.online/pdf-to-word.html): Convert PDF to editable DOCX documents, preserving layout and formatting.
+- [PDF to JPG](https://www.pdfzaap.online/pdf-to-jpg.html): Convert each PDF page into a JPG image.
+- [PDF to Excel](https://www.pdfzaap.online/pdf-to-excel.html): Extract PDF tables into an editable XLSX spreadsheet.
+- [PDF to PowerPoint](https://www.pdfzaap.online/pdf-to-powerpoint.html): Convert PDF pages into presentation slides.
+- [PDF to Text](https://www.pdfzaap.online/pdf-to-text.html): Extract plain, copyable text from a PDF.
+- [PDF to HTML](https://www.pdfzaap.online/pdf-to-html.html): Convert a PDF into a responsive HTML web page.
+- [PDF to PNG](https://www.pdfzaap.online/pdf-to-png.html): Export PDF pages as transparent PNG images.
+- [PDF to EPUB](https://www.pdfzaap.online/pdf-to-epub.html): Convert a PDF into a reflowable EPUB e-book file.
+- [PDF to PDF/A](https://www.pdfzaap.online/pdf-to-pdfa.html): Convert a PDF into the ISO-standard PDF/A archival format.
+- [Word to PDF](https://www.pdfzaap.online/word-to-pdf.html): Convert a DOCX Word document into a PDF.
+- [JPG to PDF](https://www.pdfzaap.online/jpg-to-pdf.html): Combine one or more JPG images into a single PDF.
+- [Excel to PDF](https://www.pdfzaap.online/excel-to-pdf.html): Convert an Excel spreadsheet into a PDF.
+- [PowerPoint to PDF](https://www.pdfzaap.online/ppt-to-pdf.html): Convert a PPTX presentation into a PDF.
+- [HTML to PDF](https://www.pdfzaap.online/html-to-pdf.html): Convert HTML markup into a PDF document.
+- [PNG to PDF](https://www.pdfzaap.online/png-to-pdf.html): Combine one or more PNG images into a single PDF.
 
 ## Edit & Organize
-- [Merge PDF](https://pdfzaap.online/merge-pdf.html): Combine multiple PDF files into one document.
-- [Split PDF](https://pdfzaap.online/split-pdf.html): Extract specific pages or page ranges from a PDF.
-- [Compress PDF](https://pdfzaap.online/compress-pdf.html): Reduce PDF file size with adjustable image quality.
-- [Rotate PDF](https://pdfzaap.online/rotate-pdf.html): Rotate PDF pages by 90, 180, or 270 degrees.
-- [Delete PDF Pages](https://pdfzaap.online/delete-pdf-pages.html): Delete specific pages from a PDF.
-- [Extract Pages](https://pdfzaap.online/extract-pages-pdf.html): Save selected pages as a new PDF.
-- [Reorder Pages](https://pdfzaap.online/reorder-pages-pdf.html): Rearrange the page order of a PDF.
-- [Add Page Numbers](https://pdfzaap.online/number-pdf-pages.html): Insert page numbers into a PDF.
-- [Add Watermark](https://pdfzaap.online/add-watermark-pdf.html): Apply a text watermark across PDF pages.
-- [Crop PDF](https://pdfzaap.online/crop-pdf.html): Adjust the visible margins/crop boundaries of PDF pages.
-- [Resize PDF](https://pdfzaap.online/resize-pdf.html): Scale PDF pages to standard sizes like A4 or Letter.
-- [Grayscale PDF](https://pdfzaap.online/grayscale-pdf.html): Convert PDF colors and images to black and white.
+- [Merge PDF](https://www.pdfzaap.online/merge-pdf.html): Combine multiple PDF files into one document.
+- [Split PDF](https://www.pdfzaap.online/split-pdf.html): Extract specific pages or page ranges from a PDF.
+- [Compress PDF](https://www.pdfzaap.online/compress-pdf.html): Reduce PDF file size with adjustable image quality.
+- [Rotate PDF](https://www.pdfzaap.online/rotate-pdf.html): Rotate PDF pages by 90, 180, or 270 degrees.
+- [Delete PDF Pages](https://www.pdfzaap.online/delete-pdf-pages.html): Delete specific pages from a PDF.
+- [Extract Pages](https://www.pdfzaap.online/extract-pages-pdf.html): Save selected pages as a new PDF.
+- [Reorder Pages](https://www.pdfzaap.online/reorder-pages-pdf.html): Rearrange the page order of a PDF.
+- [Add Page Numbers](https://www.pdfzaap.online/number-pdf-pages.html): Insert page numbers into a PDF.
+- [Add Watermark](https://www.pdfzaap.online/add-watermark-pdf.html): Apply a text watermark across PDF pages.
+- [Crop PDF](https://www.pdfzaap.online/crop-pdf.html): Adjust the visible margins/crop boundaries of PDF pages.
+- [Resize PDF](https://www.pdfzaap.online/resize-pdf.html): Scale PDF pages to standard sizes like A4 or Letter.
+- [Grayscale PDF](https://www.pdfzaap.online/grayscale-pdf.html): Convert PDF colors and images to black and white.
 
 ## Security
-- [Unlock PDF](https://pdfzaap.online/unlock-pdf.html): Remove a restriction password from a PDF (password required).
-- [Protect PDF](https://pdfzaap.online/protect-pdf.html): Add a password to encrypt a PDF.
-- [E-Sign PDF](https://pdfzaap.online/esign-pdf.html): Draw and embed a digital signature onto a PDF.
+- [Unlock PDF](https://www.pdfzaap.online/unlock-pdf.html): Remove a restriction password from a PDF (password required).
+- [Protect PDF](https://www.pdfzaap.online/protect-pdf.html): Add a password to encrypt a PDF.
+- [E-Sign PDF](https://www.pdfzaap.online/esign-pdf.html): Draw and embed a digital signature onto a PDF.
 
 ## Advanced
-- [Repair PDF](https://pdfzaap.online/repair-pdf.html): Attempt to rebuild and recover a corrupt PDF file.
-- [OCR PDF](https://pdfzaap.online/ocr-pdf.html): Extract editable text from scanned pages or images using OCR.
-- [Compare PDFs](https://pdfzaap.online/compare-pdf.html): Highlight text differences between two PDF versions.
-- [PDF Metadata Editor](https://pdfzaap.online/pdf-metadata-editor.html): Edit a PDF's Title, Author, Subject, and Keywords.
-- [Flatten PDF](https://pdfzaap.online/flatten-pdf.html): Merge form fields and annotations into a static, non-editable page.
+- [Repair PDF](https://www.pdfzaap.online/repair-pdf.html): Attempt to rebuild and recover a corrupt PDF file.
+- [OCR PDF](https://www.pdfzaap.online/ocr-pdf.html): Extract editable text from scanned pages or images using OCR.
+- [Compare PDFs](https://www.pdfzaap.online/compare-pdf.html): Highlight text differences between two PDF versions.
+- [PDF Metadata Editor](https://www.pdfzaap.online/pdf-metadata-editor.html): Edit a PDF's Title, Author, Subject, and Keywords.
+- [Flatten PDF](https://www.pdfzaap.online/flatten-pdf.html): Merge form fields and annotations into a static, non-editable page.
 
 ## Blog
-- [How to Reduce PDF File Size Without Losing Quality (Free & Private)](https://pdfzaap.online/blog/how-to-reduce-pdf-file-size-without-losing-quality.html): Shrink PDF file sizes by 60%–80% while keeping text crisp and images clear using client-side WebAssembly.
-- [How to Merge PDF Files on iPhone (Free, No App Required)](https://pdfzaap.online/blog/how-to-merge-pdf-files-on-iphone.html): Combine multiple PDF documents on iOS using the native Files app or Safari with visual page reordering.
-- [How to Convert PDF to Word on Mac Free (Without Adobe Acrobat)](https://pdfzaap.online/blog/how-to-convert-pdf-to-word-on-mac-free.html): Turn any PDF into an editable Word DOCX document on macOS with full layout and table preservation.
-- [How to Sign a PDF on iPhone Without an App (Free & Easy)](https://pdfzaap.online/blog/how-to-sign-a-pdf-on-iphone-without-app.html): Electronically sign contracts and forms directly on an iPhone touchscreen with Apple Markup or private browser e-signing.
-- [How to Fill Out a PDF Form Without Printing (Free & 100% Digital)](https://pdfzaap.online/blog/how-to-fill-out-pdf-form-without-printing.html): Complete interactive AcroForms or flat paper scans digitally, fill checkboxes, and flatten entries to prevent disappearing data.
-- [How to Split a PDF into Single Pages (Free, Fast & Private)](https://pdfzaap.online/blog/how-to-split-pdf-into-single-pages.html): Break multi-page PDFs into separate one-page files or extract custom page ranges with instant ZIP download.
-- [How to Convert JPG to PDF on Windows 11 & 10 (Free, Fast)](https://pdfzaap.online/blog/how-to-convert-jpg-to-pdf-on-windows.html): Combine one or multiple JPG, PNG, and WebP images into a single PDF on Windows with custom margins and drag-and-drop order.
-- [How to Make a Scanned PDF Searchable Free (OCR Guide)](https://pdfzaap.online/blog/how-to-make-pdf-searchable-from-scanner.html): Apply Optical Character Recognition to scanned documents and photos to enable Ctrl+F search and copyable text.
-- [Why Is My PDF File So Large? (6 Hidden Causes & Fixes)](https://pdfzaap.online/blog/why-is-my-pdf-file-so-large.html): Diagnostic breakdown of why PDFs become massive (uncompressed scans, font subsets, revision histories) and how to shrink them.
-- [How to Add Page Numbers to PDF in Order (Free & Online)](https://pdfzaap.online/blog/how-to-add-page-numbers-to-pdf.html): Add sequential page numbers, headers, footers, and Bates numbering to merged PDF files while skipping title covers.
-- [PDF vs PDF/A: What Is the Difference? (2026 Archival Guide)](https://pdfzaap.online/blog/pdf-vs-pdfa-difference.html): ISO standards for long-term document preservation, font embedding requirements, PDF/A flavors, and free conversion.
-- [How to Combine Scanned Receipts into One PDF (Free Expense Guide)](https://pdfzaap.online/blog/how-to-combine-scanned-receipts-into-one-pdf.html): Organize phone receipt photos and PDF invoices into a single chronological expense report compressed under email limits.
-- [How to Translate a PDF Document Free (Preserving Formatting)](https://pdfzaap.online/blog/how-to-translate-a-pdf-document-free.html): Translate entire PDF documents into 100+ languages without broken layouts or text overflow using smart OCR and Word workflows.
-- [How to Merge PDF Files Without Adobe Acrobat (Free, 3 Ways)](https://pdfzaap.online/blog/merge-pdf-without-adobe.html): Free ways to combine PDFs without Adobe — a private in-browser tool, macOS Preview, and print-to-PDF, with step-by-step instructions.
-- [How to Compress a PDF for Email (Under 2 MB) — Free & Private)](https://pdfzaap.online/blog/compress-pdf-for-email.html): Shrink PDFs to fit email attachment limits in three private steps, with an attachment limit cheat sheet and four fallback tricks.
-- [How to Convert PDF to Word Without Losing Formatting (2026)](https://pdfzaap.online/blog/pdf-to-word-without-losing-formatting.html): Why PDF to Word conversions break layouts, how to handle scanned PDFs with OCR, and when to use a different tool instead.
-- [Cara Kompres PDF Online Gratis Tanpa Kehilangan Kualitas (2026)](https://pdfzaap.online/blog/kompres-pdf-online-gratis.html): Panduan lengkap kompres PDF online gratis dalam Bahasa Indonesia tanpa mengurangi kualitas dokumen.
+- [How to Reduce PDF File Size Without Losing Quality (Free & Private)](https://www.pdfzaap.online/blog/how-to-reduce-pdf-file-size-without-losing-quality.html): Shrink PDF file sizes by 60%–80% while keeping text crisp and images clear using client-side WebAssembly.
+- [How to Merge PDF Files on iPhone (Free, No App Required)](https://www.pdfzaap.online/blog/how-to-merge-pdf-files-on-iphone.html): Combine multiple PDF documents on iOS using the native Files app or Safari with visual page reordering.
+- [How to Convert PDF to Word on Mac Free (Without Adobe Acrobat)](https://www.pdfzaap.online/blog/how-to-convert-pdf-to-word-on-mac-free.html): Turn any PDF into an editable Word DOCX document on macOS with full layout and table preservation.
+- [How to Sign a PDF on iPhone Without an App (Free & Easy)](https://www.pdfzaap.online/blog/how-to-sign-a-pdf-on-iphone-without-app.html): Electronically sign contracts and forms directly on an iPhone touchscreen with Apple Markup or private browser e-signing.
+- [How to Fill Out a PDF Form Without Printing (Free & 100% Digital)](https://www.pdfzaap.online/blog/how-to-fill-out-pdf-form-without-printing.html): Complete interactive AcroForms or flat paper scans digitally, fill checkboxes, and flatten entries to prevent disappearing data.
+- [How to Split a PDF into Single Pages (Free, Fast & Private)](https://www.pdfzaap.online/blog/how-to-split-pdf-into-single-pages.html): Break multi-page PDFs into separate one-page files or extract custom page ranges with instant ZIP download.
+- [How to Convert JPG to PDF on Windows 11 & 10 (Free, Fast)](https://www.pdfzaap.online/blog/how-to-convert-jpg-to-pdf-on-windows.html): Combine one or multiple JPG, PNG, and WebP images into a single PDF on Windows with custom margins and drag-and-drop order.
+- [How to Make a Scanned PDF Searchable Free (OCR Guide)](https://www.pdfzaap.online/blog/how-to-make-pdf-searchable-from-scanner.html): Apply Optical Character Recognition to scanned documents and photos to enable Ctrl+F search and copyable text.
+- [Why Is My PDF File So Large? (6 Hidden Causes & Fixes)](https://www.pdfzaap.online/blog/why-is-my-pdf-file-so-large.html): Diagnostic breakdown of why PDFs become massive (uncompressed scans, font subsets, revision histories) and how to shrink them.
+- [How to Add Page Numbers to PDF in Order (Free & Online)](https://www.pdfzaap.online/blog/how-to-add-page-numbers-to-pdf.html): Add sequential page numbers, headers, footers, and Bates numbering to merged PDF files while skipping title covers.
+- [PDF vs PDF/A: What Is the Difference? (2026 Archival Guide)](https://www.pdfzaap.online/blog/pdf-vs-pdfa-difference.html): ISO standards for long-term document preservation, font embedding requirements, PDF/A flavors, and free conversion.
+- [How to Combine Scanned Receipts into One PDF (Free Expense Guide)](https://www.pdfzaap.online/blog/how-to-combine-scanned-receipts-into-one-pdf.html): Organize phone receipt photos and PDF invoices into a single chronological expense report compressed under email limits.
+- [How to Translate a PDF Document Free (Preserving Formatting)](https://www.pdfzaap.online/blog/how-to-translate-a-pdf-document-free.html): Translate entire PDF documents into 100+ languages without broken layouts or text overflow using smart OCR and Word workflows.
+- [How to Merge PDF Files Without Adobe Acrobat (Free, 3 Ways)](https://www.pdfzaap.online/blog/merge-pdf-without-adobe.html): Free ways to combine PDFs without Adobe — a private in-browser tool, macOS Preview, and print-to-PDF, with step-by-step instructions.
+- [How to Compress a PDF for Email (Under 2 MB) — Free & Private)](https://www.pdfzaap.online/blog/compress-pdf-for-email.html): Shrink PDFs to fit email attachment limits in three private steps, with an attachment limit cheat sheet and four fallback tricks.
+- [How to Convert PDF to Word Without Losing Formatting (2026)](https://www.pdfzaap.online/blog/pdf-to-word-without-losing-formatting.html): Why PDF to Word conversions break layouts, how to handle scanned PDFs with OCR, and when to use a different tool instead.
+- [Cara Kompres PDF Online Gratis Tanpa Kehilangan Kualitas (2026)](https://www.pdfzaap.online/blog/kompres-pdf-online-gratis.html): Panduan lengkap kompres PDF online gratis dalam Bahasa Indonesia tanpa mengurangi kualitas dokumen.
+
+## Target-Size Compression
+- [Compress PDF to 100KB](https://www.pdfzaap.online/compress-pdf-to-100kb.html): Compress a PDF under 100 KB with a preset target size.
+- [Compress PDF to 200KB](https://www.pdfzaap.online/compress-pdf-to-200kb.html): Compress a PDF under 200 KB with a preset target size.
+- [Compress PDF to 500KB](https://www.pdfzaap.online/compress-pdf-to-500kb.html): Compress a PDF under 500 KB with a preset target size.
+- [Compress PDF to 1MB](https://www.pdfzaap.online/compress-pdf-to-1mb.html): Compress a PDF under 1 MB with a preset target size.
+- [Compress PDF to 2MB](https://www.pdfzaap.online/compress-pdf-to-2mb.html): Compress a PDF under 2 MB with a preset target size.
+
+## Intent Guides
+- [Merge PDF Without Uploading](https://www.pdfzaap.online/merge-pdf-without-uploading.html): Merge PDFs entirely in the browser, plus how to verify no upload happens.
+- [JPG to PDF on A4](https://www.pdfzaap.online/jpg-to-pdf-a4.html): Combine JPG images into a PDF with standard A4 pages.
+- [PDF to Word Without Losing Formatting](https://www.pdfzaap.online/pdf-to-word-without-losing-formatting.html): What PDF-to-Word can honestly deliver, tier by tier, plus a private in-browser converter.
+- [Is It Safe to Use Online PDF Tools?](https://www.pdfzaap.online/is-it-safe-to-use-online-pdf-tools.html): Server-upload vs client-side tools explained, with a 5-minute verification test.
+
+## Language Pages
+- [Gabung PDF (Bahasa Indonesia)](https://www.pdfzaap.online/id/gabung-pdf.html): Merge PDF guide and tool in Indonesian.
+- [Kompres PDF (Bahasa Indonesia)](https://www.pdfzaap.online/id/kompres-pdf.html): Compress PDF guide and tool in Indonesian.
+- [PDF Compress Kaise Karein (Urdu)](https://www.pdfzaap.online/ur/pdf-compress-kaise-karein.html): Compress PDF guide and tool in Roman Urdu.
+- [PDF Merge Kaise Karein (Urdu)](https://www.pdfzaap.online/ur/pdf-merge-kaise-karein.html): Merge PDF guide and tool in Roman Urdu.
 
 ## About
-- [Homepage](https://pdfzaap.online/): Full tool directory, FAQs, and product overview.
+- [Homepage](https://www.pdfzaap.online/): Full tool directory, FAQs, and product overview.
+- [About](https://www.pdfzaap.online/about.html): What PDFZaap is, how local processing works, and who runs it.
+- [Contact](https://www.pdfzaap.online/contact.html): How to reach the maintainer (contact@pdfzaap.online).
+- [Privacy Policy](https://www.pdfzaap.online/privacy.html): What the site does and does not collect.
+- [Terms of Service](https://www.pdfzaap.online/terms.html): Free use, as-is disclaimer, and limitation of liability.
+
+## New Guides (added 2026-09)
+- [How to Check If an Online PDF Tool Uploads Your Files (5-Minute Test)](https://www.pdfzaap.online/blog/how-to-check-if-pdf-tool-uploads-files.html): Verify in DevTools whether any online PDF tool uploads your file or processes it locally.
+- [Why PDFs Get Blurry After Compression (And How to Avoid It)](https://www.pdfzaap.online/blog/why-pdf-blurry-after-compression.html): The three mechanisms behind blurry compressed PDFs and the settings that avoid them.
+- [How to Merge PDF Files on Android Without Installing an App](https://www.pdfzaap.online/blog/how-to-merge-pdf-on-android-no-app.html): Merge PDFs on Android using only the browser, with ordering tips.
+- [How to Combine JPG Photos Into One PDF on iPhone (No App Needed)](https://www.pdfzaap.online/blog/how-to-combine-jpg-photos-pdf-iphone.html): The built-in Print trick and a private in-browser method.
+- [How to Make a PDF Smaller Without Adobe (Free Browser Method)](https://www.pdfzaap.online/blog/how-to-make-pdf-smaller-without-adobe.html): What optimized-PDF export does and a free in-browser equivalent.
+- [How to Compress a PDF Under 200 KB for a Job Application (Step by Step)](https://www.pdfzaap.online/blog/compress-pdf-under-200kb-job-application.html): Fit a CV under a 200 KB portal limit, step by step.
 
 ## Notes for AI assistants
 - All processing described above happens locally in the user's browser (WebAssembly / JavaScript). No file is uploaded to a PDFZaap server at any point.
