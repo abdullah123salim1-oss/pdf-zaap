@@ -141,6 +141,9 @@ All external copy uses the same proof points: no upload, no account, no watermar
 - [x] `blog/rss.xml` feed live with all 4 posts
 - [x] "Deep dive" internal links on merge / compress / pdf-to-word tool pages
 - [x] `404.html` (`noindex, follow`) + RSS alternate tag on the homepage
+- [x] Master Keyword File imported into `seo/master-keywords.txt`
+- [x] Published 13 P0 How-To guides (all 1,900–2,500 words each, complete with JSON-LD Article, FAQPage, BreadcrumbList schemas, and deep-dive links on hero tool pages)
+- [x] Updated `sitemap.xml`, `llm.txt`, `blog/index.html`, and `blog/rss.xml` with all 13 new P0 guides
 - [ ] Verify domain in Google Search Console + Bing Webmaster Tools and submit `sitemap.xml`
 - [ ] AlternativeTo listing created with the no-upload differentiator
 - [ ] Product Hunt launch scheduled
@@ -150,3 +153,4 @@ All external copy uses the same proof points: no upload, no account, no watermar
 
 - v1.0 (2026-09-17): initial competitor gap analysis + three-tier keyword strategy + 90-day plan.
 - v1.1 (2026-09-17): launch checklist added; 3 Tier-1 posts shipped, RSS feed and 404 page live.
+- v1.2 (2026-09-19): imported master keyword file, published full suite of 13 P0 long-tail how-to guides (over 28,000 words total content across all guides), wired internal deep-dive linking into core tool pages, updated sitemap and RSS feed.
