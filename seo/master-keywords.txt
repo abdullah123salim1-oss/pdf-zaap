@@ -1,0 +1,206 @@
+================================================================
+PDF ZAAP — MASTER KEYWORD FILE (for AI input)
+Site: PDF Zaap (pdfzaap.com) — 100% FREE online PDF tools, no signup, no watermark
+Target: USA + UK | Language: English | Total: 130 keywords
+Volumes = estimated USA/UK monthly searches (Sep 2026). Priority: P0=quick win (do first),
+P1=medium term, P2=pillar head term (long term).
+USAGE: Paste this file (or one CLUSTER section) into ChatGPT/Claude/Gemini
+along with a prompt from pdf-zaap-ai-prompts-guide.md
+================================================================
+
+---------- TOP 30 QUICK WINS (start here — high volume + low competition) ----------
+1. compress pdf to 100kb (USA 18,500 | Low comp | P0 | Tool page)
+2. compress pdf to 200kb (USA 14,800 | Low | P0 | Tool page)
+3. summarize pdf with ai free (USA 12,400 | Low | P0 | Tool page)
+4. compress pdf to 1mb (USA 12,100 | Low | P0 | Tool page)
+5. pdf to word without losing formatting (USA 9,800 | Low | P0 | Tool page)
+6. extract pages from pdf online free (USA 9,200 | Low | P0 | Tool page)
+7. pdf to text converter online (USA 9,100 | Low | P0 | Tool page)
+8. merge pdf files without losing quality (USA 8,900 | Low | P0 | Tool page)
+9. shrink pdf file size (USA 8,100 | Low | P0 | Tool page)
+10. make scanned pdf searchable (USA 7,600 | Low | P0 | Tool page)
+11. convert google docs to pdf (USA 7,200 | Low | P0 | Tool page)
+12. how to reduce pdf file size without losing quality (USA 6,800 | Low | P0 | Blog)
+13. combine multiple pdfs into one document (USA 6,800 | Low | P0 | Tool page)
+14. convert scanned pdf to word editable (USA 6,700 | Low | P0 | Tool page)
+15. compress pdf to 500kb (USA 6,600 | Low | P0 | Tool page)
+16. edit pdf text online (USA 6,400 | Low | P0 | Tool page)
+17. rotate pdf pages online free (USA 6,100 | Low | P0 | Tool page)
+18. join pdf files online free (USA 5,900 | Low | P0 | Tool page)
+19. add text to pdf online free (USA 5,900 | Low | P0 | Tool page)
+20. extract tables from pdf to excel free (USA 5,600 | Low | P0 | Tool page)
+21. add watermark to pdf online (USA 5,600 | Low | P0 | Tool page)
+22. convert heic to pdf iphone (USA 5,600 | Low | P0 | Tool page)
+23. reduce pdf size to 100kb (USA 5,400 | Low | P0 | Tool page)
+24. convert pdf to google docs editable (USA 5,400 | Low | P0 | Tool page)
+25. combine jpg and pdf into one file (USA 5,400 | Low | P0 | Tool page)
+26. compress pdf to 50kb (USA 4,900 | Low | P0 | Tool page)
+27. add signature to pdf iphone (USA 4,900 | CPC $3.20 | Low | P0 | Tool page)
+28. pdf size reducer online free (USA 4,900 | Low | P0 | Tool page)
+29. redact pdf online free (USA 4,800 | CPC $3.60 | Low | P0 | Tool page)
+30. ai pdf reader summarize (USA 4,800 | Low | P0 | Tool page)
+
+==================== FULL LIST BY CLUSTER ====================
+
+--- CLUSTER 1: Compress – Exact Size (HIGHEST PRIORITY — programmatic pages) ---
+Format: keyword | USA vol | UK vol | comp | KD | CPC$ | priority
+compress pdf to 100kb | 18500 | 3900 | Low | 12 | 0.85 | P0
+compress pdf to 200kb | 14800 | 3200 | Low | 11 | 0.80 | P0
+compress pdf to 1mb | 12100 | 2700 | Low | 13 | 0.82 | P0
+compress pdf to 500kb | 6600 | 1400 | Low | 9 | 0.65 | P0
+reduce pdf size to 100kb | 5400 | 1100 | Low | 8 | 0.60 | P0
+compress pdf to 50kb | 4900 | 900 | Low | 7 | 0.55 | P0
+compress pdf to 300kb | 4400 | 950 | Low | 8 | 0.60 | P0
+compress pdf to 2mb | 3900 | 820 | Low | 8 | 0.62 | P0
+reduce pdf file size to 200kb | 3600 | 750 | Low | 6 | 0.55 | P0
+compress pdf for email attachment under 10mb | 2400 | 520 | Low | 7 | 0.90 | P0
+shrink pdf to 100kb | 2100 | 450 | Low | 5 | 0.50 | P0
+reduce pdf size below 100kb | 1900 | 400 | Low | 5 | 0.52 | P0
+compress pdf to 100kb online free without losing quality | 1800 | 380 | Low | 4 | 0.55 | P0
+compress pdf to 150kb | 1500 | 320 | Low | 4 | 0.50 | P0
+compress pdf to 5mb | 1200 | 260 | Low | 5 | 0.55 | P0
+
+--- CLUSTER 2: Compress – General (pillar: /compress-pdf) ---
+compress pdf without losing quality | 22200 | 4800 | Medium | 38 | 1.10 | P1
+reduce pdf file size online free | 18100 | 3900 | Medium | 35 | 1.00 | P1
+shrink pdf file size | 8100 | 1700 | Low | 18 | 0.70 | P0
+pdf size reducer online free | 4900 | 1050 | Low | 14 | 0.68 | P0
+compress pdf on iphone free | 4100 | 850 | Low | 15 | 0.75 | P0
+compress scanned pdf without losing quality | 3300 | 700 | Low | 12 | 0.95 | P0
+reduce pdf size on mac without app | 2800 | 600 | Low | 11 | 0.70 | P0
+compress pdf without watermark free unlimited | 2600 | 540 | Low | 10 | 0.65 | P0
+
+--- CLUSTER 3: Merge & Combine (pillar: /merge-pdf) ---
+merge pdf online free | 201000 | 44000 | High | 82 | 1.40 | P2
+combine pdf files into one free | 33500 | 7200 | Medium | 42 | 1.15 | P1
+merge pdf files without losing quality | 8900 | 1900 | Low | 19 | 0.90 | P0
+combine multiple pdfs into one document | 6800 | 1450 | Low | 17 | 0.85 | P0
+join pdf files online free | 5900 | 1250 | Low | 16 | 0.75 | P0
+combine jpg and pdf into one file | 5400 | 1100 | Low | 13 | 0.70 | P0
+merge pdf on iphone free without app | 4700 | 900 | Low | 14 | 0.80 | P0
+merge pdf with images online | 3100 | 650 | Low | 11 | 0.65 | P0
+merge large pdf files online free no limit | 2300 | 480 | Low | 9 | 0.85 | P0
+combine pdf mac preview alternative online | 1700 | 360 | Low | 8 | 0.70 | P0
+
+--- CLUSTER 4: Split / Extract / Organize (pillar: /split-pdf) ---
+split pdf into separate pages | 14800 | 3100 | Medium | 32 | 1.05 | P1
+extract pages from pdf online free | 9200 | 1950 | Low | 18 | 0.90 | P0
+split pdf by pages online free | 7400 | 1550 | Low | 16 | 0.85 | P0
+remove pages from pdf online free | 6800 | 1420 | Low | 15 | 0.85 | P0
+rotate pdf pages online free | 6100 | 1280 | Low | 15 | 0.60 | P0
+extract tables from pdf to excel free | 5600 | 1180 | Low | 17 | 1.60 | P0
+extract images from pdf high quality | 4500 | 950 | Low | 14 | 0.75 | P0
+reorder pdf pages online | 2800 | 590 | Low | 9 | 0.65 | P0
+split pdf without losing quality | 2600 | 550 | Low | 9 | 0.75 | P0
+delete pages from pdf on iphone | 2300 | 470 | Low | 10 | 0.70 | P0
+delete blank pages from pdf automatically | 2100 | 440 | Low | 7 | 0.70 | P0
+split large pdf into smaller files by size | 1900 | 400 | Low | 8 | 0.80 | P0
+
+--- CLUSTER 5: PDF to Office (pillars: /pdf-to-word, /pdf-to-excel) ---
+pdf to word | 368000 | 74000 | High | 88 | 1.80 | P2
+pdf to excel | 74500 | 15800 | High | 68 | 1.70 | P2
+pdf to powerpoint converter free | 18200 | 3800 | Medium | 34 | 1.25 | P1
+pdf to word converter free without signup | 12400 | 2600 | Medium | 28 | 1.20 | P1
+pdf to word without losing formatting | 9800 | 2050 | Low | 19 | 1.35 | P0
+pdf to text converter online | 9100 | 1900 | Low | 20 | 0.85 | P0
+pdf to excel converter free accurate | 8900 | 1850 | Medium | 26 | 1.65 | P1
+convert scanned pdf to word editable | 6700 | 1400 | Low | 18 | 1.50 | P0
+convert pdf to google docs editable | 5400 | 1120 | Low | 16 | 1.10 | P0
+pdf to epub converter | 4600 | 980 | Low | 14 | 0.70 | P0
+convert pdf table to excel without losing formatting | 4300 | 900 | Low | 15 | 1.80 | P0
+convert pdf to html | 3900 | 820 | Low | 15 | 0.80 | P0
+pdf to word on iphone free | 3800 | 780 | Low | 13 | 1.00 | P0
+pdf to csv from bank statement | 2800 | 620 | Low | 12 | 2.40 | P0
+convert pdf to editable word on mac free | 2100 | 440 | Low | 10 | 1.05 | P0
+
+--- CLUSTER 6: Office/Image to PDF (pillars: /jpg-to-pdf, /word-to-pdf) ---
+jpg to pdf | 165000 | 34000 | High | 78 | 0.90 | P2
+word to pdf | 135000 | 28000 | High | 75 | 1.30 | P2
+png to pdf converter online | 18400 | 3850 | Medium | 30 | 0.72 | P1
+jpg to pdf converter multiple images one file | 11200 | 2350 | Medium | 22 | 0.75 | P1
+word to pdf converter free without watermark | 9800 | 2050 | Medium | 24 | 1.00 | P1
+convert web page to pdf | 8100 | 1700 | Medium | 27 | 1.05 | P1
+convert google docs to pdf | 7200 | 1500 | Low | 18 | 0.90 | P0
+html to pdf converter | 6800 | 1420 | Medium | 25 | 1.20 | P1
+convert heic to pdf iphone | 5600 | 1050 | Low | 16 | 0.85 | P0
+excel to pdf fit to one page | 4700 | 980 | Low | 14 | 1.10 | P0
+image to pdf without losing quality | 3900 | 820 | Low | 12 | 0.68 | P0
+powerpoint to pdf with notes | 2600 | 550 | Low | 11 | 0.85 | P0
+svg to pdf converter | 2200 | 460 | Low | 9 | 0.70 | P0
+convert tiff to pdf | 1800 | 380 | Low | 7 | 0.75 | P0
+
+--- CLUSTER 7: Edit / Sign / Fill (HIGH CPC $$$ — pillars: /edit-pdf, /sign-pdf) ---
+edit pdf online free | 90500 | 18500 | High | 72 | 2.80 | P2
+sign pdf online free | 33500 | 7200 | High | 58 | 4.50 | P2
+edit pdf online free without signup | 11800 | 2450 | Medium | 26 | 2.20 | P1
+add page numbers to pdf | 9200 | 1920 | Low | 19 | 1.40 | P0
+fill pdf form online free | 8700 | 1810 | Medium | 24 | 2.60 | P1
+sign pdf online free without signup | 6800 | 1410 | Medium | 22 | 3.80 | P1
+edit pdf text online | 6400 | 1320 | Low | 18 | 2.50 | P0
+add text to pdf online free | 5900 | 1220 | Low | 16 | 2.10 | P0
+add watermark to pdf online | 5600 | 1150 | Low | 16 | 1.30 | P0
+add signature to pdf iphone | 4900 | 980 | Low | 15 | 3.20 | P0
+redact pdf online free | 4800 | 1020 | Low | 17 | 3.60 | P0
+highlight pdf online free | 4300 | 900 | Low | 13 | 1.60 | P0
+annotate pdf online free | 3800 | 790 | Low | 14 | 1.80 | P0
+crop pdf pages online | 3400 | 710 | Low | 11 | 1.10 | P0
+esign pdf free no watermark | 3100 | 650 | Low | 13 | 4.10 | P0
+whiteout pdf text free | 1700 | 350 | Low | 8 | 2.20 | P0
+
+--- CLUSTER 8: Protect / Unlock (pillar: /protect-pdf) ---
+unlock pdf without password | 14800 | 3050 | Medium | 33 | 1.40 | P1
+protect pdf with password online | 12500 | 2600 | Medium | 29 | 1.50 | P1
+remove password from pdf own file | 8900 | 1850 | Low | 20 | 1.35 | P0
+remove watermark from pdf | 6700 | 1380 | Medium | 24 | 1.10 | P1
+lock pdf from editing | 3100 | 640 | Low | 12 | 1.45 | P0
+decrypt pdf online | 2800 | 580 | Low | 14 | 1.30 | P0
+flatten pdf form | 2300 | 480 | Low | 9 | 1.20 | P0
+secure pdf for sharing | 1500 | 310 | Low | 7 | 1.60 | P0
+
+--- CLUSTER 9: OCR / Scan (pillar: /ocr-pdf) ---
+ocr pdf online free | 18200 | 3800 | Medium | 31 | 1.90 | P1
+make scanned pdf searchable | 7600 | 1580 | Low | 18 | 2.10 | P0
+extract text from scanned pdf | 4200 | 880 | Low | 14 | 1.90 | P0
+convert scanned pdf to searchable text | 3400 | 710 | Low | 12 | 2.00 | P0
+scan to searchable pdf iphone | 3100 | 620 | Low | 13 | 1.80 | P0
+ocr handwriting to text pdf | 2600 | 540 | Low | 11 | 1.70 | P0
+ocr pdf without losing layout | 1400 | 290 | Low | 6 | 2.20 | P0
+deskew scanned pdf | 600 | 130 | Low | 3 | 1.20 | P0
+
+--- CLUSTER 10: AI PDF (EMERGING + $$$ B2B — pillars: /chat-with-pdf, /summarize-pdf) ---
+chat with pdf free | 22100 | 4600 | Medium | 32 | 3.10 | P1
+summarize pdf with ai free | 12400 | 2600 | Low | 19 | 2.80 | P0
+ai pdf reader summarize | 4800 | 1000 | Low | 14 | 2.60 | P0
+translate pdf with ai preserve formatting | 3600 | 750 | Low | 12 | 2.30 | P0
+ask questions to pdf ai | 2900 | 600 | Low | 10 | 2.90 | P0
+ai extract data from pdf invoices | 2100 | 450 | Low | 9 | 4.80 | P0
+chat with multiple pdfs | 1800 | 380 | Low | 8 | 3.00 | P0
+ai pdf quiz generator from textbook | 1500 | 320 | Low | 6 | 1.80 | P0
+summarize long pdf to bullet points | 1300 | 270 | Low | 5 | 2.40 | P0
+ai redact sensitive info pdf automatically | 900 | 190 | Low | 4 | 4.20 | P0
+
+--- CLUSTER 11: How-to / Blog (har post 1 tool ko link kare) ---
+how to reduce pdf file size without losing quality | 6800 | 1420 | Low | 15 | 0.95 | P0
+how to merge pdf files on iphone | 4400 | 900 | Low | 12 | 0.85 | P0
+how to convert pdf to word on mac free | 3600 | 750 | Low | 11 | 1.10 | P0
+how to translate a pdf document free | 3300 | 690 | Low | 11 | 1.60 | P0
+how to sign a pdf on iphone without app | 3100 | 640 | Low | 10 | 2.80 | P0
+how to compress pdf for email | 2800 | 580 | Low | 9 | 0.90 | P0
+how to fill out pdf form without printing | 2600 | 540 | Low | 9 | 2.40 | P0
+how to split pdf into single pages | 2400 | 500 | Low | 8 | 0.85 | P0
+how to convert jpg to pdf on windows | 2200 | 460 | Low | 8 | 0.65 | P0
+how to make pdf searchable from scanner | 1900 | 400 | Low | 7 | 1.90 | P0
+why is my pdf file so large | 1800 | 380 | Low | 6 | 0.80 | P0
+how to add page numbers to pdf in order | 1600 | 330 | Low | 6 | 1.20 | P0
+pdf vs pdf/a what is difference | 1400 | 300 | Low | 5 | 1.10 | P0
+how to combine scanned receipts into one pdf | 1100 | 230 | Low | 4 | 1.50 | P0
+
+==================== PAGE-TYPE MAP (AI content planning) ====================
+TOOL PILLARS (11 — bara content 500-800 words): /compress-pdf, /merge-pdf, /split-pdf,
+/pdf-to-word, /pdf-to-excel, /jpg-to-pdf, /word-to-pdf, /edit-pdf, /sign-pdf,
+/protect-pdf, /ocr-pdf, /chat-with-pdf, /summarize-pdf
+TOOL SUBPAGES (85+ — 300-500 words each, unique angle per page)
+BLOG POSTS (14 how-to — 1200+ words, screenshots, tool CTA above fold)
+PROGRAMMATIC (size x device matrix: 50kb/100kb/150kb/200kb/300kb/500kb/1mb/2mb/5mb
+x iphone/mac/windows/android = 36 pages, template + unique blocks)
+================================================================
