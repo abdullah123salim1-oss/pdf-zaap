@@ -2,120 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; media-src 'self' blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>PDF to Excel Converter Online Free — PDF to XLSX | PDFZaap</title>
-  <meta name="description" content="Extract tables and data from PDF files into editable Excel XLSX spreadsheets for free. Local browser conversion keeps financial data private.">
-  <link rel="canonical" href="https://pdfzaap.online/pdf-to-excel.html">
+  <title>PDF to Excel Converter Free — PDF to XLSX Online | PDFZaap</title>
+  <meta name="description" content="Extract PDF text into an editable Excel sheet in your browser. Each text line becomes a row; clear column gaps become cells. Free, private, no upload.">
+  <link rel="canonical" href="https://www.pdfzaap.online/pdf-to-excel.html">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/logo.png">
   <meta name="robots" content="index, follow">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="theme-color" content="#FF5200">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="PDF to Excel Converter Online Free — PDF to XLSX | PDFZaap">
-  <meta property="og:description" content="Extract tables and data from PDF files into editable Excel XLSX spreadsheets for free. Local browser conversion keeps financial data private.">
-  <meta property="og:image" content="https://pdfzaap.online/og-image.png">
+  <meta property="og:title" content="PDF to Excel Converter Free — PDF to XLSX Online | PDFZaap">
+  <meta property="og:description" content="Extract PDF text into an editable Excel sheet in your browser. Each text line becomes a row; clear column gaps become cells. Free, private, no upload.">
+  <meta property="og:image" content="https://www.pdfzaap.online/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://pdfzaap.online/pdf-to-excel.html">
+  <meta property="og:url" content="https://www.pdfzaap.online/pdf-to-excel.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PDFZaap">
   <meta property="og:locale" content="en_US">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PDF to Excel Converter Online Free — PDF to XLSX | PDFZaap">
-  <meta name="twitter:description" content="Extract tables and data from PDF files into editable Excel XLSX spreadsheets for free. Local browser conversion keeps financial data private.">
-  <meta name="twitter:image" content="https://pdfzaap.online/og-image.png">
+  <meta name="twitter:title" content="PDF to Excel Converter Free — PDF to XLSX Online | PDFZaap">
+  <meta name="twitter:description" content="Extract PDF text into an editable Excel sheet in your browser. Each text line becomes a row; clear column gaps become cells. Free, private, no upload.">
+  <meta name="twitter:image" content="https://www.pdfzaap.online/og-image.png">
   <meta name="twitter:site" content="@pdfzaap">
-
-  <meta name="author" content="PDFZaap">
-  <meta name="keywords" content="pdf to excel, convert pdf to xlsx, extract pdf tables to excel free">
-  <meta name="theme-color" content="#FF5200">
-
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDFZaap Convert PDF to Excel",
+    "url": "https://www.pdfzaap.online/pdf-to-excel.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "description": "Extract PDF text into an editable Excel sheet in your browser. Each text line becomes a row; clear column gaps become cells. Free, private, no upload.",
+    "publisher": {"@type": "Organization", "name": "PDFZaap", "url": "https://www.pdfzaap.online/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.pdfzaap.online/"},
+      {"@type": "ListItem", "position": 2, "name": "Convert PDF to Excel", "item": "https://www.pdfzaap.online/pdf-to-excel.html"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {"@type": "Question", "name": "Will my table's columns line up?", "acceptedAnswer": {"@type": "Answer", "text": "If the PDF uses real tab stops or consistent spacing, yes. If columns are only visually aligned by text boxes, cells will fall into a single column and need splitting."}},
+    {"@type": "Question", "name": "Are formulas preserved?", "acceptedAnswer": {"@type": "Answer", "text": "No — you get the visible values as cell values, which is what you need for analysis anyway."}},
+    {"@type": "Question", "name": "Does it handle multiple pages?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, every page is included, with a blank row between pages so you can see where one page ends."}},
+    {"@type": "Question", "name": "Is the output a real Excel file?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, a standard .xlsx that opens in Excel, Google Sheets, LibreOffice and most spreadsheet apps."}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-
-  <script type="application/ld+json" id="software-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "PDF to Excel - PDFZaap",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Web Browser",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "description": "Extract tables and data from PDF files into editable Excel XLSX spreadsheets for free. Local browser conversion keeps financial data private."
-}
-  </script>
-
-  <script type="application/ld+json" id="breadcrumb-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://pdfzaap.online/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "PDF to Excel",
-      "item": "https://pdfzaap.online/pdf-to-excel.html"
-    }
-  ]
-}
-  </script>
-
-  <script type="application/ld+json" id="faq-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Can I open the converted file in Microsoft Excel or Google Sheets?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, the resulting XLSX file is fully compatible with Excel, Google Sheets, and LibreOffice Calc."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are table column structures recognized automatically?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, PDFZaap parses text alignment and table borders to construct structured spreadsheet rows and columns."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data kept confidential during conversion?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely, all table extraction executes locally inside your web browser without server uploads."
-      }
-    }
-  ]
-}
-  </script>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-
   <header class="navbar" id="main-nav">
-    <a href="index.html" class="logo">⚡ PDF<span>Zaap</span></a>
+    <a href="/" class="logo">⚡ PDF<span>Zaap</span></a>
     <ul class="nav-links">
-      <li><a class="nav-link" href="index.html">Home</a></li>
-      <li><a href="index.html#tools-anchor" class="btn btn-primary">All Tools</a></li>
+      <li><a class="nav-link" href="/">Home</a></li>
+      <li><a class="nav-link" href="/#tools-anchor">All Tools</a></li>
+      <li><a class="nav-link" href="/blog/">Blog</a></li>
+      <li><a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a></li>
     </ul>
   </header>
 
@@ -123,68 +81,94 @@
     <div class="workspace-wrapper">
       <div class="workspace-main">
 
-        <nav class="breadcrumb">
-          <a href="index.html">Home</a> <span>&gt;</span> <span>PDF to Excel</span>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>&gt;</span> <span>📊 PDF to Excel</span>
         </nav>
 
-        <h1 class="workspace-title">📈 PDF to Excel</h1>
-        <p class="subtitle">Extract PDF tables and convert them into editable Excel spreadsheets</p>
+        <h1 class="workspace-title">📊 Convert PDF to Excel — Text to .xlsx</h1>
+        <p class="subtitle">Turn PDF text lines into spreadsheet rows (.xlsx)</p>
 
         <div class="dropzone" id="ws-dropzone">
           <div class="dropzone-icon">📥</div>
-          <h3>Select PDF file</h3>
+          <h3>Select your file</h3>
           <p>or drop file here</p>
           <input type="file" id="ws-file-input" class="display-none" accept=".pdf">
         </div>
 
         <div class="file-list" id="ws-file-list"></div>
         <div class="options-panel display-none" id="ws-options-panel"></div>
-        <div class="ws-canvas-wrapper display-none" id="ws-canvas-wrapper"></div>
+
 
         <div class="progress-bar-container" id="ws-progress-container">
           <div class="progress-bar-outer"><div class="progress-bar-inner" id="ws-progress-bar"></div></div>
           <p class="progress-status" id="ws-progress-status">Processing document contents...</p>
         </div>
 
-        <button class="btn btn-primary full-width" id="ws-process-btn" disabled>Convert PDF to Excel</button>
+        <button class="btn btn-primary full-width" id="ws-process-btn" disabled>Extract to Excel</button>
 
         <div class="security-note">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span>Files processed locally — zero server uploads</span>
+          <span>Files processed locally in your browser — nothing is uploaded to a server</span>
         </div>
 
         <div id="ws-output-box" class="output-container"></div>
 
+        <section class="tool-intro padding-top-bot">
+          <p>Spreadsheets trapped inside PDF statements, invoices and reports are painful to work with by hand. This tool reads the text of each PDF page, turns every line into a spreadsheet row, and splits cells where the PDF shows tabs or clear column spacing — then hands you a real <code>.xlsx</code> file. It is a practical extraction, not a table-perfect reconstruction, and the page explains exactly where the limits are.</p>
+        </section>
+
         <section class="how-it-works padding-top-bot">
           <div class="section-header margin-bot-3">
-            <h2>How to Convert PDF to Excel</h2>
+            <h2>How to pull PDF text into Excel</h2>
           </div>
           <div class="steps">
             <div class="step-item">
               <div class="step-num">1</div>
-              <h3>Upload PDF</h3>
-              <p>Select your PDF containing tabular data.</p>
+              <h3>Select the PDF</h3>
+              <p>Upload the statement, invoice or report whose data you need in a spreadsheet.</p>
             </div>
             <div class="step-item">
               <div class="step-num">2</div>
-              <h3>Extract Tables</h3>
-              <p>Parse text rows and table grids locally.</p>
+              <h3>Click Extract to Excel</h3>
+              <p>The browser reads the text line by line, page by page.</p>
             </div>
             <div class="step-item">
               <div class="step-num">3</div>
-              <h3>Download XLSX</h3>
-              <p>Click convert to save your editable Excel spreadsheet.</p>
+              <h3>Check the row mapping</h3>
+              <p>Each visible line becomes a row; columns are guessed from tabs and wide gaps.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <h3>Download the .xlsx</h3>
+              <p>Open the workbook in Excel or Google Sheets and tidy any tricky rows.</p>
             </div>
           </div>
         </section>
 
         <section class="padding-vert-2">
           <div class="section-header margin-bot-3">
-            <h2>Why Use PDFZaap's PDF to Excel?</h2>
+            <h2>Why use PDFZaap to work with PDF data locally</h2>
           </div>
-          <p class="about-text">
-            Extract tabular data and financial statements from PDF files directly into editable Excel spreadsheets with PDFZaap. Our intelligent table parsing technology identifies row and column structures locally on your device, converting static PDF rows into native XLSX cells ready for analysis in Microsoft Excel or Google Sheets. Because processing runs entirely in your local browser sandbox, confidential corporate reports and audit documents remain 100% private. Convert PDF to Excel for free without watermarks or file size restrictions.
-          </p>
+<p><strong class='subtext'>Your data stays on your machine.</strong> Financial statements, HR exports and client invoices are exactly the files you should not hand to an upload server. Everything here runs in the browser: the PDF is read locally, the sheet is built locally, and the download goes straight to your device.</p><p class='subtext'><strong>Honest about what it is.</strong> This is a text-line extraction with simple column detection. A clean, tab-aligned PDF table converts well; a PDF with merged cells, rotated text or graphics-drawn rules will need manual cleanup. If you need the table rebuilt perfectly, a dedicated table-extraction service (or re-exporting from the source system) is the right tool — we would rather tell you that than pretend otherwise.</p>
+        </section>
+
+        <section class="padding-vert-2">
+          <div class="section-header margin-bot-3">
+            <h2>Tips &amp; common problems</h2>
+          </div>
+          <ul class="tips-list">
+            <li>Prefer the original? If you can get the data as CSV or XLSX from the source system, do that — this tool is for when you only have the PDF.</li>
+            <li>Lines that should be one row but wrapped onto two in the PDF will appear as two rows; merge them in Excel.</li>
+            <li>For scanned PDFs there is no text layer: run <a href='/ocr-pdf.html'>OCR PDF</a> first, then paste the recognized text into your sheet.</li>
+            <li>Very dense reports may need several passes: extract, inspect, then re-extract a narrower page range with <a href='/extract-pages-pdf.html'>Extract Pages</a>.</li>
+          </ul>
+        </section>
+
+        <section class="padding-vert-2">
+          <div class="section-header margin-bot-3">
+            <h2>When to use this vs. related tools</h2>
+          </div>
+<p>Reach for this when you need <em>editable rows</em> from a text-based PDF. For plain text you want to paste into a document, use <a href='/pdf-to-text.html'>PDF to Text</a>; for Word-style documents, <a href='/pdf-to-word.html'>PDF to Word</a>; and to go the other way (spreadsheet → PDF), use <a href='/excel-to-pdf.html'>Excel to PDF</a>. See also <a href='/blog/why-is-my-pdf-file-so-large.html'>Why is my PDF file so large?</a> for context on what PDFs actually contain.</p>
         </section>
 
         <section class="faq-section margin-top-3-no-pad">
@@ -193,31 +177,20 @@
           </div>
           <div id="ws-faqs">
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>Can I open the converted file in Microsoft Excel or Google Sheets?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>Yes, the resulting XLSX file is fully compatible with Excel, Google Sheets, and LibreOffice Calc.</p>
-              </div>
+              <summary class="faq-trigger"><span>Will my table's columns line up?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>If the PDF uses real tab stops or consistent spacing, yes. If columns are only visually aligned by text boxes, cells will fall into a single column and need splitting.</p></div>
             </details>
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>Are table column structures recognized automatically?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>Yes, PDFZaap parses text alignment and table borders to construct structured spreadsheet rows and columns.</p>
-              </div>
+              <summary class="faq-trigger"><span>Are formulas preserved?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>No — you get the visible values as cell values, which is what you need for analysis anyway.</p></div>
             </details>
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>Is my data kept confidential during conversion?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>Absolutely, all table extraction executes locally inside your web browser without server uploads.</p>
-              </div>
+              <summary class="faq-trigger"><span>Does it handle multiple pages?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>Yes, every page is included, with a blank row between pages so you can see where one page ends.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-trigger"><span>Is the output a real Excel file?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>Yes, a standard .xlsx that opens in Excel, Google Sheets, LibreOffice and most spreadsheet apps.</p></div>
             </details>
           </div>
         </section>
@@ -227,24 +200,24 @@
             <h2>Related PDF Tools</h2>
           </div>
           <div class="tools-grid grid-2-cols-no-pad">
-            <a href="excel-to-pdf.html" class="tool-card">
+            <a href="/excel-to-pdf.html" class="tool-card">
               <div class="tool-icon-wrapper">📊</div>
               <h3>Excel to PDF</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
-            <a href="pdf-to-word.html" class="tool-card">
+            <a href="/pdf-to-text.html" class="tool-card">
+              <div class="tool-icon-wrapper">📝</div>
+              <h3>PDF to Text</h3>
+              <span class="tool-card-link">Use Tool ➔</span>
+            </a>
+            <a href="/pdf-to-word.html" class="tool-card">
               <div class="tool-icon-wrapper">📝</div>
               <h3>PDF to Word</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
-            <a href="ocr-pdf.html" class="tool-card">
-              <div class="tool-icon-wrapper">🔍</div>
+            <a href="/ocr-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">👁️</div>
               <h3>OCR PDF</h3>
-              <span class="tool-card-link">Use Tool ➔</span>
-            </a>
-            <a href="compress-pdf.html" class="tool-card">
-              <div class="tool-icon-wrapper">📉</div>
-              <h3>Compress PDF</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
           </div>
@@ -258,55 +231,62 @@
     <div class="footer-grid">
       <div class="footer-col">
         <h4>⚡ PDF<span>Zaap</span></h4>
-        <p>Your secure, browser-based assistant built for fast client-side file conversions and PDF edits. Free, safe, and completely private.</p>
+        <p>Free, browser-based PDF tools that process your files locally — no uploads, no signup, no watermarks.</p>
       </div>
       <div class="footer-col">
-        <h5>Popular Convert</h5>
+        <h5>Popular Tools</h5>
         <ul class="footer-links">
-          <li><a href="pdf-to-word.html">PDF to Word</a></li>
-          <li><a href="jpg-to-pdf.html">JPG to PDF</a></li>
-          <li><a href="pdf-to-jpg.html">PDF to JPG</a></li>
-          <li><a href="word-to-pdf.html">Word to PDF</a></li>
+          <li><a href="/pdf-to-word.html">PDF to Word</a></li>
+          <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
+          <li><a href="/pdf-to-jpg.html">PDF to JPG</a></li>
+          <li><a href="/word-to-pdf.html">Word to PDF</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Edit &amp; Manage</h5>
+        <h5>Edit &amp; Organize</h5>
         <ul class="footer-links">
-          <li><a href="merge-pdf.html">Merge PDF</a></li>
-          <li><a href="split-pdf.html">Split PDF</a></li>
-          <li><a href="compress-pdf.html">Compress PDF</a></li>
-          <li><a href="add-watermark-pdf.html">Add Watermark</a></li>
+          <li><a href="/merge-pdf.html">Merge PDF</a></li>
+          <li><a href="/split-pdf.html">Split PDF</a></li>
+          <li><a href="/compress-pdf.html">Compress PDF</a></li>
+          <li><a href="/add-watermark-pdf.html">Add Watermark</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>Security &amp; Advanced</h5>
         <ul class="footer-links">
-          <li><a href="protect-pdf.html">Protect PDF</a></li>
-          <li><a href="esign-pdf.html">E-Sign PDF</a></li>
-          <li><a href="ocr-pdf.html">OCR PDF</a></li>
-          <li><a href="flatten-pdf.html">Flatten PDF</a></li>
+          <li><a href="/protect-pdf.html">Protect PDF</a></li>
+          <li><a href="/esign-pdf.html">E-Sign PDF</a></li>
+          <li><a href="/ocr-pdf.html">OCR PDF</a></li>
+          <li><a href="/flatten-pdf.html">Flatten PDF</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/blog/">Blog</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 PDFZaap. All rights reserved. Handcrafted for fast PDF editing.</p>
+      <p>&copy; 2026 PDFZaap. All rights reserved. Built for fast, private PDF work.</p>
       <div class="footer-legal-links">
-        <span class="cursor-pointer" onclick="toggleLegalModal('privacy')">Privacy Policy</span>
-        <span class="cursor-pointer" onclick="toggleLegalModal('terms')">Terms of Service</span>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
       </div>
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
-  <script src="script.js" defer></script>
-  <script defer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
+  <script src="/script.js" defer></script>
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
       activeTool = 'pdf-to-excel';
-      if (typeof setupOptionsPanel === 'function') {
-        setupOptionsPanel(activeTool);
-      }
+      if (typeof setupOptionsPanel === 'function') setupOptionsPanel(activeTool);
     });
   </script>
+
 </body>
 </html>

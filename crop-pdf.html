@@ -2,120 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; media-src 'self' blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Crop PDF Online Free — Trim Page Margins | PDFZaap</title>
-  <meta name="description" content="Crop PDF margins and trim unwanted borders for free in your browser. Fully private client-side processing with zero uploads.">
-  <link rel="canonical" href="https://pdfzaap.online/crop-pdf.html">
+  <meta name="description" content="Crop PDF pages by trimming margins as a percentage of the page (0–45% per side) in your browser. Free, private, no upload.">
+  <link rel="canonical" href="https://www.pdfzaap.online/crop-pdf.html">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/logo.png">
   <meta name="robots" content="index, follow">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="theme-color" content="#FF5200">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Crop PDF Online Free — Trim Page Margins | PDFZaap">
-  <meta property="og:description" content="Crop PDF margins and trim unwanted borders for free in your browser. Fully private client-side processing with zero uploads.">
-  <meta property="og:image" content="https://pdfzaap.online/og-image.png">
+  <meta property="og:description" content="Crop PDF pages by trimming margins as a percentage of the page (0–45% per side) in your browser. Free, private, no upload.">
+  <meta property="og:image" content="https://www.pdfzaap.online/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://pdfzaap.online/crop-pdf.html">
+  <meta property="og:url" content="https://www.pdfzaap.online/crop-pdf.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PDFZaap">
   <meta property="og:locale" content="en_US">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Crop PDF Online Free — Trim Page Margins | PDFZaap">
-  <meta name="twitter:description" content="Crop PDF margins and trim unwanted borders for free in your browser. Fully private client-side processing with zero uploads.">
-  <meta name="twitter:image" content="https://pdfzaap.online/og-image.png">
+  <meta name="twitter:description" content="Crop PDF pages by trimming margins as a percentage of the page (0–45% per side) in your browser. Free, private, no upload.">
+  <meta name="twitter:image" content="https://www.pdfzaap.online/og-image.png">
   <meta name="twitter:site" content="@pdfzaap">
-
-  <meta name="author" content="PDFZaap">
-  <meta name="keywords" content="crop pdf, trim pdf margins, crop pdf online free">
-  <meta name="theme-color" content="#FF5200">
-
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDFZaap Crop PDF Pages",
+    "url": "https://www.pdfzaap.online/crop-pdf.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "description": "Crop PDF pages by trimming margins as a percentage of the page (0–45% per side) in your browser. Free, private, no upload.",
+    "publisher": {"@type": "Organization", "name": "PDFZaap", "url": "https://www.pdfzaap.online/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.pdfzaap.online/"},
+      {"@type": "ListItem", "position": 2, "name": "Crop PDF Pages", "item": "https://www.pdfzaap.online/crop-pdf.html"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {"@type": "Question", "name": "How precise is the crop?", "acceptedAnswer": {"@type": "Answer", "text": "Percentages of the page per side, in 1% steps — enough for borders and margins. For pixel-exact trimming, a desktop PDF editor is the right tool."}},
+    {"@type": "Question", "name": "Is the cropped content deleted from the file?", "acceptedAnswer": {"@type": "Answer", "text": "No — the page boundary changes, but the original content remains in the file and can be revealed by 'show all' in most viewers. This is a visual crop, not redaction."}},
+    {"@type": "Question", "name": "Does it apply to all pages?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the same crop is applied to every page in the document."}},
+    {"@type": "Question", "name": "Why 45% as the maximum?", "acceptedAnswer": {"@type": "Answer", "text": "Cropping more than that leaves a page too small to be useful — the cap keeps you in sensible territory."}},
+    {"@type": "Question", "name": "Can I crop different amounts for different pages?", "acceptedAnswer": {"@type": "Answer", "text": "The tool applies the same crop to every page. For page-specific trimming, extract the affected pages, crop separately, and merge back with <a href='/merge-pdf.html'>Merge PDF</a>."}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-
-  <script type="application/ld+json" id="software-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Crop PDF - PDFZaap",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Web Browser",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "description": "Crop PDF margins and trim unwanted borders for free in your browser. Fully private client-side processing with zero uploads."
-}
-  </script>
-
-  <script type="application/ld+json" id="breadcrumb-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://pdfzaap.online/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Crop PDF",
-      "item": "https://pdfzaap.online/crop-pdf.html"
-    }
-  ]
-}
-  </script>
-
-  <script type="application/ld+json" id="faq-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Can I crop all pages at once?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, you can apply your custom crop box to all pages or select individual pages."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does cropping reduce text quality?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No, cropping only adjusts page boundary metadata, leaving text vector data crisp and intact."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my PDF file uploaded to a server?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No, all page cropping occurs locally inside your web browser for complete privacy."
-      }
-    }
-  ]
-}
-  </script>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-
   <header class="navbar" id="main-nav">
-    <a href="index.html" class="logo">⚡ PDF<span>Zaap</span></a>
+    <a href="/" class="logo">⚡ PDF<span>Zaap</span></a>
     <ul class="nav-links">
-      <li><a class="nav-link" href="index.html">Home</a></li>
-      <li><a href="index.html#tools-anchor" class="btn btn-primary">All Tools</a></li>
+      <li><a class="nav-link" href="/">Home</a></li>
+      <li><a class="nav-link" href="/#tools-anchor">All Tools</a></li>
+      <li><a class="nav-link" href="/blog/">Blog</a></li>
+      <li><a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a></li>
     </ul>
   </header>
 
@@ -123,68 +82,95 @@
     <div class="workspace-wrapper">
       <div class="workspace-main">
 
-        <nav class="breadcrumb">
-          <a href="index.html">Home</a> <span>&gt;</span> <span>Crop PDF</span>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>&gt;</span> <span>✂️ Crop PDF</span>
         </nav>
 
-        <h1 class="workspace-title">🖼️ Crop PDF</h1>
-        <p class="subtitle">Trim unwanted margins and crop specific areas from PDF pages</p>
+        <h1 class="workspace-title">✂️ Crop PDF Pages — Trim the Margins</h1>
+        <p class="subtitle">Trim margins from PDF pages</p>
 
         <div class="dropzone" id="ws-dropzone">
           <div class="dropzone-icon">📥</div>
-          <h3>Select PDF file</h3>
+          <h3>Select your file</h3>
           <p>or drop file here</p>
           <input type="file" id="ws-file-input" class="display-none" accept=".pdf">
         </div>
 
         <div class="file-list" id="ws-file-list"></div>
         <div class="options-panel display-none" id="ws-options-panel"></div>
-        <div class="ws-canvas-wrapper display-none" id="ws-canvas-wrapper"></div>
+
 
         <div class="progress-bar-container" id="ws-progress-container">
           <div class="progress-bar-outer"><div class="progress-bar-inner" id="ws-progress-bar"></div></div>
           <p class="progress-status" id="ws-progress-status">Processing document contents...</p>
         </div>
 
-        <button class="btn btn-primary full-width" id="ws-process-btn" disabled>Crop PDF Pages</button>
+        <button class="btn btn-primary full-width" id="ws-process-btn" disabled>Crop Pages</button>
 
         <div class="security-note">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span>Files processed locally — zero server uploads</span>
+          <span>Files processed locally in your browser — nothing is uploaded to a server</span>
         </div>
 
         <div id="ws-output-box" class="output-container"></div>
 
+        <section class="tool-intro padding-top-bot">
+          <p>Cut down oversized margins, black scanner borders, or unwanted page edges. Enter how much to trim from each side — 0 to 45% of the page width or height per side — and the tool sets new page boundaries so only the remaining area shows. The output keeps the original content quality, and everything runs locally.</p>
+        </section>
+
         <section class="how-it-works padding-top-bot">
           <div class="section-header margin-bot-3">
-            <h2>How to Crop PDF</h2>
+            <h2>How to crop a PDF</h2>
           </div>
           <div class="steps">
             <div class="step-item">
               <div class="step-num">1</div>
-              <h3>Upload PDF</h3>
-              <p>Select or drag your PDF document.</p>
+              <h3>Select the PDF</h3>
+              <p>Upload the document with the margins or borders to remove.</p>
             </div>
             <div class="step-item">
               <div class="step-num">2</div>
-              <h3>Adjust Crop Area</h3>
-              <p>Drag crop handles to set desired page margins.</p>
+              <h3>Set the crop amounts</h3>
+              <p>Enter percentages for Left, Right, Top and Bottom (e.g. 5% each side for a gentle trim, 10–15% for heavy scanner borders).</p>
             </div>
             <div class="step-item">
               <div class="step-num">3</div>
-              <h3>Crop &amp; Download</h3>
-              <p>Click crop and download your trimmed PDF file.</p>
+              <h3>Click Crop Pages</h3>
+              <p>Every page's visible area is reduced to the remaining rectangle.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <h3>Download the cropped PDF</h3>
+              <p>Check a corner to confirm the borders are gone.</p>
             </div>
           </div>
         </section>
 
         <section class="padding-vert-2">
           <div class="section-header margin-bot-3">
-            <h2>Why Use PDFZaap's Crop PDF?</h2>
+            <h2>Why use PDFZaap to fix oversize pages without re-scanning</h2>
           </div>
-          <p class="about-text">
-            PDFZaap's Crop PDF tool allows you to visually trim margins and remove unwanted content borders from your documents without transmitting files to remote servers. Whether preparing PDF documents for printing, adjusting scanned page margins, or trimming white space from research papers, our client-side editor processes everything locally inside your browser sandbox. Enjoy precise margin adjustments, custom visual box cropping, and crisp file exports completely free of charge with no watermarks or registration.
-          </p>
+<p><strong class='subtext'>The scanner-border fix.</strong> Flatbed and phone scans frequently come back with a dark border or a thick white margin that no one asked for. Re-scanning is slower; cropping in the browser is one minute. The page box is simply changed — no re-encoding, so quality is untouched.</p><p class='subtext'><strong>Know exactly what cropping does.</strong> Cropping changes the <em>visible</em> area of each page: the trimmed content is still inside the file (PDF viewers can 'show all' to reveal it), but the page now displays only your chosen rectangle. That is ideal for layout and appearance, and it is not a way to securely delete content — for that, use a redaction workflow that removes the data itself. Cropping applies the same percentages to every page, which suits uniform scanner output; for page-by-page differences, process the pages separately with <a href='/extract-pages-pdf.html'>Extract Pages</a>.</p>
+        </section>
+
+        <section class="padding-vert-2">
+          <div class="section-header margin-bot-3">
+            <h2>Tips &amp; common problems</h2>
+          </div>
+          <ul class="tips-list">
+            <li>Start conservative (3–5% per side) and increase — you can always re-crop the original, but over-cropped content is gone from view.</li>
+            <li>Scanner black borders are usually 5–12% of the page; phone screenshots with system bars need a larger top or bottom trim.</li>
+            <li>After cropping, <a href='/resize-pdf.html'>Resize PDF</a> can normalize the pages to A4 or Letter.</li>
+            <li>Remember cropping is visual: the removed areas remain in the file. For sensitive content, use proper redaction instead.</li>
+            <li>Crop a single test page first (extract it with <a href='/extract-pages-pdf.html'>Extract Pages</a>, crop, inspect) before applying settings to the whole document.</li>
+          </ul>
+        </section>
+
+        <section class="padding-vert-2">
+          <div class="section-header margin-bot-3">
+            <h2>When to use this vs. related tools</h2>
+          </div>
+<p>Use <strong>Crop PDF</strong> for uniform margin and border trimming. To change the page <em>size</em> (not just the visible area), use <a href='/resize-pdf.html'>Resize PDF</a>. For removing whole pages, <a href='/delete-pdf-pages.html'>Delete PDF Pages</a>. For fixing orientation before cropping, <a href='/rotate-pdf.html'>Rotate PDF</a> first.If the goal is a standard page size rather than just less white space, <a href='/resize-pdf.html'>Resize PDF</a> is the more direct tool.</p>
         </section>
 
         <section class="faq-section margin-top-3-no-pad">
@@ -193,31 +179,24 @@
           </div>
           <div id="ws-faqs">
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>Can I crop all pages at once?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>Yes, you can apply your custom crop box to all pages or select individual pages.</p>
-              </div>
+              <summary class="faq-trigger"><span>How precise is the crop?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>Percentages of the page per side, in 1% steps — enough for borders and margins. For pixel-exact trimming, a desktop PDF editor is the right tool.</p></div>
             </details>
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>Does cropping reduce text quality?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>No, cropping only adjusts page boundary metadata, leaving text vector data crisp and intact.</p>
-              </div>
+              <summary class="faq-trigger"><span>Is the cropped content deleted from the file?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>No — the page boundary changes, but the original content remains in the file and can be revealed by 'show all' in most viewers. This is a visual crop, not redaction.</p></div>
             </details>
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>Is my PDF file uploaded to a server?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>No, all page cropping occurs locally inside your web browser for complete privacy.</p>
-              </div>
+              <summary class="faq-trigger"><span>Does it apply to all pages?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>Yes, the same crop is applied to every page in the document.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-trigger"><span>Why 45% as the maximum?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>Cropping more than that leaves a page too small to be useful — the cap keeps you in sensible territory.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-trigger"><span>Can I crop different amounts for different pages?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>The tool applies the same crop to every page. For page-specific trimming, extract the affected pages, crop separately, and merge back with <a href='/merge-pdf.html'>Merge PDF</a>.</p></div>
             </details>
           </div>
         </section>
@@ -227,24 +206,24 @@
             <h2>Related PDF Tools</h2>
           </div>
           <div class="tools-grid grid-2-cols-no-pad">
-            <a href="resize-pdf.html" class="tool-card">
+            <a href="/resize-pdf.html" class="tool-card">
               <div class="tool-icon-wrapper">📐</div>
               <h3>Resize PDF</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
-            <a href="merge-pdf.html" class="tool-card">
-              <div class="tool-icon-wrapper">🔗</div>
-              <h3>Merge PDF</h3>
+            <a href="/rotate-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">🔄</div>
+              <h3>Rotate PDF</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
-            <a href="split-pdf.html" class="tool-card">
-              <div class="tool-icon-wrapper">✂️</div>
-              <h3>Split PDF</h3>
+            <a href="/delete-pdf-pages.html" class="tool-card">
+              <div class="tool-icon-wrapper">❌</div>
+              <h3>Delete PDF Pages</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
-            <a href="compress-pdf.html" class="tool-card">
-              <div class="tool-icon-wrapper">📉</div>
-              <h3>Compress PDF</h3>
+            <a href="/extract-pages-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">📤</div>
+              <h3>Extract Pages</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
           </div>
@@ -258,54 +237,61 @@
     <div class="footer-grid">
       <div class="footer-col">
         <h4>⚡ PDF<span>Zaap</span></h4>
-        <p>Your secure, browser-based assistant built for fast client-side file conversions and PDF edits. Free, safe, and completely private.</p>
+        <p>Free, browser-based PDF tools that process your files locally — no uploads, no signup, no watermarks.</p>
       </div>
       <div class="footer-col">
-        <h5>Popular Convert</h5>
+        <h5>Popular Tools</h5>
         <ul class="footer-links">
-          <li><a href="pdf-to-word.html">PDF to Word</a></li>
-          <li><a href="jpg-to-pdf.html">JPG to PDF</a></li>
-          <li><a href="pdf-to-jpg.html">PDF to JPG</a></li>
-          <li><a href="word-to-pdf.html">Word to PDF</a></li>
+          <li><a href="/pdf-to-word.html">PDF to Word</a></li>
+          <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
+          <li><a href="/pdf-to-jpg.html">PDF to JPG</a></li>
+          <li><a href="/word-to-pdf.html">Word to PDF</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Edit &amp; Manage</h5>
+        <h5>Edit &amp; Organize</h5>
         <ul class="footer-links">
-          <li><a href="merge-pdf.html">Merge PDF</a></li>
-          <li><a href="split-pdf.html">Split PDF</a></li>
-          <li><a href="compress-pdf.html">Compress PDF</a></li>
-          <li><a href="add-watermark-pdf.html">Add Watermark</a></li>
+          <li><a href="/merge-pdf.html">Merge PDF</a></li>
+          <li><a href="/split-pdf.html">Split PDF</a></li>
+          <li><a href="/compress-pdf.html">Compress PDF</a></li>
+          <li><a href="/add-watermark-pdf.html">Add Watermark</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>Security &amp; Advanced</h5>
         <ul class="footer-links">
-          <li><a href="protect-pdf.html">Protect PDF</a></li>
-          <li><a href="esign-pdf.html">E-Sign PDF</a></li>
-          <li><a href="ocr-pdf.html">OCR PDF</a></li>
-          <li><a href="flatten-pdf.html">Flatten PDF</a></li>
+          <li><a href="/protect-pdf.html">Protect PDF</a></li>
+          <li><a href="/esign-pdf.html">E-Sign PDF</a></li>
+          <li><a href="/ocr-pdf.html">OCR PDF</a></li>
+          <li><a href="/flatten-pdf.html">Flatten PDF</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/blog/">Blog</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 PDFZaap. All rights reserved. Handcrafted for fast PDF editing.</p>
+      <p>&copy; 2026 PDFZaap. All rights reserved. Built for fast, private PDF work.</p>
       <div class="footer-legal-links">
-        <span class="cursor-pointer" onclick="toggleLegalModal('privacy')">Privacy Policy</span>
-        <span class="cursor-pointer" onclick="toggleLegalModal('terms')">Terms of Service</span>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
       </div>
     </div>
   </footer>
 
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
-  <script src="script.js" defer></script>
-  <script defer>
+  <script src="/script.js" defer></script>
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
       activeTool = 'crop-pdf';
-      if (typeof setupOptionsPanel === 'function') {
-        setupOptionsPanel(activeTool);
-      }
+      if (typeof setupOptionsPanel === 'function') setupOptionsPanel(activeTool);
     });
   </script>
+
 </body>
 </html>

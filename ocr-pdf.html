@@ -2,120 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; media-src 'self' blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>OCR PDF Online Free — Extract Text from Scanned PDF | PDFZaap</title>
-  <meta name="description" content="Convert scanned PDFs and document images into searchable, copyable text for free. Fast browser-side OCR with complete data privacy.">
-  <link rel="canonical" href="https://pdfzaap.online/ocr-pdf.html">
+  <title>OCR PDF Free Online — Extract Text from Scans | PDFZaap</title>
+  <meta name="description" content="Run OCR on scanned PDFs and images in your browser with Tesseract.js. File is processed locally; only the public language model downloads. Free, no signup.">
+  <link rel="canonical" href="https://www.pdfzaap.online/ocr-pdf.html">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/logo.png">
   <meta name="robots" content="index, follow">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="theme-color" content="#FF5200">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="OCR PDF Online Free — Extract Text from Scanned PDF | PDFZaap">
-  <meta property="og:description" content="Convert scanned PDFs and document images into searchable, copyable text for free. Fast browser-side OCR with complete data privacy.">
-  <meta property="og:image" content="https://pdfzaap.online/og-image.png">
+  <meta property="og:title" content="OCR PDF Free Online — Extract Text from Scans | PDFZaap">
+  <meta property="og:description" content="Run OCR on scanned PDFs and images in your browser with Tesseract.js. File is processed locally; only the public language model downloads. Free, no signup.">
+  <meta property="og:image" content="https://www.pdfzaap.online/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://pdfzaap.online/ocr-pdf.html">
+  <meta property="og:url" content="https://www.pdfzaap.online/ocr-pdf.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PDFZaap">
   <meta property="og:locale" content="en_US">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="OCR PDF Online Free — Extract Text from Scanned PDF | PDFZaap">
-  <meta name="twitter:description" content="Convert scanned PDFs and document images into searchable, copyable text for free. Fast browser-side OCR with complete data privacy.">
-  <meta name="twitter:image" content="https://pdfzaap.online/og-image.png">
+  <meta name="twitter:title" content="OCR PDF Free Online — Extract Text from Scans | PDFZaap">
+  <meta name="twitter:description" content="Run OCR on scanned PDFs and images in your browser with Tesseract.js. File is processed locally; only the public language model downloads. Free, no signup.">
+  <meta name="twitter:image" content="https://www.pdfzaap.online/og-image.png">
   <meta name="twitter:site" content="@pdfzaap">
-
-  <meta name="author" content="PDFZaap">
-  <meta name="keywords" content="ocr pdf, optical character recognition pdf, extract text from scanned pdf">
-  <meta name="theme-color" content="#FF5200">
-
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDFZaap OCR a Scanned PDF",
+    "url": "https://www.pdfzaap.online/ocr-pdf.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "description": "Run OCR on scanned PDFs and images in your browser with Tesseract.js. File is processed locally; only the public language model downloads. Free, no signup.",
+    "publisher": {"@type": "Organization", "name": "PDFZaap", "url": "https://www.pdfzaap.online/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.pdfzaap.online/"},
+      {"@type": "ListItem", "position": 2, "name": "OCR a Scanned PDF", "item": "https://www.pdfzaap.online/ocr-pdf.html"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {"@type": "Question", "name": "Does it need internet?", "acceptedAnswer": {"@type": "Answer", "text": "Only the first time, to download the public English language model. Your document is never sent anywhere — recognition is local."}},
+    {"@type": "Question", "name": "How accurate is it?", "acceptedAnswer": {"@type": "Answer", "text": "Very good for clean printed English; noticeably worse for small type, skew, photos and handwriting. Always proofread critical results."}},
+    {"@type": "Question", "name": "Why not a searchable PDF output?", "acceptedAnswer": {"@type": "Answer", "text": "A proper text-overlay PDF is hard to produce reliably in a browser, so we output clean text instead of promising a half-working overlay. Paste the text where you need it."}},
+    {"@type": "Question", "name": "What languages are supported?", "acceptedAnswer": {"@type": "Answer", "text": "English in this build. Tesseract supports many languages, but this tool is configured for English to keep the model download small and the results focused."}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-
-  <script type="application/ld+json" id="software-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "OCR PDF - PDFZaap",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Web Browser",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "description": "Convert scanned PDFs and document images into searchable, copyable text for free. Fast browser-side OCR with complete data privacy."
-}
-  </script>
-
-  <script type="application/ld+json" id="breadcrumb-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://pdfzaap.online/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "OCR PDF",
-      "item": "https://pdfzaap.online/ocr-pdf.html"
-    }
-  ]
-}
-  </script>
-
-  <script type="application/ld+json" id="faq-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What languages does the OCR engine support?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "PDFZaap supports English and multiple latin-script languages for character recognition."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I copy the recognized text directly?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, extracted text can be copied to your clipboard or saved as a clean text file."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my scanned PDF uploaded to a server?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No, OCR recognition runs locally in your web browser using modern client-side WebAssembly."
-      }
-    }
-  ]
-}
-  </script>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-
   <header class="navbar" id="main-nav">
-    <a href="index.html" class="logo">⚡ PDF<span>Zaap</span></a>
+    <a href="/" class="logo">⚡ PDF<span>Zaap</span></a>
     <ul class="nav-links">
-      <li><a class="nav-link" href="index.html">Home</a></li>
-      <li><a href="index.html#tools-anchor" class="btn btn-primary">All Tools</a></li>
+      <li><a class="nav-link" href="/">Home</a></li>
+      <li><a class="nav-link" href="/#tools-anchor">All Tools</a></li>
+      <li><a class="nav-link" href="/blog/">Blog</a></li>
+      <li><a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a></li>
     </ul>
   </header>
 
@@ -123,69 +81,95 @@
     <div class="workspace-wrapper">
       <div class="workspace-main">
 
-        <nav class="breadcrumb">
-          <a href="index.html">Home</a> <span>&gt;</span> <span>OCR PDF</span>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>&gt;</span> <span>👁️ OCR PDF</span>
         </nav>
 
-        <h1 class="workspace-title">🔍 OCR PDF</h1>
-        <p class="subtitle">Extract readable text from scanned PDF documents and images</p>
+        <h1 class="workspace-title">👁️ OCR a Scanned PDF — Get the Text</h1>
+        <p class="subtitle">Recognize text in scanned PDFs and images</p>
 
         <div class="dropzone" id="ws-dropzone">
           <div class="dropzone-icon">📥</div>
-          <h3>Select Scanned File</h3>
-          <p>or drop PDF or image file here</p>
-          <input type="file" id="ws-file-input" class="display-none" accept=".pdf,image/*">
+          <h3>Select a scanned PDF or image</h3>
+          <p>or drop a file here</p>
+          <input type="file" id="ws-file-input" class="display-none" accept=".pdf,.jpg,.jpeg,.png,.webp">
         </div>
 
         <div class="file-list" id="ws-file-list"></div>
         <div class="options-panel display-none" id="ws-options-panel"></div>
-        <div class="ws-canvas-wrapper display-none" id="ws-canvas-wrapper"></div>
+
 
         <div class="progress-bar-container" id="ws-progress-container">
           <div class="progress-bar-outer"><div class="progress-bar-inner" id="ws-progress-bar"></div></div>
           <p class="progress-status" id="ws-progress-status">Processing document contents...</p>
         </div>
 
-        <button class="btn btn-primary full-width" id="ws-process-btn" disabled>Perform OCR Text Extraction</button>
+        <button class="btn btn-primary full-width" id="ws-process-btn" disabled>Extract Text (OCR)</button>
 
         <div class="security-note">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span>Files processed locally — zero server uploads</span>
+          <span>Files processed locally in your browser — nothing is uploaded to a server</span>
         </div>
 
         <div id="ws-output-box" class="output-container"></div>
 
+        <section class="tool-intro padding-top-bot">
+          <p>Scanned PDFs and photo documents look like text but contain none — they are images. This tool runs OCR (optical character recognition) on them using Tesseract.js right in your browser, producing a real, copyable text file. Your document is processed locally and never uploaded; the only network fetch is the public English language model on first run.</p>
+        </section>
+
         <section class="how-it-works padding-top-bot">
           <div class="section-header margin-bot-3">
-            <h2>How to Perform OCR on PDF</h2>
+            <h2>How to extract text from a scan with OCR</h2>
           </div>
           <div class="steps">
             <div class="step-item">
               <div class="step-num">1</div>
-              <h3>Upload Scanned File</h3>
-              <p>Select your scanned PDF or document image.</p>
+              <h3>Select a scanned PDF or image</h3>
+              <p>Upload the document. Clear, printed English text gives the best results — it also accepts JPG, PNG and WebP images.</p>
             </div>
             <div class="step-item">
               <div class="step-num">2</div>
-              <h3>OCR Processing</h3>
-              <p>Browser recognizes characters and extracts text.</p>
+              <h3>Click Extract Text (OCR)</h3>
+              <p>On first use, the language model loads (a few MB, once). Then each page is rendered and recognized.</p>
             </div>
             <div class="step-item">
               <div class="step-num">3</div>
-              <h3>Copy or Download</h3>
-              <p>Copy text to clipboard or download searchable document.</p>
+              <h3>Follow the progress</h3>
+              <p>A percentage shows as pages are recognized. Larger scans take longer.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <h3>Download the .txt</h3>
+              <p>The recognized text arrives with page markers, ready to paste or edit.</p>
             </div>
           </div>
         </section>
 
         <section class="padding-vert-2">
           <div class="section-header margin-bot-3">
-            <h2>Why Use PDFZaap's OCR PDF?</h2>
+            <h2>Why use PDFZaap to make scans searchable without uploading them</h2>
           </div>
-          <p class="about-text">
-            Unlock unsearchable scanned documents and camera captures with PDFZaap's OCR PDF tool. Our browser-based Optical Character Recognition engine parses visual text from scanned PDFs and images, converting static pictures into selectable, copyable digital text. Designed to run locally on your browser hardware using WebAssembly technology, your sensitive scanned invoices and legal filings are never uploaded to foreign processing servers. Enjoy high-accuracy OCR text extraction completely free, with no watermarks or restrictions.
-          </p>
-          <p class="about-text">📖 <strong>Deep dive guides:</strong> <a href="blog/how-to-make-pdf-searchable-from-scanner.html">How to Make a Scanned PDF Searchable Free</a> · <a href="blog/how-to-translate-a-pdf-document-free.html">How to Translate a PDF Document Free</a></p>
+<p><strong class='subtext'>The privacy difference is real.</strong> OCR services are notorious upload sinks — you send the scan to their server, they process it, and you trust their deletion policy. Here the recognition runs in a local Web Worker on your device. The file's pixels never cross the network; the only download is the same public English model everyone using Tesseract gets.</p><p class='subtext'><strong>Know what OCR does well and where it fails.</strong> Clean, high-contrast, printed English text is converted accurately. Small fonts, skew, shadows, low-light photos, columns and handwriting degrade accuracy — and OCR errors are silent, so always proofread important output. This tool gives you a .txt file, not a searchable PDF overlay, because building a reliable text-overlay PDF in the browser is not something we can promise; the text file is the honest, useful deliverable.</p>
+        </section>
+
+        <section class="padding-vert-2">
+          <div class="section-header margin-bot-3">
+            <h2>Tips &amp; common problems</h2>
+          </div>
+          <ul class="tips-list">
+            <li>Scan at 300 dpi or higher, straight on, with good contrast — image quality is the single biggest accuracy factor.</li>
+            <li>Deskew the scan first (rotate with <a href='/rotate-pdf.html'>Rotate PDF</a>) if pages are tilted; OCR dislikes skew.</li>
+            <li>For a long document, OCR a page or two first to check quality before committing to the whole file.</li>
+            <li>After OCR, feed the text into <a href='/pdf-to-word.html'>PDF to Word</a> workflows or paste it into your document of choice.</li>
+            <li>Full walkthrough in <a href='/blog/how-to-make-pdf-searchable-from-scanner.html'>How to make a scanned PDF searchable</a>.</li>
+          </ul>
+        </section>
+
+        <section class="padding-vert-2">
+          <div class="section-header margin-bot-3">
+            <h2>When to use this vs. related tools</h2>
+          </div>
+<p>Use <strong>OCR PDF</strong> when your source is a <em>scan or image</em> and you need the words. For PDFs that already have a text layer, <a href='/pdf-to-text.html'>PDF to Text</a> is faster and exact. To turn recognized text into an editable document, pair with <a href='/pdf-to-word.html'>PDF to Word</a>. For the no-upload verification method, see <a href='/is-it-safe-to-use-online-pdf-tools.html'>Is it safe to use online PDF tools?</a>.</p>
         </section>
 
         <section class="faq-section margin-top-3-no-pad">
@@ -194,31 +178,20 @@
           </div>
           <div id="ws-faqs">
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>What languages does the OCR engine support?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>PDFZaap supports English and multiple latin-script languages for character recognition.</p>
-              </div>
+              <summary class="faq-trigger"><span>Does it need internet?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>Only the first time, to download the public English language model. Your document is never sent anywhere — recognition is local.</p></div>
             </details>
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>Can I copy the recognized text directly?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>Yes, extracted text can be copied to your clipboard or saved as a clean text file.</p>
-              </div>
+              <summary class="faq-trigger"><span>How accurate is it?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>Very good for clean printed English; noticeably worse for small type, skew, photos and handwriting. Always proofread critical results.</p></div>
             </details>
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>Is my scanned PDF uploaded to a server?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>No, OCR recognition runs locally in your web browser using modern client-side WebAssembly.</p>
-              </div>
+              <summary class="faq-trigger"><span>Why not a searchable PDF output?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>A proper text-overlay PDF is hard to produce reliably in a browser, so we output clean text instead of promising a half-working overlay. Paste the text where you need it.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-trigger"><span>What languages are supported?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>English in this build. Tesseract supports many languages, but this tool is configured for English to keep the model download small and the results focused.</p></div>
             </details>
           </div>
         </section>
@@ -228,24 +201,24 @@
             <h2>Related PDF Tools</h2>
           </div>
           <div class="tools-grid grid-2-cols-no-pad">
-            <a href="pdf-to-word.html" class="tool-card">
+            <a href="/pdf-to-text.html" class="tool-card">
+              <div class="tool-icon-wrapper">📝</div>
+              <h3>PDF to Text</h3>
+              <span class="tool-card-link">Use Tool ➔</span>
+            </a>
+            <a href="/pdf-to-word.html" class="tool-card">
               <div class="tool-icon-wrapper">📝</div>
               <h3>PDF to Word</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
-            <a href="pdf-to-jpg.html" class="tool-card">
-              <div class="tool-icon-wrapper">📸</div>
-              <h3>PDF to JPG</h3>
+            <a href="/rotate-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">🔄</div>
+              <h3>Rotate PDF</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
-            <a href="extract-pages-pdf.html" class="tool-card">
-              <div class="tool-icon-wrapper">📤</div>
-              <h3>Extract Pages</h3>
-              <span class="tool-card-link">Use Tool ➔</span>
-            </a>
-            <a href="compress-pdf.html" class="tool-card">
-              <div class="tool-icon-wrapper">📉</div>
-              <h3>Compress PDF</h3>
+            <a href="/pdf-to-epub.html" class="tool-card">
+              <div class="tool-icon-wrapper">📚</div>
+              <h3>PDF to EPUB</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
           </div>
@@ -259,54 +232,62 @@
     <div class="footer-grid">
       <div class="footer-col">
         <h4>⚡ PDF<span>Zaap</span></h4>
-        <p>Your secure, browser-based assistant built for fast client-side file conversions and PDF edits. Free, safe, and completely private.</p>
+        <p>Free, browser-based PDF tools that process your files locally — no uploads, no signup, no watermarks.</p>
       </div>
       <div class="footer-col">
-        <h5>Popular Convert</h5>
+        <h5>Popular Tools</h5>
         <ul class="footer-links">
-          <li><a href="pdf-to-word.html">PDF to Word</a></li>
-          <li><a href="jpg-to-pdf.html">JPG to PDF</a></li>
-          <li><a href="pdf-to-jpg.html">PDF to JPG</a></li>
-          <li><a href="word-to-pdf.html">Word to PDF</a></li>
+          <li><a href="/pdf-to-word.html">PDF to Word</a></li>
+          <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
+          <li><a href="/pdf-to-jpg.html">PDF to JPG</a></li>
+          <li><a href="/word-to-pdf.html">Word to PDF</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Edit &amp; Manage</h5>
+        <h5>Edit &amp; Organize</h5>
         <ul class="footer-links">
-          <li><a href="merge-pdf.html">Merge PDF</a></li>
-          <li><a href="split-pdf.html">Split PDF</a></li>
-          <li><a href="compress-pdf.html">Compress PDF</a></li>
-          <li><a href="add-watermark-pdf.html">Add Watermark</a></li>
+          <li><a href="/merge-pdf.html">Merge PDF</a></li>
+          <li><a href="/split-pdf.html">Split PDF</a></li>
+          <li><a href="/compress-pdf.html">Compress PDF</a></li>
+          <li><a href="/add-watermark-pdf.html">Add Watermark</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>Security &amp; Advanced</h5>
         <ul class="footer-links">
-          <li><a href="protect-pdf.html">Protect PDF</a></li>
-          <li><a href="esign-pdf.html">E-Sign PDF</a></li>
-          <li><a href="ocr-pdf.html">OCR PDF</a></li>
-          <li><a href="flatten-pdf.html">Flatten PDF</a></li>
+          <li><a href="/protect-pdf.html">Protect PDF</a></li>
+          <li><a href="/esign-pdf.html">E-Sign PDF</a></li>
+          <li><a href="/ocr-pdf.html">OCR PDF</a></li>
+          <li><a href="/flatten-pdf.html">Flatten PDF</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/blog/">Blog</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 PDFZaap. All rights reserved. Handcrafted for fast PDF editing.</p>
+      <p>&copy; 2026 PDFZaap. All rights reserved. Built for fast, private PDF work.</p>
       <div class="footer-legal-links">
-        <span class="cursor-pointer" onclick="toggleLegalModal('privacy')">Privacy Policy</span>
-        <span class="cursor-pointer" onclick="toggleLegalModal('terms')">Terms of Service</span>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
       </div>
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js" defer></script>
-  <script src="script.js" defer></script>
-  <script defer>
+  <script src="/script.js" defer></script>
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
       activeTool = 'ocr-pdf';
-      if (typeof setupOptionsPanel === 'function') {
-        setupOptionsPanel(activeTool);
-      }
+      if (typeof setupOptionsPanel === 'function') setupOptionsPanel(activeTool);
     });
   </script>
+
 </body>
 </html>

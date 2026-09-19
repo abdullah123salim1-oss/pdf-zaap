@@ -11,30 +11,30 @@ const TOOL_DATABASE = {
   "pdf-to-word": {
     title: "PDF to Word",
     emoji: "📝",
-    subtitle: "Convert your PDF files to editable DOCX documents",
+    subtitle: "Extract PDF text into an editable Word (.docx) document",
     accept: ".pdf",
     multiple: false,
     execBtnText: "Convert to Word",
     outputExt: ".docx",
     category: "convert",
-    metaDesc: "Convert PDF files into Microsoft Word documents online for free. Clean format text parsing completely local on client browser.",
+    metaDesc: "Turn a PDF into an editable Word document in your browser. Text-based conversion: words and reading order are kept, layouts simplified. Free and private.",
     steps: [
       { title: "Upload PDF", desc: "Select or drag the PDF document." },
-      { title: "Convert Options", desc: "Process and map internal layout text vectors." },
-      { title: "Download Word", desc: "Retrieve your fully editable Word document." }
+      { title: "Convert", desc: "The browser extracts text and builds a .docx file." },
+      { title: "Download Word", desc: "Save the editable Word document." }
     ],
     features: [
-      { title: "Preserve Layout", desc: "Keeps styles, tables, and spacing intact." },
-      { title: "Convert Fast", desc: "Converts text within seconds." },
-      { title: "No Server Upload", desc: "Processing runs entirely on local device." },
-      { title: "No Watermark", desc: "No limitations or brand watermarks added." }
+      { title: "Editable Output", desc: "Every word lands in a real .docx you can edit." },
+      { title: "Reading Order", desc: "Lines are grouped into paragraphs top to bottom." },
+      { title: "No Server Upload", desc: "Processing runs entirely on your device." },
+      { title: "No Watermark", desc: "No limits, branding, or signups added." }
     ],
     faqs: [
-      { q: "Is the conversion accurate?", a: "Yes, our client-side structural engines map typography arrays cleanly." },
-      { q: "Can I convert scanned PDFs?", a: "Scanned files will extract basic image blocks. Use OCR for better results." },
-      { q: "Are files private?", a: "Completely private. Files do not upload to any server." }
+      { q: "Is the layout preserved perfectly?", a: "No — this is a text-based conversion. Words and reading order are kept, but multi-column layouts, tables, and images are simplified. That is the honest trade-off of doing this entirely in the browser." },
+      { q: "Can I convert scanned PDFs?", a: "Scanned pages contain no real text, so run OCR PDF first to get the words, then convert the result." },
+      { q: "Are files private?", a: "Yes. The file never leaves your device; the .docx is built in your browser." }
     ],
-    related: ["pdf-to-text", "pdf-to-jpg", "pdf-to-png", "word-to-pdf"]
+    related: ["pdf-to-text", "pdf-to-jpg", "word-to-pdf", "ocr-pdf"]
   },
   "pdf-to-jpg": {
     title: "PDF to JPG",
@@ -66,26 +66,27 @@ const TOOL_DATABASE = {
   "pdf-to-excel": {
     title: "PDF to Excel",
     emoji: "📊",
-    subtitle: "Extract PDF table records to sheets",
+    subtitle: "Turn PDF text lines into spreadsheet rows (.xlsx)",
     accept: ".pdf",
     multiple: false,
     execBtnText: "Extract to Excel",
     outputExt: ".xlsx",
     category: "convert",
-    metaDesc: "Convert PDF spreadsheets to editable XLS or XLSX formats securely inside the local browser application.",
+    metaDesc: "Extract the text of a PDF into an editable Excel sheet in your browser. Each text line becomes a row. Free, private, no signup.",
     steps: [
-      { title: "Select PDF", desc: "Upload reports containing structured tabular layouts." },
-      { title: "Map Grid", desc: "Identify matrix row and column grid arrays." },
-      { title: "Export XLSX", desc: "Get raw database configurations instantly." }
+      { title: "Select PDF", desc: "Upload the report or statement PDF." },
+      { title: "Extract", desc: "Text lines are read and split into cells where columns are clear." },
+      { title: "Export XLSX", desc: "Download the .xlsx file and tidy up as needed." }
     ],
     features: [
-      { title: "Clean Parsing", desc: "Converts structural layout data cleanly." },
-      { title: "Instant Execution", desc: "Local processor reads rows without wait times." },
-      { title: "Data Security", desc: "No data is sent over the network." },
-      { title: "Interactive Export", desc: "Standard spreadsheet formats supported." }
+      { title: "Real .xlsx Output", desc: "A standard Excel file you can filter and sort." },
+      { title: "Column Splitting", desc: "Tabs and wide gaps become separate cells." },
+      { title: "Local Processing", desc: "No data is sent over the network." },
+      { title: "Free & Unlimited", desc: "No subscription or file caps." }
     ],
     faqs: [
-      { q: "Will Excel formulas be active?", a: "Values are extracted as raw numbers and text for manual calculations." }
+      { q: "Does it rebuild the exact table layout?", a: "Not perfectly — it extracts text lines and splits cells where the PDF has tabs or clear column spacing. Complex merged tables may need light manual cleanup in Excel." },
+      { q: "Are formulas included?", a: "No. You get the visible numbers and text as values, which you can then work with." }
     ],
     related: ["excel-to-pdf", "pdf-to-word", "pdf-to-text", "pdf-metadata-editor"]
   },
@@ -144,28 +145,29 @@ const TOOL_DATABASE = {
   "pdf-to-html": {
     title: "PDF to HTML",
     emoji: "🌐",
-    subtitle: "Convert documents to responsive web-ready pages",
+    subtitle: "Extract PDF text into a clean, readable HTML page",
     accept: ".pdf",
     multiple: false,
     execBtnText: "Generate HTML",
     outputExt: ".html",
     category: "convert",
-    metaDesc: "Convert structural layout records into standard responsive web layouts.",
+    metaDesc: "Turn a PDF into a clean HTML page in your browser. Text is kept in reading order; page graphics are not embedded. Free and private.",
     steps: [
-      { title: "Upload PDF", desc: "Choose target files." },
-      { title: "Process Nodes", desc: "Structure HTML tags from PDF layout vectors." },
-      { title: "Download Website", desc: "Retrieve standard responsive code." }
+      { title: "Upload PDF", desc: "Select the document to convert." },
+      { title: "Extract", desc: "Text is read page by page and grouped into lines." },
+      { title: "Download HTML", desc: "Save a self-contained .html file." }
     ],
     features: [
-      { title: "Clean Styling", desc: "Maps text positions to responsive elements." },
-      { title: "Fast Load", desc: "Outputs clean code ready for any server." },
-      { title: "Secure Processing", desc: "No files are sent to servers." },
-      { title: "Free Always", desc: "Convert unlimited pages with zero license fees." }
+      { title: "Readable Output", desc: "Each page becomes a labeled section of paragraphs." },
+      { title: "Self-Contained", desc: "The .html file needs no external assets to open." },
+      { title: "Local Processing", desc: "The PDF never leaves your device." },
+      { title: "Free & Unlimited", desc: "No signups or page limits." }
     ],
     faqs: [
-      { q: "Is the output index file mobile-friendly?", a: "Yes, standard viewport structures are configured." }
+      { q: "Does it recreate the visual design?", a: "No — this extracts the text content in reading order, not the visual layout. Multi-column pages may read out of order. It is a content conversion, not a design clone." },
+      { q: "Are images included?", a: "No. For page images, use PDF to JPG or PDF to PNG and embed them yourself." }
     ],
-    related: ["html-to-pdf", "pdf-to-text", "pdf-to-word", "pdf-metadata-editor"]
+    related: ["html-to-pdf", "pdf-to-text", "pdf-to-word", "ocr-pdf"]
   },
   "pdf-to-png": {
     title: "PDF to PNG",
@@ -196,52 +198,54 @@ const TOOL_DATABASE = {
   "pdf-to-epub": {
     title: "PDF to EPUB",
     emoji: "📚",
-    subtitle: "Convert document text layers for compatible e-readers",
+    subtitle: "Turn a PDF's text into a reflowable EPUB e-book",
     accept: ".pdf",
     multiple: false,
     execBtnText: "Convert to EPUB",
     outputExt: ".epub",
     category: "convert",
-    metaDesc: "Structure formatting styles to generate clean, reflowable EPUB book formats.",
+    metaDesc: "Convert a PDF into a reflowable EPUB e-book in your browser. Each page becomes a chapter of selectable text. Free, private, no upload.",
     steps: [
-      { title: "Select PDF", desc: "Choose files for processing." },
-      { title: "Process Flow", desc: "Structure design layouts into reflowable typography." },
-      { title: "Download EPUB", desc: "Retrieve book files for modern ereaders." }
+      { title: "Select PDF", desc: "Upload the book or long document." },
+      { title: "Build Chapters", desc: "Text is extracted and each page becomes a chapter." },
+      { title: "Download EPUB", desc: "Import the .epub into your e-reader." }
     ],
     features: [
-      { title: "Reflowable Content", desc: "Optimizes typography sizes automatically." },
-      { title: "Chapter Splits", desc: "Structures indexes based on text headers." },
-      { title: "Private Operations", desc: "Processing runs entirely in browser memory." },
-      { title: "Always Free", desc: "Convert unlimited books at zero cost." }
+      { title: "Reflowable Text", desc: "Read on any screen size with adjustable fonts." },
+      { title: "Real EPUB 3", desc: "Valid package structure with a table of contents." },
+      { title: "Local Processing", desc: "Your book never leaves your device." },
+      { title: "Free & Unlimited", desc: "No accounts or page caps." }
     ],
     faqs: [
-      { q: "Does this preserve images in epubs?", a: "Yes, images are repositioned inside the content stream." }
+      { q: "Does it preserve images in EPUBs?", a: "No — this converts the text only. Images and complex layout are not embedded, so it works best on text-based books and documents." },
+      { q: "Will the chapter structure be correct?", a: "Each PDF page becomes one chapter in the table of contents. Headings inside the pages are not detected, so the structure is page-based." }
     ],
     related: ["pdf-to-text", "pdf-to-word", "pdf-metadata-editor", "ocr-pdf"]
   },
   "pdf-to-pdfa": {
-    title: "PDF to PDF/A",
+    title: "PDF Archival Prep",
     emoji: "💾",
-    subtitle: "Save documents in standard long-term archiving format",
+    subtitle: "Embed archival metadata for long-term storage (not a certified PDF/A conversion)",
     accept: ".pdf",
     multiple: false,
-    execBtnText: "Convert to PDF/A",
+    execBtnText: "Prep for Archiving",
     outputExt: ".pdf",
-    category: "convert",
-    metaDesc: "Convert documents to standard long-term archiving configurations.",
+    category: "advanced",
+    metaDesc: "Prepare a PDF for long-term archiving: embeds title, subject and date metadata in your browser. Honest note: not a certified PDF/A conversion.",
     steps: [
-      { title: "Select PDF", desc: "Upload files for conversion." },
-      { title: "Metadata Audit", desc: "Process and embed custom ISO profiles." },
-      { title: "Save PDF/A", desc: "Retrieve files ready for archiving." }
+      { title: "Select PDF", desc: "Upload the document to archive." },
+      { title: "Embed Metadata", desc: "Title, subject and creation/modification dates are written in." },
+      { title: "Download PDF", desc: "Save the archival-prepared file. For certified PDF/A, run a validator (see the guide)." }
     ],
     features: [
-      { title: "ISO Compliant", desc: "Creates standard compliant PDF/A records." },
-      { title: "Device Independent", desc: "Ensures pages render consistently over time." },
+      { title: "Real Metadata", desc: "Writes standard PDF info fields used by archive systems." },
+      { title: "Honest Scope", desc: "This is preparation, not certified PDF/A validation." },
       { title: "100% Client-Side", desc: "Files never leave your machine." },
-      { title: "High Fidelity", desc: "No adjustments are made to internal content layers." }
+      { title: "High Fidelity", desc: "Pages and content are untouched — only metadata changes." }
     ],
     faqs: [
-      { q: "What is PDF/A?", a: "An ISO-standardized version of PDF designed for long-term archiving." }
+      { q: "What is PDF/A?", a: "An ISO-standardized (ISO 19005) version of PDF designed for long-term archiving, requiring things like embedded fonts and an XMP metadata block." },
+      { q: "Does this produce a certified PDF/A file?", a: "No. A browser cannot run the full PDF/A validation required for certification. This tool prepares the metadata; to certify a file, convert it with dedicated tooling such as LibreOffice, Ghostscript, or an online validator, then verify it." }
     ],
     related: ["pdf-metadata-editor", "flatten-pdf", "protect-pdf", "compress-pdf"]
   },
@@ -306,22 +310,23 @@ const TOOL_DATABASE = {
     execBtnText: "Convert Excel to PDF",
     outputExt: ".pdf",
     category: "convert",
-    metaDesc: "Convert complex spreadsheets directly to high-quality PDF page designs.",
+    metaDesc: "Convert an Excel (.xlsx/.xls) workbook to a PDF in your browser. Sheets render as bordered tables. Free, private, no upload.",
     steps: [
-      { title: "Select File", desc: "Upload your XLS or XLSX files." },
-      { title: "Grid Map", desc: "Structure cell borders and column matrices." },
-      { title: "Download PDF", desc: "Save high-quality document records." }
+      { title: "Select File", desc: "Upload your .xlsx or .xls workbook." },
+      { title: "Render Sheets", desc: "Each sheet becomes bordered tables on landscape A4 pages (up to 10 sheets, 5,000 rows each)." },
+      { title: "Download PDF", desc: "Save the document." }
     ],
     features: [
-      { title: "Accurate Columns", desc: "Preserves your original spreadsheet layouts." },
-      { title: "Client Security", desc: "No data is sent over the network." },
-      { title: "Fast Output", desc: "Processes dense lists smoothly." },
-      { title: "Always Free", desc: "Convert unlimited spreadsheets at zero cost." }
+      { title: "Table Layout", desc: "Cells render as bordered tables, headers included." },
+      { title: "Client Security", desc: "The workbook never leaves your device." },
+      { title: "Honest Limits", desc: "Charts, formulas-as-results and merged cells may simplify; very wide sheets paginate." },
+      { title: "Always Free", desc: "No signup, no watermark, no caps." }
     ],
     faqs: [
-      { q: "Does it support multiple sheets?", a: "Yes, sheets are mapped to separate PDF pages." }
+      { q: "Does it support multiple sheets?", a: "Yes — up to the first 10 sheets are exported, each labeled with its sheet name. Large sheets are limited to 5,000 rows per export." },
+      { q: "Are charts included?", a: "No. This renders cell values as tables; embedded charts and images are not drawn. Print from Excel if you need the chart visuals." }
     ],
-    related: ["excel-to-pdf", "pdf-to-excel", "word-to-pdf", "png-to-pdf"]
+    related: ["pdf-to-excel", "word-to-pdf", "png-to-pdf"]
   },
   "ppt-to-pdf": {
     title: "PowerPoint to PDF",
@@ -352,26 +357,27 @@ const TOOL_DATABASE = {
   "html-to-pdf": {
     title: "HTML to PDF",
     emoji: "🌐",
-    subtitle: "Convert standard markup pages to high-quality PDF layouts",
-    accept: ".html,.txt",
+    subtitle: "Convert an HTML file to a printed-style PDF in your browser",
+    accept: ".html,.htm,.txt",
     multiple: false,
     execBtnText: "Convert HTML to PDF",
     outputExt: ".pdf",
     category: "convert",
-    metaDesc: "Convert raw HTML code structures into high-quality PDF files instantly.",
+    metaDesc: "Turn an HTML file into a PDF in your browser. Common styles render; keep assets inline for the best result. Free, private, no upload.",
     steps: [
-      { title: "Select HTML", desc: "Choose your code files." },
-      { title: "Compile Document", desc: "Map tags and layouts inside the container." },
-      { title: "Download Result", desc: "Get your clean PDF document." }
+      { title: "Select HTML", desc: "Upload a single .html file (inline styles work best)." },
+      { title: "Render", desc: "The browser lays out the markup on A4 pages." },
+      { title: "Download PDF", desc: "Save the resulting document." }
     ],
     features: [
-      { title: "CSS Compatibility", desc: "Renders modern styling profiles accurately." },
-      { title: "100% Private", desc: "No code or content leaves your local machine." },
-      { title: "Rapid Output", desc: "Exports high-quality PDF pages instantly." },
-      { title: "Zero Limits", desc: "Convert unlimited files with no restrictions." }
+      { title: "Inline CSS Works", desc: "Fonts, colors, borders and basic layout render as printed." },
+      { title: "100% Private", desc: "Your markup never leaves your machine." },
+      { title: "A4 Output", desc: "Content flows across standard A4 pages." },
+      { title: "Free & Unlimited", desc: "No account, no file caps, no watermark." }
     ],
     faqs: [
-      { q: "Are linked stylesheets supported?", a: "For best results, embed styles directly within your HTML code." }
+      { q: "Are linked stylesheets supported?", a: "Styles in <style> blocks and inline attributes render reliably. External stylesheets and images need to be reachable from your browser; inlining everything gives the most predictable result." },
+      { q: "Is the PDF text selectable?", a: "No — the page is rendered as an image per page, so it looks exactly like the layout but the text is not selectable. Use a print-to-PDF from your browser if you need selectable text." }
     ],
     related: ["pdf-to-html", "word-to-pdf", "png-to-pdf", "jpg-to-pdf"]
   },
@@ -465,11 +471,11 @@ const TOOL_DATABASE = {
     execBtnText: "Compress PDF",
     outputExt: ".pdf",
     category: "edit",
-    metaDesc: "Compress PDF documents directly in your web browser. Adjust image quality to scale file sizes cleanly.",
+    metaDesc: "Compress a PDF in your browser: pick a quality from 0.1 to 1.0, or choose a target size like 100 KB, 200 KB or 2 MB. Files are processed locally, never uploaded.",
     steps: [
-      { title: "Upload PDF", desc: "Drag and drop document files." },
-      { title: "Set Compression", desc: "Adjust quality ranges from 0.1 to 1.0." },
-      { title: "Download", desc: "Save optimized files instantly." }
+      { title: "Upload PDF", desc: "Drag and drop the document to shrink." },
+      { title: "Pick a Mode", desc: "Set a quality from 0.1 to 1.0, or choose a target size (e.g. under 200 KB) and the tool finds the best fit." },
+      { title: "Download", desc: "Save the compressed file — with an honest report of the final size." }
     ],
     features: [
       { title: "High Compression", desc: "Reduces file size dramatically." },
@@ -797,52 +803,55 @@ const TOOL_DATABASE = {
   "ocr-pdf": {
     title: "OCR PDF",
     emoji: "👁️",
-    subtitle: "Convert scanned images on PDF pages into editable text",
-    accept: ".pdf,image/*",
+    subtitle: "Recognize text in scanned PDFs and images (English)",
+    accept: ".pdf,.jpg,.jpeg,.png,.webp",
     multiple: false,
     execBtnText: "Extract Text (OCR)",
     outputExt: ".txt",
     category: "advanced",
-    metaDesc: "Extract text from scanned PDF pages and images using our client-side OCR engine.",
+    metaDesc: "Run OCR on scanned PDFs and images right in your browser with Tesseract.js. Your file is processed locally; only the public language model is downloaded.",
     steps: [
-      { title: "Upload Scans", desc: "Select your scanned PDF or image." },
-      { title: "Run OCR Engine", desc: "Process text character layouts inside browser." },
-      { title: "Save Text", desc: "Retrieve editable, plain text instantly." }
+      { title: "Upload Scan", desc: "Select a scanned PDF, JPG, PNG or WebP (clear, printed English text works best)." },
+      { title: "Run OCR", desc: "Tesseract.js recognizes the text locally in a browser worker." },
+      { title: "Save Text", desc: "Download the recognized text as a .txt file." }
     ],
     features: [
-      { title: "Accurate OCR", desc: "Recognizes text characters from images with high precision." },
-      { title: "Multilingual Support", desc: "Understands English typography configurations." },
-      { title: "100% Client-Side", desc: "OCR engine runs entirely in your local browser." },
-      { title: "Always Free", desc: "No subscriptions or usage limits." }
+      { title: "Local Recognition", desc: "Tesseract.js runs in your browser; the file is never uploaded." },
+      { title: "PDF + Images", desc: "Works on whole PDFs (page by page) or single image files." },
+      { title: "Honest Limitations", desc: "English, printed text performs best; handwriting and photos are not reliable." },
+      { title: "Always Free", desc: "No subscriptions or page limits." }
     ],
     faqs: [
-      { q: "Does this require a network connection?", a: "Tesseract.js downloads language models on first run, then processes everything locally." }
+      { q: "Does this require a network connection?", a: "Only for the first run, when Tesseract.js downloads the public English language model (a few MB) from the Tesseract project's CDN. Your document is processed entirely on your device and is never sent anywhere." },
+      { q: "How accurate is the output?", a: "Accurate for clear, printed, high-contrast text. Expect errors with small fonts, skew, low-light photos and handwriting — always proofread important results." },
+      { q: "Why a .txt file and not a searchable PDF?", a: "Building a fully searchable (text-overlay) PDF reliably in the browser is not something we can guarantee, so we give you clean extracted text you can paste anywhere. That is the honest output." }
     ],
-    related: ["pdf-to-text", "pdf-metadata-editor", "flatten-pdf", "repair-pdf"]
+    related: ["pdf-to-text", "pdf-metadata-editor", "pdf-to-word", "pdf-to-epub"]
   },
   "compare-pdf": {
     title: "Compare PDFs",
     emoji: "⚖️",
-    subtitle: "Highlight visual layout differences side by side between drafts",
+    subtitle: "Diff the text of two PDF versions and download an HTML report",
     accept: ".pdf",
     multiple: true,
     execBtnText: "Compare Documents",
-    outputExt: ".txt",
+    outputExt: ".html",
     category: "advanced",
-    metaDesc: "Compare two PDF versions to spot layout changes side-by-side in your browser.",
+    metaDesc: "Compare two PDF versions in your browser: text is extracted line by line and additions/removals are highlighted in an HTML report. Private, free, no upload.",
     steps: [
-      { title: "Select PDFs", desc: "Choose your draft and final documents." },
-      { title: "Run Compare", desc: "Analyze and map text differences." },
-      { title: "Retrieve Report", desc: "Get visual highlights instantly." }
+      { title: "Select Two PDFs", desc: "Add Document A and Document B (exactly two files)." },
+      { title: "Run Compare", desc: "Text is extracted and diffed line by line." },
+      { title: "Download Report", desc: "Open the HTML report with highlighted changes." }
     ],
     features: [
-      { title: "Detailed Highlights", desc: "Maps additions and deletions clearly." },
-      { title: "Safe Processing", desc: "No document data leaves your device." },
-      { title: "Quick Compare", desc: "Saves hours of manual verification." },
-      { title: "Free Always", desc: "Compare documents as often as you need." }
+      { title: "Line-Level Diff", desc: "Added and removed lines are clearly marked." },
+      { title: "Summary Counts", desc: "Instant count of what changed between versions." },
+      { title: "Private Processing", desc: "Both files stay on your device." },
+      { title: "Free & Unlimited", desc: "Compare as often as you need." }
     ],
     faqs: [
-      { q: "How are files compared?", a: "The tool analyzes text coordinates and strings page by page." }
+      { q: "How are files compared?", a: "Visible text is extracted from each PDF and diffed line by line. Scanned pages without a text layer won't be compared — run OCR first if that applies." },
+      { q: "What does the report look like?", a: "A standalone HTML file: green lines are additions in Document B, red lines are removals from Document A, and a summary counts the changes." }
     ],
     related: ["pdf-to-text", "pdf-metadata-editor", "flatten-pdf", "repair-pdf"]
   },
@@ -1010,10 +1019,54 @@ let activeTool = null;
 let fabricCanvas = null;
 
 // ==========================================================================
+// PRIVACY-FRIENDLY ANALYTICS HOOK
+// Events: tool_open, file_selected, process_click, download_click.
+// No file names, contents, or personal data are ever included.
+// To enable a real provider, set ga4Id or plausible below (see SEO-CHANGELOG.md).
+// ==========================================================================
+const ZAAP_ANALYTICS = {
+  ga4Id: null,        // e.g. 'G-XXXXXXX' once the owner adds a GA4 property
+  plausible: null     // e.g. 'https://analytics.pdfzaap.online' once Plausible is installed
+};
+
+function zaapTrack(event, props) {
+  const payload = Object.assign({ event: event, tool: activeTool || 'home', ts: Date.now() }, props || {});
+  window.__zaapEvents = window.__zaapEvents || [];
+  window.__zaapEvents.push(payload);
+  try {
+    window.dispatchEvent(new CustomEvent('zaap:track', { detail: payload }));
+  } catch (e) { /* no-op */ }
+  if (ZAAP_ANALYTICS.ga4Id && typeof gtag === 'function') {
+    gtag('event', event, props || {});
+  } else if (ZAAP_ANALYTICS.plausible && window.plausible) {
+    window.plausible(event, props || {});
+  }
+}
+
+function loadAnalyticsVendor() {
+  if (ZAAP_ANALYTICS.ga4Id) {
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${ZAAP_ANALYTICS.ga4Id}`;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', ZAAP_ANALYTICS.ga4Id, { anonymize_ip: true });
+  } else if (ZAAP_ANALYTICS.plausible) {
+    const s = document.createElement('script');
+    s.defer = true;
+    s.src = ZAAP_ANALYTICS.plausible + '/script.js';
+    document.head.appendChild(s);
+  }
+}
+
+// ==========================================================================
 // APPLICATION INITIALIZATION & LISTENERS
 // ==========================================================================
 
 window.addEventListener('DOMContentLoaded', () => {
+  loadAnalyticsVendor();
   buildToolsGrid();
   buildHomepageFAQs();
   buildBlogList();
@@ -1023,37 +1076,46 @@ window.addEventListener('DOMContentLoaded', () => {
   setupDropzone();
   initCookieBanner();
   router();
+  // Tool pages declare their tool on <main data-tool="...">; their inline
+  // script performs the options-panel setup. We only track the pageview.
+  const toolPage = document.querySelector('main[data-tool]');
+  if (toolPage && activeTool === toolPage.getAttribute('data-tool')) {
+    zaapTrack('tool_open', { tool: activeTool });
+  } else if (toolPage) {
+    activeTool = toolPage.getAttribute('data-tool');
+    if (typeof setupOptionsPanel === 'function') setupOptionsPanel(activeTool);
+    zaapTrack('tool_open', { tool: activeTool });
+  }
 });
 
 // ==========================================================================
 // ROUTER & VIEW MANAGEMENT
 // ==========================================================================
 
-function oldRouter()  {
-  document.body.classList.remove('no-scroll');
-
+function oldRouter() {
+  // Legacy support only: the homepage is now fully static and every tool and
+  // blog post has its own .html URL. If an old hash URL arrives (e.g.
+  // index.html#merge-pdf or index.html#blog/some-post), send the visitor to
+  // the real page instead of a JS view.
   const hash = window.location.hash.substring(1);
-  
-  document.getElementById('mobile-menu')?.classList.remove('active');
-document.getElementById('hamburger-btn')?.classList.remove('active');
-
-  document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active'));
-
-  if (!hash || hash === 'about-us-section' || hash === 'why-pdfzaap-section') {
-    showDashboard();
-  } else if (hash === 'blog') {
-    showBlogList();
-  } else if (hash.startsWith('blog/')) {
-    showBlogPost(hash.split('/')[1]);
-  } else if (TOOL_DATABASE[hash]) {
-    showWorkspace(hash);
-  } else {
-    showDashboard();
+  if (!hash || hash.indexOf('#') === 0) return; // plain anchor (scroll) — nothing to do
+  if (TOOL_DATABASE[hash]) {
+    window.location.replace(hash + '.html');
+    return;
   }
+  if (hash === 'blog' || hash === 'blog/' || hash === '') {
+    window.location.replace('blog/');
+    return;
+  }
+  if (hash.startsWith('blog/')) {
+    window.location.replace('blog/' + hash.substring(5) + '.html');
+    return;
+  }
+  // Unknown hash — leave the page as-is.
 }
 
 function router() {
-  // SPA hash routing only applies to the homepage document; tool pages are standalone
+  // Applies to the homepage document only; standalone pages return early.
   if (!document.getElementById('homepage-dashboard')) return;
   oldRouter();
 }
@@ -1231,8 +1293,11 @@ function showWorkspace(toolId) {
 function buildToolsGrid() {
   const grid = document.getElementById('main-tools-grid');
   if (!grid) return;
+  // The homepage ships the full tools grid as static HTML (SEO). Only fill
+  // the grid if it is empty, so we never replace the indexable markup.
+  if (grid.children.length > 0) return;
   grid.innerHTML = '';
-  
+
   for (const [key, value] of Object.entries(TOOL_DATABASE)) {
     grid.innerHTML += `
       <article class="tool-card" data-category="${value.category}" onclick="window.location.href = '${key}.html'">
@@ -1323,7 +1388,19 @@ function setupOptionsPanel(toolId) {
     panel.innerHTML = `
       <h4>Compression Adjustments</h4>
       <div class="option-row">
-        <label for="compress-slider">Image Quality (0.1 to 1.0)</label>
+        <label for="compress-target">Target size (optional)</label>
+        <select id="compress-target" class="option-field">
+          <option value="0">Manual — choose quality below</option>
+          <option value="100">Under 100 KB</option>
+          <option value="200">Under 200 KB</option>
+          <option value="500">Under 500 KB</option>
+          <option value="1024">Under 1 MB</option>
+          <option value="2048">Under 2 MB</option>
+        </select>
+        <p class="subtext-muted margin-top-1">In target mode the tool finds the best quality that fits the limit, and tells you honestly if the limit cannot be reached.</p>
+      </div>
+      <div class="option-row">
+        <label for="compress-slider">Image Quality (0.1 to 1.0) — used in manual mode</label>
         <input type="range" id="compress-slider" class="option-field" min="0.1" max="1.0" step="0.1" value="0.6">
         <p id="compress-val-label" class="subtext-muted margin-top-1">Value: 0.6</p>
       </div>
@@ -1332,7 +1409,42 @@ function setupOptionsPanel(toolId) {
     document.getElementById('compress-slider').addEventListener('input', (e) => {
       document.getElementById('compress-val-label').textContent = `Value: ${e.target.value}`;
     });
-  } 
+  }
+  else if (toolId === 'jpg-to-pdf' || toolId === 'png-to-pdf') {
+    panel.innerHTML = `
+      <h4>Page Layout</h4>
+      <div class="option-row">
+        <label for="img-page-size">Page size</label>
+        <select id="img-page-size" class="option-field">
+          <option value="fit">Fit page to each image</option>
+          <option value="a4">A4 (210 × 297 mm) — image centered</option>
+          <option value="letter">US Letter (8.5 × 11 in) — image centered</option>
+        </select>
+      </div>
+    `;
+    panel.classList.remove('display-none');
+  }
+  else if (toolId === 'compare-pdf') {
+    panel.innerHTML = `
+      <h4>Compare Setup</h4>
+      <p class="subtext-muted">Select exactly two PDF files above (the first is "Document A", the second "Document B"). The tool compares extracted text line by line and downloads an HTML report.</p>
+    `;
+    panel.classList.remove('display-none');
+  }
+  else if (toolId === 'ocr-pdf') {
+    panel.innerHTML = `
+      <h4>OCR Setup</h4>
+      <p class="subtext-muted">Recognition runs locally in your browser via Tesseract.js. On the first run the public English language model (a few MB) is downloaded from the Tesseract project's CDN — your file is never sent anywhere. Best results: clear, printed English text.</p>
+    `;
+    panel.classList.remove('display-none');
+  }
+  else if (toolId === 'pdf-to-pdfa') {
+    panel.innerHTML = `
+      <h4>Archival Prep</h4>
+      <p class="subtext-muted">This tool embeds archival metadata (title, subject, creation/modification dates) so the document is ready for long-term storage. It is <strong>not</strong> a certified PDF/A conversion — read the guide below for why and for the proper next step.</p>
+    `;
+    panel.classList.remove('display-none');
+  }
   else if (toolId === 'split-pdf') {
     panel.innerHTML = `
       <h4>Splitting Ranges</h4>
@@ -1489,20 +1601,7 @@ function setupOptionsPanel(toolId) {
     `;
     panel.classList.remove('display-none');
   }
-  else {
-    panel.innerHTML = `
-      <h4>Processing Parameters</h4>
-      <div class="option-row">
-        <label>Output Optimization Level</label>
-        <select class="option-field">
-          <option value="standard">Standard Web-Ready Conversion</option>
-          <option value="print">High-Quality Print Layout</option>
-          <option value="minimal">Minimal File Size Profile</option>
-        </select>
-      </div>
-    `;
-    panel.classList.remove('display-none');
-  }
+  // All other tools need no extra options — the panel stays hidden.
 }
 
 // Fabric canvas helper
@@ -1562,6 +1661,7 @@ function handleUploadedFiles(files) {
       uploadedFileArray.push(file);
     }
   }
+  zaapTrack('file_selected', { files: files.length });
   renderWorkspaceFileList();
 }
 
@@ -1616,9 +1716,12 @@ function clearWorkspaceFile() {
 // WORKSPACE EXECUTION & PDF ENGINES
 // ==========================================================================
 
-document.getElementById('ws-process-btn').addEventListener('click', async () => {
+const _processBtn = document.getElementById('ws-process-btn');
+if (_processBtn) {
+_processBtn.addEventListener('click', async () => {
   const validFiles = uploadedFileArray.filter(f => f);
   if (validFiles.length === 0) return;
+  zaapTrack('process_click', { tool: activeTool, files: validFiles.length });
 
   const progressContainer = document.getElementById('ws-progress-container');
   const progressBar = document.getElementById('ws-progress-bar');
@@ -1708,29 +1811,58 @@ document.getElementById('ws-process-btn').addEventListener('click', async () => 
       case 'grayscale-pdf':
         await runGrayscalePDF(validFiles[0]);
         break;
-      default:
-        await runAdvancedSimulatedTool(validFiles);
+      case 'ocr-pdf':
+        await runOCRPDF(validFiles[0]);
         break;
+      case 'compare-pdf':
+        await runComparePDF(validFiles);
+        break;
+      case 'html-to-pdf':
+        await runHTMLToPDF(validFiles[0]);
+        break;
+      case 'excel-to-pdf':
+        await runExcelToPDF(validFiles[0]);
+        break;
+      case 'pdf-to-html':
+        await runPDFToHTML(validFiles[0]);
+        break;
+      case 'pdf-to-epub':
+        await runPDFToEPUB(validFiles[0]);
+        break;
+      case 'pdf-to-word':
+        await runPDFToWord(validFiles[0]);
+        break;
+      case 'pdf-to-excel':
+        await runPDFToExcel(validFiles[0]);
+        break;
+      case 'pdf-to-pdfa':
+        await runArchivalPrep(validFiles[0]);
+        break;
+      default:
+        throw new Error('This tool is not available. Please use the link from the homepage grid.');
     }
   } catch (err) {
     progressStatus.textContent = `Error: ${err.message}`;
     progressBar.style.backgroundColor = '#EF4444';
   }
 });
+}
 
-function createDownloadLink(data, filename, type) {
+function createDownloadLink(data, filename, type, note) {
   const blob = new Blob([data], { type: type });
   const container = document.getElementById('ws-output-box');
-  
+  const noteHtml = note ? `<p class="output-note">${note}</p>` : '';
+
   container.innerHTML = `
     <div class="download-box">
       <h4>🎉 PDF Processed Successfully!</h4>
       <p>Your document is ready to download.</p>
-      <a id="direct-dl-link" href="${URL.createObjectURL(blob)}" download="${filename}" class="btn btn-primary">Download PDF</a>
+      ${noteHtml}
+      <a id="direct-dl-link" href="${URL.createObjectURL(blob)}" download="${filename}" class="btn btn-primary">Download ${filename.split('.').pop().toUpperCase()}</a>
     </div>
   `;
   container.style.display = 'block';
-  
+  zaapTrack('download_click', { tool: activeTool, ext: (type || '').split('/')[1] || '' });
   document.getElementById('direct-dl-link').click();
 }
 
@@ -1815,38 +1947,88 @@ async function runSplitPDF(file) {
 }
 
 // 3. Compress PDF
-async function runCompressPDF(file) {
-  setProgressUI(20, 'Unpacking document buffers...');
-  const quality = parseFloat(document.getElementById('compress-slider').value) || 0.6;
-  
-  const fileBytes = await file.arrayBuffer();
+// Compresses by re-rendering each page to a JPEG in the browser, then rebuilding the PDF.
+// Text in the original PDF is NOT preserved as selectable text — the output pages are images.
+async function compressOnce(fileBytes, scale, quality, onProgress) {
   const pdf = await pdfjsLib.getDocument({ data: fileBytes }).promise;
   const { PDFDocument } = PDFLib;
   const compressedDoc = await PDFDocument.create();
-
   for (let i = 1; i <= pdf.numPages; i++) {
-    setProgressUI(Math.round((i / pdf.numPages) * 60) + 20, `Optimizing pages: ${i}/${pdf.numPages}...`);
-    
+    if (onProgress) onProgress(i, pdf.numPages);
     const page = await pdf.getPage(i);
-    const viewport = page.getViewport({ scale: 1.5 });
+    const viewport = page.getViewport({ scale: scale });
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = viewport.width;
     canvas.height = viewport.height;
-
     await page.render({ canvasContext: ctx, viewport: viewport }).promise;
-    const imgDataUrl = canvas.toDataURL('image/jpeg', quality);
-    const imgBytes = await fetch(imgDataUrl).then(res => res.arrayBuffer());
-    
+    const imgBytes = await fetch(canvas.toDataURL('image/jpeg', quality)).then(res => res.arrayBuffer());
     const embeddedImg = await compressedDoc.embedJpg(imgBytes);
     const newPage = compressedDoc.addPage([viewport.width, viewport.height]);
     newPage.drawImage(embeddedImg, { x: 0, y: 0, width: viewport.width, height: viewport.height });
   }
+  return { bytes: await compressedDoc.save(), pages: pdf.numPages };
+}
 
-  setProgressUI(95, 'Compiling optimized arrays...');
-  const outBytes = await compressedDoc.save();
-  setProgressUI(100, 'Optimization completed!');
-  createDownloadLink(outBytes, 'compressed.pdf', 'application/pdf');
+function formatKB(bytes) {
+  return bytes >= 1048576 ? (bytes / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(bytes / 1024)) + ' KB';
+}
+
+async function runCompressPDF(file) {
+  const sliderEl = document.getElementById('compress-slider');
+  const targetEl = document.getElementById('compress-target');
+  const quality = sliderEl ? (parseFloat(sliderEl.value) || 0.6) : 0.6;
+  const targetKB = targetEl ? parseInt(targetEl.value, 10) : 0;
+  const fileBytes = await file.arrayBuffer();
+  const origKB = formatKB(fileBytes.byteLength);
+
+  if (!targetKB) {
+    // Manual quality mode
+    setProgressUI(20, 'Unpacking document buffers...');
+    const { bytes, pages } = await compressOnce(fileBytes, 1.5, quality, (i, n) => {
+      setProgressUI(Math.round((i / n) * 80) + 15, `Optimizing pages: ${i}/${n}...`);
+    });
+    setProgressUI(100, 'Optimization completed!');
+    const note = `Original size ${origKB} → compressed to ${formatKB(bytes.byteLength)}. ` +
+      (bytes.byteLength >= fileBytes.byteLength
+        ? 'Honest note: this file was already very efficient, so compression did not reduce the size. Try a lower quality value or fewer pages.'
+        : 'Lower quality values give smaller files but softer images.');
+    createDownloadLink(bytes, 'compressed.pdf', 'application/pdf', note);
+    return;
+  }
+
+  // Target-size mode: step down render scale, then binary-search JPEG quality.
+  setProgressUI(5, `Aiming for under ${formatKB(targetKB * 1024)}...`);
+  let best = null; // { bytes, scale, quality, size }
+  for (const scale of [1.5, 1.0, 0.75, 0.5]) {
+    let lo = 0.05, hi = 0.9, passes = 0;
+    while (passes < 5 && (hi - lo) > 0.02) {
+      passes++;
+      const mid = (lo + hi) / 2;
+      const { bytes, pages } = await compressOnce(fileBytes, scale, mid, (i, n) => {
+        setProgressUI(10 + Math.min(88, Math.round(passes * 16 + (i / n) * 12)), `Pass ${passes}: page ${i}/${n} (scale ${scale}, quality ${mid.toFixed(2)})...`);
+      });
+      if (bytes.byteLength <= targetKB * 1024) {
+        if (!best || bytes.byteLength < best.size) best = { bytes, scale, quality: mid, size: bytes.byteLength };
+        hi = mid;
+      } else {
+        lo = mid;
+        if (!best) best = { bytes, scale, quality: mid, size: bytes.byteLength };
+      }
+      if (best && best.size <= targetKB * 1024 && scale === 1.5 && passes >= 2) break;
+    }
+    if (best && best.size <= targetKB * 1024) break;
+  }
+
+  if (!best) throw new Error('Compression could not run on this file.');
+  const reached = best.size <= targetKB * 1024;
+  setProgressUI(100, reached
+    ? `Target reached: ${formatKB(best.size)} (under ${formatKB(targetKB * 1024)}).`
+    : `Smallest result: ${formatKB(best.size)} — target not fully reached.`);
+  const note = reached
+    ? `Target ${formatKB(targetKB * 1024)} reached: output is ${formatKB(best.size)} (original ${origKB}).`
+    : `Honest result: the smallest output this file can reach in your browser is ${formatKB(best.size)} — below ${formatKB(targetKB * 1024)} was not possible without destroying the content. Try the PDF to JPG route or remove pages to get under the limit.`;
+  createDownloadLink(best.bytes, `compressed_under_${targetKB}kb.pdf`, 'application/pdf', note);
 }
 
 // 4. Rotate PDF
@@ -1921,16 +2103,23 @@ async function runPDFToText(file) {
   createDownloadLink(new TextEncoder().encode(textOut), 'extracted_text.txt', 'text/plain');
 }
 
-// 7. Image to PDF
+// 7. Image to PDF (optional fixed page size: fit-to-image, A4, or US Letter)
+const PAGE_SIZES_PT = {
+  a4: [595.28, 841.89],
+  letter: [612, 792]
+};
+
 async function runImageToPDF(files, extension) {
   setProgressUI(30, 'Opening canvas document...');
   const { PDFDocument } = PDFLib;
   const pdfDoc = await PDFDocument.create();
+  const sizeEl = document.getElementById('img-page-size');
+  const pageSize = sizeEl && PAGE_SIZES_PT[sizeEl.value] ? PAGE_SIZES_PT[sizeEl.value] : null;
 
   for (let i = 0; i < files.length; i++) {
     setProgressUI(Math.round(((i + 1) / files.length) * 50) + 30, `Embedding image layouts: ${i+1}/${files.length}...`);
     const buffer = await files[i].arrayBuffer();
-    
+
     let embeddedImg;
     if (extension === 'jpg' || extension === 'jpeg') {
       embeddedImg = await pdfDoc.embedJpg(buffer);
@@ -1938,15 +2127,28 @@ async function runImageToPDF(files, extension) {
       embeddedImg = await pdfDoc.embedPng(buffer);
     }
 
-    const { width, height } = embeddedImg.scale(1.0);
-    const page = pdfDoc.addPage([width, height]);
-    page.drawImage(embeddedImg, { x: 0, y: 0, width, height });
+    const { width: imgW, height: imgH } = embeddedImg.scale(1.0);
+    if (!pageSize) {
+      const page = pdfDoc.addPage([imgW, imgH]);
+      page.drawImage(embeddedImg, { x: 0, y: 0, width: imgW, height: imgH });
+      continue;
+    }
+    const [pageW, pageH] = pageSize;
+    const margin = 24;
+    const scale = Math.min((pageW - margin * 2) / imgW, (pageH - margin * 2) / imgH, 1);
+    const w = imgW * scale, h = imgH * scale;
+    const page = pdfDoc.addPage([pageW, pageH]);
+    page.drawRectangle({ x: 0, y: 0, width: pageW, height: pageH, color: PDFLib.rgb(1, 1, 1) });
+    page.drawImage(embeddedImg, { x: (pageW - w) / 2, y: (pageH - h) / 2, width: w, height: h });
   }
 
   setProgressUI(90, 'Compiling coordinate sheets...');
   const pdfBytes = await pdfDoc.save();
   setProgressUI(100, 'Conversion complete!');
-  createDownloadLink(pdfBytes, 'images_converted.pdf', 'application/pdf');
+  const note = pageSize
+    ? `Each image is centered on a ${pageSize === PAGE_SIZES_PT.a4 ? 'A4' : 'US Letter'} page, scaled down to fit with 24pt margins (images are never upscaled beyond their native size).`
+    : 'Each image fills its own page at full resolution.';
+  createDownloadLink(pdfBytes, 'images_converted.pdf', 'application/pdf', note);
 }
 
 // 8. Word to PDF
@@ -2463,20 +2665,455 @@ async function runPDFToPowerPoint(file) {
   createDownloadLink(blob, file.name.replace(/\.pdf$/i, '') + '.pptx', 'application/vnd.openxmlformats-officedocument.presentationml.presentation');
 }
 
-async function runAdvancedSimulatedTool(files) {
-  setProgressUI(35, 'Analyzing document structures...');
-  await new Promise(res => setTimeout(res, 1200));
-  
-  setProgressUI(75, 'Optimizing structural vectors...');
-  await new Promise(res => setTimeout(res, 800));
-  
+// Helper: render one PDF page to a canvas at a given scale
+async function renderPageToCanvas(pdf, pageNum, scale) {
+  const page = await pdf.getPage(pageNum);
+  const viewport = page.getViewport({ scale: scale });
+  const canvas = document.createElement('canvas');
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
+  await page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
+  return canvas;
+}
+
+// Helper: extract text lines from a pdf.js page (grouped by Y coordinate)
+async function extractPageLines(page) {
+  const content = await page.getTextContent();
+  const byY = new Map();
+  for (const item of content.items) {
+    if (!item.str) continue;
+    const y = Math.round(item.transform[5]);
+    const bucket = byY.get(y);
+    if (bucket) bucket.push([item.transform[4], item.str]);
+    else byY.set(y, [[item.transform[4], item.str]]);
+  }
+  const lines = [];
+  const ys = Array.from(byY.keys()).sort((a, b) => b - a);
+  for (const y of ys) {
+    const parts = byY.get(y).sort((a, b) => a[0] - b[0]);
+    lines.push(parts.map(p => p[1]).join(' ').replace(/\s+/g, ' ').trim());
+  }
+  return lines.filter(l => l.length > 0);
+}
+
+function escapeXml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// OCR PDF (Tesseract.js — recognition runs in a local Web Worker; only the public language model is downloaded)
+async function runOCRPDF(file) {
+  if (typeof Tesseract === 'undefined') throw new Error('The OCR engine failed to load. Please refresh the page and try again.');
+  setProgressUI(5, 'Preparing OCR engine...');
+  const isImage = /\.(jpe?g|png|webp|bmp)$/i.test(file.name);
+  const baseName = file.name.replace(/\.[^.]+$/, '');
+
+  const worker = await Tesseract.createWorker('eng', 1, {
+    logger: m => {
+      if (m.status === 'recognizing text') {
+        setProgressUI(10 + Math.round(m.progress * 85), `Recognizing text… ${Math.round(m.progress * 100)}%`);
+      }
+    }
+  });
+
+  try {
+    let allText = '';
+    if (isImage) {
+      setProgressUI(10, 'Loading image...');
+      const img = await createImageBitmap(await file.arrayBuffer());
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      canvas.getContext('2d').drawImage(img, 0, 0);
+      const { data } = await worker.recognize(canvas);
+      allText = data.text;
+    } else {
+      const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
+      for (let i = 1; i <= pdf.numPages; i++) {
+        setProgressUI(5 + Math.round(((i - 1) / pdf.numPages) * 90), `Preparing page ${i} of ${pdf.numPages} for OCR...`);
+        const canvas = await renderPageToCanvas(pdf, i, 2);
+        const { data } = await worker.recognize(canvas);
+        allText += `--- Page ${i} ---\n${data.text.trim()}\n\n`;
+      }
+    }
+    if (!allText.trim()) {
+      throw new Error('No readable text was found. Make sure the document contains clear, printed English text (photos of handwriting are not supported).');
+    }
+    setProgressUI(98, 'Building text file...');
+    createDownloadLink(new TextEncoder().encode(allText), `${baseName}_ocr.txt`, 'text/plain',
+      'OCR finished. The output is a plain-text file with the recognized words. Check a few paragraphs — OCR is not perfect, so always proofread before submitting important documents.');
+  } finally {
+    await worker.terminate();
+  }
+}
+
+// HTML to PDF (html2pdf.js renders the markup in your browser)
+async function runHTMLToPDF(file) {
+  if (typeof html2pdf === 'undefined') throw new Error('The PDF rendering engine failed to load. Please refresh the page and try again.');
+  setProgressUI(20, 'Reading HTML file...');
+  const text = await file.text();
+  const baseName = file.name.replace(/\.[^.]+$/, '');
+
+  const container = document.createElement('div');
+  container.style.width = '720px';
+  container.style.padding = '12px';
+  container.style.fontFamily = 'Arial, Helvetica, sans-serif';
+  container.style.fontSize = '13px';
+  container.style.lineHeight = '1.55';
+  container.style.color = '#111';
+  container.innerHTML = text;
+  // Neutralize scripts inside user markup before rendering
+  container.querySelectorAll('script, iframe, object, embed, link[rel="import"]').forEach(el => el.remove());
+
+  setProgressUI(55, 'Rendering pages...');
+  const pdfBlob = await html2pdf()
+    .from(container)
+    .set({
+      margin: 10,
+      image: { type: 'jpeg', quality: 0.95 },
+      html2canvas: { scale: 2, useCORS: true, logging: false },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    })
+    .outputPdf('blob');
+
   setProgressUI(100, 'Processing completed!');
+  createDownloadLink(pdfBlob, `${baseName}.pdf`, 'application/pdf',
+    'Done. Note: images and styles from external URLs may not be embedded — keep assets local or inline for the best result.');
+}
 
-  const file = files[0];
-  const filename = `processed_${file.name.split('.')[0]}${TOOL_DATABASE[activeTool].outputExt}`;
-  const fileBytes = await file.arrayBuffer();
+// Excel to PDF (SheetJS parses the workbook, html2pdf renders the sheets)
+async function runExcelToPDF(file) {
+  if (typeof XLSX === 'undefined' || typeof html2pdf === 'undefined') throw new Error('The spreadsheet engine failed to load. Please refresh the page and try again.');
+  setProgressUI(15, 'Reading workbook...');
+  const wb = XLSX.read(await file.arrayBuffer(), { type: 'array' });
+  const baseName = file.name.replace(/\.[^.]+$/, '');
+  const sheetNames = wb.SheetNames.slice(0, 10);
 
-  createDownloadLink(fileBytes, filename, 'application/octet-stream');
+  let body = '';
+  for (let i = 0; i < sheetNames.length; i++) {
+    setProgressUI(20 + Math.round((i / sheetNames.length) * 40), `Rendering sheet ${i + 1} of ${sheetNames.length}: ${sheetNames[i]}`);
+    const sheet = wb.Sheets[sheetNames[i]];
+    if (!sheet || !sheet['!ref']) continue;
+    const range = XLSX.utils.decode_range(sheet['!ref']);
+    const maxRow = Math.min(range.e.r, 5000);
+    const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '', range: [range.s.r, range.s.c, maxRow, range.e.c] });
+    let table = '<table style="border-collapse:collapse;width:100%;font-size:10px;font-family:Arial,sans-serif;margin:8px 0 20px;">';
+    table += '<thead><tr>' + rows[0].map(h => `<th style="border:1px solid #999;padding:3px 6px;background:#f0f0f0;">${escapeHtml(h)}</th>`).join('') + '</tr></thead><tbody>';
+    for (let r = 1; r < rows.length; r++) {
+      table += '<tr>' + rows[r].map(c => `<td style="border:1px solid #ccc;padding:2px 6px;">${escapeHtml(c)}</td>`).join('') + '</tr>';
+    }
+    table += '</tbody></table>';
+    body += `<h3 style="font-family:Arial,sans-serif;font-size:14px;">${escapeHtml(sheetNames[i])}</h3>` + table;
+  }
+  if (!body) throw new Error('No readable sheets were found in this workbook.');
+
+  const container = document.createElement('div');
+  container.innerHTML = body;
+
+  setProgressUI(70, 'Building PDF...');
+  const pdfBlob = await html2pdf()
+    .from(container)
+    .set({
+      margin: [8, 6, 8, 6],
+      image: { type: 'jpeg', quality: 0.95 },
+      html2canvas: { scale: 2, logging: false },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+    })
+    .outputPdf('blob');
+
+  setProgressUI(100, 'Processing completed!');
+  createDownloadLink(pdfBlob, `${baseName}.pdf`, 'application/pdf',
+    `Done. ${sheetNames.length} sheet(s) exported, up to 5,000 rows per sheet. Very wide columns may be split across pages.`);
+}
+
+// PDF to HTML (pdf.js text extraction, grouped into readable lines)
+async function runPDFToHTML(file) {
+  setProgressUI(15, 'Reading document...');
+  const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
+  const baseName = file.name.replace(/\.[^.]+$/, '');
+  let pagesHtml = '';
+  for (let i = 1; i <= pdf.numPages; i++) {
+    setProgressUI(15 + Math.round((i / pdf.numPages) * 75), `Converting page ${i} of ${pdf.numPages}...`);
+    const page = await pdf.getPage(i);
+    const lines = await extractPageLines(page);
+    const paras = lines.map(l => `<p>${escapeHtml(l)}</p>`).join('');
+    pagesHtml += `<section class="page"><h2>Page ${i}</h2>${paras || '<p><em>(no extractable text on this page)</em></p>'}</section>`;
+  }
+  const doc = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${escapeHtml(baseName)} — converted from PDF</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;max-width:800px;margin:2rem auto;padding:0 1.25rem;color:#222;line-height:1.6;}
+h1{font-size:1.5rem;} h2{font-size:1.1rem;margin-top:2rem;border-bottom:1px solid #ddd;padding-bottom:.3rem;}
+p{margin:.4rem 0;} .meta{color:#666;font-size:.85rem;}
+</style>
+</head>
+<body>
+<h1>${escapeHtml(baseName)}</h1>
+<p class="meta">Converted from PDF in the browser by PDFZaap. Text is extracted in reading order; complex multi-column layouts may not map perfectly.</p>
+${pagesHtml}
+</body>
+</html>`;
+  setProgressUI(100, 'Conversion complete!');
+  createDownloadLink(new TextEncoder().encode(doc), `${baseName}.html`, 'text/html',
+    'Done. The HTML preserves text in reading order. Page graphics are not embedded — use PDF to JPG or PDF to PNG for images.');
+}
+
+// PDF to EPUB (minimal valid EPUB 3 built with JSZip)
+async function runPDFToEPUB(file) {
+  if (typeof JSZip === 'undefined') throw new Error('The EPUB builder failed to load. Please refresh the page and try again.');
+  setProgressUI(10, 'Reading document...');
+  const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
+  const baseName = file.name.replace(/\.[^.]+$/, '');
+  const bookTitle = baseName.replace(/[_-]+/g, ' ');
+  const chapters = [];
+  const navItems = [];
+  for (let i = 1; i <= pdf.numPages; i++) {
+    setProgressUI(10 + Math.round((i / pdf.numPages) * 70), `Preparing chapter ${i} of ${pdf.numPages}...`);
+    const page = await pdf.getPage(i);
+    const lines = await extractPageLines(page);
+    const paras = lines.map(l => `<p>${escapeXml(l)}</p>`).join('');
+    chapters.push(`<section epub:type="chapter"><h2>Page ${i}</h2>${paras || '<p>(no extractable text)</p>'}</section>`);
+    navItems.push(`<li><a href="c${i}.xhtml">Page ${i}</a></li>`);
+  }
+  const id = 'zaap-' + Date.now().toString(36);
+  const opf = `<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id" xml:lang="en">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:identifier id="pub-id">${id}</dc:identifier>
+    <dc:title>${escapeXml(bookTitle)}</dc:title>
+    <dc:language>en</dc:language>
+    <meta property="dcterms:modified">${new Date().toISOString().replace(/\.\d{3}Z/, 'Z')}</meta>
+    <meta name="cover" content="cover-image"/>
+  </metadata>
+  <manifest>
+    <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+    ${chapters.map((_, i) => `<item id="c${i + 1}" href="c${i + 1}.xhtml" media-type="application/xhtml+xml"/>`).join('\n    ')}
+  </manifest>
+  <spine>${chapters.map((_, i) => `<itemref idref="c${i + 1}"/>`).join('')}</spine>
+</package>`;
+  const nav = `<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<head><title>Navigation</title></head>
+<body><nav epub:type="toc"><h1>Contents</h1><ol>${navItems.join('')}</ol></nav></body>
+</html>`;
+  const xhtmlFor = (i, body) => `<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Page ${i}</title></head>
+<body>${body}</body>
+</html>`;
+
+  const zip = new JSZip();
+  zip.file('mimetype', 'application/epub+zip', { compression: 'STORE' });
+  zip.file('META-INF/container.xml', `<?xml version="1.0" encoding="utf-8"?>
+<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+  <rootfiles><rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/></rootfiles>
+</container>`, { compression: 'STORE' });
+  zip.file('OEBPS/content.opf', opf);
+  zip.file('OEBPS/nav.xhtml', nav);
+  chapters.forEach((c, i) => zip.file(`OEBPS/c${i + 1}.xhtml`, xhtmlFor(i + 1, c)));
+
+  setProgressUI(90, 'Packing EPUB file...');
+  const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
+  setProgressUI(100, 'Conversion complete!');
+  createDownloadLink(blob, `${baseName}.epub`, 'application/epub+zip',
+    'Done. The EPUB is reflowable text — each PDF page becomes one chapter. Graphics are not embedded; use OCR PDF first if your source is scanned.');
+}
+
+// PDF to Word (minimal valid DOCX built with JSZip — text-based conversion)
+async function runPDFToWord(file) {
+  if (typeof JSZip === 'undefined') throw new Error('The DOCX builder failed to load. Please refresh the page and try again.');
+  setProgressUI(10, 'Reading document...');
+  const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
+  const baseName = file.name.replace(/\.[^.]+$/, '');
+  let bodyXml = '';
+  let pageBreakCount = 0;
+  for (let i = 1; i <= pdf.numPages; i++) {
+    setProgressUI(10 + Math.round((i / pdf.numPages) * 75), `Converting page ${i} of ${pdf.numPages}...`);
+    const page = await pdf.getPage(i);
+    const lines = await extractPageLines(page);
+    if (i > 1) {
+      bodyXml += `<w:p><w:r><w:br w:type="page"/></w:r></w:p>`;
+      pageBreakCount++;
+    }
+    bodyXml += lines.length
+      ? lines.map(l => `<w:p><w:r><w:t xml:space="preserve">${escapeXml(l)}</w:t></w:r></w:p>`).join('')
+      : `<w:p><w:r><w:t xml:space="preserve">(no extractable text)</w:t></w:r></w:p>`;
+  }
+  const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+<w:body>${bodyXml}<w:sectPr><w:pgSz w:w="12240" w:h="15840"/></w:sectPr></w:body>
+</w:document>`;
+  const contentTypes = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+<Default Extension="xml" ContentType="application/xml"/>
+<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+</Types>`;
+  const rels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+</Relationships>`;
+
+  const zip = new JSZip();
+  zip.file('[Content_Types].xml', contentTypes);
+  zip.file('_rels/.rels', rels);
+  zip.file('word/document.xml', documentXml);
+
+  setProgressUI(95, 'Packing Word file...');
+  const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
+  setProgressUI(100, 'Conversion complete!');
+  createDownloadLink(blob, `${baseName}.docx`, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'Done. This is a text-based conversion: all words and the reading order are preserved, but multi-column layouts, tables and images are simplified. For pixel-perfect fidelity, export pages as images instead.');
+}
+
+// PDF to Excel (pdf.js text lines → SheetJS worksheet)
+async function runPDFToExcel(file) {
+  if (typeof XLSX === 'undefined') throw new Error('The spreadsheet engine failed to load. Please refresh the page and try again.');
+  setProgressUI(15, 'Reading document...');
+  const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
+  const baseName = file.name.replace(/\.[^.]+$/, '');
+  const rows = [];
+  for (let i = 1; i <= pdf.numPages; i++) {
+    setProgressUI(15 + Math.round((i / pdf.numPages) * 70), `Extracting rows from page ${i} of ${pdf.numPages}...`);
+    const page = await pdf.getPage(i);
+    const lines = await extractPageLines(page);
+    lines.forEach(line => {
+      const cells = line.split(/\t|\s{2,}/).map(c => c.trim()).filter(Boolean);
+      rows.push(cells.length ? cells : ['']);
+    });
+    if (i < pdf.numPages) rows.push([]);
+  }
+  if (!rows.length) throw new Error('No extractable text was found in this PDF.');
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Page text');
+  const out = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+  setProgressUI(100, 'Export complete!');
+  createDownloadLink(new Blob([out], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }),
+    `${baseName}.xlsx`, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'Done. Each text line becomes a spreadsheet row; cells are split where the PDF used tabs or clear column spacing. Complex tables may need a little manual cleanup.');
+}
+
+// PDF archival prep (pdf-lib) — embeds long-term-archiving metadata.
+// NOT a certified PDF/A conversion (that requires server-side validation tooling); the page copy says so.
+async function runArchivalPrep(file) {
+  setProgressUI(25, 'Reading document structure...');
+  const { PDFDocument } = PDFLib;
+  const bytes = await file.arrayBuffer();
+  let doc;
+  try {
+    doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+  } catch (e) {
+    throw new Error('This file could not be opened. If it is corrupt, try the Repair PDF tool first.');
+  }
+  const now = new Date();
+  if (!doc.getTitle()) doc.setTitle(file.name.replace(/\.[^.]+$/, ''));
+  doc.setSubject('Prepared for long-term archiving');
+  doc.setKeywords(['archival', 'long-term storage']);
+  doc.setCreator('PDFZaap (client-side archival prep)');
+  doc.setProducer('PDFZaap PDF Archival Prep');
+  doc.setCreationDate(now);
+  doc.setModificationDate(now);
+  setProgressUI(80, 'Writing document...');
+  const outBytes = await doc.save();
+  setProgressUI(100, 'Processing completed!');
+  createDownloadLink(outBytes, file.name.replace(/\.[^.]+$/, '') + '_archival.pdf', 'application/pdf',
+    'Archival metadata (title, subject, creation/modification dates) has been embedded. Honest note: this is preparation, not a certified PDF/A conversion — full PDF/A validation requires dedicated server-side tooling (see the guide on this page).');
+}
+
+// Compare PDFs (pdf.js text extraction + line diff → HTML report)
+function diffLines(a, b) {
+  const n = a.length, m = b.length;
+  // Guard: DP is O(n*m); cap for very large documents
+  if (n * m > 9_000_000) return null;
+  const dp = Array.from({ length: n + 1 }, () => new Uint32Array(m + 1));
+  for (let i = n - 1; i >= 0; i--) {
+    for (let j = m - 1; j >= 0; j--) {
+      dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    }
+  }
+  const out = [];
+  let i = 0, j = 0;
+  while (i < n && j < m) {
+    if (a[i] === b[j]) { out.push({ t: 'eq', s: a[i] }); i++; j++; }
+    else if (dp[i + 1][j] >= dp[i][j + 1]) { out.push({ t: 'del', s: a[i] }); i++; }
+    else { out.push({ t: 'add', s: b[j] }); j++; }
+  }
+  while (i < n) { out.push({ t: 'del', s: a[i] }); i++; }
+  while (j < m) { out.push({ t: 'add', s: b[j] }); j++; }
+  return out;
+}
+
+async function runComparePDF(files) {
+  if (files.length < 2) throw new Error('Please select exactly two PDF files to compare.');
+  if (files.length > 2) throw new Error('Please select exactly two PDF files to compare.');
+  setProgressUI(15, 'Reading first document...');
+  const pdfA = await pdfjsLib.getDocument({ data: await files[0].arrayBuffer() }).promise;
+  setProgressUI(35, 'Reading second document...');
+  const pdfB = await pdfjsLib.getDocument({ data: await files[1].arrayBuffer() }).promise;
+
+  const collect = async (pdf) => {
+    const all = [];
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const lines = await extractPageLines(page);
+      lines.forEach(l => all.push(l));
+    }
+    return all;
+  };
+  setProgressUI(55, 'Extracting text...');
+  const linesA = await collect(pdfA);
+  const linesB = await collect(pdfB);
+
+  setProgressUI(75, 'Computing differences...');
+  const ops = diffLines(linesA, linesB);
+  const additions = ops ? ops.filter(o => o.t === 'add').length : 0;
+  const deletions = ops ? ops.filter(o => o.t === 'del').length : 0;
+
+  let rowsHtml;
+  if (ops) {
+    rowsHtml = ops.map(o => {
+      if (o.t === 'eq') return `<tr class="same"><td>${escapeHtml(o.s)}</td></tr>`;
+      if (o.t === 'add') return `<tr class="add"><td>+ ${escapeHtml(o.s)}</td></tr>`;
+      return `<tr class="del"><td>- ${escapeHtml(o.s)}</td></tr>`;
+    }).join('');
+  } else {
+    rowsHtml = `<p>The documents are too large for a line-by-line diff in the browser. Both text exports are listed below for manual review.</p>`;
+  }
+
+  const report = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Comparison: ${escapeHtml(files[0].name)} vs ${escapeHtml(files[1].name)}</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;max-width:900px;margin:2rem auto;padding:0 1.25rem;color:#222;}
+h1{font-size:1.4rem;} .meta{color:#555;font-size:.9rem;}
+table{width:100%;border-collapse:collapse;font-size:.85rem;font-family:Consolas,Monaco,monospace;}
+td{padding:.2rem .5rem;border-bottom:1px solid #eee;white-space:pre-wrap;}
+tr.add td{background:#e6f6e6;color:#145214;}
+tr.del td{background:#fdecea;color:#7a1f1f;}
+.summary{background:#f7f7f7;border:1px solid #ddd;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;}
+</style>
+</head>
+<body>
+<h1>PDF comparison report</h1>
+<p class="meta">Document A: ${escapeHtml(files[0].name)} (${pdfA.numPages} pages, ${linesA.length} lines) &middot; Document B: ${escapeHtml(files[1].name)} (${pdfB.numPages} pages, ${linesB.length} lines) &middot; Generated in the browser by PDFZaap</p>
+<div class="summary"><strong>Result:</strong> ${ops ? `${additions} added line(s), ${deletions} removed line(s) compared to document A.` : 'Detailed diff unavailable (documents too large).'}</div>
+<table><tbody>${rowsHtml}</tbody></table>
+</body>
+</html>`;
+  setProgressUI(100, 'Report ready!');
+  createDownloadLink(new TextEncoder().encode(report),
+    `${files[0].name.replace(/\.[^.]+$/, '')}_vs_${files[1].name.replace(/\.[^.]+$/, '')}_report.html`, 'text/html',
+    `Done. ${ops ? `Found ${additions} added and ${deletions} removed lines.` : 'Opened as an HTML report you can view in any browser.'}`);
 }
 
 // ==========================================================================
@@ -2570,7 +3207,10 @@ function setupSearchAndFilters() {
 
 function runSearchFilter() {
   const query = document.getElementById('tool-search').value.toLowerCase().trim();
-  const activeTab = document.querySelector('.filter-tab.active').textContent.toLowerCase();
+  const activeBtn = document.querySelector('.filter-tab.active');
+  const activeTab = activeBtn
+    ? (activeBtn.getAttribute('data-tab') || activeBtn.textContent.toLowerCase())
+    : 'all';
   const cards = document.querySelectorAll('#main-tools-grid .tool-card');
 
   cards.forEach(card => {
@@ -2578,14 +3218,20 @@ function runSearchFilter() {
     const desc = card.querySelector('p').textContent.toLowerCase();
     const category = card.getAttribute('data-category');
 
-    const matchQuery = title.includes(query) || desc.includes(query);
-    const matchTab = (activeTab === 'all tools' || activeTab === 'all' || category === activeTab);
+    const matchQuery = !query || title.includes(query) || desc.includes(query);
+    const matchTab = (activeTab === 'all' || category === activeTab);
 
     if (matchQuery && matchTab) {
       card.style.display = 'flex';
     } else {
       card.style.display = 'none';
     }
+  });
+
+  // Hide group sections whose cards are all filtered out
+  document.querySelectorAll('#main-tools-grid .tools-group').forEach(group => {
+    const anyVisible = Array.from(group.querySelectorAll('.tool-card')).some(c => c.style.display !== 'none');
+    group.style.display = anyVisible ? '' : 'none';
   });
 }
 
