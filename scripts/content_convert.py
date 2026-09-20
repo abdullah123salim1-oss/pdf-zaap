@@ -408,7 +408,7 @@ C["html-to-pdf"] = dict(
     why_title="print web content without a server",
     why="<p><strong class='subtext'>Private for internal content.</strong> HTML reports often contain numbers and names you would not paste into an upload form. Here the file is read and rendered in your own tab — there is no upload step at all.</p><p class='subtext'><strong>Know the rendering model.</strong> The converter draws the page as it sees it: inline styles and <code>&lt;style&gt;</code> blocks render reliably; external stylesheets and remote images work only if your browser can reach them. Because the page is rendered as images per A4 sheet, the output looks exactly like the layout but the text is not selectable. If you need selectable text, your browser's own 'Print → Save as PDF' is the tool for that job — and we would rather point you there than pretend otherwise.</p>",
     tips=[
-        "Inline your CSS (or paste it into a <style> tag) for the most predictable result.",
+        "Inline your CSS (or paste it into a &lt;style&gt; tag) for the most predictable result.",
         "Keep line lengths under ~90 characters for documents that are mostly text.",
         "For plain text files, the converter wraps them in a clean document layout automatically.",
         "The reverse direction — PDF to editable HTML — is covered by <a href='/pdf-to-html.html'>PDF to HTML</a>.",

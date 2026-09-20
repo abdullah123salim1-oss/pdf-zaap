@@ -4,7 +4,7 @@
 
 // Configure the pdf.js worker to match the loaded library version (required for reliable rendering)
 if (typeof pdfjsLib !== 'undefined' && pdfjsLib.GlobalWorkerOptions) {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/' + pdfjsLib.version + '/pdf.worker.min.js';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-worker.js', document.currentScript.src).href;
 }
 
 const TOOL_DATABASE = {
@@ -1017,6 +1017,21 @@ const BLOG_POSTS = {
 let uploadedFileArray = [];
 let activeTool = null;
 let fabricCanvas = null;
+let processingController = null;
+let activeDownloadURL = null;
+let processingClientPromise;
+const progressUI = { timer: null, pending: null, lastTime: -Infinity, percent: null, text: null };
+
+function getProcessingClient() {
+  if (!processingClientPromise) {
+    processingClientPromise = import('./processing-client.js').catch(error => {
+      processingClientPromise = null;
+      throw error;
+    });
+  }
+  return processingClientPromise;
+}
+
 
 // ==========================================================================
 // PRIVACY-FRIENDLY ANALYTICS HOOK
@@ -1116,7 +1131,7 @@ function oldRouter() {
 
 function router() {
   // Applies to the homepage document only; standalone pages return early.
-  if (!document.getElementById('homepage-dashboard')) return;
+  if (!document.getElementById('main-tools-grid')) return;
   oldRouter();
 }
 
@@ -1380,9 +1395,10 @@ function setupOptionsPanel(toolId) {
   const panel = document.getElementById('ws-options-panel');
   const canvasWrapper = document.getElementById('ws-canvas-wrapper');
   
+  if (!panel) return;
   panel.innerHTML = '';
   panel.classList.add('display-none');
-  canvasWrapper.classList.add('display-none');
+  canvasWrapper?.classList.add('display-none');
 
   if (toolId === 'compress-pdf') {
     panel.innerHTML = `
@@ -1601,7 +1617,30 @@ function setupOptionsPanel(toolId) {
     `;
     panel.classList.remove('display-none');
   }
-  // All other tools need no extra options — the panel stays hidden.
+  else {
+    panel.innerHTML = '<h4>Processing information</h4>';
+    panel.classList.remove('display-none');
+  }
+
+  const limitNote = document.createElement('p');
+  limitNote.className = 'subtext-muted margin-top-1';
+  panel.appendChild(limitNote);
+  getProcessingClient().then(({ LIMITS, supportsTool }) => {
+    if (!supportsTool(toolId)) {
+      limitNote.textContent = 'This tool is not implemented yet. It will not return an unchanged file as a successful conversion.';
+      return;
+    }
+    const raster = ['compress-pdf', 'grayscale-pdf', 'pdf-to-jpg', 'pdf-to-png', 'pdf-to-powerpoint', 'ocr-pdf'].includes(toolId);
+    if (toolId === 'word-to-pdf') {
+      limitNote.textContent = `Up to ${LIMITS.maxWordFileBytes / 1048576} MB. Very long documents must be split to fit browser canvas limits.`;
+    } else {
+      limitNote.textContent = `Up to ${LIMITS.maxFileBytes / 1048576} MB per file and ${raster ? LIMITS.maxRasterPages : LIMITS.maxPages} pages. `
+        + (toolId === 'ocr-pdf' ? 'Pages are processed at a bounded resolution into editable plain text.' : raster ? 'Pages are rendered as images at a bounded resolution; text in the output is not editable.' : 'Large documents may need to be split for browser safety.');
+      if (TOOL_DATABASE[toolId]?.multiple) limitNote.textContent += ` At most ${LIMITS.maxFiles} files and ${LIMITS.maxTotalFileBytes / 1048576} MB combined.`;
+    }
+    panel.querySelectorAll('#split-pages-input, #pages-range-input, #pages-order-input').forEach(input => { input.maxLength = LIMITS.maxRangeCharacters; });
+  }).catch(() => { limitNote.textContent = 'The processing engine could not load. Please refresh and try again.'; });
+
 }
 
 // Fabric canvas helper
@@ -1652,17 +1691,22 @@ function setupDropzone() {
   });
 }
 
-function handleUploadedFiles(files) {
-  const toolData = TOOL_DATABASE[activeTool];
-  if (!toolData.multiple) {
-    uploadedFileArray = [files[0]];
-  } else {
-    for (let file of files) {
-      uploadedFileArray.push(file);
-    }
+async function handleUploadedFiles(files) {
+  if (processingController || !files.length || !TOOL_DATABASE[activeTool]) return;
+  const tool = activeTool;
+  const incoming = Array.from(files);
+  try {
+    const { validateFiles } = await getProcessingClient();
+    if (processingController || tool !== activeTool) return;
+    const nextFiles = TOOL_DATABASE[tool].multiple ? [...uploadedFileArray, ...incoming] : [incoming[0]];
+    validateFiles(nextFiles, tool);
+    uploadedFileArray = nextFiles;
+    zaapTrack('file_selected', { files: incoming.length });
+    renderWorkspaceFileList();
+  } catch (error) {
+    document.getElementById('ws-progress-container').style.display = 'block';
+    setProgressUI(0, `Error: ${error.message}`, true);
   }
-  zaapTrack('file_selected', { files: files.length });
-  renderWorkspaceFileList();
 }
 
 function renderWorkspaceFileList() {
@@ -1684,10 +1728,11 @@ function renderWorkspaceFileList() {
   });
 
   const hasFiles = uploadedFileArray.filter(f => f).length > 0;
-  document.getElementById('ws-process-btn').disabled = !hasFiles;
+  document.getElementById('ws-process-btn').disabled = !hasFiles || !!processingController;
 }
 
 function removeWorkspaceFile(index) {
+  if (processingController) return;
   uploadedFileArray.splice(index, 1);
   renderWorkspaceFileList();
 }
@@ -1701,6 +1746,9 @@ function setFileIconByExtension(fileName) {
 }
 
 function clearWorkspaceFile() {
+  cancelWorkspaceProcessing();
+  releaseDownloadURL();
+  resetProgressUI();
   uploadedFileArray = [];
   const input = document.getElementById('ws-file-input');
   if (input) input.value = '';
@@ -1716,1405 +1764,171 @@ function clearWorkspaceFile() {
 // WORKSPACE EXECUTION & PDF ENGINES
 // ==========================================================================
 
-const _processBtn = document.getElementById('ws-process-btn');
-if (_processBtn) {
-_processBtn.addEventListener('click', async () => {
-  const validFiles = uploadedFileArray.filter(f => f);
-  if (validFiles.length === 0) return;
-  zaapTrack('process_click', { tool: activeTool, files: validFiles.length });
+// All processing settings are captured before starting a job; workers never read the DOM.
+function readProcessingOptions(tool) {
+  const value = id => document.getElementById(id)?.value || '';
+  switch (tool) {
+    case 'split-pdf': return { range: value('split-pages-input') };
+    case 'extract-pages-pdf':
+    case 'delete-pdf-pages': return { range: value('pages-range-input') };
+    case 'reorder-pages-pdf': return { order: value('pages-order-input') };
+    case 'compress-pdf': return { quality: value('compress-slider'), targetKB: Number(value('compress-target')) || 0 };
+    case 'jpg-to-pdf':
+    case 'png-to-pdf': return { pageSize: value('img-page-size') };
+    case 'rotate-pdf': return { angle: value('rotate-select') };
+    case 'add-watermark-pdf': return { text: value('watermark-text'), opacity: value('watermark-opacity') };
+    case 'number-pdf-pages': return { position: value('pagenum-pos'), fontSize: value('pagenum-size') };
+    case 'resize-pdf': return { format: value('resize-size') };
+    case 'crop-pdf': return { left: value('crop-left'), right: value('crop-right'), top: value('crop-top'), bottom: value('crop-bottom') };
+    case 'pdf-metadata-editor': return { title: value('meta-title').trim(), author: value('meta-author').trim(), subject: value('meta-subject').trim(), keywords: value('meta-keywords').trim() };
+    default: return {};
+  }
+}
 
+function setWorkspaceBusy(busy) {
+  const processButton = document.getElementById('ws-process-btn');
+  if (processButton) processButton.disabled = busy || !uploadedFileArray.some(Boolean);
+  const fileInput = document.getElementById('ws-file-input');
+  if (fileInput) fileInput.disabled = busy;
+  document.querySelectorAll('#ws-options-panel input, #ws-options-panel select').forEach(field => { field.disabled = busy; });
+  const cancelButton = document.getElementById('ws-cancel-btn');
+  if (cancelButton) cancelButton.style.display = busy ? 'inline-block' : 'none';
+}
+
+function cancelWorkspaceProcessing() {
+  processingController?.abort();
+  processingController = null;
+  setWorkspaceBusy(false);
+}
+
+document.getElementById('ws-process-btn')?.addEventListener('click', async () => {
+  const files = uploadedFileArray.filter(Boolean);
+  if (!files.length || processingController) return;
+  const tool = activeTool;
+  zaapTrack('process_click', { tool, files: files.length });
+  const options = readProcessingOptions(tool);
+  const controller = new AbortController();
+  processingController = controller;
   const progressContainer = document.getElementById('ws-progress-container');
-  const progressBar = document.getElementById('ws-progress-bar');
-  const progressStatus = document.getElementById('ws-progress-status');
-
   progressContainer.style.display = 'block';
-  progressBar.style.width = '10%';
-  progressStatus.textContent = 'Initializing engine...';
-
+  document.getElementById('ws-progress-bar').style.backgroundColor = '';
+  document.getElementById('ws-output-box').style.display = 'none';
+  document.getElementById('ws-output-box').replaceChildren();
+  releaseDownloadURL();
+  resetProgressUI();
+  setProgressUI(0, 'Initializing engine...', true);
+  let cancelButton = document.getElementById('ws-cancel-btn');
+  if (!cancelButton) {
+    cancelButton = document.createElement('button');
+    cancelButton.id = 'ws-cancel-btn';
+    cancelButton.className = 'btn btn-secondary btn-sm';
+    cancelButton.textContent = 'Cancel processing';
+    // Keep the job locked until its finally block has released all resources.
+    cancelButton.addEventListener('click', () => processingController?.abort());
+    progressContainer.appendChild(cancelButton);
+  }
+  setWorkspaceBusy(true);
   try {
-    switch(activeTool) {
-      case 'merge-pdf':
-        await runMergePDF(validFiles);
-        break;
-      case 'split-pdf':
-        await runSplitPDF(validFiles[0]);
-        break;
-      case 'compress-pdf':
-        await runCompressPDF(validFiles[0]);
-        break;
-      case 'rotate-pdf':
-        await runRotatePDF(validFiles[0]);
-        break;
-      case 'pdf-to-jpg':
-        await runPDFToImage(validFiles[0], 'image/jpeg', 'jpg');
-        break;
-      case 'pdf-to-png':
-        await runPDFToImage(validFiles[0], 'image/png', 'png');
-        break;
-      case 'pdf-to-text':
-        await runPDFToText(validFiles[0]);
-        break;
-      case 'jpg-to-pdf':
-        await runImageToPDF(validFiles, 'jpg');
-        break;
-      case 'png-to-pdf':
-        await runImageToPDF(validFiles, 'png');
-        break;
-      case 'word-to-pdf':
-        await runWordToPDF(validFiles[0]);
-        break;
-      case 'add-watermark-pdf':
-        await runAddWatermark(validFiles[0]);
-        break;
-      case 'number-pdf-pages':
-        await runAddPageNumbers(validFiles[0]);
-        break;
-      case 'delete-pdf-pages':
-        await runDeletePages(validFiles[0]);
-        break;
-      case 'extract-pages-pdf':
-        await runExtractPages(validFiles[0]);
-        break;
-      case 'reorder-pages-pdf':
-        await runReorderPages(validFiles[0]);
-        break;
-      case 'crop-pdf':
-        await runCropPDF(validFiles[0]);
-        break;
-      case 'resize-pdf':
-        await runResizePDF(validFiles[0]);
-        break;
-      case 'flatten-pdf':
-        await runFlattenPDF(validFiles[0]);
-        break;
-      case 'pdf-metadata-editor':
-        await runMetadataEditor(validFiles[0]);
-        break;
-      case 'repair-pdf':
-        await runRepairPDF(validFiles[0]);
-        break;
-      case 'unlock-pdf':
-        await runUnlockPDF(validFiles[0]);
-        break;
-      case 'ppt-to-pdf':
-        await runPPTtoPDF(validFiles[0]);
-        break;
-      case 'pdf-to-powerpoint':
-        await runPDFToPowerPoint(validFiles[0]);
-        break;
-      case 'protect-pdf':
-        await runProtectPDF(validFiles[0]);
-        break;
-      case 'esign-pdf':
-        await runESignPDF(validFiles[0]);
-        break;
-      case 'grayscale-pdf':
-        await runGrayscalePDF(validFiles[0]);
-        break;
-      case 'ocr-pdf':
-        await runOCRPDF(validFiles[0]);
-        break;
-      case 'compare-pdf':
-        await runComparePDF(validFiles);
-        break;
-      case 'html-to-pdf':
-        await runHTMLToPDF(validFiles[0]);
-        break;
-      case 'excel-to-pdf':
-        await runExcelToPDF(validFiles[0]);
-        break;
-      case 'pdf-to-html':
-        await runPDFToHTML(validFiles[0]);
-        break;
-      case 'pdf-to-epub':
-        await runPDFToEPUB(validFiles[0]);
-        break;
-      case 'pdf-to-word':
-        await runPDFToWord(validFiles[0]);
-        break;
-      case 'pdf-to-excel':
-        await runPDFToExcel(validFiles[0]);
-        break;
-      case 'pdf-to-pdfa':
-        await runArchivalPrep(validFiles[0]);
-        break;
-      default:
-        throw new Error('This tool is not available. Please use the link from the homepage grid.');
+    const { runTool, canvasToBlob } = await getProcessingClient();
+    if (controller.signal.aborted) throw new DOMException('Processing cancelled.', 'AbortError');
+    if (tool === 'esign-pdf') {
+      if (!fabricCanvas) throw new Error('Signature canvas is not initialized.');
+      const signatureCanvas = fabricCanvas.toCanvasElement();
+      try { options.signature = await (await canvasToBlob(signatureCanvas, 'image/png')).arrayBuffer(); }
+      finally { signatureCanvas.width = signatureCanvas.height = 0; }
     }
-  } catch (err) {
-    progressStatus.textContent = `Error: ${err.message}`;
-    progressBar.style.backgroundColor = '#EF4444';
+    const result = await runTool(tool, files, options, {
+      signal: controller.signal,
+      onProgress: (percent, text) => {
+        if (processingController === controller && !controller.signal.aborted) setProgressUI(percent, text);
+      }
+    });
+    if (processingController !== controller || controller.signal.aborted) return;
+    setProgressUI(100, 'Processing completed!', true);
+    createDownloadLink(result.data, result.filename, result.type, result.note);
+  } catch (error) {
+    if (processingController !== controller) return;
+    if (controller.signal.aborted) setProgressUI(0, 'Processing cancelled. No output was saved.', true);
+    else {
+      setProgressUI(0, `Error: ${error.message}`, true);
+      document.getElementById('ws-progress-bar').style.backgroundColor = '#EF4444';
+    }
+  } finally {
+    if (processingController === controller) {
+      processingController = null;
+      setWorkspaceBusy(false);
+    }
   }
 });
+
+function releaseDownloadURL() {
+  if (activeDownloadURL) URL.revokeObjectURL(activeDownloadURL);
+  activeDownloadURL = null;
 }
 
 function createDownloadLink(data, filename, type, note) {
-  const blob = new Blob([data], { type: type });
+  releaseDownloadURL();
+  const blob = data instanceof Blob ? data : new Blob([data], { type });
+  activeDownloadURL = URL.createObjectURL(blob);
   const container = document.getElementById('ws-output-box');
-  const noteHtml = note ? `<p class="output-note">${note}</p>` : '';
-
   container.innerHTML = `
     <div class="download-box">
-      <h4>🎉 PDF Processed Successfully!</h4>
+      <h4>🎉 Document Processed Successfully!</h4>
       <p>Your document is ready to download.</p>
-      ${noteHtml}
-      <a id="direct-dl-link" href="${URL.createObjectURL(blob)}" download="${filename}" class="btn btn-primary">Download ${filename.split('.').pop().toUpperCase()}</a>
+      <a id="direct-dl-link" class="btn btn-primary">Download file</a>
     </div>
   `;
+  const link = document.getElementById('direct-dl-link');
+  link.href = activeDownloadURL;
+  link.download = filename;
+  link.textContent = `Download ${filename.split('.').pop().toUpperCase()}`;
+  if (note) {
+    const message = document.createElement('p');
+    message.className = 'output-note';
+    message.textContent = note;
+    link.before(message);
+  }
   container.style.display = 'block';
-  zaapTrack('download_click', { tool: activeTool, ext: (type || '').split('/')[1] || '' });
-  document.getElementById('direct-dl-link').click();
+  link.addEventListener('click', () => zaapTrack('download_click', { tool: activeTool, ext: (type || '').split('/')[1] || '' }));
+  link.click();
 }
 
-function setProgressUI(percent, text) {
+function resetProgressUI() {
+  clearTimeout(progressUI.timer);
+  Object.assign(progressUI, { timer: null, pending: null, lastTime: -Infinity, percent: null, text: null });
+}
+
+function flushProgressUI() {
+  clearTimeout(progressUI.timer);
+  progressUI.timer = null;
+  if (!progressUI.pending) return;
+  const { percent, text } = progressUI.pending;
+  progressUI.pending = null;
   const bar = document.getElementById('ws-progress-bar');
   const status = document.getElementById('ws-progress-status');
-  bar.style.width = `${percent}%`;
-  status.textContent = text;
+  if (bar && progressUI.percent !== percent) bar.style.width = `${percent}%`;
+  if (status && progressUI.text !== text) status.textContent = text;
+  Object.assign(progressUI, { percent, text, lastTime: performance.now() });
 }
 
-// 1. Merge PDF
-async function runMergePDF(files) {
-  setProgressUI(30, 'Parsing PDF elements...');
-  const { PDFDocument } = PDFLib;
-  const mergedPdf = await PDFDocument.create();
-
-  for (let i = 0; i < files.length; i++) {
-    const fileBytes = await files[i].arrayBuffer();
-    const srcDoc = await PDFDocument.load(fileBytes);
-    const copiedPages = await mergedPdf.copyPages(srcDoc, srcDoc.getPageIndices());
-    copiedPages.forEach((page) => mergedPdf.addPage(page));
-    
-    const progress = Math.round(((i + 1) / files.length) * 60) + 30;
-    setProgressUI(progress, `Merging page layouts: file ${i + 1} of ${files.length}...`);
-  }
-
-  setProgressUI(95, 'Writing document layers...');
-  const mergedPdfBytes = await mergedPdf.save();
-  setProgressUI(100, 'Processing completed!');
-  
-  createDownloadLink(mergedPdfBytes, 'merged.pdf', 'application/pdf');
+function setProgressUI(percent, text, force = false) {
+  percent = Math.max(0, Math.min(100, Math.round(percent)));
+  progressUI.pending = { percent, text };
+  const elapsed = performance.now() - progressUI.lastTime;
+  if (force || percent === 100 || elapsed >= 100) flushProgressUI();
+  else if (!progressUI.timer) progressUI.timer = setTimeout(flushProgressUI, 100 - elapsed);
 }
 
-// 2. Split PDF
-async function runSplitPDF(file) {
-  setProgressUI(30, 'Analyzing PDF page tree...');
-  const rangeInput = document.getElementById('split-pages-input').value.trim();
-  if (!rangeInput) {
-    throw new Error("Please enter a valid page range (e.g. 1-2, 4)");
-  }
-
-  const { PDFDocument } = PDFLib;
-  const fileBytes = await file.arrayBuffer();
-  const srcDoc = await PDFDocument.load(fileBytes);
-  const totalPages = srcDoc.getPageCount();
-
-  const targetIndices = [];
-  const blocks = rangeInput.replace(/\s+/g, '').split(',');
-  
-  for (const block of blocks) {
-    if (block.includes('-')) {
-      const parts = block.split('-');
-      const start = parseInt(parts[0], 10);
-      const end = parseInt(parts[1], 10);
-      if (!isNaN(start) && !isNaN(end)) {
-        for (let i = start; i <= end; i++) {
-          if (i >= 1 && i <= totalPages) targetIndices.push(i - 1);
-        }
-      }
-    } else {
-      const page = parseInt(block, 10);
-      if (!isNaN(page) && page >= 1 && page <= totalPages) {
-        targetIndices.push(page - 1);
-      }
-    }
-  }
-
-  if (targetIndices.length === 0) {
-    throw new Error("Specified pages are invalid or exceed document boundaries.");
-  }
-
-  setProgressUI(60, 'Isolating specific pages...');
-  const splitPdf = await PDFDocument.create();
-  const copiedPages = await splitPdf.copyPages(srcDoc, targetIndices);
-  copiedPages.forEach((page) => splitPdf.addPage(page));
-
-  setProgressUI(90, 'Writing output document file...');
-  const splitBytes = await splitPdf.save();
-  setProgressUI(100, 'Splitting complete!');
-  
-  createDownloadLink(splitBytes, 'split.pdf', 'application/pdf');
-}
-
-// 3. Compress PDF
-// Compresses by re-rendering each page to a JPEG in the browser, then rebuilding the PDF.
-// Text in the original PDF is NOT preserved as selectable text — the output pages are images.
-async function compressOnce(fileBytes, scale, quality, onProgress) {
-  const pdf = await pdfjsLib.getDocument({ data: fileBytes }).promise;
-  const { PDFDocument } = PDFLib;
-  const compressedDoc = await PDFDocument.create();
-  for (let i = 1; i <= pdf.numPages; i++) {
-    if (onProgress) onProgress(i, pdf.numPages);
-    const page = await pdf.getPage(i);
-    const viewport = page.getViewport({ scale: scale });
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    await page.render({ canvasContext: ctx, viewport: viewport }).promise;
-    const imgBytes = await fetch(canvas.toDataURL('image/jpeg', quality)).then(res => res.arrayBuffer());
-    const embeddedImg = await compressedDoc.embedJpg(imgBytes);
-    const newPage = compressedDoc.addPage([viewport.width, viewport.height]);
-    newPage.drawImage(embeddedImg, { x: 0, y: 0, width: viewport.width, height: viewport.height });
-  }
-  return { bytes: await compressedDoc.save(), pages: pdf.numPages };
-}
-
-function formatKB(bytes) {
-  return bytes >= 1048576 ? (bytes / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(bytes / 1024)) + ' KB';
-}
-
-async function runCompressPDF(file) {
-  const sliderEl = document.getElementById('compress-slider');
-  const targetEl = document.getElementById('compress-target');
-  const quality = sliderEl ? (parseFloat(sliderEl.value) || 0.6) : 0.6;
-  const targetKB = targetEl ? parseInt(targetEl.value, 10) : 0;
-  const fileBytes = await file.arrayBuffer();
-  const origKB = formatKB(fileBytes.byteLength);
-
-  if (!targetKB) {
-    // Manual quality mode
-    setProgressUI(20, 'Unpacking document buffers...');
-    const { bytes, pages } = await compressOnce(fileBytes, 1.5, quality, (i, n) => {
-      setProgressUI(Math.round((i / n) * 80) + 15, `Optimizing pages: ${i}/${n}...`);
-    });
-    setProgressUI(100, 'Optimization completed!');
-    const note = `Original size ${origKB} → compressed to ${formatKB(bytes.byteLength)}. ` +
-      (bytes.byteLength >= fileBytes.byteLength
-        ? 'Honest note: this file was already very efficient, so compression did not reduce the size. Try a lower quality value or fewer pages.'
-        : 'Lower quality values give smaller files but softer images.');
-    createDownloadLink(bytes, 'compressed.pdf', 'application/pdf', note);
-    return;
-  }
-
-  // Target-size mode: step down render scale, then binary-search JPEG quality.
-  setProgressUI(5, `Aiming for under ${formatKB(targetKB * 1024)}...`);
-  let best = null; // { bytes, scale, quality, size }
-  for (const scale of [1.5, 1.0, 0.75, 0.5]) {
-    let lo = 0.05, hi = 0.9, passes = 0;
-    while (passes < 5 && (hi - lo) > 0.02) {
-      passes++;
-      const mid = (lo + hi) / 2;
-      const { bytes, pages } = await compressOnce(fileBytes, scale, mid, (i, n) => {
-        setProgressUI(10 + Math.min(88, Math.round(passes * 16 + (i / n) * 12)), `Pass ${passes}: page ${i}/${n} (scale ${scale}, quality ${mid.toFixed(2)})...`);
-      });
-      if (bytes.byteLength <= targetKB * 1024) {
-        if (!best || bytes.byteLength < best.size) best = { bytes, scale, quality: mid, size: bytes.byteLength };
-        hi = mid;
-      } else {
-        lo = mid;
-        if (!best) best = { bytes, scale, quality: mid, size: bytes.byteLength };
-      }
-      if (best && best.size <= targetKB * 1024 && scale === 1.5 && passes >= 2) break;
-    }
-    if (best && best.size <= targetKB * 1024) break;
-  }
-
-  if (!best) throw new Error('Compression could not run on this file.');
-  const reached = best.size <= targetKB * 1024;
-  setProgressUI(100, reached
-    ? `Target reached: ${formatKB(best.size)} (under ${formatKB(targetKB * 1024)}).`
-    : `Smallest result: ${formatKB(best.size)} — target not fully reached.`);
-  const note = reached
-    ? `Target ${formatKB(targetKB * 1024)} reached: output is ${formatKB(best.size)} (original ${origKB}).`
-    : `Honest result: the smallest output this file can reach in your browser is ${formatKB(best.size)} — below ${formatKB(targetKB * 1024)} was not possible without destroying the content. Try the PDF to JPG route or remove pages to get under the limit.`;
-  createDownloadLink(best.bytes, `compressed_under_${targetKB}kb.pdf`, 'application/pdf', note);
-}
-
-// 4. Rotate PDF
-async function runRotatePDF(file) {
-  setProgressUI(30, 'Opening PDF parameters...');
-  const angle = parseInt(document.getElementById('rotate-select').value, 10) || 90;
-
-  const { PDFDocument, degrees } = PDFLib;
-  const fileBytes = await file.arrayBuffer();
-  const pdfDoc = await PDFDocument.load(fileBytes);
-  const pages = pdfDoc.getPages();
-
-  setProgressUI(60, 'Calculating rotation matrices...');
-  pages.forEach((page) => {
-    const currentRotation = page.getRotation().angle;
-    page.setRotation(degrees(currentRotation + angle));
-  });
-
-  setProgressUI(90, 'Writing rotated coordinates...');
-  const outBytes = await pdfDoc.save();
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(outBytes, 'rotated.pdf', 'application/pdf');
-}
-
-// 5. PDF to Images (JPG/PNG)
-async function runPDFToImage(file, mimeType, extension) {
-  setProgressUI(20, 'Decoding document components...');
-  const fileBytes = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: fileBytes }).promise;
-  const zip = new JSZip();
-
-  for (let i = 1; i <= pdf.numPages; i++) {
-    setProgressUI(Math.round((i / pdf.numPages) * 60) + 20, `Rendering canvas pages: ${i}/${pdf.numPages}...`);
-    
-    const page = await pdf.getPage(i);
-    const viewport = page.getViewport({ scale: 2.0 });
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-
-    await page.render({ canvasContext: ctx, viewport: viewport }).promise;
-    
-    const imgDataUrl = canvas.toDataURL(mimeType);
-    const base64Data = imgDataUrl.split(',')[1];
-    zip.file(`page-${i}.${extension}`, base64Data, { base64: true });
-  }
-
-  setProgressUI(90, 'Zipping dynamic assets...');
-  const zipBlob = await zip.generateAsync({ type: 'blob' });
-  setProgressUI(100, 'Packing complete!');
-  createDownloadLink(zipBlob, 'extracted_images.zip', 'application/zip');
-}
-
-// 6. PDF to Text
-async function runPDFToText(file) {
-  setProgressUI(20, 'Reading characters map...');
-  const fileBytes = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: fileBytes }).promise;
-  let textOut = '';
-
-  for (let i = 1; i <= pdf.numPages; i++) {
-    setProgressUI(Math.round((i / pdf.numPages) * 70) + 20, `Extracting strings: page ${i}/${pdf.numPages}...`);
-    const page = await pdf.getPage(i);
-    const content = await page.getTextContent();
-    const pageText = content.items.map(item => item.str).join(' ');
-    textOut += `--- Page ${i} ---\n${pageText}\n\n`;
-  }
-
-  setProgressUI(95, 'Writing string buffers...');
-  setProgressUI(100, 'Extraction complete!');
-  createDownloadLink(new TextEncoder().encode(textOut), 'extracted_text.txt', 'text/plain');
-}
-
-// 7. Image to PDF (optional fixed page size: fit-to-image, A4, or US Letter)
-const PAGE_SIZES_PT = {
-  a4: [595.28, 841.89],
-  letter: [612, 792]
-};
-
-async function runImageToPDF(files, extension) {
-  setProgressUI(30, 'Opening canvas document...');
-  const { PDFDocument } = PDFLib;
-  const pdfDoc = await PDFDocument.create();
-  const sizeEl = document.getElementById('img-page-size');
-  const pageSize = sizeEl && PAGE_SIZES_PT[sizeEl.value] ? PAGE_SIZES_PT[sizeEl.value] : null;
-
-  for (let i = 0; i < files.length; i++) {
-    setProgressUI(Math.round(((i + 1) / files.length) * 50) + 30, `Embedding image layouts: ${i+1}/${files.length}...`);
-    const buffer = await files[i].arrayBuffer();
-
-    let embeddedImg;
-    if (extension === 'jpg' || extension === 'jpeg') {
-      embeddedImg = await pdfDoc.embedJpg(buffer);
-    } else {
-      embeddedImg = await pdfDoc.embedPng(buffer);
-    }
-
-    const { width: imgW, height: imgH } = embeddedImg.scale(1.0);
-    if (!pageSize) {
-      const page = pdfDoc.addPage([imgW, imgH]);
-      page.drawImage(embeddedImg, { x: 0, y: 0, width: imgW, height: imgH });
-      continue;
-    }
-    const [pageW, pageH] = pageSize;
-    const margin = 24;
-    const scale = Math.min((pageW - margin * 2) / imgW, (pageH - margin * 2) / imgH, 1);
-    const w = imgW * scale, h = imgH * scale;
-    const page = pdfDoc.addPage([pageW, pageH]);
-    page.drawRectangle({ x: 0, y: 0, width: pageW, height: pageH, color: PDFLib.rgb(1, 1, 1) });
-    page.drawImage(embeddedImg, { x: (pageW - w) / 2, y: (pageH - h) / 2, width: w, height: h });
-  }
-
-  setProgressUI(90, 'Compiling coordinate sheets...');
-  const pdfBytes = await pdfDoc.save();
-  setProgressUI(100, 'Conversion complete!');
-  const note = pageSize
-    ? `Each image is centered on a ${pageSize === PAGE_SIZES_PT.a4 ? 'A4' : 'US Letter'} page, scaled down to fit with 24pt margins (images are never upscaled beyond their native size).`
-    : 'Each image fills its own page at full resolution.';
-  createDownloadLink(pdfBytes, 'images_converted.pdf', 'application/pdf', note);
-}
-
-// 8. Word to PDF
-async function runWordToPDF(file) {
-  setProgressUI(30, 'Reading DOCX components...');
-  const arrayBuffer = await file.arrayBuffer();
-  
-  const result = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
-  const htmlContent = result.value;
-
-  setProgressUI(60, 'Rendering temporary layout context...');
-  const opt = {
-    margin:       1,
-    filename:     'converted.pdf',
-    image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2 },
-    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-  };
-
-  const element = document.createElement('div');
-  element.style.padding = '20px';
-  element.innerHTML = htmlContent;
-
-  setProgressUI(90, 'Exporting file pages...');
-  const pdfBlob = await html2pdf().from(element).set(opt).outputPdf('blob');
-  
-  setProgressUI(100, 'Process complete!');
-  createDownloadLink(pdfBlob, 'converted.pdf', 'application/pdf');
-}
-
-// 9. Add Watermark
-async function runAddWatermark(file) {
-  setProgressUI(30, 'Opening page matrices...');
-  const text = document.getElementById('watermark-text').value || 'CONFIDENTIAL';
-  const opacity = parseFloat(document.getElementById('watermark-opacity').value) || 0.4;
-
-  const { PDFDocument, rgb, degrees, StandardFonts } = PDFLib;
-  const fileBytes = await file.arrayBuffer();
-  const pdfDoc = await PDFDocument.load(fileBytes);
-  const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-  const pages = pdfDoc.getPages();
-
-  pages.forEach((page, index) => {
-    setProgressUI(Math.round((index / pages.length) * 50) + 30, `Applying watermarks: page ${index + 1}...`);
-    const { width, height } = page.getSize();
-    page.drawText(text, {
-      x: width / 6,
-      y: height / 2.5,
-      size: 50,
-      font: helveticaFont,
-      color: rgb(1.0, 0.32, 0.0), // iLovePDF Signature Orange Accent
-      opacity: opacity,
-      rotate: degrees(45)
-    });
-  });
-
-  setProgressUI(90, 'Writing modifications...');
-  const outBytes = await pdfDoc.save();
-  setProgressUI(100, 'Process complete!');
-  createDownloadLink(outBytes, 'watermarked.pdf', 'application/pdf');
-}
-
-// 10. Add Page Numbers
-async function runAddPageNumbers(file) {
-  setProgressUI(30, 'Opening document margins...');
-  const pos = document.getElementById('pagenum-pos').value || 'bottom-center';
-  const fontSize = parseInt(document.getElementById('pagenum-size').value, 10) || 12;
-
-  const { PDFDocument, rgb, StandardFonts } = PDFLib;
-  const fileBytes = await file.arrayBuffer();
-  const pdfDoc = await PDFDocument.load(fileBytes);
-  const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
-  const pages = pdfDoc.getPages();
-
-  pages.forEach((page, index) => {
-    setProgressUI(Math.round((index / pages.length) * 50) + 30, `Drawing page counts: ${index+1}/${pages.length}...`);
-    const { width } = page.getSize();
-    const numberText = `Page ${index + 1} of ${pages.length}`;
-    
-    let x = width / 2 - 20;
-    if (pos === 'bottom-right') {
-      x = width - 100;
-    }
-
-    page.drawText(numberText, {
-      x: x,
-      y: 25,
-      size: fontSize,
-      font: helveticaFont,
-      color: rgb(0.2, 0.2, 0.2)
-    });
-  });
-
-  setProgressUI(90, 'Writing coordinates metrics...');
-  const outBytes = await pdfDoc.save();
-  setProgressUI(100, 'Process complete!');
-  createDownloadLink(outBytes, 'numbered.pdf', 'application/pdf');
-}
-
-// 11. Protect PDF
-async function runProtectPDF(file) {
-  setProgressUI(30, 'Reading document...');
-  const pass = document.getElementById('protect-pass').value.trim();
-  if (!pass) {
-    throw new Error('Please enter a password to protect this document with.');
-  }
-  if (pass.length < 4) {
-    throw new Error('Please use a password of at least 4 characters.');
-  }
-
-  const fileBytes = await file.arrayBuffer();
-  const pdfDoc = await PDFLib.PDFDocument.load(fileBytes);
-
-  if (typeof pdfDoc.encrypt !== 'function') {
-    throw new Error('Encryption engine failed to load. Please refresh the page and try again.');
-  }
-
-  setProgressUI(70, 'Encrypting with AES...');
-  pdfDoc.encrypt({
-    userPassword: pass,
-    ownerPassword: pass
-  });
-  const outBytes = await pdfDoc.save();
-
-  setProgressUI(100, 'Security locked!');
-  createDownloadLink(outBytes, 'protected.pdf', 'application/pdf');
-}
-
-// 12. E-Sign PDF
-async function runESignPDF(file) {
-  setProgressUI(30, 'Extracting signature path...');
-  if (!fabricCanvas) {
-    throw new Error("Canvas context is not initialized.");
-  }
-
-  const sigDataUrl = fabricCanvas.toDataURL({ format: 'png' });
-  const response = await fetch(sigDataUrl);
-  const sigImgBytes = await response.arrayBuffer();
-
-  const { PDFDocument } = PDFLib;
-  const fileBytes = await file.arrayBuffer();
-  const pdfDoc = await PDFDocument.load(fileBytes);
-  const firstPage = pdfDoc.getPages()[0];
-
-  if (!firstPage) {
-    throw new Error("Document is empty.");
-  }
-
-  setProgressUI(65, 'Embedding canvas vectors...');
-  const sigImg = await pdfDoc.embedPng(sigImgBytes);
-  
-  firstPage.drawImage(sigImg, {
-    x: 50,
-    y: 50,
-    width: 180,
-    height: 90
-  });
-
-  setProgressUI(90, 'Writing modified layers...');
-  const outBytes = await pdfDoc.save();
-  setProgressUI(100, 'Document e-signed successfully!');
-  createDownloadLink(outBytes, 'signed.pdf', 'application/pdf');
-}
-
-// 13. Grayscale PDF
-async function runGrayscalePDF(file) {
-  setProgressUI(20, 'Decomposing visual pages...');
-  const fileBytes = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: fileBytes }).promise;
-  
-  const { PDFDocument } = PDFLib;
-  const grayscaleDoc = await PDFDocument.create();
-
-  for (let i = 1; i <= pdf.numPages; i++) {
-    setProgressUI(Math.round((i / pdf.numPages) * 60) + 20, `Converting pixel metrics: page ${i}/${pdf.numPages}...`);
-    
-    const page = await pdf.getPage(i);
-    const viewport = page.getViewport({ scale: 1.5 });
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-
-    await page.render({ canvasContext: ctx, viewport: viewport }).promise;
-
-    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const data = imgData.data;
-    for (let j = 0; j < data.length; j += 4) {
-      const brightness = 0.34 * data[j] + 0.5 * data[j + 1] + 0.16 * data[j + 2];
-      data[j] = brightness;
-      data[j + 1] = brightness;
-      data[j + 2] = brightness;
-    }
-    ctx.putImageData(imgData, 0, 0);
-
-    const imgDataUrl = canvas.toDataURL('image/jpeg', 0.85);
-    const imgBytes = await fetch(imgDataUrl).then(res => res.arrayBuffer());
-    
-    const embeddedImg = await grayscaleDoc.embedJpg(imgBytes);
-    const newPage = grayscaleDoc.addPage([viewport.width, viewport.height]);
-    newPage.drawImage(embeddedImg, { x: 0, y: 0, width: viewport.width, height: viewport.height });
-  }
-
-  setProgressUI(95, 'Compiling document sheets...');
-  const outBytes = await grayscaleDoc.save();
-  setProgressUI(100, 'Monochrome convert complete!');
-  createDownloadLink(outBytes, 'grayscale.pdf', 'application/pdf');
-}
-
-// Advanced Tools Simulation Handler
-
-// ==========================================================================
-// REAL CLIENT-SIDE PDF ENGINES (pdf-lib / pdf.js / JSZip / pptxgenjs)
-// ==========================================================================
-
-// Parse "1-3, 5" style selections into a sorted, unique 0-based index array
-function parsePageRanges(input, maxPages) {
-  const cleaned = (input || '').trim();
-  if (!cleaned) throw new Error('Please enter at least one page number (e.g. 1-3, 5).');
-  const picked = new Set();
-  cleaned.split(',').forEach(part => {
-    const chunk = part.trim();
-    if (!chunk) return;
-    const m = chunk.match(/^(\d+)\s*-\s*(\d+)$/);
-    if (m) {
-      let a = parseInt(m[1], 10);
-      let b = parseInt(m[2], 10);
-      if (a > b) { const tmp = a; a = b; b = tmp; }
-      for (let i = a; i <= b; i++) {
-        if (i < 1 || i > maxPages) throw new Error(`Page ${i} is out of range (this document has ${maxPages} pages).`);
-        picked.add(i - 1);
-      }
-    } else if (/^\d+$/.test(chunk)) {
-      const n = parseInt(chunk, 10);
-      if (n < 1 || n > maxPages) throw new Error(`Page ${n} is out of range (this document has ${maxPages} pages).`);
-      picked.add(n - 1);
-    } else {
-      throw new Error(`"${chunk}" is not a valid page number or range.`);
-    }
-  });
-  if (picked.size === 0) throw new Error('Please enter at least one page number.');
-  return [...picked].sort((a, b) => a - b);
-}
-
-async function runDeletePages(file) {
-  setProgressUI(25, 'Reading document...');
-  const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
-  const total = doc.getPageCount();
-  const toDelete = parsePageRanges(document.getElementById('pages-range-input').value, total);
-  if (toDelete.length >= total) throw new Error('You cannot delete every page — leave at least one page in the document.');
-  setProgressUI(60, 'Removing selected pages...');
-  const keep = [];
-  for (let i = 0; i < total; i++) if (!toDelete.includes(i)) keep.push(i);
-  const out = await PDFLib.PDFDocument.create();
-  const copied = await out.copyPages(doc, keep);
-  copied.forEach(pg => out.addPage(pg));
-  const outBytes = await out.save();
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(outBytes, 'deleted-pages.pdf', 'application/pdf');
-}
-
-async function runExtractPages(file) {
-  setProgressUI(25, 'Reading document...');
-  const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
-  const total = doc.getPageCount();
-  const picked = parsePageRanges(document.getElementById('pages-range-input').value, total);
-  setProgressUI(60, 'Copying selected pages...');
-  const out = await PDFLib.PDFDocument.create();
-  const copied = await out.copyPages(doc, picked);
-  copied.forEach(pg => out.addPage(pg));
-  const outBytes = await out.save();
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(outBytes, 'extracted-pages.pdf', 'application/pdf');
-}
-
-async function runReorderPages(file) {
-  setProgressUI(25, 'Reading document...');
-  const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
-  const total = doc.getPageCount();
-  const raw = (document.getElementById('pages-order-input').value || '').trim();
-  if (!raw) throw new Error('Enter the new page order using every page number exactly once, e.g. 3,1,2.');
-  const order = [];
-  raw.split(',').forEach(part => {
-    const chunk = part.trim();
-    if (!chunk) return;
-    if (!/^\d+$/.test(chunk)) throw new Error(`"${chunk}" is not a valid page number.`);
-    const n = parseInt(chunk, 10);
-    if (n < 1 || n > total) throw new Error(`Page ${n} is out of range (this document has ${total} pages).`);
-    order.push(n - 1);
-  });
-  if (order.length !== total) throw new Error(`Please list all ${total} pages exactly once (you entered ${order.length}).`);
-  setProgressUI(60, 'Rearranging pages...');
-  const out = await PDFLib.PDFDocument.create();
-  const copied = await out.copyPages(doc, order);
-  copied.forEach(pg => out.addPage(pg));
-  const outBytes = await out.save();
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(outBytes, 'reordered.pdf', 'application/pdf');
-}
-
-async function runCropPDF(file) {
-  setProgressUI(25, 'Reading document...');
-  const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
-  const clampPct = v => Math.min(Math.max(isFinite(v) ? v : 0, 0), 45) / 100;
-  const l = clampPct(parseFloat(document.getElementById('crop-left').value));
-  const r = clampPct(parseFloat(document.getElementById('crop-right').value));
-  const t = clampPct(parseFloat(document.getElementById('crop-top').value));
-  const b = clampPct(parseFloat(document.getElementById('crop-bottom').value));
-  setProgressUI(60, 'Applying crop boxes...');
-  doc.getPages().forEach(page => {
-    const { width, height } = page.getSize();
-    const newW = width * (1 - l - r);
-    const newH = height * (1 - t - b);
-    if (newW > 10 && newH > 10) page.setCropBox(width * l, height * b, newW, newH);
-  });
-  const outBytes = await doc.save();
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(outBytes, 'cropped.pdf', 'application/pdf');
-}
-
-async function runResizePDF(file) {
-  setProgressUI(25, 'Reading document...');
-  const bytes = await file.arrayBuffer();
-  const format = document.getElementById('resize-size') ? document.getElementById('resize-size').value : 'a4';
-  const target = format === 'letter' ? { w: 612, h: 792 } : { w: 595.28, h: 841.89 };
-  const doc = await PDFLib.PDFDocument.load(bytes);
-  const embedded = await doc.embedPdf(bytes, doc.getPageIndices());
-  const out = await PDFLib.PDFDocument.create();
-  setProgressUI(60, 'Scaling pages to the selected format...');
-  embedded.forEach(ep => {
-    const page = out.addPage([target.w, target.h]);
-    const scale = Math.min(target.w / ep.width, target.h / ep.height);
-    const w = ep.width * scale;
-    const h = ep.height * scale;
-    page.drawPage(ep, { x: (target.w - w) / 2, y: (target.h - h) / 2, width: w, height: h });
-  });
-  const outBytes = await out.save();
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(outBytes, 'resized.pdf', 'application/pdf');
-}
-
-async function runFlattenPDF(file) {
-  setProgressUI(25, 'Reading document...');
-  const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
-  setProgressUI(60, 'Flattening form fields and annotations...');
-  try {
-    const form = doc.getForm();
-    if (form.getFields().length) form.flatten();
-  } catch (e) { /* document has no interactive form — re-serializing is still useful */ }
-  const outBytes = await doc.save({ useObjectStreams: false });
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(outBytes, 'flattened.pdf', 'application/pdf');
-}
-
-async function runMetadataEditor(file) {
-  setProgressUI(25, 'Reading document...');
-  const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
-  const title = document.getElementById('meta-title') ? document.getElementById('meta-title').value.trim() : '';
-  const author = document.getElementById('meta-author') ? document.getElementById('meta-author').value.trim() : '';
-  const subject = document.getElementById('meta-subject') ? document.getElementById('meta-subject').value.trim() : '';
-  const keywords = document.getElementById('meta-keywords') ? document.getElementById('meta-keywords').value.trim() : '';
-  if (!title && !author && !subject && !keywords) throw new Error('Fill in at least one metadata field before processing.');
-  setProgressUI(60, 'Writing metadata...');
-  if (title) doc.setTitle(title);
-  if (author) doc.setAuthor(author);
-  if (subject) doc.setSubject(subject);
-  if (keywords) doc.setKeywords(keywords.split(',').map(k => k.trim()).filter(Boolean));
-  doc.setModificationDate(new Date());
-  const outBytes = await doc.save();
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(outBytes, 'metadata-updated.pdf', 'application/pdf');
-}
-
-async function runRepairPDF(file) {
-  setProgressUI(30, 'Rebuilding document structure...');
-  const bytes = await file.arrayBuffer();
-  let doc;
-  try {
-    doc = await PDFLib.PDFDocument.load(bytes, { ignoreEncryption: true, throwOnInvalidObject: false });
-  } catch (e) {
-    throw new Error('This file is too damaged to recover automatically. Please try obtaining a new copy of the document.');
-  }
-  setProgressUI(70, 'Re-serializing pages and objects...');
-  const outBytes = await doc.save({ useObjectStreams: false });
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(outBytes, 'repaired.pdf', 'application/pdf');
-}
-
-async function runUnlockPDF(file) {
-  setProgressUI(30, 'Reading protected document...');
-  const bytes = await file.arrayBuffer();
-  const passInput = document.getElementById('unlock-pass');
-  const pass = passInput ? passInput.value.trim() : '';
-
-  if (!pass) {
-    // No password given: check whether the document is actually encrypted
-    const probe = await PDFLib.PDFDocument.load(bytes, { ignoreEncryption: true });
-    if (probe.isEncrypted) {
-      throw new Error('This PDF is encrypted. Please enter its open password above, then process again to remove protection.');
-    }
-    setProgressUI(70, 'Re-saving document without restrictions...');
-    const outBytes = await probe.save();
-    setProgressUI(100, 'Processing completed!');
-    createDownloadLink(outBytes, 'unlocked.pdf', 'application/pdf');
-    return;
-  }
-
-  let doc;
-  try {
-    doc = await PDFLib.PDFDocument.load(bytes, { password: pass });
-  } catch (e) {
-    throw new Error('Could not decrypt this PDF — the password looks incorrect or the encryption type is unsupported. Please double-check the password.');
-  }
-
-  setProgressUI(70, 'Removing password protection and re-saving...');
-  // Copy every page into a brand-new document so no encryption metadata carries over
-  const clean = await PDFLib.PDFDocument.create();
-  const copied = await clean.copyPages(doc, doc.getPageIndices());
-  copied.forEach(pg => clean.addPage(pg));
-  const outBytes = await clean.save();
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(outBytes, 'unlocked.pdf', 'application/pdf');
-}
-
-function wrapPdfText(text, font, size, maxWidth) {
-  const words = text.split(/\s+/).filter(Boolean);
-  const lines = [];
-  let line = '';
-  words.forEach(w => {
-    const test = line ? line + ' ' + w : w;
-    if (font.widthOfTextAtSize(test, size) > maxWidth && line) {
-      lines.push(line);
-      line = w;
-    } else {
-      line = test;
-    }
-  });
-  if (line) lines.push(line);
-  return lines;
-}
-
-async function runPPTtoPDF(file) {
-  if (typeof JSZip === 'undefined') throw new Error('Conversion engine failed to load. Please refresh the page and try again.');
-  if (!/\.pptx$/i.test(file.name)) throw new Error('Please upload a .pptx file. Legacy .ppt files must first be saved as .pptx in PowerPoint.');
-  setProgressUI(20, 'Unpacking presentation...');
-  const zip = await JSZip.loadAsync(await file.arrayBuffer());
-  const slideNames = Object.keys(zip.files)
-    .filter(n => /^ppt\/slides\/slide\d+\.xml$/.test(n))
-    .sort((a, b) => parseInt(a.match(/(\d+)/)[1], 10) - parseInt(b.match(/(\d+)/)[1], 10));
-  if (!slideNames.length) throw new Error('No slides were found inside this PPTX file.');
-  const pdfDoc = await PDFLib.PDFDocument.create();
-  const regular = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
-  const bold = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
-  const decode = t => t.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, '&');
-  for (let i = 0; i < slideNames.length; i++) {
-    setProgressUI(20 + Math.round((i / slideNames.length) * 60), `Rendering slide ${i + 1} of ${slideNames.length}...`);
-    const xml = await zip.files[slideNames[i]].async('string');
-    const texts = [];
-    const re = /<a:t>([\s\S]*?)<\/a:t>/g;
-    let m;
-    while ((m = re.exec(xml)) !== null) {
-      const txt = decode(m[1]).trim();
-      if (txt) texts.push(txt);
-    }
-    // 10 x 7.5 inch slide canvas (720 x 540 pt)
-    const page = pdfDoc.addPage([720, 540]);
-    let y = 492;
-    if (texts.length) {
-      const title = texts.shift();
-      const tSize = title.length > 90 ? 22 : 28;
-      wrapPdfText(title, bold, tSize, 620).forEach(line => {
-        page.drawText(line, { x: 50, y, size: tSize, font: bold, color: PDFLib.rgb(0.12, 0.12, 0.14) });
-        y -= tSize * 1.3;
-      });
-      y -= 12;
-    }
-    const bSize = 14;
-    texts.slice(0, 22).forEach(t => {
-      wrapPdfText('\u2022 ' + t, regular, bSize, 620).forEach(line => {
-        if (y < 40) return;
-        page.drawText(line, { x: 58, y, size: bSize, font: regular, color: PDFLib.rgb(0.25, 0.25, 0.28) });
-        y -= bSize * 1.45;
-      });
-      y -= 6;
-    });
-  }
-  const outBytes = await pdfDoc.save();
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(outBytes, file.name.replace(/\.pptx$/i, '') + '.pdf', 'application/pdf');
-}
-
-async function runPDFToPowerPoint(file) {
-  if (typeof pdfjsLib === 'undefined' || typeof PptxGenJS === 'undefined') throw new Error('Conversion engine failed to load. Please refresh the page and try again.');
-  setProgressUI(10, 'Reading PDF...');
-  const bytes = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: bytes }).promise;
-  const pptx = new PptxGenJS();
-  pptx.defineLayout({ name: 'PDFZAAP_SLIDES', width: 10, height: 7.5 });
-  pptx.layout = 'PDFZAAP_SLIDES';
-  for (let i = 1; i <= pdf.numPages; i++) {
-    setProgressUI(10 + Math.round((i / pdf.numPages) * 70), `Converting page ${i} of ${pdf.numPages}...`);
-    const page = await pdf.getPage(i);
-    const viewport = page.getViewport({ scale: 2 });
-    const canvas = document.createElement('canvas');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
-    const slide = pptx.addSlide();
-    slide.addImage({ data: canvas.toDataURL('image/jpeg', 0.92), x: 0, y: 0, w: 10, h: 7.5 });
-  }
-  setProgressUI(95, 'Building PowerPoint file...');
-  const blob = await pptx.write({ outputType: 'blob' });
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(blob, file.name.replace(/\.pdf$/i, '') + '.pptx', 'application/vnd.openxmlformats-officedocument.presentationml.presentation');
-}
-
-// Helper: render one PDF page to a canvas at a given scale
-async function renderPageToCanvas(pdf, pageNum, scale) {
-  const page = await pdf.getPage(pageNum);
-  const viewport = page.getViewport({ scale: scale });
-  const canvas = document.createElement('canvas');
-  canvas.width = viewport.width;
-  canvas.height = viewport.height;
-  await page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
-  return canvas;
-}
-
-// Helper: extract text lines from a pdf.js page (grouped by Y coordinate)
-async function extractPageLines(page) {
-  const content = await page.getTextContent();
-  const byY = new Map();
-  for (const item of content.items) {
-    if (!item.str) continue;
-    const y = Math.round(item.transform[5]);
-    const bucket = byY.get(y);
-    if (bucket) bucket.push([item.transform[4], item.str]);
-    else byY.set(y, [[item.transform[4], item.str]]);
-  }
-  const lines = [];
-  const ys = Array.from(byY.keys()).sort((a, b) => b - a);
-  for (const y of ys) {
-    const parts = byY.get(y).sort((a, b) => a[0] - b[0]);
-    lines.push(parts.map(p => p[1]).join(' ').replace(/\s+/g, ' ').trim());
-  }
-  return lines.filter(l => l.length > 0);
-}
-
-function escapeXml(s) {
-  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
-}
-
-function escapeHtml(s) {
-  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
-// OCR PDF (Tesseract.js — recognition runs in a local Web Worker; only the public language model is downloaded)
-async function runOCRPDF(file) {
-  if (typeof Tesseract === 'undefined') throw new Error('The OCR engine failed to load. Please refresh the page and try again.');
-  setProgressUI(5, 'Preparing OCR engine...');
-  const isImage = /\.(jpe?g|png|webp|bmp)$/i.test(file.name);
-  const baseName = file.name.replace(/\.[^.]+$/, '');
-
-  const worker = await Tesseract.createWorker('eng', 1, {
-    logger: m => {
-      if (m.status === 'recognizing text') {
-        setProgressUI(10 + Math.round(m.progress * 85), `Recognizing text… ${Math.round(m.progress * 100)}%`);
-      }
-    }
-  });
-
-  try {
-    let allText = '';
-    if (isImage) {
-      setProgressUI(10, 'Loading image...');
-      const img = await createImageBitmap(await file.arrayBuffer());
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      canvas.getContext('2d').drawImage(img, 0, 0);
-      const { data } = await worker.recognize(canvas);
-      allText = data.text;
-    } else {
-      const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
-      for (let i = 1; i <= pdf.numPages; i++) {
-        setProgressUI(5 + Math.round(((i - 1) / pdf.numPages) * 90), `Preparing page ${i} of ${pdf.numPages} for OCR...`);
-        const canvas = await renderPageToCanvas(pdf, i, 2);
-        const { data } = await worker.recognize(canvas);
-        allText += `--- Page ${i} ---\n${data.text.trim()}\n\n`;
-      }
-    }
-    if (!allText.trim()) {
-      throw new Error('No readable text was found. Make sure the document contains clear, printed English text (photos of handwriting are not supported).');
-    }
-    setProgressUI(98, 'Building text file...');
-    createDownloadLink(new TextEncoder().encode(allText), `${baseName}_ocr.txt`, 'text/plain',
-      'OCR finished. The output is a plain-text file with the recognized words. Check a few paragraphs — OCR is not perfect, so always proofread before submitting important documents.');
-  } finally {
-    await worker.terminate();
-  }
-}
-
-// HTML to PDF (html2pdf.js renders the markup in your browser)
-async function runHTMLToPDF(file) {
-  if (typeof html2pdf === 'undefined') throw new Error('The PDF rendering engine failed to load. Please refresh the page and try again.');
-  setProgressUI(20, 'Reading HTML file...');
-  const text = await file.text();
-  const baseName = file.name.replace(/\.[^.]+$/, '');
-
-  const container = document.createElement('div');
-  container.style.width = '720px';
-  container.style.padding = '12px';
-  container.style.fontFamily = 'Arial, Helvetica, sans-serif';
-  container.style.fontSize = '13px';
-  container.style.lineHeight = '1.55';
-  container.style.color = '#111';
-  container.innerHTML = text;
-  // Neutralize scripts inside user markup before rendering
-  container.querySelectorAll('script, iframe, object, embed, link[rel="import"]').forEach(el => el.remove());
-
-  setProgressUI(55, 'Rendering pages...');
-  const pdfBlob = await html2pdf()
-    .from(container)
-    .set({
-      margin: 10,
-      image: { type: 'jpeg', quality: 0.95 },
-      html2canvas: { scale: 2, useCORS: true, logging: false },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    })
-    .outputPdf('blob');
-
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(pdfBlob, `${baseName}.pdf`, 'application/pdf',
-    'Done. Note: images and styles from external URLs may not be embedded — keep assets local or inline for the best result.');
-}
-
-// Excel to PDF (SheetJS parses the workbook, html2pdf renders the sheets)
-async function runExcelToPDF(file) {
-  if (typeof XLSX === 'undefined' || typeof html2pdf === 'undefined') throw new Error('The spreadsheet engine failed to load. Please refresh the page and try again.');
-  setProgressUI(15, 'Reading workbook...');
-  const wb = XLSX.read(await file.arrayBuffer(), { type: 'array' });
-  const baseName = file.name.replace(/\.[^.]+$/, '');
-  const sheetNames = wb.SheetNames.slice(0, 10);
-
-  let body = '';
-  for (let i = 0; i < sheetNames.length; i++) {
-    setProgressUI(20 + Math.round((i / sheetNames.length) * 40), `Rendering sheet ${i + 1} of ${sheetNames.length}: ${sheetNames[i]}`);
-    const sheet = wb.Sheets[sheetNames[i]];
-    if (!sheet || !sheet['!ref']) continue;
-    const range = XLSX.utils.decode_range(sheet['!ref']);
-    const maxRow = Math.min(range.e.r, 5000);
-    const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '', range: [range.s.r, range.s.c, maxRow, range.e.c] });
-    let table = '<table style="border-collapse:collapse;width:100%;font-size:10px;font-family:Arial,sans-serif;margin:8px 0 20px;">';
-    table += '<thead><tr>' + rows[0].map(h => `<th style="border:1px solid #999;padding:3px 6px;background:#f0f0f0;">${escapeHtml(h)}</th>`).join('') + '</tr></thead><tbody>';
-    for (let r = 1; r < rows.length; r++) {
-      table += '<tr>' + rows[r].map(c => `<td style="border:1px solid #ccc;padding:2px 6px;">${escapeHtml(c)}</td>`).join('') + '</tr>';
-    }
-    table += '</tbody></table>';
-    body += `<h3 style="font-family:Arial,sans-serif;font-size:14px;">${escapeHtml(sheetNames[i])}</h3>` + table;
-  }
-  if (!body) throw new Error('No readable sheets were found in this workbook.');
-
-  const container = document.createElement('div');
-  container.innerHTML = body;
-
-  setProgressUI(70, 'Building PDF...');
-  const pdfBlob = await html2pdf()
-    .from(container)
-    .set({
-      margin: [8, 6, 8, 6],
-      image: { type: 'jpeg', quality: 0.95 },
-      html2canvas: { scale: 2, logging: false },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
-    })
-    .outputPdf('blob');
-
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(pdfBlob, `${baseName}.pdf`, 'application/pdf',
-    `Done. ${sheetNames.length} sheet(s) exported, up to 5,000 rows per sheet. Very wide columns may be split across pages.`);
-}
-
-// PDF to HTML (pdf.js text extraction, grouped into readable lines)
-async function runPDFToHTML(file) {
-  setProgressUI(15, 'Reading document...');
-  const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
-  const baseName = file.name.replace(/\.[^.]+$/, '');
-  let pagesHtml = '';
-  for (let i = 1; i <= pdf.numPages; i++) {
-    setProgressUI(15 + Math.round((i / pdf.numPages) * 75), `Converting page ${i} of ${pdf.numPages}...`);
-    const page = await pdf.getPage(i);
-    const lines = await extractPageLines(page);
-    const paras = lines.map(l => `<p>${escapeHtml(l)}</p>`).join('');
-    pagesHtml += `<section class="page"><h2>Page ${i}</h2>${paras || '<p><em>(no extractable text on this page)</em></p>'}</section>`;
-  }
-  const doc = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${escapeHtml(baseName)} — converted from PDF</title>
-<style>
-body{font-family:Arial,Helvetica,sans-serif;max-width:800px;margin:2rem auto;padding:0 1.25rem;color:#222;line-height:1.6;}
-h1{font-size:1.5rem;} h2{font-size:1.1rem;margin-top:2rem;border-bottom:1px solid #ddd;padding-bottom:.3rem;}
-p{margin:.4rem 0;} .meta{color:#666;font-size:.85rem;}
-</style>
-</head>
-<body>
-<h1>${escapeHtml(baseName)}</h1>
-<p class="meta">Converted from PDF in the browser by PDFZaap. Text is extracted in reading order; complex multi-column layouts may not map perfectly.</p>
-${pagesHtml}
-</body>
-</html>`;
-  setProgressUI(100, 'Conversion complete!');
-  createDownloadLink(new TextEncoder().encode(doc), `${baseName}.html`, 'text/html',
-    'Done. The HTML preserves text in reading order. Page graphics are not embedded — use PDF to JPG or PDF to PNG for images.');
-}
-
-// PDF to EPUB (minimal valid EPUB 3 built with JSZip)
-async function runPDFToEPUB(file) {
-  if (typeof JSZip === 'undefined') throw new Error('The EPUB builder failed to load. Please refresh the page and try again.');
-  setProgressUI(10, 'Reading document...');
-  const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
-  const baseName = file.name.replace(/\.[^.]+$/, '');
-  const bookTitle = baseName.replace(/[_-]+/g, ' ');
-  const chapters = [];
-  const navItems = [];
-  for (let i = 1; i <= pdf.numPages; i++) {
-    setProgressUI(10 + Math.round((i / pdf.numPages) * 70), `Preparing chapter ${i} of ${pdf.numPages}...`);
-    const page = await pdf.getPage(i);
-    const lines = await extractPageLines(page);
-    const paras = lines.map(l => `<p>${escapeXml(l)}</p>`).join('');
-    chapters.push(`<section epub:type="chapter"><h2>Page ${i}</h2>${paras || '<p>(no extractable text)</p>'}</section>`);
-    navItems.push(`<li><a href="c${i}.xhtml">Page ${i}</a></li>`);
-  }
-  const id = 'zaap-' + Date.now().toString(36);
-  const opf = `<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id" xml:lang="en">
-  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <dc:identifier id="pub-id">${id}</dc:identifier>
-    <dc:title>${escapeXml(bookTitle)}</dc:title>
-    <dc:language>en</dc:language>
-    <meta property="dcterms:modified">${new Date().toISOString().replace(/\.\d{3}Z/, 'Z')}</meta>
-    <meta name="cover" content="cover-image"/>
-  </metadata>
-  <manifest>
-    <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
-    ${chapters.map((_, i) => `<item id="c${i + 1}" href="c${i + 1}.xhtml" media-type="application/xhtml+xml"/>`).join('\n    ')}
-  </manifest>
-  <spine>${chapters.map((_, i) => `<itemref idref="c${i + 1}"/>`).join('')}</spine>
-</package>`;
-  const nav = `<?xml version="1.0" encoding="utf-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
-<head><title>Navigation</title></head>
-<body><nav epub:type="toc"><h1>Contents</h1><ol>${navItems.join('')}</ol></nav></body>
-</html>`;
-  const xhtmlFor = (i, body) => `<?xml version="1.0" encoding="utf-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head><title>Page ${i}</title></head>
-<body>${body}</body>
-</html>`;
-
-  const zip = new JSZip();
-  zip.file('mimetype', 'application/epub+zip', { compression: 'STORE' });
-  zip.file('META-INF/container.xml', `<?xml version="1.0" encoding="utf-8"?>
-<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
-  <rootfiles><rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/></rootfiles>
-</container>`, { compression: 'STORE' });
-  zip.file('OEBPS/content.opf', opf);
-  zip.file('OEBPS/nav.xhtml', nav);
-  chapters.forEach((c, i) => zip.file(`OEBPS/c${i + 1}.xhtml`, xhtmlFor(i + 1, c)));
-
-  setProgressUI(90, 'Packing EPUB file...');
-  const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
-  setProgressUI(100, 'Conversion complete!');
-  createDownloadLink(blob, `${baseName}.epub`, 'application/epub+zip',
-    'Done. The EPUB is reflowable text — each PDF page becomes one chapter. Graphics are not embedded; use OCR PDF first if your source is scanned.');
-}
-
-// PDF to Word (minimal valid DOCX built with JSZip — text-based conversion)
-async function runPDFToWord(file) {
-  if (typeof JSZip === 'undefined') throw new Error('The DOCX builder failed to load. Please refresh the page and try again.');
-  setProgressUI(10, 'Reading document...');
-  const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
-  const baseName = file.name.replace(/\.[^.]+$/, '');
-  let bodyXml = '';
-  let pageBreakCount = 0;
-  for (let i = 1; i <= pdf.numPages; i++) {
-    setProgressUI(10 + Math.round((i / pdf.numPages) * 75), `Converting page ${i} of ${pdf.numPages}...`);
-    const page = await pdf.getPage(i);
-    const lines = await extractPageLines(page);
-    if (i > 1) {
-      bodyXml += `<w:p><w:r><w:br w:type="page"/></w:r></w:p>`;
-      pageBreakCount++;
-    }
-    bodyXml += lines.length
-      ? lines.map(l => `<w:p><w:r><w:t xml:space="preserve">${escapeXml(l)}</w:t></w:r></w:p>`).join('')
-      : `<w:p><w:r><w:t xml:space="preserve">(no extractable text)</w:t></w:r></w:p>`;
-  }
-  const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
-<w:body>${bodyXml}<w:sectPr><w:pgSz w:w="12240" w:h="15840"/></w:sectPr></w:body>
-</w:document>`;
-  const contentTypes = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
-<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
-<Default Extension="xml" ContentType="application/xml"/>
-<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
-</Types>`;
-  const rels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
-</Relationships>`;
-
-  const zip = new JSZip();
-  zip.file('[Content_Types].xml', contentTypes);
-  zip.file('_rels/.rels', rels);
-  zip.file('word/document.xml', documentXml);
-
-  setProgressUI(95, 'Packing Word file...');
-  const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
-  setProgressUI(100, 'Conversion complete!');
-  createDownloadLink(blob, `${baseName}.docx`, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    'Done. This is a text-based conversion: all words and the reading order are preserved, but multi-column layouts, tables and images are simplified. For pixel-perfect fidelity, export pages as images instead.');
-}
-
-// PDF to Excel (pdf.js text lines → SheetJS worksheet)
-async function runPDFToExcel(file) {
-  if (typeof XLSX === 'undefined') throw new Error('The spreadsheet engine failed to load. Please refresh the page and try again.');
-  setProgressUI(15, 'Reading document...');
-  const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
-  const baseName = file.name.replace(/\.[^.]+$/, '');
-  const rows = [];
-  for (let i = 1; i <= pdf.numPages; i++) {
-    setProgressUI(15 + Math.round((i / pdf.numPages) * 70), `Extracting rows from page ${i} of ${pdf.numPages}...`);
-    const page = await pdf.getPage(i);
-    const lines = await extractPageLines(page);
-    lines.forEach(line => {
-      const cells = line.split(/\t|\s{2,}/).map(c => c.trim()).filter(Boolean);
-      rows.push(cells.length ? cells : ['']);
-    });
-    if (i < pdf.numPages) rows.push([]);
-  }
-  if (!rows.length) throw new Error('No extractable text was found in this PDF.');
-  const ws = XLSX.utils.aoa_to_sheet(rows);
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, 'Page text');
-  const out = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-  setProgressUI(100, 'Export complete!');
-  createDownloadLink(new Blob([out], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }),
-    `${baseName}.xlsx`, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    'Done. Each text line becomes a spreadsheet row; cells are split where the PDF used tabs or clear column spacing. Complex tables may need a little manual cleanup.');
-}
-
-// PDF archival prep (pdf-lib) — embeds long-term-archiving metadata.
-// NOT a certified PDF/A conversion (that requires server-side validation tooling); the page copy says so.
-async function runArchivalPrep(file) {
-  setProgressUI(25, 'Reading document structure...');
-  const { PDFDocument } = PDFLib;
-  const bytes = await file.arrayBuffer();
-  let doc;
-  try {
-    doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
-  } catch (e) {
-    throw new Error('This file could not be opened. If it is corrupt, try the Repair PDF tool first.');
-  }
-  const now = new Date();
-  if (!doc.getTitle()) doc.setTitle(file.name.replace(/\.[^.]+$/, ''));
-  doc.setSubject('Prepared for long-term archiving');
-  doc.setKeywords(['archival', 'long-term storage']);
-  doc.setCreator('PDFZaap (client-side archival prep)');
-  doc.setProducer('PDFZaap PDF Archival Prep');
-  doc.setCreationDate(now);
-  doc.setModificationDate(now);
-  setProgressUI(80, 'Writing document...');
-  const outBytes = await doc.save();
-  setProgressUI(100, 'Processing completed!');
-  createDownloadLink(outBytes, file.name.replace(/\.[^.]+$/, '') + '_archival.pdf', 'application/pdf',
-    'Archival metadata (title, subject, creation/modification dates) has been embedded. Honest note: this is preparation, not a certified PDF/A conversion — full PDF/A validation requires dedicated server-side tooling (see the guide on this page).');
-}
-
-// Compare PDFs (pdf.js text extraction + line diff → HTML report)
-function diffLines(a, b) {
-  const n = a.length, m = b.length;
-  // Guard: DP is O(n*m); cap for very large documents
-  if (n * m > 9_000_000) return null;
-  const dp = Array.from({ length: n + 1 }, () => new Uint32Array(m + 1));
-  for (let i = n - 1; i >= 0; i--) {
-    for (let j = m - 1; j >= 0; j--) {
-      dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
-    }
-  }
-  const out = [];
-  let i = 0, j = 0;
-  while (i < n && j < m) {
-    if (a[i] === b[j]) { out.push({ t: 'eq', s: a[i] }); i++; j++; }
-    else if (dp[i + 1][j] >= dp[i][j + 1]) { out.push({ t: 'del', s: a[i] }); i++; }
-    else { out.push({ t: 'add', s: b[j] }); j++; }
-  }
-  while (i < n) { out.push({ t: 'del', s: a[i] }); i++; }
-  while (j < m) { out.push({ t: 'add', s: b[j] }); j++; }
-  return out;
-}
-
-async function runComparePDF(files) {
-  if (files.length < 2) throw new Error('Please select exactly two PDF files to compare.');
-  if (files.length > 2) throw new Error('Please select exactly two PDF files to compare.');
-  setProgressUI(15, 'Reading first document...');
-  const pdfA = await pdfjsLib.getDocument({ data: await files[0].arrayBuffer() }).promise;
-  setProgressUI(35, 'Reading second document...');
-  const pdfB = await pdfjsLib.getDocument({ data: await files[1].arrayBuffer() }).promise;
-
-  const collect = async (pdf) => {
-    const all = [];
-    for (let i = 1; i <= pdf.numPages; i++) {
-      const page = await pdf.getPage(i);
-      const lines = await extractPageLines(page);
-      lines.forEach(l => all.push(l));
-    }
-    return all;
-  };
-  setProgressUI(55, 'Extracting text...');
-  const linesA = await collect(pdfA);
-  const linesB = await collect(pdfB);
-
-  setProgressUI(75, 'Computing differences...');
-  const ops = diffLines(linesA, linesB);
-  const additions = ops ? ops.filter(o => o.t === 'add').length : 0;
-  const deletions = ops ? ops.filter(o => o.t === 'del').length : 0;
-
-  let rowsHtml;
-  if (ops) {
-    rowsHtml = ops.map(o => {
-      if (o.t === 'eq') return `<tr class="same"><td>${escapeHtml(o.s)}</td></tr>`;
-      if (o.t === 'add') return `<tr class="add"><td>+ ${escapeHtml(o.s)}</td></tr>`;
-      return `<tr class="del"><td>- ${escapeHtml(o.s)}</td></tr>`;
-    }).join('');
-  } else {
-    rowsHtml = `<p>The documents are too large for a line-by-line diff in the browser. Both text exports are listed below for manual review.</p>`;
-  }
-
-  const report = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Comparison: ${escapeHtml(files[0].name)} vs ${escapeHtml(files[1].name)}</title>
-<style>
-body{font-family:Arial,Helvetica,sans-serif;max-width:900px;margin:2rem auto;padding:0 1.25rem;color:#222;}
-h1{font-size:1.4rem;} .meta{color:#555;font-size:.9rem;}
-table{width:100%;border-collapse:collapse;font-size:.85rem;font-family:Consolas,Monaco,monospace;}
-td{padding:.2rem .5rem;border-bottom:1px solid #eee;white-space:pre-wrap;}
-tr.add td{background:#e6f6e6;color:#145214;}
-tr.del td{background:#fdecea;color:#7a1f1f;}
-.summary{background:#f7f7f7;border:1px solid #ddd;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;}
-</style>
-</head>
-<body>
-<h1>PDF comparison report</h1>
-<p class="meta">Document A: ${escapeHtml(files[0].name)} (${pdfA.numPages} pages, ${linesA.length} lines) &middot; Document B: ${escapeHtml(files[1].name)} (${pdfB.numPages} pages, ${linesB.length} lines) &middot; Generated in the browser by PDFZaap</p>
-<div class="summary"><strong>Result:</strong> ${ops ? `${additions} added line(s), ${deletions} removed line(s) compared to document A.` : 'Detailed diff unavailable (documents too large).'}</div>
-<table><tbody>${rowsHtml}</tbody></table>
-</body>
-</html>`;
-  setProgressUI(100, 'Report ready!');
-  createDownloadLink(new TextEncoder().encode(report),
-    `${files[0].name.replace(/\.[^.]+$/, '')}_vs_${files[1].name.replace(/\.[^.]+$/, '')}_report.html`, 'text/html',
-    `Done. ${ops ? `Found ${additions} added and ${deletions} removed lines.` : 'Opened as an HTML report you can view in any browser.'}`);
-}
+window.addEventListener('pagehide', () => {
+  cancelWorkspaceProcessing();
+  releaseDownloadURL();
+  resetProgressUI();
+  // A bfcache restore must not display a link whose blob URL was revoked.
+  const output = document.getElementById('ws-output-box');
+  if (output) { output.replaceChildren(); output.style.display = 'none'; }
+  const progress = document.getElementById('ws-progress-container');
+  if (progress) progress.style.display = 'none';
+});
 
 // ==========================================================================
 // INTERACTIVE UI & NAVIGATION HELPERS
@@ -3135,15 +1949,15 @@ function setupNavbarScroll() {
   
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-      nav.classList.add('scrolled');
+      nav?.classList.add('scrolled');
     } else {
-      nav.classList.remove('scrolled');
+      nav?.classList.remove('scrolled');
     }
 
     if (window.scrollY > 400) {
-      scrollTopBtn.classList.add('visible');
+      scrollTopBtn?.classList.add('visible');
     } else {
-      scrollTopBtn.classList.remove('visible');
+      scrollTopBtn?.classList.remove('visible');
     }
   });
 }
