@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+<style>
+    .post-container { max-width: 800px; margin: 2.5rem auto; padding: 0 1.5rem 4rem; }
+    .post-container h1 { font-size: 2.3rem; margin-bottom: 1rem; color: var(--text); }
+    .post-container h2 { font-size: 1.6rem; margin: 2.2rem 0 1rem; color: var(--text); }
+    .post-container h3 { font-size: 1.2rem; margin: 1.6rem 0 0.6rem; color: var(--text); }
+    .post-container p, .post-container li { color: var(--subtext); line-height: 1.8; margin-bottom: 1rem; }
+    .post-meta { color: var(--subtext); font-size: 0.9rem; margin-bottom: 2rem; }
+    .post-container a { color: var(--primary); font-weight: 600; }
+    .quick-box { background: var(--primary-light); border: 1px solid var(--primary-border); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .quick-box p { margin-bottom: 0; }
+    .post-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .post-table th, .post-table td { border: 1px solid var(--border); padding: 0.7rem 0.9rem; text-align: left; }
+    .post-table th { background: var(--primary-light); color: var(--text); font-weight: 700; }
+    .post-table td { color: var(--subtext); }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); background: var(--card-bg); padding: 1rem 1.25rem; margin-bottom: 0.75rem; }
+    .faq-item summary { font-weight: 700; color: var(--text); cursor: pointer; list-style: none; }
+    .faq-item summary::before { content: "▸ "; color: var(--primary); }
+    .faq-item[open] summary::before { content: "▾ "; }
+    .faq-item p { margin: 0.75rem 0 0; }
+    .related-box { margin-top: 2.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .related-box h2 { margin-top: 0; font-size: 1.25rem; }
+    .related-box ul { margin: 0; padding-left: 1.25rem; }
+    .cta-box { background: var(--primary-light); border: 1px solid var(--primary-border); border-radius: var(--radius-lg); padding: 1.75rem; margin-top: 2rem; text-align: center; }
+    .cta-box p { margin-bottom: 1rem; }
+    .cta-box a.cta-btn { display: inline-block; background: var(--primary); color: #fff; padding: 0.75rem 1.75rem; border-radius: var(--radius); font-weight: 700; }
+  </style>
+
+  <title>Why PDFs Get Blurry After Compression</title>
+  <meta name="description" content="What actually changes when a PDF is compressed, why the result sometimes looks blurry or pixelated, and the settings that keep text and photos legible.">
+  <link rel="canonical" href="https://www.pdfzaap.online/blog/why-pdf-blurry-after-compression.html">
+
+  <meta property="og:title" content="Why PDFs Get Blurry After Compression (And How to Avoid It)">
+  <meta property="og:description" content="Why compressed PDFs go blurry or pixelated — what compression changes, the quality/size trade-off, and settings that keep documents legible.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.pdfzaap.online/blog/why-pdf-blurry-after-compression.html">
+  <meta property="og:image" content="https://www.pdfzaap.online/og-image.png">
+  <meta property="og:image:alt" content="PDFZaap — free browser-based PDF tools that never upload your files">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why PDFs Get Blurry After Compression (And How to Avoid It)">
+  <meta name="twitter:description" content="Why compressed PDFs go blurry or pixelated — what compression changes, the quality/size trade-off, and settings that keep documents legible.">
+  <meta name="twitter:image" content="https://www.pdfzaap.online/og-image.png">
+
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#FF5200">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Why PDFs Get Blurry After Compression (And How to Avoid It)",
+    "description": "What actually changes when a PDF is compressed, why the result sometimes looks blurry or pixelated, and the settings that keep text and photos legible.",
+    "author": {"@type": "Person", "name": "Abdullah Salim", "url": "https://www.pdfzaap.online/about.html#team"},
+    "publisher": {
+      "@type": "Organization",
+      "name": "PDFZaap",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.pdfzaap.online/logo.png"
+      }
+    },
+    "datePublished": "2026-09-13",
+    "dateModified": "2026-09-13",
+    "mainEntityOfPage": "https://www.pdfzaap.online/blog/why-pdf-blurry-after-compression.html"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why is my text blurry but it was sharp before?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pure text pages rarely blur from JPEG settings alone. If selectable text looks soft, the tool likely rasterized the page (re-rendered it as an image) at a low resolution — or the blur was already in the scan. Rasterized text also stops being selectable; if you can no longer copy text from the file, that confirms a re-render happened."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is 0.5 quality safe for a professional document?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For screen viewing and most email attachments, a middle quality around 0.5 is a good default for text-heavy files. For photo-heavy documents where the photos are the content, 0.7–0.8 looks much closer to the original, with a smaller size reduction. Always check a dense page of the result."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does compressing twice make it worse?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — repeatedly. Each pass re-encodes the JPEG data left by the previous pass, so artifacts accumulate. If a first pass misses the target, re-run on the original file with a lower setting instead of compressing the compressed result."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My scan is 300 dpi. Can I still get under 200 KB without it looking bad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a long document, usually not — 300 dpi scans carry a lot of pixels per page. Your levers, in order of impact: reduce the page count (extract only what the form asks for), re-scan at 150 dpi if you have the source, or use a target-size mode and accept visible softness in photos. A text-only CV at 150 dpi has a much easier time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I get the size back after it looks too blurry?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From the compressed file, no — the removed detail is gone. That is why the workflow is: keep the original, compress a copy, check the copy, and only replace the original in your submission folder if the copy is acceptable."
+      }
+    }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header class="navbar" id="main-nav">
+    <a href="/" class="logo">⚡ PDF<span>Zaap</span></a>
+    <ul class="nav-links">
+      <li><a class="nav-link" href="/">Home</a></li>
+      <li><a class="nav-link" href="/#tools-anchor">All Tools</a></li>
+      <li><a class="nav-link" href="/blog/">Blog</a></li>
+      <li><a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a></li>
+    </ul>
+  </header>
+
+  <main class="post-container">
+
+  <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-top:1.25rem;"><a href="/">Home</a> <span>&gt;</span> <a href="/blog/">Blog</a> <span>&gt;</span> <span>Why PDFs Get Blurry After Compression (And How to Avoid It)</span></nav>
+    <article>
+
+      <h1>Why PDFs Get Blurry After Compression (And How to Avoid It)</h1>
+
+      <p class="post-meta">Published September 13, 2026 · 7 min read</p>
+
+
+      <p>You compressed a 20 MB scan down to 3 MB, and something went wrong: photos look pixelated, the small print under the table has a grainy halo, and the header logo looks like it was faxed. "Blurry after compression" is the most common complaint about PDF compression tools — and it is worth understanding, because it is not random. It follows directly from what compression has to do, and most of it can be predicted and avoided.</p>
+
+      <div class="quick-box">
+        <strong>Quick Answer:</strong>
+        <p>Compression shrinks files mainly by re-encoding embedded images at lower quality and, in target-size mode, lowering resolution until the limit is met. Text and simple vector graphics usually stay sharp; photos and fine details are what suffer. The fix is to pick a quality (or target size) that matches the document's content and to check a dense page before you send the file anywhere.</p>
+      </div>
+
+      <h2>What a PDF actually contains</h2>
+
+      <p>Before "why blurry" makes sense, it helps to see what a PDF is made of. Most documents contain a mix of:</p>
+
+      <ul>
+        <li><strong>Text</strong> — stored as vector outlines and font data. This is what makes printed text razor-sharp at any zoom level.</li>
+        <li><strong>Vector graphics</strong> — lines, boxes, charts drawn as instructions ("draw a line from here to there"). Also resolution-independent.</li>
+        <li><strong>Embedded images</strong> — photographs, scans, logos, screenshots. These are the big weight in most files, and they are stored as pixel grids (usually JPEG-compressed).</li>
+        <li><strong>Overprint layers</strong> — on scanned PDFs, the entire page is effectively one big image; there is no real text underneath.</li>
+      </ul>
+
+      <p>The size of a typical "too big" PDF is dominated by the images. That is why every compression strategy — from a desktop suite to a browser tool — starts by asking: what can I do to the images?</p>
+
+      <h2>Why blurriness happens: the three mechanisms</h2>
+
+      <h3>1. Lower JPEG quality (compression artifacts)</h3>
+      <p>Images inside PDFs are almost always JPEG-encoded, and JPEG is a lossy format: it discards detail the encoder judges inaudible, and the discarded detail comes back as blockiness, ringing around edges, and smearing in gradients. Push the quality down and the artifacts get louder. This is the "pixelated grid" look on photos and the "muddy" look in gray gradients. A text page with a photo will show it in the photo first — the text stays crisp because it is not an image.</p>
+
+      <h3>2. Lower resolution (downsampling)</h3>
+      <p>When a tool is told to hit a hard size limit — "under 200 KB" — lowering JPEG quality alone is often not enough, so it also re-samples the images at fewer pixels. A 300 dpi scan becomes 150, then 100. Each step physically removes pixels; when you view the result on screen or print it, the image looks softer or visibly blocky. This is the "everything is slightly out of focus" look, including logos and line art that was previously sharp.</p>
+
+      <h3>3. Rasterization (re-rendering the page as an image)</h3>
+      <p>Some compressors take a different route: they re-render each page to a bitmap at a chosen resolution and rebuild the PDF around those bitmaps. This can crush mixed content aggressively (it is how some tools get dramatic size drops on dense documents) — but it also converts your selectable text into picture text. The visual quality depends entirely on the render resolution: at 150 dpi it is fine on screen, at 72 dpi it is visibly soft. And as a side effect you lose searchability and copy-paste, which is a cost no blurriness should force on you unless you accept it deliberately.</p>
+
+      <p>Which of the three you are seeing depends on the tool. A quality-based compressor mostly does (1) plus, in target mode, (2). A re-rendering compressor does (3) with a resolution choice. PDFZaap's <a href="/compress-pdf.html">Compress PDF tool</a> uses the re-rendering approach (it renders pages through Mozilla's PDF engine and re-encodes them), which is why its result note tells you which quality it settled on — so you can judge the trade-off with the information in front of you.</p>
+
+      <h2>Why some files look fine and others do not</h2>
+
+      <p>The same quality setting behaves differently across documents. The variables:</p>
+
+      <table class="post-table">
+        <tr><th>Content type</th><th>What you lose first</th></tr>
+        <tr><td>Text-heavy document (CV, memo)</td><td>Barely anything visible — there is little image data. Size drop is modest.</td></tr>
+        <tr><td>Photo in a text document (headshot, product shot)</td><td>The photo goes grainy while the text stays sharp — the classic "only the picture is blurry" complaint.</td></tr>
+        <tr><td>Full-page scan</td><td>Everything softens; fine print is the first casualty.</td></tr>
+        <tr><td>Dense vector chart / line art</td><td>Re-rendering can turn clean lines into slightly wobbly pixels; JPEG artifacts crawl into flat white areas.</td></tr>
+        <tr><td>Photo-heavy report (slide exports, brochures)</td><td>Large size drops available, at real visible cost in every photo.</td></tr>
+      </table>
+
+      <p>The practical rule: a photo-heavy document gives the compressor room to cut a lot and looks noticeably worse at aggressive settings; a text document gives it little room and looks nearly identical until you push far.</p>
+
+      <h2>How to avoid (or predict) the blur</h2>
+
+      <ul>
+        <li><strong>Know your content before you compress.</strong> If the document is mostly text, a moderate quality (around 0.5 on a 0.1–1.0 scale) will usually look indistinguishable from the original on screen. If it is photo-heavy and the photos matter, go gentler (0.7–0.8) and expect a smaller size drop.</li>
+        <li><strong>Use target size only when a limit is real.</strong> "Under 100 KB" is a portal requirement, not an aesthetic goal. Target mode exists to hit a number, and it will sacrifice quality as far as the number requires — which is honest, but you should know what you are asking for.</li>
+        <li><strong>Check a worst-case page.</strong> Do not eyeball the first page. Open the compressed file and look at the page with the smallest print, the darkest photo, or the densest table. If that page is acceptable, the rest is.</li>
+        <li><strong>Do not chain compressions.</strong> Compressing an already-compressed file re-encodes its JPEG artifacts, and each pass makes them worse — the "third pass looks terrible" effect. If the first pass did not reach the limit, change the setting on the <em>original</em> file instead of stacking passes.</li>
+        <li><strong>Lower the source, not the destination.</strong> For scans, the biggest lever is scan resolution: scanning at 150 dpi instead of 300 dpi roughly quarters the image data before compression ever starts, and the result is sharper than a 300 dpi scan crushed afterward.</li>
+        <li><strong>Separate concerns.</strong> If only the photo is the problem, consider removing it, replacing it with a smaller export, or keeping the photo in a separate attachment — rather than degrading the whole document to save a megabyte.</li>
+      </ul>
+
+      <h2>When some softness is acceptable (and when it is not)</h2>
+
+      <p>Screen review of a meeting draft, an internal status report, a shared photo album — softness costs you nothing. But: ID documents and certificates where a border or serial number must be legible, contracts with fine print that may be referenced later, engineering drawings with tolerances, medical or legal exhibits — these should be compressed conservatively or not at all, and if a portal's size cap forces the trade, ask the portal for a larger cap or an alternative submission path before accepting an unreadable upload.</p>
+
+      <h2>How to tell what actually happened to your file</h2>
+
+      <p>If a compressed file looks wrong, diagnose before blaming the tool:</p>
+
+      <ul>
+        <li>Text sharp but photos grainy → JPEG quality. Raise quality, re-compress from the original.</li>
+        <li>Everything uniformly softer → downsampling. Raise the resolution floor or target a larger limit.</li>
+        <li>Text no longer selectable → the tool rasterized. Decide whether you accept non-searchable output; if not, use a tool that preserves text (or accept the trade-off knowingly).</li>
+        <li>Blurry in places that were also blurry before → the input was the problem, not the compression. Compare against the original.</li>
+      </ul>
+
+      <h2>The honest trade-off, in one sentence</h2>
+
+      <p>Every byte you remove comes from somewhere in the document, and the encoder will always take it from images before it touches anything else — so "blur after compression" is the visible side of a size target, and the only real controls are: how much size you actually need to remove, what the document can afford to lose, and checking the worst-case page before the file leaves your hands.</p>
+
+
+      <h2>Frequently Asked Questions</h2>
+
+      <details class="faq-item">
+        <summary>Why is my text blurry but it was sharp before?</summary>
+        <p>Pure text pages rarely blur from JPEG settings alone. If selectable text looks soft, the tool likely rasterized the page (re-rendered it as an image) at a low resolution — or the blur was already in the scan. Rasterized text also stops being selectable; if you can no longer copy text from the file, that confirms a re-render happened.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is 0.5 quality safe for a professional document?</summary>
+        <p>For screen viewing and most email attachments, a middle quality around 0.5 is a good default for text-heavy files. For photo-heavy documents where the photos are the content, 0.7–0.8 looks much closer to the original, with a smaller size reduction. Always check a dense page of the result.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does compressing twice make it worse?</summary>
+        <p>Yes — repeatedly. Each pass re-encodes the JPEG data left by the previous pass, so artifacts accumulate. If a first pass misses the target, re-run on the original file with a lower setting instead of compressing the compressed result.</p>
+      </details>
+      <details class="faq-item">
+        <summary>My scan is 300 dpi. Can I still get under 200 KB without it looking bad?</summary>
+        <p>For a long document, usually not — 300 dpi scans carry a lot of pixels per page. Your levers, in order of impact: reduce the page count (extract only what the form asks for), re-scan at 150 dpi if you have the source, or use a target-size mode and accept visible softness in photos. A text-only CV at 150 dpi has a much easier time.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I get the size back after it looks too blurry?</summary>
+        <p>From the compressed file, no — the removed detail is gone. That is why the workflow is: keep the original, compress a copy, check the copy, and only replace the original in your submission folder if the copy is acceptable.</p>
+      </details>
+
+      <div class="related-box">
+        <h2>Related guides &amp; tools</h2>
+        <ul>
+          <li><a href="/compress-pdf.html">Compress PDF tool</a> — quality slider plus target-size mode, with a result note that tells you what the tool actually did.</li>
+          <li><a href="/grayscale-pdf.html">Grayscale PDF tool</a> — strip color to cut size on text-heavy documents before (or instead of) a deep compression.</li>
+          <li><a href="/compress-pdf-to-200kb.html">Compress PDF to 200KB</a> — the common portal limit, with honest guidance on what fits and what does not.</li>
+        </ul>
+      </div>
+
+      <div class="cta-box">
+        <p>Compress your next PDF with an honest quality report — no upload, no watermark.</p>
+        <a class="cta-btn" href="/compress-pdf.html">Compress PDF Now →</a>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>⚡ PDF<span>Zaap</span></h4>
+        <p>Free, browser-based PDF tools that process your files locally — no uploads, no signup, no watermarks.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Popular Tools</h5>
+        <ul class="footer-links">
+          <li><a href="/pdf-to-word.html">PDF to Word</a></li>
+          <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
+          <li><a href="/pdf-to-jpg.html">PDF to JPG</a></li>
+          <li><a href="/word-to-pdf.html">Word to PDF</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Edit &amp; Organize</h5>
+        <ul class="footer-links">
+          <li><a href="/merge-pdf.html">Merge PDF</a></li>
+          <li><a href="/split-pdf.html">Split PDF</a></li>
+          <li><a href="/compress-pdf.html">Compress PDF</a></li>
+          <li><a href="/add-watermark-pdf.html">Add Watermark</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Security &amp; Advanced</h5>
+        <ul class="footer-links">
+          <li><a href="/protect-pdf.html">Protect PDF</a></li>
+          <li><a href="/esign-pdf.html">E-Sign PDF</a></li>
+          <li><a href="/ocr-pdf.html">OCR PDF</a></li>
+          <li><a href="/flatten-pdf.html">Flatten PDF</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 PDFZaap. All rights reserved. Built for fast, private PDF work.</p>
+      <div class="footer-legal-links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>

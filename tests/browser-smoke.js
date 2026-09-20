@@ -8,6 +8,7 @@ import path from 'node:path';
 import { chromium } from 'playwright';
 import { PDFDocument, rgb } from 'pdf-lib';
 import JSZip from 'jszip';
+import XLSX from 'xlsx';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const server = createServer(async (request, response) => {
@@ -37,7 +38,8 @@ try {
     ['/jszip.min.js', 'jszip/dist/jszip.min.js'],
     ['/pptxgen.bundle.js', 'pptxgenjs/dist/pptxgen.bundle.js'],
     ['/mammoth.browser.min.js', 'mammoth/mammoth.browser.min.js'],
-    ['/html2pdf.bundle.min.js', 'html2pdf.js/dist/html2pdf.bundle.min.js']
+    ['/html2pdf.bundle.min.js', 'html2pdf.js/dist/html2pdf.bundle.min.js'],
+    ['/xlsx.full.min.js', 'xlsx/dist/xlsx.full.min.js']
   ];
   await context.route('**/*', async route => {
     const url = route.request().url();
@@ -133,12 +135,15 @@ try {
   assert.equal(huge.getPage(0).getWidth(), 30000);
   console.log('PASS oversized page uses a bounded raster, not a giant canvas');
 
+  let sampleJPG, samplePNG;
   for (const tool of ['pdf-to-jpg', 'pdf-to-png', 'pdf-to-powerpoint']) {
     const zip = await JSZip.loadAsync(await processTool(tool));
     if (tool === 'pdf-to-powerpoint') {
       assert.equal(Object.keys(zip.files).filter(name => /^ppt\/slides\/slide\d+\.xml$/.test(name)).length, 3);
       assert.equal(Object.keys(zip.files).filter(name => /ppt\/media\/.*\.jpeg$/.test(name)).length, 3);
     } else assert.equal(Object.keys(zip.files).filter(name => /^page-\d+\./.test(name)).length, 3);
+    if (tool === 'pdf-to-jpg') sampleJPG = await zip.file('page-1.jpg').async('nodebuffer');
+    if (tool === 'pdf-to-png') samplePNG = await zip.file('page-1.png').async('nodebuffer');
     console.log(`PASS ${tool} output archive and cleanup`);
   }
 
@@ -218,7 +223,7 @@ try {
   assert.equal(await page.locator('#direct-dl-link').count(), 0);
   console.log('PASS long Word documents are rejected before allocating a giant canvas');
 
-  await openTool('ocr-pdf');
+  await openTool('protect-pdf');
   await page.locator('#ws-process-btn').click();
   await page.waitForFunction(() => !document.getElementById('ws-process-btn').disabled);
   assert.match(await page.locator('#ws-progress-status').textContent(), /not implemented/);
@@ -226,17 +231,101 @@ try {
   assert.equal(await page.evaluate(() => window.mainFileReads), 0);
   console.log('PASS placeholder tools fail honestly without reading/copying the source');
 
+  await page.goto(`${base}/index.html`);
+  assert.ok(await page.locator('#main-tools-grid a.tool-card').count() > 20, 'keep crawlable homepage cards');
   await page.goto(`${base}/index.html#rotate-pdf`);
+  await page.waitForURL('**/rotate-pdf.html');
   await page.locator('#ws-file-input').setInputFiles({ name: 'sample.pdf', mimeType: 'application/pdf', buffer: sample });
   await page.waitForFunction(() => !document.getElementById('ws-process-btn').disabled);
   await page.locator('#ws-process-btn').click();
   assert.equal((await PDFDocument.load(await finish())).getPage(0).getRotation().angle, 90);
-  const spaURL = await page.locator('#direct-dl-link').getAttribute('href');
-  await page.evaluate(() => { location.hash = 'split-pdf'; });
-  await page.locator('#split-pages-input').waitFor();
-  assert.ok((await page.evaluate(() => window.revokedURLs)).includes(spaURL));
-  assert.ok(await page.locator('#ws-process-btn').isDisabled());
-  console.log('PASS homepage hash-router workflow and navigation cleanup');
+  const events = await page.evaluate(() => window.__zaapEvents.map(event => event.event));
+  for (const event of ['tool_open', 'file_selected', 'process_click', 'download_click']) assert.ok(events.includes(event));
+  console.log('PASS crawlable homepage, legacy hash redirect and privacy-friendly analytics');
+
+  await openTool('compress-pdf-to-100kb');
+  assert.equal(await page.locator('#compress-target').inputValue(), '100');
+  await page.locator('#ws-process-btn').click();
+  assert.ok((await finish()).length <= 100 * 1024);
+  assert.equal(await page.evaluate(() => window.mainFileReads), 1, 'target passes reuse the parsed input');
+  assert.match(await page.locator('.output-note').textContent(), /Target.*reached/);
+  console.log('PASS upstream compression preset with single-read quality search');
+
+  const a4 = await PDFDocument.load(await processTool('jpg-to-pdf-a4', sampleJPG, 'page.jpg'));
+  assert.deepEqual(a4.getPage(0).getSize(), { width: 595.28, height: 841.89 });
+  console.log('PASS upstream A4 image preset');
+
+  await openTool('id/kompres-pdf');
+  await page.locator('#ws-process-btn').click();
+  assert.equal((await PDFDocument.load(await finish())).getPageCount(), 3);
+  console.log('PASS localized tool page and root-relative worker modules');
+
+  for (const [tool, ext, entry] of [['pdf-to-word', 'docx', 'word/document.xml'], ['pdf-to-epub', 'epub', 'OEBPS/c3.xhtml']]) {
+    const zip = await JSZip.loadAsync(await processTool(tool));
+    assert.match(await zip.file(entry).async('string'), /Test page 3/);
+    console.log(`PASS upstream PDF-to-${ext} converter preserved`);
+  }
+  assert.match((await processTool('pdf-to-html')).toString(), /Test page 3/);
+  assert.ok(XLSX.read(await processTool('pdf-to-excel'), { type: 'buffer' }).SheetNames.length);
+  assert.equal((await PDFDocument.load(await processTool('pdf-to-pdfa'))).getSubject(), 'Prepared for long-term archiving');
+  console.log('PASS upstream HTML/spreadsheet exports and archival prep');
+
+  const html = await PDFDocument.load(await processTool('html-to-pdf', Buffer.from('<h1>HTML conversion</h1><p>Example text</p>'), 'example.html'));
+  assert.ok(html.getPageCount());
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet([['Name', 'Value'], ['Example', 123]]), 'Sheet 1');
+  assert.ok((await PDFDocument.load(await processTool('excel-to-pdf', XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' }), 'example.xlsx'))).getPageCount());
+  console.log('PASS upstream HTML/Excel-to-PDF converters through bounded DOM rendering');
+
+  await page.goto(`${base}/compare-pdf.html`);
+  await page.locator('#ws-file-input').setInputFiles([{ name: 'before.pdf', mimeType: 'application/pdf', buffer: sample }, { name: 'after.pdf', mimeType: 'application/pdf', buffer: await pdfFixture(2) }]);
+  await page.waitForFunction(() => !document.getElementById('ws-process-btn').disabled);
+  await page.locator('#ws-process-btn').click();
+  assert.match((await finish()).toString(), /PDF comparison report/);
+  console.log('PASS upstream comparison report');
+
+  // Validate OCR integration without downloading a language model in the test.
+  await openTool('ocr-pdf');
+  await page.evaluate(() => {
+    window.ocrCalls = { created: 0, recognized: 0, terminated: 0 };
+    window.Tesseract = { createWorker: async () => {
+      ocrCalls.created++;
+      return { recognize: async bytes => {
+        if (!(bytes instanceof Uint8Array)) throw new Error('Expected encoded image bytes');
+        return { data: { text: `Recognized page ${++ocrCalls.recognized}` } };
+      }, terminate: async () => { ocrCalls.terminated++; } };
+    } };
+  });
+  await page.locator('#ws-process-btn').click();
+  assert.match((await finish()).toString(), /Recognized page 3/);
+  assert.deepEqual(await page.evaluate(() => window.ocrCalls), { created: 1, recognized: 3, terminated: 1 });
+  console.log('PASS upstream OCR integration, worker reuse and cleanup (recognizer stub)');
+
+  await page.locator('#ws-file-input').setInputFiles({ name: 'scan.png', mimeType: 'image/png', buffer: samplePNG });
+  await page.waitForFunction(() => !document.getElementById('ws-process-btn').disabled);
+  await page.locator('#ws-process-btn').click();
+  assert.match((await finish()).toString(), /Recognized page 4/);
+  assert.deepEqual(await page.evaluate(() => window.ocrCalls), { created: 2, recognized: 4, terminated: 2 });
+  console.log('PASS OCR image input decoding and bitmap cleanup (recognizer stub)');
+
+  await openTool('ocr-pdf');
+  await page.evaluate(() => {
+    window.ocrPending = false;
+    window.ocrTerminated = 0;
+    window.Tesseract = { createWorker: async () => ({
+      recognize: () => { window.ocrPending = true; return new Promise(() => {}); },
+      terminate: async () => { window.ocrTerminated++; }
+    }) };
+  });
+  await page.locator('#ws-process-btn').click();
+  await page.waitForFunction(() => window.ocrPending);
+  await page.locator('#ws-cancel-btn').click();
+  await page.waitForFunction(() => !document.getElementById('ws-process-btn').disabled);
+  assert.match(await page.locator('#ws-progress-status').textContent(), /cancelled/);
+  assert.equal(await page.evaluate(() => window.ocrTerminated), 1);
+  assert.equal(page.workers().length, 0);
+  assert.equal(await page.locator('#direct-dl-link').count(), 0);
+  console.log('PASS cancellation of an in-flight OCR recognition (recognizer stub)');
 
   assert.deepEqual(errors, [], `Unexpected browser errors: ${errors.join('\n')}`);
   console.log('All browser integration checks passed.');

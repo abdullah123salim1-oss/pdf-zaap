@@ -1,0 +1,6 @@
+# PDFZaap — Netlify/3.5-style redirects (canonical host: https://www.pdfzaap.online)
+# non-www -> www (301)
+https://pdfzaap.online/* https://www.pdfzaap.online/:splat 301!
+# duplicate-path cleanup (301)
+/index.html / 301
+/blog/index.html /blog/ 301

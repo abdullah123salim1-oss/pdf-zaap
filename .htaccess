@@ -1,0 +1,33 @@
+# PDFZaap — Apache configuration
+# Canonical host: https://www.pdfzaap.online
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) http -> https (redirect to www on the way)
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://www\.pdfzaap\.online%{REQUEST_URI} [R=301,L]
+
+  # 2) non-www -> www (already https)
+  RewriteCond %{HTTP_HOST} ^pdfzaap\.online$ [NC]
+  RewriteRule ^ https://www\.pdfzaap\.online%{REQUEST_URI} [R=301,L]
+
+  # 3) /index.html -> /
+  RewriteRule ^index\.html$ / [R=301,L]
+
+  # 4) /blog/index.html -> /blog/
+  RewriteRule ^blog/index\.html$ /blog/ [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# sensible defaults
+<FilesMatch "\.(html|css|js|xml|txt|json)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=3600"
+  </IfModule>
+</FilesMatch>

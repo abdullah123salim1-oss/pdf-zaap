@@ -1,0 +1,29 @@
+# PDFZaap — Netlify configuration
+# Canonical host: https://www.pdfzaap.online
+# Also enable "Force HTTPS" in Site settings (handles http -> https at the edge).
+
+# non-www -> www (301)
+[[redirects]]
+  from = "https://pdfzaap.online/*"
+  to = "https://www.pdfzaap.online/:splat"
+  status = 301
+  force = true
+
+# duplicate-path cleanup (301)
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/index.html"
+  to = "/blog/"
+  status = 301
+
+# basic security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

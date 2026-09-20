@@ -31,6 +31,8 @@ export const LIBRARIES = Object.freeze({
   pptx: { global: 'pptxgen', alias: 'PptxGenJS', url: 'https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js' },
   pdfjs: { global: 'pdfjsLib', url: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js' },
   mammoth: { global: 'mammoth', url: 'https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js' },
+  xlsx: { global: 'XLSX', url: 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js' },
+  tesseract: { global: 'Tesseract', url: 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js' },
   html2pdf: { global: 'html2pdf', url: 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js' }
 });
 
@@ -338,13 +340,22 @@ export function createProcessor({ loadLibrary, onProgress = () => {}, checkCance
       const out = await PDFDocument.create();
       for (let i = 0; i < files.length; i++) {
         const image = tool === 'jpg-to-pdf' ? await out.embedJpg(await files[i].arrayBuffer()) : await out.embedPng(await files[i].arrayBuffer());
-        const page = out.addPage([image.width, image.height]);
-        page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+        const target = options.pageSize === 'a4' ? [595.28, 841.89] : options.pageSize === 'letter' ? [612, 792] : null;
+        const [width, height] = target || [image.width, image.height];
+        const scale = target ? Math.min((width - 48) / image.width, (height - 48) / image.height, 1) : 1;
+        const w = image.width * scale, h = image.height * scale;
+        const page = out.addPage([width, height]);
+        if (target) page.drawRectangle({ x: 0, y: 0, width, height, color: rgb(1, 1, 1) });
+        page.drawImage(image, { x: (width - w) / 2, y: (height - h) / 2, width: w, height: h });
         await image.embed();
         progress(20 + 65 * (i + 1) / files.length, `Embedding image ${i + 1}/${files.length}...`);
         await checkpoint();
       }
-      return save(out, 'images_converted.pdf');
+      const result = await save(out, 'images_converted.pdf');
+      result.note = ['a4', 'letter'].includes(options.pageSize)
+        ? `Images are centered on ${options.pageSize === 'a4' ? 'A4' : 'US Letter'} pages with 24pt margins, without upscaling.`
+        : 'Each image fills its own page at full resolution.';
+      return result;
     }
 
     let doc;
@@ -392,6 +403,19 @@ export function createProcessor({ loadLibrary, onProgress = () => {}, checkCance
       return save(out, 'resized.pdf');
     }
 
+    if (tool === 'pdf-to-pdfa') {
+      const now = new Date();
+      if (!doc.getTitle()) doc.setTitle(file.name.replace(/\.[^.]+$/, ''));
+      doc.setSubject('Prepared for long-term archiving');
+      doc.setKeywords(['archival', 'long-term storage']);
+      doc.setCreator('PDFZaap (client-side archival prep)');
+      doc.setProducer('PDFZaap PDF Archival Prep');
+      doc.setCreationDate(now);
+      doc.setModificationDate(now);
+      const result = await save(doc, file.name.replace(/\.[^.]+$/, '') + '_archival.pdf');
+      result.note = 'Archival metadata has been embedded. This is preparation, not a certified PDF/A conversion; full PDF/A validation requires dedicated tooling.';
+      return result;
+    }
     if (tool === 'flatten-pdf') {
       progress(60, 'Flattening form fields...');
       const form = doc.getForm();

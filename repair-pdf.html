@@ -2,120 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; media-src 'self' blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Repair PDF Online Free — Fix Corrupted PDF Files | PDFZaap</title>
-  <meta name="description" content="Fix corrupted or damaged PDF documents for free in your browser. Rebuild file headers and object trees with zero server uploads.">
-  <link rel="canonical" href="https://pdfzaap.online/repair-pdf.html">
+  <meta name="description" content="Attempt to rebuild a corrupted PDF in your browser. Recovers what it can from damaged files and re-saves a clean version. Free, private, no upload.">
+  <link rel="canonical" href="https://www.pdfzaap.online/repair-pdf.html">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/logo.png">
   <meta name="robots" content="index, follow">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="theme-color" content="#FF5200">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Repair PDF Online Free — Fix Corrupted PDF Files | PDFZaap">
-  <meta property="og:description" content="Fix corrupted or damaged PDF documents for free in your browser. Rebuild file headers and object trees with zero server uploads.">
-  <meta property="og:image" content="https://pdfzaap.online/og-image.png">
+  <meta property="og:description" content="Attempt to rebuild a corrupted PDF in your browser. Recovers what it can from damaged files and re-saves a clean version. Free, private, no upload.">
+  <meta property="og:image" content="https://www.pdfzaap.online/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://pdfzaap.online/repair-pdf.html">
+  <meta property="og:url" content="https://www.pdfzaap.online/repair-pdf.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PDFZaap">
   <meta property="og:locale" content="en_US">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Repair PDF Online Free — Fix Corrupted PDF Files | PDFZaap">
-  <meta name="twitter:description" content="Fix corrupted or damaged PDF documents for free in your browser. Rebuild file headers and object trees with zero server uploads.">
-  <meta name="twitter:image" content="https://pdfzaap.online/og-image.png">
+  <meta name="twitter:description" content="Attempt to rebuild a corrupted PDF in your browser. Recovers what it can from damaged files and re-saves a clean version. Free, private, no upload.">
+  <meta name="twitter:image" content="https://www.pdfzaap.online/og-image.png">
   <meta name="twitter:site" content="@pdfzaap">
-
-  <meta name="author" content="PDFZaap">
-  <meta name="keywords" content="repair pdf, fix corrupt pdf file, recover damaged pdf free online">
-  <meta name="theme-color" content="#FF5200">
-
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDFZaap Repair a Corrupted PDF",
+    "url": "https://www.pdfzaap.online/repair-pdf.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "description": "Attempt to rebuild a corrupted PDF in your browser. Recovers what it can from damaged files and re-saves a clean version. Free, private, no upload.",
+    "publisher": {"@type": "Organization", "name": "PDFZaap", "url": "https://www.pdfzaap.online/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.pdfzaap.online/"},
+      {"@type": "ListItem", "position": 2, "name": "Repair a Corrupted PDF", "item": "https://www.pdfzaap.online/repair-pdf.html"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {"@type": "Question", "name": "Will it always fix the file?", "acceptedAnswer": {"@type": "Answer", "text": "No. Recovery depends on how much of the file's structure is intact. The tool reports if it cannot open the file rather than guessing."}},
+    {"@type": "Question", "name": "Is my broken file uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No — parsing and re-saving happen entirely in your browser."}},
+    {"@type": "Question", "name": "What kinds of damage can it handle?", "acceptedAnswer": {"@type": "Answer", "text": "Common ones: truncated downloads, minor object corruption, broken cross-reference tables. Severely damaged or encrypted-corrupt files may not be recoverable in a browser."}},
+    {"@type": "Question", "name": "Does the repaired file lose content?", "acceptedAnswer": {"@type": "Answer", "text": "It may lose the parts that were unrecoverable. Always compare the result against your expected page count and key pages."}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-
-  <script type="application/ld+json" id="software-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Repair PDF - PDFZaap",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Web Browser",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "description": "Fix corrupted or damaged PDF documents for free in your browser. Rebuild file headers and object trees with zero server uploads."
-}
-  </script>
-
-  <script type="application/ld+json" id="breadcrumb-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://pdfzaap.online/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Repair PDF",
-      "item": "https://pdfzaap.online/repair-pdf.html"
-    }
-  ]
-}
-  </script>
-
-  <script type="application/ld+json" id="faq-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What types of PDF damage can be repaired?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "PDFZaap repairs missing xref tables, corrupted object streams, and broken file trailer headers."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are my corrupted files uploaded to a remote server?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No, document inspection and structure rebuilding happen locally inside your browser."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is there any cost or subscription required?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No, PDFZaap's Repair PDF tool is 100% free with no hidden fees or registrations."
-      }
-    }
-  ]
-}
-  </script>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-
   <header class="navbar" id="main-nav">
-    <a href="index.html" class="logo">⚡ PDF<span>Zaap</span></a>
+    <a href="/" class="logo">⚡ PDF<span>Zaap</span></a>
     <ul class="nav-links">
-      <li><a class="nav-link" href="index.html">Home</a></li>
-      <li><a href="index.html#tools-anchor" class="btn btn-primary">All Tools</a></li>
+      <li><a class="nav-link" href="/">Home</a></li>
+      <li><a class="nav-link" href="/#tools-anchor">All Tools</a></li>
+      <li><a class="nav-link" href="/blog/">Blog</a></li>
+      <li><a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a></li>
     </ul>
   </header>
 
@@ -123,68 +81,94 @@
     <div class="workspace-wrapper">
       <div class="workspace-main">
 
-        <nav class="breadcrumb">
-          <a href="index.html">Home</a> <span>&gt;</span> <span>Repair PDF</span>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>&gt;</span> <span>🩹 Repair PDF</span>
         </nav>
 
-        <h1 class="workspace-title">🛠️ Repair PDF</h1>
-        <p class="subtitle">Fix damaged, corrupted, or unreadable PDF files locally</p>
+        <h1 class="workspace-title">🩹 Repair a Corrupted PDF</h1>
+        <p class="subtitle">Rebuild a corrupted PDF file</p>
 
         <div class="dropzone" id="ws-dropzone">
           <div class="dropzone-icon">📥</div>
-          <h3>Select Damaged PDF</h3>
-          <p>or drop corrupt PDF here</p>
+          <h3>Select your file</h3>
+          <p>or drop file here</p>
           <input type="file" id="ws-file-input" class="display-none" accept=".pdf">
         </div>
 
         <div class="file-list" id="ws-file-list"></div>
         <div class="options-panel display-none" id="ws-options-panel"></div>
-        <div class="ws-canvas-wrapper display-none" id="ws-canvas-wrapper"></div>
+
 
         <div class="progress-bar-container" id="ws-progress-container">
           <div class="progress-bar-outer"><div class="progress-bar-inner" id="ws-progress-bar"></div></div>
           <p class="progress-status" id="ws-progress-status">Processing document contents...</p>
         </div>
 
-        <button class="btn btn-primary full-width" id="ws-process-btn" disabled>Repair Damaged PDF</button>
+        <button class="btn btn-primary full-width" id="ws-process-btn" disabled>Repair PDF</button>
 
         <div class="security-note">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span>Files processed locally — zero server uploads</span>
+          <span>Files processed locally in your browser — nothing is uploaded to a server</span>
         </div>
 
         <div id="ws-output-box" class="output-container"></div>
 
+        <section class="tool-intro padding-top-bot">
+          <p>When a PDF will not open — a download cut off mid-transfer, a sync conflict, a flaky save — this tool attempts to read the file's structure, rebuild what it can, and write out a clean version. It runs locally in your browser, so a broken file that contains sensitive data still never leaves your machine. Results depend on how much of the file is intact, and the tool is honest about that.</p>
+        </section>
+
         <section class="how-it-works padding-top-bot">
           <div class="section-header margin-bot-3">
-            <h2>How to Repair PDF</h2>
+            <h2>How to repair a corrupted PDF</h2>
           </div>
           <div class="steps">
             <div class="step-item">
               <div class="step-num">1</div>
-              <h3>Upload Corrupt PDF</h3>
-              <p>Select your unreadable or broken PDF file.</p>
+              <h3>Select the damaged PDF</h3>
+              <p>Upload the file that will not open (or opens only partially).</p>
             </div>
             <div class="step-item">
               <div class="step-num">2</div>
-              <h3>Rebuild Structure</h3>
-              <p>Inspect object streams and rebuild xref tables.</p>
+              <h3>Click Repair PDF</h3>
+              <p>The tool reads the structure with lenient parsing, skipping broken objects where possible.</p>
             </div>
             <div class="step-item">
               <div class="step-num">3</div>
-              <h3>Download Repaired PDF</h3>
-              <p>Click repair and save your restored PDF document.</p>
+              <h3>Watch the result</h3>
+              <p>If the core structure is intact, pages are recovered and re-saved.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <h3>Download the repaired file</h3>
+              <p>Open it and check that the important pages survived.</p>
             </div>
           </div>
         </section>
 
         <section class="padding-vert-2">
           <div class="section-header margin-bot-3">
-            <h2>Why Use PDFZaap's Repair PDF?</h2>
+            <h2>Why use PDFZaap to recover files without sending broken data away</h2>
           </div>
-          <p class="about-text">
-            Recover critical data from corrupted, broken, or unreadable PDF files using PDFZaap's Repair PDF tool. File transmission errors or abrupt disk shutdowns can damage PDF xref tables and stream headers. Our client-side recovery engine inspects and rebuilds document object trees directly within your browser sandbox, restoring readable page streams without uploading private files to remote servers. Recover your essential documents quickly and safely, completely free of charge with zero watermarks.
-          </p>
+<p><strong class='subtext'>Corrupted files are often sensitive ones.</strong> The file that corrupts is frequently a half-downloaded contract or a partially synced report — exactly what you would not want uploading to a 'repair' service. Local repair keeps that boundary intact.</p><p class='subtext'><strong>Honest about recovery odds.</strong> PDF repair works when the document's internal catalog and page tree are salvageable; a file truncated in the middle often loses its later pages no matter what. This tool uses permissive parsing to recover as much as possible and re-writes a standard file. If it cannot open the file at all, the error says so — at that point, re-downloading the source or using a professional recovery tool is the next step. There is no magic that restores bytes that are simply gone.</p>
+        </section>
+
+        <section class="padding-vert-2">
+          <div class="section-header margin-bot-3">
+            <h2>Tips &amp; common problems</h2>
+          </div>
+          <ul class="tips-list">
+            <li>Keep the original corrupted file untouched — work on a copy so a failed repair cannot make things worse.</li>
+            <li>If the file came from a download, re-downloading is often faster than repairing; try that first for small files.</li>
+            <li>Repaired files may be missing trailing pages; compare the page count against what you expected.</li>
+            <li>For scanned files that are blurry rather than corrupt, compression or re-scan is the real fix — see <a href='/blog/why-pdf-blurry-after-compression.html'>why PDFs look blurry</a>.</li>
+          </ul>
+        </section>
+
+        <section class="padding-vert-2">
+          <div class="section-header margin-bot-3">
+            <h2>When to use this vs. related tools</h2>
+          </div>
+<p>Use <strong>Repair PDF</strong> when a file is damaged and will not open. If the file opens but has wrong pages, <a href='/reorder-pages-pdf.html'>Reorder Pages</a> or <a href='/delete-pdf-pages.html'>Delete PDF Pages</a> is the tool. If it is password-locked, <a href='/unlock-pdf.html'>Unlock PDF</a>. For understanding what corruption looks like internally, <a href='/blog/why-is-my-pdf-file-so-large.html'>Why is my PDF file so large?</a> covers file structure.</p>
         </section>
 
         <section class="faq-section margin-top-3-no-pad">
@@ -193,31 +177,20 @@
           </div>
           <div id="ws-faqs">
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>What types of PDF damage can be repaired?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>PDFZaap repairs missing xref tables, corrupted object streams, and broken file trailer headers.</p>
-              </div>
+              <summary class="faq-trigger"><span>Will it always fix the file?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>No. Recovery depends on how much of the file's structure is intact. The tool reports if it cannot open the file rather than guessing.</p></div>
             </details>
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>Are my corrupted files uploaded to a remote server?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>No, document inspection and structure rebuilding happen locally inside your browser.</p>
-              </div>
+              <summary class="faq-trigger"><span>Is my broken file uploaded?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>No — parsing and re-saving happen entirely in your browser.</p></div>
             </details>
             <details class="faq-item">
-              <summary class="faq-trigger">
-                <span>Is there any cost or subscription required?</span>
-                <span class="faq-icon">▼</span>
-              </summary>
-              <div class="faq-content">
-                <p>No, PDFZaap's Repair PDF tool is 100% free with no hidden fees or registrations.</p>
-              </div>
+              <summary class="faq-trigger"><span>What kinds of damage can it handle?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>Common ones: truncated downloads, minor object corruption, broken cross-reference tables. Severely damaged or encrypted-corrupt files may not be recoverable in a browser.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-trigger"><span>Does the repaired file lose content?</span><span class="faq-icon">▼</span></summary>
+              <div class="faq-content"><p>It may lose the parts that were unrecoverable. Always compare the result against your expected page count and key pages.</p></div>
             </details>
           </div>
         </section>
@@ -227,24 +200,24 @@
             <h2>Related PDF Tools</h2>
           </div>
           <div class="tools-grid grid-2-cols-no-pad">
-            <a href="compress-pdf.html" class="tool-card">
-              <div class="tool-icon-wrapper">📉</div>
-              <h3>Compress PDF</h3>
-              <span class="tool-card-link">Use Tool ➔</span>
-            </a>
-            <a href="unlock-pdf.html" class="tool-card">
+            <a href="/unlock-pdf.html" class="tool-card">
               <div class="tool-icon-wrapper">🔓</div>
               <h3>Unlock PDF</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
-            <a href="flatten-pdf.html" class="tool-card">
-              <div class="tool-icon-wrapper">📄</div>
-              <h3>Flatten PDF</h3>
+            <a href="/compress-pdf.html" class="tool-card">
+              <div class="tool-icon-wrapper">📉</div>
+              <h3>Compress PDF</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
-            <a href="merge-pdf.html" class="tool-card">
+            <a href="/merge-pdf.html" class="tool-card">
               <div class="tool-icon-wrapper">🔗</div>
               <h3>Merge PDF</h3>
+              <span class="tool-card-link">Use Tool ➔</span>
+            </a>
+            <a href="/pdf-metadata-editor.html" class="tool-card">
+              <div class="tool-icon-wrapper">🏷️</div>
+              <h3>PDF Metadata Editor</h3>
               <span class="tool-card-link">Use Tool ➔</span>
             </a>
           </div>
@@ -258,54 +231,61 @@
     <div class="footer-grid">
       <div class="footer-col">
         <h4>⚡ PDF<span>Zaap</span></h4>
-        <p>Your secure, browser-based assistant built for fast client-side file conversions and PDF edits. Free, safe, and completely private.</p>
+        <p>Free, browser-based PDF tools that process your files locally — no uploads, no signup, no watermarks.</p>
       </div>
       <div class="footer-col">
-        <h5>Popular Convert</h5>
+        <h5>Popular Tools</h5>
         <ul class="footer-links">
-          <li><a href="pdf-to-word.html">PDF to Word</a></li>
-          <li><a href="jpg-to-pdf.html">JPG to PDF</a></li>
-          <li><a href="pdf-to-jpg.html">PDF to JPG</a></li>
-          <li><a href="word-to-pdf.html">Word to PDF</a></li>
+          <li><a href="/pdf-to-word.html">PDF to Word</a></li>
+          <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
+          <li><a href="/pdf-to-jpg.html">PDF to JPG</a></li>
+          <li><a href="/word-to-pdf.html">Word to PDF</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Edit &amp; Manage</h5>
+        <h5>Edit &amp; Organize</h5>
         <ul class="footer-links">
-          <li><a href="merge-pdf.html">Merge PDF</a></li>
-          <li><a href="split-pdf.html">Split PDF</a></li>
-          <li><a href="compress-pdf.html">Compress PDF</a></li>
-          <li><a href="add-watermark-pdf.html">Add Watermark</a></li>
+          <li><a href="/merge-pdf.html">Merge PDF</a></li>
+          <li><a href="/split-pdf.html">Split PDF</a></li>
+          <li><a href="/compress-pdf.html">Compress PDF</a></li>
+          <li><a href="/add-watermark-pdf.html">Add Watermark</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>Security &amp; Advanced</h5>
         <ul class="footer-links">
-          <li><a href="protect-pdf.html">Protect PDF</a></li>
-          <li><a href="esign-pdf.html">E-Sign PDF</a></li>
-          <li><a href="ocr-pdf.html">OCR PDF</a></li>
-          <li><a href="flatten-pdf.html">Flatten PDF</a></li>
+          <li><a href="/protect-pdf.html">Protect PDF</a></li>
+          <li><a href="/esign-pdf.html">E-Sign PDF</a></li>
+          <li><a href="/ocr-pdf.html">OCR PDF</a></li>
+          <li><a href="/flatten-pdf.html">Flatten PDF</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/blog/">Blog</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 PDFZaap. All rights reserved. Handcrafted for fast PDF editing.</p>
+      <p>&copy; 2026 PDFZaap. All rights reserved. Built for fast, private PDF work.</p>
       <div class="footer-legal-links">
-        <span class="cursor-pointer" onclick="toggleLegalModal('privacy')">Privacy Policy</span>
-        <span class="cursor-pointer" onclick="toggleLegalModal('terms')">Terms of Service</span>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
       </div>
     </div>
   </footer>
 
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
-  <script src="script.js" defer></script>
-  <script defer>
+  <script src="/script.js" defer></script>
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
       activeTool = 'repair-pdf';
-      if (typeof setupOptionsPanel === 'function') {
-        setupOptionsPanel(activeTool);
-      }
+      if (typeof setupOptionsPanel === 'function') setupOptionsPanel(activeTool);
     });
   </script>
+
 </body>
 </html>

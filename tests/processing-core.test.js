@@ -223,3 +223,17 @@ test('Word HTML is bounded before it can be cloned to the UI thread', async () =
   const engine = createProcessor({ loadLibrary: async () => ({ convertToHtml: async () => ({ value: 'x'.repeat(LIMITS.maxWordHtmlCharacters + 1) }) }) });
   await assert.rejects(engine.handle('wordToHTML', { file: new File(['docx'], 'large.docx') }), /Word content is too large/);
 });
+
+
+test('upstream A4 image layout is preserved by the worker engine', async () => {
+  const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9Zl1sAAAAASUVORK5CYII=', 'base64');
+  const { doc, result } = await execute('png-to-pdf', new File([png], 'image.png'), { pageSize: 'a4' });
+  assert.deepEqual(doc.getPage(0).getSize(), { width: 595.28, height: 841.89 });
+  assert.match(result.note, /A4/);
+});
+
+test('upstream archival prep retains its metadata and certification caveat', async () => {
+  const { doc, result } = await execute('pdf-to-pdfa', await inputPDF());
+  assert.equal(doc.getSubject(), 'Prepared for long-term archiving');
+  assert.match(result.note, /not a certified PDF\/A conversion/);
+});

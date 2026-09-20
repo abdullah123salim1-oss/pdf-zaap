@@ -7,12 +7,13 @@ PDFZaap remains a static, client-side application. No build step or document-upl
 - `script.js` owns form values, a single active job, cancellation, progress and the current download URL. It prevents concurrent submissions, ignores stale job callbacks and revokes old output URLs on replacement, reset, navigation and page exit.
 - `processing-client.js` starts a dedicated worker per job. Files are sent as `File` objects, not pre-read and copied `ArrayBuffer`s. Page image/pixel buffers and final output buffers use transferable ownership. Workers are terminated on success, failure and cancellation.
 - `processing-worker.js` loads only the required conversion libraries and delegates to the DOM-free `processing-core.js`. PDF-Lib edits/parsing/serialization, image embedding, PPTX XML inflation/text conversion, DOCX-to-HTML conversion, ZIP creation, grayscale pixel conversion and PowerPoint serialization run here.
+- `processing-advanced.js` retains the converters added to `main` during review (OCR, HTML/spreadsheet rendering, text-based HTML/DOCX/EPUB/XLSX export and comparison), with cancellation, page limits and resource cleanup. OCR reuses one Tesseract worker per job; the compatibility converters still do some extraction/packaging on the browser thread.
 - `pdfjs-worker.js` is a **same-origin** entry for PDF.js parsing. It avoids the cross-origin blob-worker shim blocked by the existing page CSP. The entry, lazy loader and static PDF.js tags all use version 3.11.174. Keep them in sync when upgrading. PDF.js dynamic evaluation is disabled.
 - If workers are unavailable or fail during startup, the same core runs cooperatively on the browser thread. It yields between page batches, every five simple page edits, and between grayscale pixel chunks. A failure **after** work starts is reported, never automatically replayed with another full copy of the input.
 
 ### Raster workflow
 
-PDF.js canvas drawing still uses the browser thread for compatibility; its parser runs in the PDF.js worker. Rendering is sequential, with one reusable canvas. Each page is encoded with asynchronous `toBlob()` instead of a data-URL/fetch round trip, sent to the output worker and released before the next page. `page.cleanup()`, zero-sized canvases and loading-task destruction run in `finally` blocks, including on rendering/encoding errors. The source PDF.js document is destroyed **before** final output serialization.
+PDF.js canvas drawing still uses the browser thread for compatibility; its parser runs in the PDF.js worker. Rendering is sequential, with one reusable canvas. Each page is encoded with asynchronous `toBlob()` instead of a data-URL/fetch round trip, sent to the output worker and released before the next page. `page.cleanup()`, zero-sized canvases and loading-task destruction run in `finally` blocks, including on rendering/encoding errors. For single-pass jobs the source PDF.js document is destroyed **before** final output serialization. Target-size compression reuses one parsed PDF across its bounded quality/scale search and serializes candidates to measure their sizes; only the current/best candidates are retained. It reports explicitly when the requested target cannot be reached.
 
 Compression/grayscale use scale 1.25; image and PowerPoint export use 1.5. Dimensions are further reduced to fit the canvas ceilings below. JPEG quality defaults to 0.85 (compression keeps its existing user-controlled quality). PDF output retains the original physical page dimensions, independent of raster resolution. PowerPoint page images are fitted without stretching.
 
@@ -26,11 +27,13 @@ PPTX slide numbers are extracted once before sorting. Only required slide XML is
 
 Normal PDF saves, including flattening, use object streams. Only the repair path explicitly disables them for compatibility. Flattening errors are reported instead of returning an unflattened PDF as success.
 
-### Word and currently unavailable tools
+### Word, upstream converters and unavailable operations
 
 Mammoth DOCX parsing/HTML conversion runs in a worker, which is terminated before DOM construction so its ZIP/parser structures do not coexist with the document canvas. The HTML result also has a size limit. html2pdf layout/rasterization still requires the browser DOM and remains on the browser thread. It uses scale 1.25 and JPEG quality 0.85, measures the attached document after images load, reduces the scale within safe bounds, and rejects overly long documents rather than allocating an unbounded canvas. Its temporary overlay and full-document canvas are released on success/failure. Cancellation takes effect at asynchronous boundaries; it cannot preempt a synchronous DOM-library call.
 
-OCR and several other advertised advanced tools were placeholders in this checkout, not Tesseract processing implementations. They now report that they are unavailable immediately, rather than waiting two seconds and downloading the original bytes with a different extension. Password encryption/decryption is not supported by the pinned PDF-Lib engine; encrypted inputs are rejected rather than reserialized as if they had been decrypted. Adding real OCR with a reused Tesseract worker is a separate feature.
+OCR and several advanced tools were placeholders when this branch began, but were implemented on `main` while the PR was open. The merge retains those working converters instead of reverting them to unavailable placeholders. OCR recognizes English PDF/image input through Tesseract, with a reused worker, bounded rendering, per-page canvas release and termination on cancellation. Image decoding uses the File/Blob API and releases ImageBitmaps. HTML and Excel rendering use the same bounded DOM renderer as Word. Archival preparation runs in the PDF-Lib worker and remains explicitly **not** certified PDF/A conversion.
+
+Password encryption/decryption is not supported by the pinned PDF-Lib engine; unsupported operations and encrypted inputs are rejected rather than returning unchanged or falsely decrypted files. Vendor security upgrades and off-thread execution for the remaining compatibility converters are separate follow-up work.
 
 ## Safety limits
 
@@ -41,7 +44,7 @@ Constants live in `processing-core.js` (`LIMITS`). Limits use binary megabytes (
 | One input file | 100 MB; 20 MB for Word |
 | One multi-file job | 100 files, 200 MB combined |
 | Vector/text PDF or text-only PPTX conversion | 2,000 pages/slides (also the aggregate merge output) |
-| Raster workflow | 200 pages |
+| Raster workflow (including OCR PDFs) | 200 pages |
 | One PDF page canvas | 4,000,000 pixels and 4,096 pixels per dimension |
 | Accumulated encoded raster assets | 100 MB before ZIP/PDF/PPTX serialization |
 | Word converted HTML, including embedded images | 8,000,000 characters |
@@ -68,4 +71,4 @@ npm run test:browser
 
 `BROWSER_EXECUTABLE=/path/to/chromium npm run test:browser` uses an existing Chromium installation. Browser tests start and close their own static server and intercept CDN URLs with matching local npm fixtures; they don't depend on external CDNs or send document contents anywhere.
 
-Coverage includes bounds/range parsing, duplicate validation, shared-resource preservation, real PDF edits, PPTX decompression limits, object streams, event-loop yielding, throttling, buffer transfer, worker startup/runtime failures, cancellation, fallback, canvas/loader cleanup on errors, and actual browser downloads for resize, grayscale, compression, image/PowerPoint/PPTX and Word conversion. A browser smoke check also exercises the placeholder-tool error and download URL cleanup.
+Coverage includes bounds/range parsing, duplicate validation, shared-resource preservation, real PDF edits, PPTX decompression limits, object streams, event-loop yielding, throttling, buffer transfer, worker startup/runtime failures, cancellation, fallback, canvas/loader cleanup on errors, and actual browser downloads for resize, grayscale, compression, image/PowerPoint/PPTX and Word conversion. Browser checks also exercise the unsupported-tool error, download URL cleanup, crawlable homepage/legacy redirects, localized pages, compression/A4 presets and the converters preserved from main. OCR integration tests use a recognizer stub to verify worker reuse, image input and cancellation without downloading language models; they do not validate recognition accuracy.

@@ -120,7 +120,7 @@ export async function createEngine({ onProgress = () => {}, signal } = {}) {
   return { mode: 'cooperative', call: (command, payload) => processor.handle(command, payload), close: () => processor.dispose() };
 }
 
-async function withPDF(file, signal, usePDF, useWorker) {
+async function preparePDFjs(signal, useWorker) {
   const pdfjs = await awaitLibrary('pdfjs', signal);
   checkCancelled(signal);
   const workerURL = new URL('./pdfjs-worker.js', import.meta.url).href;
@@ -141,6 +141,11 @@ async function withPDF(file, signal, usePDF, useWorker) {
   pdfjs.GlobalWorkerOptions.workerSrc = useWorker
     ? workerURL
     : LIBRARIES.pdfjs.url.replace('/pdf.min.js', '/pdf.worker.min.js');
+  return pdfjs;
+}
+
+async function withPDF(file, signal, usePDF, useWorker) {
+  const pdfjs = await preparePDFjs(signal, useWorker);
   const task = pdfjs.getDocument({
     data: new Uint8Array(await file.arrayBuffer()),
     isEvalSupported: false,
@@ -179,42 +184,86 @@ async function renderPDF(tool, file, options, engine, onProgress, signal) {
   const imageExport = tool === 'pdf-to-jpg' || png;
   const filename = tool === 'pdf-to-powerpoint' ? file.name.replace(/\.pdf$/i, '') + '.pptx'
     : imageExport ? 'extracted_images.zip' : tool === 'grayscale-pdf' ? 'grayscale.pdf' : 'compressed.pdf';
+  const targetKB = tool === 'compress-pdf' ? Number(options.targetKB) || 0 : 0;
+  if (targetKB && (!Number.isSafeInteger(targetKB) || targetKB < 0)) throw new Error('Choose a valid compression target.');
   const canvas = document.createElement('canvas');
+  const formatSize = bytes => bytes >= 1048576 ? `${(bytes / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1024))} KB`;
+  let attempt = 0;
+  async function renderPass(pdf, scale, quality) {
+    await engine.call('startRaster', { tool, total: pdf.numPages, filename });
+    for (let index = 1; index <= pdf.numPages; index++) {
+      checkCancelled(signal);
+      const page = await pdf.getPage(index);
+      try {
+        const original = page.getViewport({ scale: 1 });
+        const size = boundedCanvasSize(original.width, original.height, scale);
+        const viewport = page.getViewport({ scale: size.scale });
+        canvas.width = size.width;
+        canvas.height = size.height;
+        const context = canvas.getContext('2d', { willReadFrequently: tool === 'grayscale-pdf' });
+        if (!context) throw new Error('Your browser could not allocate a page canvas. Try a smaller document.');
+        await page.render({ canvasContext: context, viewport, background: 'rgb(255,255,255)' }).promise;
+        checkCancelled(signal);
+        if (tool === 'grayscale-pdf') await grayscaleCanvas(canvas, engine);
+        const data = await (await canvasToBlob(canvas, png ? 'image/png' : 'image/jpeg', quality)).arrayBuffer();
+        await engine.call('addRasterPage', { data, width: original.width, height: original.height }, [data]);
+      } finally {
+        canvas.width = canvas.height = 0;
+        page.cleanup();
+      }
+      onProgress(15 + 70 * index / pdf.numPages, `${targetKB ? `Compression pass ${attempt}: ` : 'Processing '}page ${index}/${pdf.numPages}...`);
+      await yieldToEventLoop();
+    }
+  }
   try {
+    let best;
     await withPDF(file, signal, async pdf => {
       validatePageCount(pdf.numPages, true);
-      await engine.call('startRaster', { tool, total: pdf.numPages, filename });
-      for (let index = 1; index <= pdf.numPages; index++) {
-        checkCancelled(signal);
-        const page = await pdf.getPage(index);
-        try {
-          const original = page.getViewport({ scale: 1 });
-          const size = boundedCanvasSize(original.width, original.height, imageExport || tool === 'pdf-to-powerpoint' ? 1.5 : 1.25);
-          const viewport = page.getViewport({ scale: size.scale });
-          canvas.width = size.width;
-          canvas.height = size.height;
-          const context = canvas.getContext('2d', { willReadFrequently: tool === 'grayscale-pdf' });
-          if (!context) throw new Error('Your browser could not allocate a page canvas. Try a smaller document.');
-          await page.render({ canvasContext: context, viewport, background: 'rgb(255,255,255)' }).promise;
+      if (!targetKB) {
+        await renderPass(pdf, imageExport || tool === 'pdf-to-powerpoint' ? 1.5 : 1.25,
+          tool === 'compress-pdf' ? Math.min(1, Math.max(0.1, Number(options.quality) || 0.6)) : 0.85);
+        return;
+      }
+      // Reuse the parsed PDF across target-size attempts. PDF.js owns/transfers
+      // its input buffer, so reusing that buffer with getDocument is not safe.
+      for (const scale of [1.25, 1, 0.75, 0.5]) {
+        let low = 0.05, high = 0.9;
+        let fitting;
+        for (let pass = 0; pass < 5; pass++) {
+          const quality = pass === 0 ? low : (low + high) / 2;
+          attempt++;
+          await renderPass(pdf, scale, quality);
+          const candidate = await engine.call('finishRaster');
           checkCancelled(signal);
-          if (tool === 'grayscale-pdf') await grayscaleCanvas(canvas, engine);
-          const quality = tool === 'compress-pdf' ? Math.min(1, Math.max(0.1, Number(options.quality) || 0.6)) : 0.85;
-          const data = await (await canvasToBlob(canvas, png ? 'image/png' : 'image/jpeg', quality)).arrayBuffer();
-          // Transfer ownership; never retain a base64 copy of every page on the main thread.
-          await engine.call('addRasterPage', { data, width: original.width, height: original.height }, [data]);
-        } finally {
-          canvas.width = canvas.height = 0;
-          page.cleanup();
+          if (!best || candidate.data.byteLength < best.data.byteLength) best = candidate;
+          if (candidate.data.byteLength <= targetKB * 1024) {
+            fitting = best = candidate;
+            low = quality; // Find the highest tested quality that still fits.
+          } else {
+            high = quality;
+            if (pass === 0) break; // Even minimum quality cannot fit at this scale.
+          }
         }
-        onProgress(15 + 70 * index / pdf.numPages, `Processing page ${index}/${pdf.numPages}...`);
-        await yieldToEventLoop();
+        if (fitting) { best = fitting; break; }
       }
     }, engine.mode === 'worker');
-    // The source PDF.js document/worker is destroyed before output serialization starts.
-    return await engine.call('finishRaster');
-  } finally {
-    canvas.width = canvas.height = 0;
-  }
+    // Ordinary raster jobs release the source before serializing. Target-size
+    // jobs must serialize candidates for comparison; only the best is retained.
+    const result = best || await engine.call('finishRaster');
+    if (tool === 'compress-pdf') {
+      const size = result.data.byteLength;
+      if (targetKB) {
+        result.filename = `compressed_under_${targetKB}kb.pdf`;
+        result.note = size <= targetKB * 1024
+          ? `Target ${formatSize(targetKB * 1024)} reached: output is ${formatSize(size)} (original ${formatSize(file.size)}).`
+          : `Target not reached. The smallest tested result is ${formatSize(size)} (target ${formatSize(targetKB * 1024)}). Try fewer pages or a larger limit.`;
+      } else {
+        result.note = `Original size ${formatSize(file.size)} → output ${formatSize(size)}. ` + (size >= file.size
+          ? 'This file was already efficient; compression did not reduce its size.' : 'Lower quality gives smaller files but softer images.');
+      }
+    }
+    return result;
+  } finally { canvas.width = canvas.height = 0; }
 }
 
 async function extractText(file, onProgress, signal) {
@@ -253,6 +302,11 @@ async function wordToPDF(file, onProgress, signal) {
   element.style.padding = '20px';
   element.innerHTML = html;
   html = null;
+  const data = await renderHTML(element, {}, onProgress, signal, html2pdf);
+  return { data, filename: 'converted.pdf', type: 'application/pdf' };
+}
+
+async function renderHTML(element, settings, onProgress, signal, html2pdf) {
   const existingClones = new Set(document.querySelectorAll('iframe.html2canvas-container'));
   let renderer;
   try {
@@ -260,10 +314,11 @@ async function wordToPDF(file, onProgress, signal) {
     await yieldToEventLoop();
     checkCancelled(signal);
     renderer = html2pdf().from(element).set({
-      margin: 1,
+      ...settings,
+      margin: settings.margin ?? 1,
       image: { type: 'jpeg', quality: 0.85 },
       html2canvas: { scale: 1.25 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      jsPDF: settings.jsPDF || { unit: 'in', format: 'letter', orientation: 'portrait' }
     });
     await renderer.toContainer();
     const container = await renderer.get('container');
@@ -274,7 +329,7 @@ async function wordToPDF(file, onProgress, signal) {
     const height = Math.max(container.scrollHeight, container.getBoundingClientRect().height);
     const size = boundedCanvasSize(width, height, 1.25, LIMITS.maxWordCanvasPixels, LIMITS.maxWordCanvasDimension);
     // html2pdf renders one tall DOM canvas, so refuse unsafe lengths rather than crashing.
-    if (size.scale < 0.75) throw new Error('This Word document is too long to render safely. Split it into smaller documents first.');
+    if (size.scale < 0.75) throw new Error('This document is too long to render safely. Split it into smaller documents first.');
     await renderer.set({ html2canvas: { scale: size.scale } });
     checkCancelled(signal);
     onProgress(65, 'Rendering document pages...');
@@ -287,7 +342,7 @@ async function wordToPDF(file, onProgress, signal) {
     checkCancelled(signal);
     const data = await renderer.outputPdf('blob');
     checkCancelled(signal);
-    return { data, filename: 'converted.pdf', type: 'application/pdf' };
+    return data;
   } finally {
     if (renderer?.prop.canvas) renderer.prop.canvas.width = renderer.prop.canvas.height = 0;
     renderer?.prop.overlay?.remove();
@@ -300,16 +355,27 @@ async function wordToPDF(file, onProgress, signal) {
 }
 
 const rasterTools = new Set(['compress-pdf', 'grayscale-pdf', 'pdf-to-powerpoint', 'pdf-to-jpg', 'pdf-to-png']);
-const workerTools = new Set(['merge-pdf', 'split-pdf', 'rotate-pdf', 'jpg-to-pdf', 'png-to-pdf', 'add-watermark-pdf', 'number-pdf-pages', 'delete-pdf-pages', 'extract-pages-pdf', 'reorder-pages-pdf', 'crop-pdf', 'resize-pdf', 'flatten-pdf', 'pdf-metadata-editor', 'repair-pdf', 'unlock-pdf', 'esign-pdf', 'ppt-to-pdf']);
+const workerTools = new Set(['merge-pdf', 'split-pdf', 'rotate-pdf', 'jpg-to-pdf', 'png-to-pdf', 'add-watermark-pdf', 'number-pdf-pages', 'delete-pdf-pages', 'extract-pages-pdf', 'reorder-pages-pdf', 'crop-pdf', 'resize-pdf', 'flatten-pdf', 'pdf-metadata-editor', 'repair-pdf', 'unlock-pdf', 'esign-pdf', 'ppt-to-pdf', 'pdf-to-pdfa']);
+const advancedTools = new Set(['ocr-pdf', 'html-to-pdf', 'excel-to-pdf', 'pdf-to-html', 'pdf-to-epub', 'pdf-to-word', 'pdf-to-excel', 'compare-pdf']);
 
 export function supportsTool(tool) {
-  return tool === 'word-to-pdf' || tool === 'pdf-to-text' || rasterTools.has(tool) || workerTools.has(tool);
+  return tool === 'word-to-pdf' || tool === 'pdf-to-text' || rasterTools.has(tool) || workerTools.has(tool) || advancedTools.has(tool);
 }
 
 export async function runTool(tool, files, options = {}, { onProgress = () => {}, signal } = {}) {
   // File objects are cloned to the worker without first materializing bytes on the UI thread.
   validateFiles(files, tool);
   checkCancelled(signal);
+  if (advancedTools.has(tool)) {
+    const { runAdvancedTool } = await import('./processing-advanced.js');
+    checkCancelled(signal);
+    return runAdvancedTool(tool, files, {
+      onProgress, signal,
+      loadLibrary: name => name === 'pdfjs' ? preparePDFjs(signal) : awaitLibrary(name, signal),
+      renderHTML: async (element, settings) => renderHTML(element, settings, onProgress, signal, await awaitLibrary('html2pdf', signal)),
+      canvasToBlob
+    });
+  }
   if (tool === 'word-to-pdf') return wordToPDF(files[0], onProgress, signal);
   if (tool === 'pdf-to-text') return extractText(files[0], onProgress, signal);
   if (!supportsTool(tool)) {

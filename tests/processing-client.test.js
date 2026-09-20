@@ -86,14 +86,14 @@ test('worker construction and bootstrap errors use the cooperative fallback', as
   engine.close();
 });
 
-function rasterMocks(t, { pages = 3, failure, encodeFailure = false } = {}) {
+function rasterMocks(t, { pages = 3, failure, encodeFailure = false, resultSize = 3 } = {}) {
   const events = [];
   const canvases = [];
   const output = {
     embedJpg: async () => ({ embed: async () => {} }),
     addPage: dimensions => { events.push(['output-page', dimensions]); return { drawImage() {} }; },
     flush: async () => {},
-    save: async () => { events.push('save'); return new Uint8Array([1, 2, 3]); }
+    save: async () => { events.push('save'); return new Uint8Array(resultSize); }
   };
   const task = {
     destroy: async () => { events.push('destroy'); },
@@ -161,7 +161,7 @@ test('raster page limit rejects before any page is rendered', async t => {
 test('placeholder tools reject immediately, without reading the input', async () => {
   let reads = 0;
   const file = { name: 'sample.pdf', size: 10, arrayBuffer: () => { reads++; } };
-  await assert.rejects(runTool('ocr-pdf', [file]), /not implemented/);
+  await assert.rejects(runTool('protect-pdf', [file]), /not implemented/);
   assert.equal(reads, 0);
 });
 
@@ -179,4 +179,25 @@ test('cancellation remains responsive while a main-thread library download is st
   await assert.rejects(job, { name: 'AbortError' });
   // Finish the outstanding request so the shared loader cache does not stay pending.
   script.onerror();
+});
+
+
+test('target compression reuses one parsed input across quality-search passes', async t => {
+  const { events, canvases } = rasterMocks(t);
+  let reads = 0;
+  const file = { name: 'sample.pdf', size: 10, arrayBuffer: async () => { reads++; return new ArrayBuffer(10); } };
+  const result = await runTool('compress-pdf', [file], { targetKB: 1 });
+  assert.equal(reads, 1);
+  assert.equal(canvases.length, 1);
+  assert.equal(events.filter(event => event === 'destroy').length, 1);
+  assert.equal(events.filter(event => event === 'save').length, 5);
+  assert.match(result.note, /Target.*reached/);
+});
+
+test('unreachable compression targets return an honest bounded best-effort result', async t => {
+  const { events } = rasterMocks(t, { resultSize: 2048 });
+  const result = await runTool('compress-pdf', [new File(['pdf'], 'file.pdf')], { targetKB: 1 });
+  assert.match(result.note, /Target not reached/);
+  assert.equal(events.filter(event => event === 'save').length, 4);
+  assert.equal(events.filter(event => event === 'destroy').length, 1);
 });
