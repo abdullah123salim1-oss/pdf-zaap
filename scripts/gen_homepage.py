@@ -2,14 +2,13 @@
 """Generate the static, crawlable homepage (index.html)."""
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from templates import BASE, navbar, footer
+from templates import BASE, navbar, footer, head_common
 
 LOGO_JSON = '{"@type": "ImageObject", "url": "' + BASE + '/og-image.png", "width": 1200, "height": 630}'
 
 TITLE = "PDFZaap — 35 Free PDF Tools That Run in Your Browser"
 DESC = "35 free PDF tools that run entirely in your browser — merge, compress, convert, sign and edit PDFs. No signup, no watermark, no uploads."
 
-# grid order per group: (tool_id, one-line description)
 GROUPS = [
     ("Convert", "convert", [
         ("pdf-to-word", "Extract PDF text into an editable Word document"),
@@ -145,41 +144,7 @@ def main():
         </a>''' for path, cat, title, excerpt in BLOG_TEASERS
     )
 
-    html = f'''<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{TITLE}</title>
-  <meta name="description" content="{DESC}">
-  <link rel="canonical" href="{BASE}/">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="/logo.png">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#FF5200">
-
-  <meta property="og:title" content="{TITLE}">
-  <meta property="og:description" content="{DESC}">
-  <meta property="og:image" content="{BASE}/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:url" content="{BASE}/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="PDFZaap">
-  <meta property="og:locale" content="en_US">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{TITLE}">
-  <meta name="twitter:description" content="{DESC}">
-  <meta name="twitter:image" content="{BASE}/og-image.png">
-  <meta name="twitter:site" content="@pdfzaap">
-  <meta name="google-site-verification" content="euv5Cu8-6Lf43gRh0tCwjHcz4j9Zuqv7o7PtzbA6v2M">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css">
-
+    extra_head = f'''  <meta name="google-site-verification" content="euv5Cu8-6Lf43gRh0tCwjHcz4j9Zuqv7o7PtzbA6v2M">
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",
@@ -219,8 +184,9 @@ def main():
 {faq_schema}
     ]
   }}
-  </script>
-</head>
+  </script>'''
+
+    html = f'''{head_common("", TITLE, DESC, extra_head)}
 <body>
 
   <noscript>
@@ -237,24 +203,24 @@ def main():
       <h1>Every PDF tool you need — <span>free</span>, and private by design</h1>
       <p>35 tools for merging, compressing, converting, signing and editing PDF documents. Everything runs in your browser: no signup, no watermark, and your files never leave your device.</p>
       <div class="hero-ctas">
-        <span class="btn btn-primary" onclick="scrollToToolsGrid()">Explore PDF Tools</span>
+        <button type="button" class="btn btn-primary" onclick="scrollToToolsGrid()">Explore PDF Tools</button>
         <a class="btn btn-secondary" href="/is-it-safe-to-use-online-pdf-tools.html">How Your Files Stay Private</a>
       </div>
       <div class="trust-badges">
         <span class="trust-badge">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-label="Checkmark icon"><path d="M20 6L9 17l-5-5"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
           No Signup Required
         </span>
         <span class="trust-badge">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
           No Watermarks
         </span>
         <span class="trust-badge">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
           Files Never Leave Your Device
         </span>
         <span class="trust-badge">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
           Free — No Subscription
         </span>
       </div>
@@ -262,15 +228,15 @@ def main():
 
     <section class="search-filter-section" id="tools-anchor">
       <div class="search-wrapper">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-label="Search icon"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        <input type="text" id="tool-search" class="search-input" placeholder="Search 35 PDF tools..." aria-label="Search PDF tools">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="tool-search" class="search-input" placeholder="Search 35 PDF tools..." aria-label="Search 35 PDF tools">
       </div>
-      <div class="filter-tabs" id="filter-tabs-container">
-        <button class="filter-tab active" data-tab="all" onclick="applyFilterTab('all', this)">All Tools</button>
-        <button class="filter-tab" data-tab="convert" onclick="applyFilterTab('convert', this)">Convert</button>
-        <button class="filter-tab" data-tab="edit" onclick="applyFilterTab('edit', this)">Edit &amp; Organize</button>
-        <button class="filter-tab" data-tab="security" onclick="applyFilterTab('security', this)">Security</button>
-        <button class="filter-tab" data-tab="advanced" onclick="applyFilterTab('advanced', this)">Advanced</button>
+      <div class="filter-tabs" id="filter-tabs-container" role="tablist" aria-label="Filter PDF tools by category">
+        <button type="button" class="filter-tab active" data-tab="all" onclick="applyFilterTab('all', this)">All Tools</button>
+        <button type="button" class="filter-tab" data-tab="convert" onclick="applyFilterTab('convert', this)">Convert</button>
+        <button type="button" class="filter-tab" data-tab="edit" onclick="applyFilterTab('edit', this)">Edit &amp; Organize</button>
+        <button type="button" class="filter-tab" data-tab="security" onclick="applyFilterTab('security', this)">Security</button>
+        <button type="button" class="filter-tab" data-tab="advanced" onclick="applyFilterTab('advanced', this)">Advanced</button>
       </div>
     </section>
 
@@ -390,7 +356,7 @@ def main():
 
 {footer()}
 
-  <button class="scroll-top-btn" id="scroll-top" onclick="scrollToTop()" aria-label="Scroll to Top">
+  <button type="button" class="scroll-top-btn" id="scroll-top" onclick="scrollToTop()" aria-label="Scroll to top">
     ▲
   </button>
 
@@ -399,8 +365,8 @@ def main():
       We use a single local browser storage value to remember your cookie preference. No third-party tracking cookies are set. See our <a href="/privacy.html">Privacy Policy</a>.
     </div>
     <div class="cookie-btns">
-      <button class="btn btn-secondary btn-sm" onclick="acceptCookies(false)">Decline</button>
-      <button class="btn btn-primary btn-sm" onclick="acceptCookies(true)">Accept</button>
+      <button type="button" class="btn btn-secondary btn-sm" onclick="acceptCookies(false)">Decline</button>
+      <button type="button" class="btn btn-primary btn-sm" onclick="acceptCookies(true)">Accept</button>
     </div>
   </div>
 
@@ -408,9 +374,6 @@ def main():
 </body>
 </html>
 '''
-    # The grid cards are inside #main-tools-grid section; the search filter JS
-    # targets '#main-tools-grid .tool-card' — cards live in nested .tools-grid divs,
-    # which are descendants of #main-tools-grid, so the selector still matches.
     out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "index.html")
     with open(out, "w", encoding="utf-8") as f:
         f.write(html)

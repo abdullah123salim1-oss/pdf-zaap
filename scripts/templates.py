@@ -116,7 +116,7 @@ def head_common(path, title, desc, extra_head="", lang="en", og_locale="en_US"):
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="/logo.png">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#FF5200">
+  <meta name="theme-color" content="#C73E00">
 
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{desc}">
@@ -136,25 +136,40 @@ def head_common(path, title, desc, extra_head="", lang="en", og_locale="en_US"):
 {extra_head}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="/style.css">
 </head>'''
 
 
 def navbar():
     return '''  <header class="navbar" id="main-nav">
-    <a href="/" class="logo">⚡ PDF<span>Zaap</span></a>
-    <ul class="nav-links">
-      <li><a class="nav-link" href="/">Home</a></li>
-      <li><a class="nav-link" href="/#tools-anchor">All Tools</a></li>
-      <li><a class="nav-link" href="/blog/">Blog</a></li>
-      <li><a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a></li>
-    </ul>
-  </header>'''
+    <a href="/" class="logo" aria-label="PDFZaap Home">⚡ PDF<span>Zaap</span></a>
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a class="nav-link" href="/">Home</a></li>
+        <li><a class="nav-link" href="/#tools-anchor">All Tools</a></li>
+        <li><a class="nav-link" href="/blog/">Blog</a></li>
+        <li><a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+  <div class="mobile-overlay" id="mobile-menu" aria-label="Mobile Navigation Menu">
+    <a class="mobile-nav-link" href="/">Home</a>
+    <a class="mobile-nav-link" href="/#tools-anchor">All Tools</a>
+    <a class="mobile-nav-link" href="/blog/">Blog</a>
+    <a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a>
+  </div>'''
 
 
 def footer():
-    return '''  <footer class="footer">
+    return '''  <footer class="footer" role="contentinfo">
     <div class="footer-grid">
       <div class="footer-col">
         <h4>⚡ PDF<span>Zaap</span></h4>
@@ -162,7 +177,7 @@ def footer():
       </div>
       <div class="footer-col">
         <h5>Popular Tools</h5>
-        <ul class="footer-links">
+        <ul class="footer-links" aria-label="Popular tools navigation">
           <li><a href="/pdf-to-word.html">PDF to Word</a></li>
           <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
           <li><a href="/pdf-to-jpg.html">PDF to JPG</a></li>
@@ -171,7 +186,7 @@ def footer():
       </div>
       <div class="footer-col">
         <h5>Edit &amp; Organize</h5>
-        <ul class="footer-links">
+        <ul class="footer-links" aria-label="Edit and organize tools navigation">
           <li><a href="/merge-pdf.html">Merge PDF</a></li>
           <li><a href="/split-pdf.html">Split PDF</a></li>
           <li><a href="/compress-pdf.html">Compress PDF</a></li>
@@ -180,7 +195,7 @@ def footer():
       </div>
       <div class="footer-col">
         <h5>Security &amp; Advanced</h5>
-        <ul class="footer-links">
+        <ul class="footer-links" aria-label="Security and advanced tools navigation">
           <li><a href="/protect-pdf.html">Protect PDF</a></li>
           <li><a href="/esign-pdf.html">E-Sign PDF</a></li>
           <li><a href="/ocr-pdf.html">OCR PDF</a></li>
@@ -189,7 +204,7 @@ def footer():
       </div>
       <div class="footer-col">
         <h5>Company</h5>
-        <ul class="footer-links">
+        <ul class="footer-links" aria-label="Company links navigation">
           <li><a href="/about.html">About</a></li>
           <li><a href="/contact.html">Contact</a></li>
           <li><a href="/blog/">Blog</a></li>
@@ -198,7 +213,7 @@ def footer():
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 PDFZaap. All rights reserved. Built for fast, private PDF work.</p>
-      <div class="footer-legal-links">
+      <div class="footer-legal-links" aria-label="Legal links navigation">
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms of Service</a>
       </div>
@@ -286,13 +301,11 @@ def tool_page_html(tool, c, extra_head="", extra_scripts="", dropzone_override=N
         <div id="ws-canvas-wrapper" class="ws-canvas-wrapper display-none">
           <p class="canvas-label">Draw Your Signature Below:</p>
           <div class="fabric-canvas-container">
-            <canvas id="esign-fabric-canvas" width="400" height="200"></canvas>
+            <canvas id="esign-fabric-canvas" width="400" height="200" aria-label="Signature Canvas"></canvas>
           </div>
-          <button class="btn btn-secondary canvas-clear-btn" onclick="clearSignatureCanvas()">Clear Canvas</button>
+          <button type="button" class="btn btn-secondary canvas-clear-btn" onclick="clearSignatureCanvas()">Clear Canvas</button>
         </div>'''
 
-    multiple_attr = " multiple" if (dz_multi and accept != ".pdf") or (dz_multi and tool in ("merge-pdf", "compare-pdf")) else ""
-    # merge-pdf & compare-pdf accept multiple PDFs; image tools accept multiple images
     multiple_attr = " multiple" if dz_multi else ""
 
     head_extra = (extra_head + "\n" if extra_head else "") + app_schema + "\n" + breadcrumb_schema + "\n" + faq_schema
@@ -311,11 +324,11 @@ def tool_page_html(tool, c, extra_head="", extra_scripts="", dropzone_override=N
         <h1 class="workspace-title">{emoji} {c['h1']}</h1>
         <p class="subtitle">{subtitle}</p>
 
-        <div class="dropzone" id="ws-dropzone">
+        <div class="dropzone" id="ws-dropzone" role="button" tabindex="0" aria-label="Select or drop file for processing">
           <div class="dropzone-icon">📥</div>
           <h3>{dz_title}</h3>
           <p>{dz_ext}</p>
-          <input type="file" id="ws-file-input" class="display-none" accept="{accept}"{multiple_attr}>
+          <input type="file" id="ws-file-input" class="display-none" accept="{accept}"{multiple_attr} aria-label="Choose file to upload">
         </div>
 
         <div class="file-list" id="ws-file-list"></div>
@@ -327,10 +340,10 @@ def tool_page_html(tool, c, extra_head="", extra_scripts="", dropzone_override=N
           <p class="progress-status" id="ws-progress-status">Processing document contents...</p>
         </div>
 
-        <button class="btn btn-primary full-width" id="ws-process-btn" disabled>{btn}</button>
+        <button type="button" class="btn btn-primary full-width" id="ws-process-btn" disabled>{btn}</button>
 
         <div class="security-note">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           <span>Files processed locally in your browser — nothing is uploaded to a server</span>
         </div>
 
