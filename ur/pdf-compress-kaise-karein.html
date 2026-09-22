@@ -9,7 +9,7 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="/logo.png">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#FF5200">
+  <meta name="theme-color" content="#C73E00">
 
   <meta property="og:title" content="PDF Compress Kaise Karein — Free, Bina Upload | PDFZaap">
   <meta property="og:description" content="PDF compress kaise karein bina upload kiye — mukammal kaam aap ke browser mein. Free, bina signup, target size (200KB, 1MB) choose karein.">
@@ -68,19 +68,34 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <header class="navbar" id="main-nav">
-    <a href="/" class="logo">⚡ PDF<span>Zaap</span></a>
-    <ul class="nav-links">
-      <li><a class="nav-link" href="/">Home</a></li>
-      <li><a class="nav-link" href="/#tools-anchor">All Tools</a></li>
-      <li><a class="nav-link" href="/blog/">Blog</a></li>
-      <li><a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a></li>
-    </ul>
+    <a href="/" class="logo" aria-label="PDFZaap Home">⚡ PDF<span>Zaap</span></a>
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a class="nav-link" href="/">Home</a></li>
+        <li><a class="nav-link" href="/#tools-anchor">All Tools</a></li>
+        <li><a class="nav-link" href="/blog/">Blog</a></li>
+        <li><a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </header>
+  <div class="mobile-overlay" id="mobile-menu" aria-label="Mobile Navigation Menu">
+    <a class="mobile-nav-link" href="/">Home</a>
+    <a class="mobile-nav-link" href="/#tools-anchor">All Tools</a>
+    <a class="mobile-nav-link" href="/blog/">Blog</a>
+    <a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a>
+  </div>
 
   <main class="view-container" data-tool="compress-pdf">
     <div class="workspace-wrapper">
@@ -241,7 +256,7 @@
     </div>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="footer-grid">
       <div class="footer-col">
         <h4>⚡ PDF<span>Zaap</span></h4>
@@ -249,7 +264,7 @@
       </div>
       <div class="footer-col">
         <h5>Popular Tools</h5>
-        <ul class="footer-links">
+        <ul class="footer-links" aria-label="Popular tools navigation">
           <li><a href="/pdf-to-word.html">PDF to Word</a></li>
           <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
           <li><a href="/pdf-to-jpg.html">PDF to JPG</a></li>
@@ -258,7 +273,7 @@
       </div>
       <div class="footer-col">
         <h5>Edit &amp; Organize</h5>
-        <ul class="footer-links">
+        <ul class="footer-links" aria-label="Edit and organize tools navigation">
           <li><a href="/merge-pdf.html">Merge PDF</a></li>
           <li><a href="/split-pdf.html">Split PDF</a></li>
           <li><a href="/compress-pdf.html">Compress PDF</a></li>
@@ -267,7 +282,7 @@
       </div>
       <div class="footer-col">
         <h5>Security &amp; Advanced</h5>
-        <ul class="footer-links">
+        <ul class="footer-links" aria-label="Security and advanced tools navigation">
           <li><a href="/protect-pdf.html">Protect PDF</a></li>
           <li><a href="/esign-pdf.html">E-Sign PDF</a></li>
           <li><a href="/ocr-pdf.html">OCR PDF</a></li>
@@ -276,7 +291,7 @@
       </div>
       <div class="footer-col">
         <h5>Company</h5>
-        <ul class="footer-links">
+        <ul class="footer-links" aria-label="Company links navigation">
           <li><a href="/about.html">About</a></li>
           <li><a href="/contact.html">Contact</a></li>
           <li><a href="/blog/">Blog</a></li>
@@ -285,7 +300,7 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 PDFZaap. All rights reserved. Built for fast, private PDF work.</p>
-      <div class="footer-legal-links">
+      <div class="footer-legal-links" aria-label="Legal links navigation">
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms of Service</a>
       </div>
