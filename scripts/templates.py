@@ -160,23 +160,23 @@ def navbar():
       <span></span>
     </button>
   </header>
-  <div class="mobile-overlay" id="mobile-menu" aria-label="Mobile Navigation Menu">
+  <nav class="mobile-overlay" id="mobile-menu" aria-label="Mobile navigation">
     <a class="mobile-nav-link" href="/">Home</a>
     <a class="mobile-nav-link" href="/#tools-anchor">All Tools</a>
     <a class="mobile-nav-link" href="/blog/">Blog</a>
     <a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a>
-  </div>'''
+  </nav>'''
 
 
 def footer():
     return '''  <footer class="footer" role="contentinfo">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>⚡ PDF<span>Zaap</span></h4>
+        <h2 class="footer-brand">⚡ PDF<span>Zaap</span></h2>
         <p>Free, browser-based PDF tools that process your files locally — no uploads, no signup, no watermarks.</p>
       </div>
       <div class="footer-col">
-        <h5>Popular Tools</h5>
+        <h3>Popular Tools</h3>
         <ul class="footer-links" aria-label="Popular tools navigation">
           <li><a href="/pdf-to-word.html">PDF to Word</a></li>
           <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
@@ -185,7 +185,7 @@ def footer():
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Edit &amp; Organize</h5>
+        <h3>Edit &amp; Organize</h3>
         <ul class="footer-links" aria-label="Edit and organize tools navigation">
           <li><a href="/merge-pdf.html">Merge PDF</a></li>
           <li><a href="/split-pdf.html">Split PDF</a></li>
@@ -194,7 +194,7 @@ def footer():
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Security &amp; Advanced</h5>
+        <h3>Security &amp; Advanced</h3>
         <ul class="footer-links" aria-label="Security and advanced tools navigation">
           <li><a href="/protect-pdf.html">Protect PDF</a></li>
           <li><a href="/esign-pdf.html">E-Sign PDF</a></li>
@@ -203,7 +203,7 @@ def footer():
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Company</h5>
+        <h3>Company</h3>
         <ul class="footer-links" aria-label="Company links navigation">
           <li><a href="/about.html">About</a></li>
           <li><a href="/contact.html">Contact</a></li>
@@ -213,10 +213,10 @@ def footer():
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 PDFZaap. All rights reserved. Built for fast, private PDF work.</p>
-      <div class="footer-legal-links" aria-label="Legal links navigation">
+      <nav class="footer-legal-links" aria-label="Legal links">
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms of Service</a>
-      </div>
+      </nav>
     </div>
   </footer>'''
 
@@ -324,11 +324,11 @@ def tool_page_html(tool, c, extra_head="", extra_scripts="", dropzone_override=N
         <h1 class="workspace-title">{emoji} {c['h1']}</h1>
         <p class="subtitle">{subtitle}</p>
 
+        <input type="file" id="ws-file-input" class="display-none" accept="{accept}"{multiple_attr} aria-label="Choose file to process">
         <div class="dropzone" id="ws-dropzone" role="button" tabindex="0" aria-label="Select or drop file for processing">
           <div class="dropzone-icon">📥</div>
-          <h3>{dz_title}</h3>
+          <h2 class="dropzone-title">{dz_title}</h2>
           <p>{dz_ext}</p>
-          <input type="file" id="ws-file-input" class="display-none" accept="{accept}"{multiple_attr} aria-label="Choose file to upload">
         </div>
 
         <div class="file-list" id="ws-file-list"></div>

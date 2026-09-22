@@ -377,3 +377,112 @@ Found and fixed during the pre-PR verification pass:
 §5 item 10 (new): **Twitter/X handle** — confirm `@pdfzaap` exists (it is
 referenced in `twitter:site` share-card metas); if not, remove those lines
 from scripts/templates.py and scripts/gen_homepage.py and regenerate.
+
+---
+
+## 8. Addendum — Lighthouse score hardening (2026-09-22)
+
+**Branch:** `arena/01a0c949-pdf-zaap` · **Goal:** 100 in all four Lighthouse categories.
+
+### What could and could not be measured here
+
+This sandbox has no Chrome, no `apt` access and no browser-CDN access, so
+**Lighthouse itself was never run** and no category score is claimed below.
+What was measured instead:
+
+- The authoritative audit list was read out of **Lighthouse 12.8.2's own default
+  config** (`node_modules/lighthouse/core/config/default-config.js`) rather than
+  from memory — see "what actually counts" below.
+- `npm run audit:a11y` — axe-core 4.13 inside jsdom over all 78 pages.
+- `npm run audit:seo` — static checks for every statically decidable SEO /
+  best-practice audit.
+- WCAG contrast ratios computed from `style.css`.
+- `npm run test` — 37/37 pass.
+
+Two new repeatable gates were added: `npm run audit` (a11y + SEO) and
+`npm run lighthouse` (`tests/lighthouse-report.mjs`, real-Chrome run for a
+machine that has Chrome — prints the four category scores per page).
+
+### What actually counts (from Lighthouse 12's config, not from memory)
+
+- **Performance is scored only from FCP (10), LCP (25), TBT (30), CLS (25),
+  Speed Index (10).** Every "opportunity"/diagnostic — render-blocking
+  resources, unused JS/CSS, total byte weight, third-party summary — has
+  **weight 0** and only matters through those five metrics.
+- **`no-vulnerable-libraries` is no longer in the Best Practices category**, so
+  `xlsx@0.18.5` does not cost score (it is still worth upgrading on security
+  grounds, separately).
+- **`tap-targets` is no longer in the SEO category**; `target-size` (weight 7)
+  is in Accessibility.
+- `region`, `nested-interactive`, `landmark-unique`,
+  `landmark-no-duplicate-banner/contentinfo` and `empty-table-header` are **not**
+  scored by Lighthouse. They were fixed anyway (see below) because they are real
+  WCAG issues.
+
+### Accessibility — `npm run audit:a11y` now reports 0 violations on 78/78 pages
+
+Before: 9 axe rules failing, 209 nodes.
+
+| axe rule | LH weight | Before | Fix |
+| --- | --- | --- | --- |
+| `aria-required-children` | 10 | 1 page (homepage filter bar was `role="tablist"` with no `tab` children) | container is `role="group"`; buttons carry `aria-pressed`, kept in sync by `applyFilterTab()` in `script.js` |
+| `aria-prohibited-attr` | 7 | 59 pages (`aria-label` on a role-less `<div class="footer-legal-links">`) | element is now `<nav … aria-label="Legal links">`. jsdom reported this only as *incomplete*, so it was invisible to a naive run — in a browser it fails |
+| `label` | 7 | 12 pages with an unlabelled `#ws-file-input` | `aria-label="Choose file to process"` |
+| `heading-order` | 3 | 96 nodes / 76 pages | footer `h4`→`h2` + `h5`→`h3`; dropzone `h3`→`h2`; `.stat-box h4`→`h3`; blog `.step-box h4`→`h3`; blog index cards `h3`→`h2` |
+| `region` | 0 (unscored) | 61 nodes | mobile overlay `<div>`→`<nav>`; cookie banner is `role="region"`; legacy breadcrumb wrapped in `<nav>` |
+| `nested-interactive` | 0 (unscored) | 35 pages | `<input type="file">` moved **out** of the `role="button"` dropzone |
+| `landmark-no-duplicate-banner` / `-contentinfo` / `landmark-unique` | 0 | 1 page | `blog/kompres-pdf-online-gratis.html` had a leftover legacy header + breadcrumb + footer alongside the standard chrome; the duplicates were removed |
+| `empty-table-header` | 0 (unscored) | 1 page | corner `<th>` in the comparison table now has text + `scope="col"` |
+
+The heading changes do not move the layout: `style.css` has a universal
+`* { margin: 0; padding: 0 }` reset and the matching selectors
+(`.footer-col h2/h3`, `.dropzone h2`, `.stat-box h3`, `.blog-card h2`,
+`.step-box h3` in the inline blog styles) set size/weight/colour explicitly.
+
+**`color-contrast` (weight 7)** — jsdom cannot paint, so axe skips it. Every
+foreground/background pair in `style.css` was resolved by hand and its WCAG
+ratio computed. All pass ≥ 4.5:1 (≥ 3:1 for large text) **except one that was
+fixed**: white text on the gradient's lighter `#E04800` stop was **4.12:1**.
+`--secondary` is now `#D24100` (**4.67:1**) and `--gradient`/`--gradient-hover`
+resolve through the custom properties instead of hard-coding hex values.
+
+**`target-size` (weight 7)** — every interactive selector in `style.css`
+carries `min-height: 48px` (or `min-width`+`min-height` for icon buttons), well
+above the 24 px WCAG 2.2 minimum. `.blog-card-readmore` and
+`.blog-card-share-icon` have no min-height but are dead CSS — no markup uses
+them.
+
+### SEO / Best Practices — `npm run audit:seo` PASS on 78/78 pages
+
+Title present and ≤ 70 chars; meta description present and ≤ 300 chars; exactly
+one canonical per page, equal to that page's own canonical URL; no `noindex`
+anywhere except the intentional `404.html` (which is also absent from
+`sitemap.xml`); hreflang values `en` / `id` / `ur` / `x-default` validated with
+Lighthouse's own `isValidLang` (`x-default` is explicitly allowed by
+`core/audits/seo/hreflang.js`); no `<img>` element exists anywhere on the site,
+so `image-alt` is vacuously satisfied; every in-page `#anchor` resolves to an id
+on the same page; no generic anchor text; doctype, charset and a zoom-friendly
+viewport on every page; no font-size below 12 px.
+
+### Generators updated in step
+
+`scripts/templates.py` (mobile menu, footer, dropzone, legal links) and
+`scripts/gen_homepage.py` (filter tabs, stat boxes) were patched and their
+output re-checked, so regenerating pages cannot reintroduce any of the above.
+
+### Still open — and why it was not changed
+
+1. **The Performance category is unmeasured.** All five scored metrics need a
+   real browser. Run `npm run lighthouse` on a machine with Chrome.
+2. **The largest known performance lever was deliberately *not* applied.** Tool
+   pages still ship 33 × `pdf-lib` and 20 × `pdf.js` `<script defer>` CDN tags,
+   which is most of the main-thread work on those pages (TBT is 30 % of the
+   Performance score). They are redundant — `processing-client.js`
+   `loadLibrary()` injects libraries on demand, `preparePDFjs()` sets
+   `GlobalWorkerOptions.workerSrc` itself, and the worker path uses
+   `importScripts`. Removing them should be safe, but it touches every
+   conversion path and `npm run test:browser` cannot run here (no Chromium), so
+   it was left for a run that can be verified.
+3. **Browser/origin-dependent Best Practices audits** — `is-on-https`,
+   `redirects-http`, `errors-in-console`, `inspector-issues` — need the live
+   site and were not checked.

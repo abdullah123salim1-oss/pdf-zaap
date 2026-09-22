@@ -87,12 +87,12 @@
       <span></span>
     </button>
   </header>
-  <div class="mobile-overlay" id="mobile-menu" aria-label="Mobile Navigation Menu">
+  <nav class="mobile-overlay" id="mobile-menu" aria-label="Mobile navigation">
     <a class="mobile-nav-link" href="/">Home</a>
     <a class="mobile-nav-link" href="/#tools-anchor">All Tools</a>
     <a class="mobile-nav-link" href="/blog/">Blog</a>
     <a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a>
-  </div>
+  </nav>
 
   <main class="view-container">
     <div style="max-width:860px;margin:2rem auto;padding:0 2rem 4rem;">
@@ -109,7 +109,7 @@
       </section>
 <h2>Two architectures, two privacy models</h2>
 <table class="post-table" style="width:100%;border-collapse:collapse;font-size:0.95rem;margin:1rem 0;">
-  <tr style="background:var(--primary-light);"><th style="border:1px solid var(--border);padding:8px;text-align:left;"></th><th style="border:1px solid var(--border);padding:8px;text-align:left;">Server-upload tools</th><th style="border:1px solid var(--border);padding:8px;text-align:left;">Local (client-side) tools</th></tr>
+  <tr style="background:var(--primary-light);"><th scope="col" style="border:1px solid var(--border);padding:8px;text-align:left;">Tool</th><th style="border:1px solid var(--border);padding:8px;text-align:left;">Server-upload tools</th><th style="border:1px solid var(--border);padding:8px;text-align:left;">Local (client-side) tools</th></tr>
   <tr><td style="border:1px solid var(--border);padding:8px;"><strong>Where the file is processed</strong></td><td style="border:1px solid var(--border);padding:8px;">On the provider's servers</td><td style="border:1px solid var(--border);padding:8px;">In your browser, on your device</td></tr>
   <tr><td style="border:1px solid var(--border);padding:8px;"><strong>Does the file leave your device?</strong></td><td style="border:1px solid var(--border);padding:8px;">Yes — always, that is the model</td><td style="border:1px solid var(--border);padding:8px;">No</td></tr>
   <tr><td style="border:1px solid var(--border);padding:8px;"><strong>What you are trusting</strong></td><td style="border:1px solid var(--border);padding:8px;">The provider's security, retention policy, and the laws governing its data</td><td style="border:1px solid var(--border);padding:8px;">Your own browser's file handling (nothing else)</td></tr>
@@ -199,11 +199,11 @@
   <footer class="footer" role="contentinfo">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>⚡ PDF<span>Zaap</span></h4>
+        <h2 class="footer-brand">⚡ PDF<span>Zaap</span></h2>
         <p>Free, browser-based PDF tools that process your files locally — no uploads, no signup, no watermarks.</p>
       </div>
       <div class="footer-col">
-        <h5>Popular Tools</h5>
+        <h3>Popular Tools</h3>
         <ul class="footer-links" aria-label="Popular tools navigation">
           <li><a href="/pdf-to-word.html">PDF to Word</a></li>
           <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
@@ -212,7 +212,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Edit &amp; Organize</h5>
+        <h3>Edit &amp; Organize</h3>
         <ul class="footer-links" aria-label="Edit and organize tools navigation">
           <li><a href="/merge-pdf.html">Merge PDF</a></li>
           <li><a href="/split-pdf.html">Split PDF</a></li>
@@ -221,7 +221,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Security &amp; Advanced</h5>
+        <h3>Security &amp; Advanced</h3>
         <ul class="footer-links" aria-label="Security and advanced tools navigation">
           <li><a href="/protect-pdf.html">Protect PDF</a></li>
           <li><a href="/esign-pdf.html">E-Sign PDF</a></li>
@@ -230,7 +230,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Company</h5>
+        <h3>Company</h3>
         <ul class="footer-links" aria-label="Company links navigation">
           <li><a href="/about.html">About</a></li>
           <li><a href="/contact.html">Contact</a></li>
@@ -240,10 +240,10 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 PDFZaap. All rights reserved. Built for fast, private PDF work.</p>
-      <div class="footer-legal-links" aria-label="Legal links navigation">
+      <nav class="footer-legal-links" aria-label="Legal links">
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms of Service</a>
-      </div>
+      </nav>
     </div>
   </footer>
 

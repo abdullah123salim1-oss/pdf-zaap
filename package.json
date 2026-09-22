@@ -4,10 +4,16 @@
   "type": "module",
   "scripts": {
     "test": "node --test tests/*.test.js",
-    "test:browser": "node tests/browser-smoke.js"
+    "test:browser": "node tests/browser-smoke.js",
+    "audit:a11y": "node tests/audit-a11y.mjs",
+    "audit:seo": "node tests/audit-seo.mjs",
+    "audit": "npm run audit:a11y && npm run audit:seo",
+    "lighthouse": "node tests/lighthouse-report.mjs"
   },
   "devDependencies": {
+    "axe-core": "4.13.0",
     "html2pdf.js": "0.10.1",
+    "jsdom": "25.0.1",
     "jszip": "3.10.1",
     "mammoth": "1.6.0",
     "pdf-lib": "1.17.1",
