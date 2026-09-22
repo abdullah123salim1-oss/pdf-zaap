@@ -65,9 +65,12 @@ Node 20+ is required for the tests. Runtime deployment needs none of the npm pac
 ```sh
 npm ci
 npm test
+npm run audit
 npx playwright install --with-deps chromium
 npm run test:browser
 ```
+
+`npm run audit` is the accessibility + SEO gate: `audit:a11y` runs axe-core inside jsdom over all 78 static pages and fails on any violation, and `audit:seo` checks every statically decidable Lighthouse SEO/best-practice audit (titles, descriptions, canonicals, hreflang, anchors, doctype/charset/viewport, font sizes). Neither needs a browser. Rules that need real layout or paint — `color-contrast`, `target-size` — and the whole Performance category cannot be evaluated without Chrome; `npm run lighthouse` runs the real thing on a machine that has it and prints the four category scores per page. See `SEO-CHANGELOG.md` §8.
 
 `BROWSER_EXECUTABLE=/path/to/chromium npm run test:browser` uses an existing Chromium installation. Browser tests start and close their own static server and intercept CDN URLs with matching local npm fixtures; they don't depend on external CDNs or send document contents anywhere.
 

@@ -231,12 +231,12 @@ def main():
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         <input type="text" id="tool-search" class="search-input" placeholder="Search 35 PDF tools..." aria-label="Search 35 PDF tools">
       </div>
-      <div class="filter-tabs" id="filter-tabs-container" role="tablist" aria-label="Filter PDF tools by category">
-        <button type="button" class="filter-tab active" data-tab="all" onclick="applyFilterTab('all', this)">All Tools</button>
-        <button type="button" class="filter-tab" data-tab="convert" onclick="applyFilterTab('convert', this)">Convert</button>
-        <button type="button" class="filter-tab" data-tab="edit" onclick="applyFilterTab('edit', this)">Edit &amp; Organize</button>
-        <button type="button" class="filter-tab" data-tab="security" onclick="applyFilterTab('security', this)">Security</button>
-        <button type="button" class="filter-tab" data-tab="advanced" onclick="applyFilterTab('advanced', this)">Advanced</button>
+      <div class="filter-tabs" id="filter-tabs-container" role="group" aria-label="Filter PDF tools by category">
+        <button type="button" class="filter-tab active" data-tab="all" aria-pressed="true" onclick="applyFilterTab('all', this)">All Tools</button>
+        <button type="button" class="filter-tab" data-tab="convert" aria-pressed="false" onclick="applyFilterTab('convert', this)">Convert</button>
+        <button type="button" class="filter-tab" data-tab="edit" aria-pressed="false" onclick="applyFilterTab('edit', this)">Edit &amp; Organize</button>
+        <button type="button" class="filter-tab" data-tab="security" aria-pressed="false" onclick="applyFilterTab('security', this)">Security</button>
+        <button type="button" class="filter-tab" data-tab="advanced" aria-pressed="false" onclick="applyFilterTab('advanced', this)">Advanced</button>
       </div>
     </section>
 
@@ -333,19 +333,19 @@ def main():
       </p>
       <div class="stats-bar">
         <div class="stat-box">
-          <h4>35</h4>
+          <h3>35</h4>
           <p>Free PDF Tools</p>
         </div>
         <div class="stat-box">
-          <h4>0</h4>
+          <h3>0</h4>
           <p>Files Uploaded to Servers</p>
         </div>
         <div class="stat-box">
-          <h4>0</h4>
+          <h3>0</h4>
           <p>Accounts Required</p>
         </div>
         <div class="stat-box">
-          <h4>100%</h4>
+          <h3>100%</h4>
           <p>Client-Side Processing</p>
         </div>
       </div>

@@ -1642,8 +1642,12 @@ function runSearchFilter() {
 }
 
 function applyFilterTab(tabCategory, btnElement) {
-  document.querySelectorAll('#filter-tabs-container .filter-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#filter-tabs-container .filter-tab').forEach(t => {
+    t.classList.remove('active');
+    t.setAttribute('aria-pressed', 'false');
+  });
   btnElement.classList.add('active');
+  btnElement.setAttribute('aria-pressed', 'true');
   runSearchFilter();
 }
 

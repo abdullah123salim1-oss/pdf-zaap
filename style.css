@@ -10,12 +10,12 @@
   --primary-dark: #8F2D00;
   --primary-light: rgba(199, 62, 0, 0.08);
   --primary-border: rgba(199, 62, 0, 0.28);
-  --secondary: #E04800;
+  --secondary: #D24100;            /* gradient end kept dark enough for 4.5:1 white text */
   --accent: #B83800;
 
   /* Clean Gradients */
-  --gradient: linear-gradient(135deg, #C73E00 0%, #E04800 100%);
-  --gradient-hover: linear-gradient(135deg, #A83600 0%, #C73E00 100%);
+  --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  --gradient-hover: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 100%);
 
   /* Neutrals — WCAG 7.0:1 High Contrast */
   --bg: #F8F9FA;                 /* Crisp light gray background */
@@ -762,7 +762,7 @@ body {
   gap: 2rem;
 }
 
-.stat-box h4 {
+.stat-box h3 {
   font-size: 3.25rem;
   font-weight: 800;
   margin-bottom: 0.25rem;
@@ -853,7 +853,7 @@ body {
   margin-bottom: 1rem;
 }
 
-.dropzone h3 {
+.dropzone h2 {
   font-size: 1.4rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
@@ -1111,6 +1111,7 @@ body {
   margin-bottom: 0.25rem;
 }
 
+.blog-card h2,
 .blog-card h3 {
   font-size: 1.6rem;
   font-weight: 800;
@@ -1121,6 +1122,7 @@ body {
   transition: var(--transition);
 }
 
+.blog-card:hover h2,
 .blog-card:hover h3 {
   color: var(--primary);
 }
@@ -1293,18 +1295,18 @@ body {
   margin: 0 auto 4rem;
 }
 
-.footer-col h4 {
+.footer-col h2 {
   color: #FFFFFF;
   font-size: 1.5rem;
   margin-bottom: 1.25rem;
   font-weight: 800;
 }
 
-.footer-col h4 span {
+.footer-col h2 span {
   color: #FF7A33;              /* Bright accessible orange against dark footer */
 }
 
-.footer-col h5 {
+.footer-col h3 {
   color: #FFFFFF;
   font-size: 1.05rem;
   margin-bottom: 1.25rem;

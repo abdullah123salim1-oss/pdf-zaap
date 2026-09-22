@@ -103,12 +103,12 @@
       <span></span>
     </button>
   </header>
-  <div class="mobile-overlay" id="mobile-menu" aria-label="Mobile Navigation Menu">
+  <nav class="mobile-overlay" id="mobile-menu" aria-label="Mobile navigation">
     <a class="mobile-nav-link" href="/">Home</a>
     <a class="mobile-nav-link" href="/#tools-anchor">All Tools</a>
     <a class="mobile-nav-link" href="/blog/">Blog</a>
     <a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a>
-  </div>
+  </nav>
 
   <main class="view-container">
 
@@ -144,12 +144,12 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         <input type="text" id="tool-search" class="search-input" placeholder="Search 35 PDF tools..." aria-label="Search 35 PDF tools">
       </div>
-      <div class="filter-tabs" id="filter-tabs-container" role="tablist" aria-label="Filter PDF tools by category">
-        <button type="button" class="filter-tab active" data-tab="all" onclick="applyFilterTab('all', this)">All Tools</button>
-        <button type="button" class="filter-tab" data-tab="convert" onclick="applyFilterTab('convert', this)">Convert</button>
-        <button type="button" class="filter-tab" data-tab="edit" onclick="applyFilterTab('edit', this)">Edit &amp; Organize</button>
-        <button type="button" class="filter-tab" data-tab="security" onclick="applyFilterTab('security', this)">Security</button>
-        <button type="button" class="filter-tab" data-tab="advanced" onclick="applyFilterTab('advanced', this)">Advanced</button>
+      <div class="filter-tabs" id="filter-tabs-container" role="group" aria-label="Filter PDF tools by category">
+        <button type="button" class="filter-tab active" data-tab="all" aria-pressed="true" onclick="applyFilterTab('all', this)">All Tools</button>
+        <button type="button" class="filter-tab" data-tab="convert" aria-pressed="false" onclick="applyFilterTab('convert', this)">Convert</button>
+        <button type="button" class="filter-tab" data-tab="edit" aria-pressed="false" onclick="applyFilterTab('edit', this)">Edit &amp; Organize</button>
+        <button type="button" class="filter-tab" data-tab="security" aria-pressed="false" onclick="applyFilterTab('security', this)">Security</button>
+        <button type="button" class="filter-tab" data-tab="advanced" aria-pressed="false" onclick="applyFilterTab('advanced', this)">Advanced</button>
       </div>
     </section>
 
@@ -524,19 +524,19 @@
       </p>
       <div class="stats-bar">
         <div class="stat-box">
-          <h4>35</h4>
+          <h3>35</h3>
           <p>Free PDF Tools</p>
         </div>
         <div class="stat-box">
-          <h4>0</h4>
+          <h3>0</h3>
           <p>Files Uploaded to Servers</p>
         </div>
         <div class="stat-box">
-          <h4>0</h4>
+          <h3>0</h3>
           <p>Accounts Required</p>
         </div>
         <div class="stat-box">
-          <h4>100%</h4>
+          <h3>100%</h3>
           <p>Client-Side Processing</p>
         </div>
       </div>
@@ -548,11 +548,11 @@
   <footer class="footer" role="contentinfo">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>⚡ PDF<span>Zaap</span></h4>
+        <h2 class="footer-brand">⚡ PDF<span>Zaap</span></h2>
         <p>Free, browser-based PDF tools that process your files locally — no uploads, no signup, no watermarks.</p>
       </div>
       <div class="footer-col">
-        <h5>Popular Tools</h5>
+        <h3>Popular Tools</h3>
         <ul class="footer-links" aria-label="Popular tools navigation">
           <li><a href="/pdf-to-word.html">PDF to Word</a></li>
           <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
@@ -561,7 +561,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Edit &amp; Organize</h5>
+        <h3>Edit &amp; Organize</h3>
         <ul class="footer-links" aria-label="Edit and organize tools navigation">
           <li><a href="/merge-pdf.html">Merge PDF</a></li>
           <li><a href="/split-pdf.html">Split PDF</a></li>
@@ -570,7 +570,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Security &amp; Advanced</h5>
+        <h3>Security &amp; Advanced</h3>
         <ul class="footer-links" aria-label="Security and advanced tools navigation">
           <li><a href="/protect-pdf.html">Protect PDF</a></li>
           <li><a href="/esign-pdf.html">E-Sign PDF</a></li>
@@ -579,7 +579,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Company</h5>
+        <h3>Company</h3>
         <ul class="footer-links" aria-label="Company links navigation">
           <li><a href="/about.html">About</a></li>
           <li><a href="/contact.html">Contact</a></li>
@@ -589,10 +589,10 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 PDFZaap. All rights reserved. Built for fast, private PDF work.</p>
-      <div class="footer-legal-links" aria-label="Legal links navigation">
+      <nav class="footer-legal-links" aria-label="Legal links">
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms of Service</a>
-      </div>
+      </nav>
     </div>
   </footer>
 
@@ -600,7 +600,7 @@
     ▲
   </button>
 
-  <div class="cookie-banner" id="cookie-banner">
+  <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookie consent">
     <div class="cookie-content">
       We use a single local browser storage value to remember your cookie preference. No third-party tracking cookies are set. See our <a href="/privacy.html">Privacy Policy</a>.
     </div>

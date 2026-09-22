@@ -35,7 +35,7 @@
     .cta-box a.cta-btn { display: inline-block; background: var(--primary); color: #fff; padding: 0.75rem 1.75rem; border-radius: var(--radius); font-weight: 700; text-decoration: none; }
     .cta-box a.cta-btn:hover { opacity: 0.92; }
     .step-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin: 1rem 0 1.5rem; }
-    .step-box h4 { margin-top: 0; color: var(--text); font-size: 1.1rem; }
+    .step-box h3 { margin-top: 0; color: var(--text); font-size: 1.1rem; }
     .pro-tip { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius); padding: 1rem 1.25rem; margin: 1.5rem 0; color: #166534; }
   </style>
 
@@ -201,17 +201,17 @@
       <p>PDFZaap provides two complementary splitting utilities right inside your browser: the <a href="/split-pdf.html">Split PDF Tool</a> (for bulk page separation) and the <a href="/extract-pages-pdf.html">Extract Pages Tool</a> (for targeted extraction).</p>
 
       <div class="step-box">
-        <h4>Step 1: Open the Split PDF Tool</h4>
+        <h3>Step 1: Open the Split PDF Tool</h3>
         <p>Visit <a href="/split-pdf.html">PDFZaap Split PDF</a>. No signup or credit card is required.</p>
       </div>
 
       <div class="step-box">
-        <h4>Step 2: Drop Your File</h4>
+        <h3>Step 2: Drop Your File</h3>
         <p>Drag your document into the interface. Because the engine runs client-side WebAssembly, even a 300-page book loads immediately without network buffering.</p>
       </div>
 
       <div class="step-box">
-        <h4>Step 3: Choose Your Splitting Mode</h4>
+        <h3>Step 3: Choose Your Splitting Mode</h3>
         <p>Select the option that matches your workflow:</p>
         <ul>
           <li><strong>Split into Single Pages:</strong> Breaks every single page into its own individual PDF (e.g., <em>page-1.pdf</em>, <em>page-2.pdf</em>, etc.) and bundles them into an easy-to-download ZIP file.</li>
@@ -220,7 +220,7 @@
       </div>
 
       <div class="step-box">
-        <h4>Step 4: Download Instantly</h4>
+        <h3>Step 4: Download Instantly</h3>
         <p>Click <strong>Split PDF</strong>. The tool generates your files in browser memory in under two seconds. Click <strong>Download</strong> to retrieve your files.</p>
       </div>
 
@@ -229,22 +229,22 @@
       <p>If you only need to extract a single contiguous range from a PDF and have no internet connection, any desktop web browser (Chrome, Edge, Safari, Firefox) has a built-in virtual printer that can extract pages:</p>
 
       <div class="step-box">
-        <h4>Step 1: Open the PDF in Your Web Browser</h4>
+        <h3>Step 1: Open the PDF in Your Web Browser</h3>
         <p>Drag the PDF into an empty tab in Google Chrome, Microsoft Edge, or Safari.</p>
       </div>
 
       <div class="step-box">
-        <h4>Step 2: Open the Print Dialog</h4>
+        <h3>Step 2: Open the Print Dialog</h3>
         <p>Press <code>Ctrl + P</code> on Windows or <code>Command + P</code> on Mac to summon the print menu.</p>
       </div>
 
       <div class="step-box">
-        <h4>Step 3: Change Destination to "Save as PDF"</h4>
+        <h3>Step 3: Change Destination to "Save as PDF"</h3>
         <p>Under the printer destination dropdown, select <strong>Save as PDF</strong> (or <em>Microsoft Print to PDF</em>).</p>
       </div>
 
       <div class="step-box">
-        <h4>Step 4: Specify Custom Pages and Save</h4>
+        <h3>Step 4: Specify Custom Pages and Save</h3>
         <p>Under the <strong>Pages</strong> setting, switch from <em>All</em> to <em>Custom</em>. Enter the pages you want (e.g., <code>4-7</code>). Click <strong>Save</strong> and choose your destination folder.</p>
       </div>
 
@@ -363,11 +363,11 @@
     <footer class="footer">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>⚡ PDF<span>Zaap</span></h4>
+        <h2 class="footer-brand">⚡ PDF<span>Zaap</span></h2>
         <p>Free, browser-based PDF tools that process your files locally — no uploads, no signup, no watermarks.</p>
       </div>
       <div class="footer-col">
-        <h5>Popular Tools</h5>
+        <h3>Popular Tools</h3>
         <ul class="footer-links">
           <li><a href="/pdf-to-word.html">PDF to Word</a></li>
           <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
@@ -376,7 +376,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Edit &amp; Organize</h5>
+        <h3>Edit &amp; Organize</h3>
         <ul class="footer-links">
           <li><a href="/merge-pdf.html">Merge PDF</a></li>
           <li><a href="/split-pdf.html">Split PDF</a></li>
@@ -385,7 +385,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Security &amp; Advanced</h5>
+        <h3>Security &amp; Advanced</h3>
         <ul class="footer-links">
           <li><a href="/protect-pdf.html">Protect PDF</a></li>
           <li><a href="/esign-pdf.html">E-Sign PDF</a></li>
@@ -394,7 +394,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Company</h5>
+        <h3>Company</h3>
         <ul class="footer-links">
           <li><a href="/about.html">About</a></li>
           <li><a href="/contact.html">Contact</a></li>
@@ -404,10 +404,10 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 PDFZaap. All rights reserved. Built for fast, private PDF work.</p>
-      <div class="footer-legal-links">
+      <nav class="footer-legal-links" aria-label="Legal links">
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms of Service</a>
-      </div>
+      </nav>
     </div>
   </footer>
 

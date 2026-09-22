@@ -85,12 +85,12 @@
       <span></span>
     </button>
   </header>
-  <div class="mobile-overlay" id="mobile-menu" aria-label="Mobile Navigation Menu">
+  <nav class="mobile-overlay" id="mobile-menu" aria-label="Mobile navigation">
     <a class="mobile-nav-link" href="/">Home</a>
     <a class="mobile-nav-link" href="/#tools-anchor">All Tools</a>
     <a class="mobile-nav-link" href="/blog/">Blog</a>
     <a href="/compress-pdf.html" class="btn btn-primary">Compress PDF</a>
-  </div>
+  </nav>
 
   <main class="view-container" data-tool="pdf-to-excel">
     <div class="workspace-wrapper">
@@ -103,11 +103,12 @@
         <h1 class="workspace-title">📊 Convert PDF to Excel — Text to .xlsx</h1>
         <p class="subtitle">Turn PDF text lines into spreadsheet rows (.xlsx)</p>
 
+
+        <input type="file" id="ws-file-input" class="display-none" accept=".pdf" aria-label="Choose file to upload">
         <div class="dropzone" id="ws-dropzone" role="button" tabindex="0" aria-label="Select or drop file for processing">
           <div class="dropzone-icon">📥</div>
-          <h3>Select your file</h3>
+          <h2 class="dropzone-title">Select your file</h2>
           <p>or drop file here</p>
-          <input type="file" id="ws-file-input" class="display-none" accept=".pdf" aria-label="Choose file to upload">
         </div>
 
         <div class="file-list" id="ws-file-list"></div>
@@ -245,11 +246,11 @@
   <footer class="footer" role="contentinfo">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>⚡ PDF<span>Zaap</span></h4>
+        <h2 class="footer-brand">⚡ PDF<span>Zaap</span></h2>
         <p>Free, browser-based PDF tools that process your files locally — no uploads, no signup, no watermarks.</p>
       </div>
       <div class="footer-col">
-        <h5>Popular Tools</h5>
+        <h3>Popular Tools</h3>
         <ul class="footer-links" aria-label="Popular tools navigation">
           <li><a href="/pdf-to-word.html">PDF to Word</a></li>
           <li><a href="/jpg-to-pdf.html">JPG to PDF</a></li>
@@ -258,7 +259,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Edit &amp; Organize</h5>
+        <h3>Edit &amp; Organize</h3>
         <ul class="footer-links" aria-label="Edit and organize tools navigation">
           <li><a href="/merge-pdf.html">Merge PDF</a></li>
           <li><a href="/split-pdf.html">Split PDF</a></li>
@@ -267,7 +268,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Security &amp; Advanced</h5>
+        <h3>Security &amp; Advanced</h3>
         <ul class="footer-links" aria-label="Security and advanced tools navigation">
           <li><a href="/protect-pdf.html">Protect PDF</a></li>
           <li><a href="/esign-pdf.html">E-Sign PDF</a></li>
@@ -276,7 +277,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Company</h5>
+        <h3>Company</h3>
         <ul class="footer-links" aria-label="Company links navigation">
           <li><a href="/about.html">About</a></li>
           <li><a href="/contact.html">Contact</a></li>
@@ -286,10 +287,10 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 PDFZaap. All rights reserved. Built for fast, private PDF work.</p>
-      <div class="footer-legal-links" aria-label="Legal links navigation">
+      <nav class="footer-legal-links" aria-label="Legal links">
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms of Service</a>
-      </div>
+      </nav>
     </div>
   </footer>
 
