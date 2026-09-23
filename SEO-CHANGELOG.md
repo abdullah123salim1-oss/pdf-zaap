@@ -486,3 +486,66 @@ output re-checked, so regenerating pages cannot reintroduce any of the above.
 3. **Browser/origin-dependent Best Practices audits** — `is-on-https`,
    `redirects-http`, `errors-in-console`, `inspector-issues` — need the live
    site and were not checked.
+
+---
+
+## 2026-09-23 — Head-term asset: "What Is a PDF" pillar page (`arena/01a0cdf2-pdf-zaap`)
+
+**Goal:** take the site's first shot at an informational *head* term — `what is a pdf` —
+plus the winnable ladder underneath it (`what does pdf stand for`, `pdf meaning`,
+`what is a pdf file`) and the Roman-Urdu query `pdf kya hai`.
+
+### New pages (2)
+
+| File | Language | Target | Size |
+|---|---|---|---|
+| `what-is-a-pdf.html` | en | what is a pdf (+ 12 sub-keywords) | ~4,300 words, 16 sections, 18-item TOC |
+| `ur/pdf-kya-hai.html` | ur-Latn | pdf kya hai, pdf ka matlab, pdf kaise kholein | ~1,300 words, 7 FAQs |
+
+Both carry: self-referencing canonical on www, `Article` + `BreadcrumbList` +
+`FAQPage` JSON-LD (the English page also emits `DefinedTerm` for PDF and PDF/A),
+author + published/modified dates, a quick-answer definition in the first 100 words,
+comparison tables, a source list citing ISO 32000-1, the PDF Association and the
+Library of Congress, and the standard site chrome. hreflang sets are reciprocal
+(`en` ↔ `ur`, `x-default` → the English page).
+
+The English page adds one non-text asset: an inline SVG diagram of a PDF's internal
+structure (header → objects → xref → trailer → metadata → optional layers). Inline SVG
+was chosen over a raster image deliberately — no image request, crisp at any zoom, and
+it keeps the site's `<img>`-free position (so `image-alt` stays vacuously satisfied).
+
+### Internal linking (the part that matters for a head term on a zero-authority domain)
+
+- **Site-wide footer link** `<li><a href="/what-is-a-pdf.html">What Is a PDF?</a></li>`
+  added to the Company column of **78 existing pages** (every page that already had the
+  standard footer). This is the strongest internal signal a static site can give one URL.
+- Homepage: new first card in the "Guides & Tutorials" teaser grid (`index.html`).
+- Blog hub: new first card in the post grid (`blog/index.html`).
+- In-content contextual links: 35 links from the two new pages into money pages
+  (compress / merge / split / convert / sign / protect / OCR / PDF-A / metadata …),
+  plus links up from the Urdu page to the English pillar and vice-versa.
+
+### Discovery & distribution
+
+- `sitemap.xml` — 2 URLs added (`what-is-a-pdf.html` priority 0.9, `ur/pdf-kya-hai.html`
+  priority 0.7, lastmod 2026-09-23). Total: 79 URLs, no duplicates.
+- `blog/rss.xml` — new item at the top of the channel; `lastBuildDate` bumped to 23 Sep 2026.
+- `llm.txt` — new `## Learn` section (assistant/LLM citability).
+
+### Verification
+
+- `npm run audit:seo` → **PASS, 80/80 pages** (was 78). Checks that passed for the new
+  pages: title ≤ 70 chars, meta description present, exactly one canonical equal to the
+  page URL, valid hreflang (`en` / `ur` / `x-default`), every `#anchor` resolves,
+  no generic anchor text, heading order, viewport, no `noindex`.
+- `sitemap.xml` and `blog/rss.xml` re-parsed as XML after the edit: 79 unique URLs / 24 items.
+- Footer insertion verified by script: 78 files changed, no page holds the link twice.
+
+### Strategy documents
+
+- `seo/what-is-a-pdf-ranking-plan.md` — the ranking plan for this cluster: keyword map,
+  shipped-asset table, on-page checklist, **gap list (G1–G7)**, 3-phase off-page plan,
+  measurement table, honest timeline, do-not-do list. Key honest finding recorded there:
+  on-page work alone cannot deliver organic #1 for a head term; the decisive missing
+  input is referring domains (currently ~0), so the plan front-loads link earning and
+  targets the featured snippet plus the long-tail rungs first.

@@ -45,6 +45,10 @@
 - [PDF Metadata Editor](https://www.pdfzaap.online/pdf-metadata-editor.html): Edit a PDF's Title, Author, Subject, and Keywords.
 - [Flatten PDF](https://www.pdfzaap.online/flatten-pdf.html): Merge form fields and annotations into a static, non-editable page.
 
+## Learn
+- [What Is a PDF?](https://www.pdfzaap.online/what-is-a-pdf.html): Definition of the Portable Document Format (ISO 32000) in plain language — what PDF stands for, the internal file structure, history, PDF/A, PDF/X and PDF/UA families, advantages, limitations, and how to open, create, edit and compress PDFs free.
+- [PDF Kya Hai? (Urdu)](https://www.pdfzaap.online/ur/pdf-kya-hai.html): Roman Urdu guide explaining what a PDF is, its full form, benefits, and how to open, create and compress PDF files.
+
 ## Blog
 - [How to Reduce PDF File Size Without Losing Quality (Free & Private)](https://www.pdfzaap.online/blog/how-to-reduce-pdf-file-size-without-losing-quality.html): Shrink PDF file sizes by 60%–80% while keeping text crisp and images clear using client-side WebAssembly.
 - [How to Merge PDF Files on iPhone (Free, No App Required)](https://www.pdfzaap.online/blog/how-to-merge-pdf-files-on-iphone.html): Combine multiple PDF documents on iOS using the native Files app or Safari with visual page reordering.
