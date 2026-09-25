@@ -3,9 +3,9 @@
 > PDFZaap is a free, browser-based PDF toolkit. All 35 tools run entirely client-side (no file uploads to a server), require no signup, add no watermark, and are free to use with no limits. Tools cover PDF conversion, editing/organizing, security, and advanced document operations.
 
 ## Convert
-- [PDF to Word](https://www.pdfzaap.online/pdf-to-word.html): Convert PDF to editable DOCX documents, preserving layout and formatting.
+- [PDF to Word](https://www.pdfzaap.online/pdf-to-word.html): Convert PDF text into an editable Word .docx in the browser. Words and reading order are preserved; fonts, styles, tables and images are not carried over, and scanned pages need OCR first.
 - [PDF to JPG](https://www.pdfzaap.online/pdf-to-jpg.html): Convert each PDF page into a JPG image.
-- [PDF to Excel](https://www.pdfzaap.online/pdf-to-excel.html): Extract PDF tables into an editable XLSX spreadsheet.
+- [PDF to Excel](https://www.pdfzaap.online/pdf-to-excel.html): Turn a PDF's text lines into editable rows in an XLSX spreadsheet (line-based extraction, not table detection).
 - [PDF to PowerPoint](https://www.pdfzaap.online/pdf-to-powerpoint.html): Convert PDF pages into presentation slides.
 - [PDF to Text](https://www.pdfzaap.online/pdf-to-text.html): Extract plain, copyable text from a PDF.
 - [PDF to HTML](https://www.pdfzaap.online/pdf-to-html.html): Convert a PDF into a responsive HTML web page.
@@ -52,7 +52,7 @@
 ## Blog
 - [How to Reduce PDF File Size Without Losing Quality (Free & Private)](https://www.pdfzaap.online/blog/how-to-reduce-pdf-file-size-without-losing-quality.html): Shrink PDF file sizes by 60%–80% while keeping text crisp and images clear using client-side WebAssembly.
 - [How to Merge PDF Files on iPhone (Free, No App Required)](https://www.pdfzaap.online/blog/how-to-merge-pdf-files-on-iphone.html): Combine multiple PDF documents on iOS using the native Files app or Safari with visual page reordering.
-- [How to Convert PDF to Word on Mac Free (Without Adobe Acrobat)](https://www.pdfzaap.online/blog/how-to-convert-pdf-to-word-on-mac-free.html): Turn any PDF into an editable Word DOCX document on macOS with full layout and table preservation.
+- [How to Convert PDF to Word on Mac Free (Without Adobe Acrobat)](https://www.pdfzaap.online/blog/how-to-convert-pdf-to-word-on-mac-free.html): Text-based PDF to Word conversion on macOS for free — in-browser tool, Google Docs and LibreOffice routes, and how to handle scans.
 - [How to Sign a PDF on iPhone Without an App (Free & Easy)](https://www.pdfzaap.online/blog/how-to-sign-a-pdf-on-iphone-without-app.html): Electronically sign contracts and forms directly on an iPhone touchscreen with Apple Markup or private browser e-signing.
 - [How to Fill Out a PDF Form Without Printing (Free & 100% Digital)](https://www.pdfzaap.online/blog/how-to-fill-out-pdf-form-without-printing.html): Complete interactive AcroForms or flat paper scans digitally, fill checkboxes, and flatten entries to prevent disappearing data.
 - [How to Split a PDF into Single Pages (Free, Fast & Private)](https://www.pdfzaap.online/blog/how-to-split-pdf-into-single-pages.html): Break multi-page PDFs into separate one-page files or extract custom page ranges with instant ZIP download.

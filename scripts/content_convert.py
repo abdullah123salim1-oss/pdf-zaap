@@ -7,28 +7,58 @@ C["pdf-to-word"] = dict(
     title="Convert PDF to Word Free — PDF to DOCX Online | PDFZaap",
     meta="Turn a PDF into an editable Word document in your browser. Text-based conversion, free, private, no signup, no upload. Perfect for repurposing reports.",
     h1="Convert PDF to Word — Free & Private",
-    intro="<p>Need to edit a PDF but it doesn't allow changes? This tool extracts the text of your PDF and rebuilds it as a genuine Word <code>.docx</code> file, right in your browser. Every word lands as editable text in paragraph order, page breaks are preserved, and the file never leaves your device. It is a text-based conversion — the honest trade-off for doing everything client-side — so complex multi-column layouts are simplified rather than cloned pixel-for-pixel.</p>",
+    # The <div class="quick-answer"> block is the extractable snippet answer
+    # (40 words) that sits above the fold for "how do I convert a pdf to word".
+    intro="""<div class="quick-answer">
+          <h2>Quick answer: how do I convert a PDF to a Word document?</h2>
+          <p>Open this page, select your PDF, click <strong>Convert to Word</strong>, then download the <code>.docx</code>. The conversion runs in your browser, so nothing is uploaded and no account is needed. Text-based PDFs become editable Word paragraphs; scanned PDFs need OCR first. Columns and tables are simplified, not cloned.</p>
+        </div>
+        <p>Need to edit a PDF but it doesn't allow changes? This free PDF to Word tool reads your document's text layer and rebuilds it as an editable Word document in Microsoft Word's native <code>.docx</code> format, right in your browser. Every word lands as editable text in reading order, a page break is written between PDF pages, and the file never leaves your device. It is a text-based conversion — the honest trade-off for doing everything client-side — so complex multi-column layouts are simplified rather than cloned pixel-for-pixel.</p>""",
     howto_title="convert a PDF to Word",
     howto=[
-        ("Upload the PDF", "Click the dropzone and select the PDF document you want to make editable."),
-        ("Choose Convert to Word", "The button is enabled as soon as a file is selected. No settings are needed."),
-        ("Wait for the extraction", "The browser reads each page and groups the words into lines and paragraphs. Larger documents take a few extra seconds."),
-        ("Download the .docx", "Save the Word file and open it in Word, Google Docs or LibreOffice to keep editing."),
+        ("Select the PDF", "Click the dropzone and pick the PDF document you want to make editable. One file at a time, 100 MB or smaller."),
+        ("Click Convert to Word", "The button is enabled as soon as a file is selected. There are no settings to choose — the output is always a Word .docx."),
+        ("Wait for the extraction", "The Word converter reads each page's text layer, joins the words that share a line, and writes one Word paragraph per line. Larger documents take a few extra seconds because the work happens on your own device."),
+        ("Download the Word file", "Save the .docx and keep editing it in Microsoft Word, Google Docs or LibreOffice — all of them open this file format."),
     ],
     why_title="edit PDF text without a server",
-    why="<p><strong class='subtext'>Privacy first.</strong> Most online converters upload your document to a third-party server, which matters when the file contains contracts, payroll data, student records or unpublished work. PDFZaap runs the whole conversion in your browser memory: the file is read locally, the DOCX is assembled locally, and only the finished file is saved to your device. You can even try it on an unstable or offline-capable connection once the page has loaded.</p><p class='subtext'><strong>Know the limits up front.</strong> This is a text extraction, not a layout engine. Straightforward documents — reports, letters, manuscripts, forms with visible text — convert cleanly. Documents built from many text boxes, sidebars or embedded charts will read in top-to-bottom order and may need light re-arranging. If the PDF is a scan, there is no text to extract: run the <a href='/ocr-pdf.html'>OCR PDF tool</a> first to get the words, then convert.</p>",
+    why="""<p><strong class='subtext'>Privacy first.</strong> Most online converters upload your document to a third-party server, which matters when the file contains contracts, payroll data, student records or unpublished work. PDFZaap runs the whole PDF to Word conversion in your browser memory: the file is read locally, the DOCX is assembled locally, and only the finished file is saved to your device. You can even try it on an unstable or offline-capable connection once the page has loaded.</p><p class='subtext'><strong>Nothing to unlock.</strong> There is no free tier and no paid tier to compare it with, so no quota gates this PDF to Word converter: converting PDFs here has no daily job count, no watermark and no "upgrade to unlock unlimited conversions" step.</p><p class='subtext'><strong>Know the limits up front.</strong> This is a text extraction, not a layout engine. Straightforward documents — reports, letters, manuscripts, forms with visible text — convert cleanly. Documents built from many text boxes, sidebars or embedded charts may need light re-arranging afterwards — the table below shows exactly which way each element goes. If the PDF is a scan, there is no text to extract: run the <a href='/ocr-pdf.html'>OCR PDF tool</a> first to get the words, then convert.</p>
+        <div class="table-scroll">
+          <table class="post-table">
+            <thead>
+              <tr>
+                <th scope="col">What is in the PDF</th>
+                <th scope="col">What the .docx keeps</th>
+                <th scope="col">What you fix afterwards</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Body text</th><td>Real, selectable, editable paragraphs in reading order</td><td>Nothing — retype and reformat as usual</td></tr>
+              <tr><th scope="row">Page breaks</th><td>One explicit page break per PDF page, so page structure survives reflow</td><td>Adjust spacing if the re-flowed text shifts pages</td></tr>
+              <tr><th scope="row">Headings, bold, italics, font sizes</th><td>The words only, in Word's default style</td><td>Reapply Word styles (Heading 1, Bold) on the way back out</td></tr>
+              <tr><th scope="row">Tables</th><td>Each cell as its own line of text</td><td>Redraw the table, or use <a href='/pdf-to-excel.html'>PDF to Excel</a> for editable rows</td></tr>
+              <tr><th scope="row">Two-column and sidebar layouts</th><td>Text grouped by height, so columns on the same line merge into one line</td><td>Convert a one-column copy, or split page ranges first</td></tr>
+              <tr><th scope="row">Images, charts, signatures</th><td>Nothing — they are not text</td><td>Export the page as a picture with <a href='/pdf-to-jpg.html'>PDF to JPG</a></td></tr>
+              <tr><th scope="row">Scanned pages</th><td>Nothing — a scan has no text layer to read</td><td>Run <a href='/ocr-pdf.html'>OCR PDF</a> on the scan, then convert the result</td></tr>
+            </tbody>
+          </table>
+        </div>""",
     tips=[
         "Run <a href='/pdf-to-text.html'>PDF to Text</a> first if you only need to check that the text extracts well before committing to a conversion.",
         "If the output reads in the wrong order, the PDF likely uses a multi-column layout. Converting a one-column copy (or selecting a page range with <a href='/split-pdf.html'>Split PDF</a>) gives a cleaner result.",
         "Page breaks are inserted between PDF pages, so your Word document keeps the same page structure even if it reflows.",
-        "For scanned documents, a sharper scan (300 dpi, high contrast) makes a big difference to the final Word file.",
+        "To convert scanned PDFs, scan at 300 dpi with high contrast and run OCR before this tool — a sharper scan is the single biggest quality lever on the finished Word file.",
+        "Keep the output as .docx rather than converting twice: Microsoft Word, Word for the web, Google Docs and LibreOffice all read it, so pick whichever of the Word formats your collaborators use.",
+        "Going the other way later? <a href='/word-to-pdf.html'>Word to PDF</a> rebuilds the fixed-layout copy once your edits are done.",
     ],
-    when="<p>Choose this tool when the goal is <em>editing the words</em>. If you need the PDF's exact visual design, export pages as images with <a href='/pdf-to-jpg.html'>PDF to JPG</a> instead. If you want plain copyable text without a Word file, <a href='/pdf-to-text.html'>PDF to Text</a> is faster. And if you are going the other direction — putting a Word document into PDF — use <a href='/word-to-pdf.html'>Word to PDF</a>. For deeper guidance on what to expect from browser-based conversion, read <a href='/pdf-to-word-without-losing-formatting.html'>PDF to Word without losing formatting</a> and <a href='/blog/how-to-convert-pdf-to-word-on-mac-free.html'>How to convert PDF to Word on Mac for free</a>.</p>",
+    when="<p>Choose this tool when the goal is <em>editing the words</em> — when you need to convert PDFs into editable Word documents without sending the file to anyone else's server. If you need the PDF's exact visual design, export pages as images with <a href='/pdf-to-jpg.html'>PDF to JPG</a> instead. If you want plain copyable text without a Word file, <a href='/pdf-to-text.html'>PDF to Text</a> is faster. If the tables matter more than the prose, <a href='/pdf-to-excel.html'>PDF to Excel</a> hands you editable rows instead of loose text lines. And if you are going the other direction — putting a Word document into PDF — use <a href='/word-to-pdf.html'>Word to PDF</a>. For deeper guidance on what to expect from browser-based conversion, read <a href='/pdf-to-word-without-losing-formatting.html'>PDF to Word without losing formatting</a> and <a href='/blog/how-to-convert-pdf-to-word-on-mac-free.html'>How to convert PDF to Word on Mac for free</a>.</p>",
     faqs=[
-        ("Is the Word file really editable?", "Yes — it is a standard .docx with normal editable paragraphs. You can retype, reformat and save it from Word, Google Docs, LibreOffice or similar."),
-        ("Does it work on scanned PDFs?", "Not directly. Scans contain images, not text, so there is nothing to extract. Run OCR PDF first to recognize the words, then convert the result."),
+        ("Is the Word file really editable?", "Yes — it is a standard .docx with normal editable paragraphs. You can retype, reformat and save it from Microsoft Word, Google Docs, LibreOffice or similar."),
+        ("Can I convert a scanned PDF to Word?", "Not directly. Scanned PDFs are pictures of pages, so there is no text to extract. Run the <a href='/ocr-pdf.html'>OCR PDF tool</a> first to read the words, then feed the result into this free PDF to Word converter."),
         ("Are tables preserved?", "Table cells come out as text lines in reading order. They are not rebuilt as a real Word table, so plan to re-draw complex tables by hand."),
-        ("Is there a page or file size limit?", "There is no imposed limit. Very large documents take longer because every page is rendered and read locally — speed depends on your device."),
+        ("Is this PDF to Word conversion free, or is there a limit to unlock?", "Free, with no signup, no daily quota and no paid plan that unlocks unlimited work — every tool on this site is the full one. The only limits are memory guards that protect your own device: a PDF must be 100 MB or smaller and no larger than 2,000 pages, and a document whose extracted text is enormous is refused with a prompt to split it."),
+        ("Will my fonts, bold text and headings survive the conversion?", "No. The .docx is written as plain text in Word's default style, so typefaces, sizes, colours and heading levels are not carried across. Reapply your styles in Word once the text is in place — that is still faster than retyping the document."),
+        ("Which Word formats will open the downloaded file?", "The output is Office Open XML (.docx), which Microsoft Word 2007 and newer, Word for the web, Google Docs and LibreOffice all open. The legacy binary .doc format is not produced; if a system demands .doc, open the .docx in Word and use Save As."),
     ],
     related=[("pdf-to-text", "PDF to Text"), ("word-to-pdf", "Word to PDF"), ("pdf-to-excel", "PDF to Excel"), ("ocr-pdf", "OCR PDF")],
 )

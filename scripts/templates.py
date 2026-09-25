@@ -208,6 +208,7 @@ def footer():
           <li><a href="/about.html">About</a></li>
           <li><a href="/contact.html">Contact</a></li>
           <li><a href="/blog/">Blog</a></li>
+          <li><a href="/what-is-a-pdf.html">What Is a PDF?</a></li>
         </ul>
       </div>
     </div>
