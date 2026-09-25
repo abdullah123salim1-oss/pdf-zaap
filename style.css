@@ -1642,3 +1642,31 @@ details.faq-item[open] .faq-icon {
 .blog-teaser .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .blog-teaser .blog-card h3 { font-size: 1.05rem; color: var(--text); margin: 0.75rem 0 0.5rem; line-height: 1.4; }
 .blog-teaser .blog-card-excerpt { color: var(--subtext); font-size: 0.92rem; line-height: 1.6; margin-bottom: 0.75rem; }
+
+/* Shared "answer asset" blocks.
+   First defined inline on /what-is-a-pdf.html; now in the global stylesheet so
+   tool pages can use them too (see C["pdf-to-word"] in scripts/content_convert.py).
+   Page-local copies of these rules win over this block by cascade order, so the
+   guide pages are unaffected. */
+.quick-answer {
+  background: var(--primary-light);
+  border: 1px solid var(--primary-border);
+  border-left: 5px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 1.35rem 1.5rem;
+  margin: 0 0 1.75rem;
+}
+.quick-answer h2 { margin: 0 0 0.6rem; font-size: 1.15rem; }
+.quick-answer p { margin: 0; color: var(--text); }
+.table-scroll { overflow-x: auto; margin: 1.25rem 0 0.5rem; }
+.post-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.post-table th, .post-table td {
+  border: 1px solid var(--border);
+  padding: 0.7rem 0.9rem;
+  text-align: left;
+  vertical-align: top;
+}
+.post-table th { background: var(--primary-light); color: var(--text); font-weight: 700; }
+.post-table tbody th { background: transparent; font-weight: 600; white-space: nowrap; }
+.post-table td { color: var(--subtext); }
+.post-table td a, .post-table th a { color: var(--primary); font-weight: 600; }

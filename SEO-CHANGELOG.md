@@ -549,3 +549,97 @@ it keeps the site's `<img>`-free position (so `image-alt` stays vacuously satisf
   on-page work alone cannot deliver organic #1 for a head term; the decisive missing
   input is referring domains (currently ~0), so the plan front-loads link earning and
   targets the featured snippet plus the long-tail rungs first.
+
+---
+
+## 2026-09-25 — Semrush on-page audit response: `/pdf-to-word.html` (`arena/01a0d874-pdf-zaap`)
+
+**Input:** Semrush On-Page SEO Checker report (project 30034895, `fid=12235390`) for
+`https://www.pdfzaap.online/pdf-to-word.html`, benchmarked against that keyword's top-10 rivals.
+**Full disposition:** `seo/pdf-to-word-audit-2026-09-25.md` — every module of the report is
+accepted, re-scoped or declined there with the reason.
+
+| Report module | Verdict |
+|---|---|
+| Strategy — "no improvements", no cannibalization | accepted as-is, nothing changed |
+| SERP Features — "mark up your aggregate rating" | **declined** (§Sf below) |
+| Content — 11 checks, all green | nothing changed (title/H1/meta/description untouched) |
+| Semantic — 17 related words missing | **adopted**: 17/17 covered, 739 → 1,339 visible words |
+| Backlinks — 17 domains to earn from | **re-scoped**: 6 are link farms/irrelevant, 6 are not acquirable, the rest belong in the existing launch plan |
+| Technical — all green | nothing changed |
+
+### Sf — why no `aggregateRating` was added
+
+The page contains no reviews and the site has no review-collection mechanism, so the only rating
+that could be marked up would be invented. Marking up content that is not on the page is misleading
+structured data (manual-action territory); and even an honest rating of PDFZaap published on
+pdfzaap.online is *self-serving* under Google's review-snippet rule (since Sept 2019, restated in
+the Dec 2025 docs update), so it would not earn stars anyway. This also re-confirms S5, which
+deleted the site's star ratings and named testimonials. The prerequisite path (independent
+platform reviews → a real `/reviews.html` → only then `SoftwareApplication` + `aggregateRating`)
+is written out in the audit doc.
+
+Instead the SERP work went to extractability, which this page can actually win:
+
+- a **49-word `.quick-answer` block** under the tool, answering "how do I convert a PDF to a Word
+  document?" (same pattern as `what-is-a-pdf.html`; that page's local CSS was promoted into
+  `style.css`, and page-local rules still win by cascade order so nothing on the guide pages moves);
+- a **keeps / drops table** (`<th scope="col">` + `<th scope="row">` — the `empty-table-header`
+  lesson from the a11y pass is applied at write time, not fixed afterwards), for table-snippet and
+  AI-answer extraction on "does pdf to word keep formatting" queries;
+- `FAQPage` kept but **demoted in the plan**: Google restricted FAQ rich results to authoritative
+  government/health sites in Aug 2023 and removed them entirely on 7 May 2026, so FAQ markup is now
+  a comprehension/citability signal, not a SERP feature. Applies to all 35 tool pages — no new page
+  should be built expecting an FAQ dropdown.
+
+### Semantic enrichment — content, plus five accuracy corrections
+
+Rewrote `C["pdf-to-word"]` in `scripts/content_convert.py`: intro + quick answer, 4 steps, `why`
+with the table, 6 tips, `when`, 6 FAQs (was 4 — the documented tool-page band is "faqs(4-5)",
+intents pages already carry 5; 6 is now the ceiling for a hero page). Terms covered include
+*word converter, pdf to word tool, Microsoft Word, editable Word documents, converting PDFs,
+click Convert, free PDF to word, Word formats, PDF to Word conversion, scanned PDFs*. The
+competitor paywall phrase "unlocks unlimited" appears only as its truthful inverse (there is no
+paid plan to unlock). Claims were checked against the engine before shipping, which surfaced five
+copy errors on the old page — the FAQ "There is no imposed limit" was **false** (`LIMITS.maxFileBytes`
+100 MB, `maxPages` 2,000, and the extracted-text guard all reject), as were "groups the words into
+lines and paragraphs" (it writes one paragraph per *visual line*), "paragraph order" (reading order
+by Y position), "images are simplified" (images are dropped), and `llm.txt`'s "preserving layout and
+formatting" — that file is what AI answer engines quote, so it is now text-based-and-honest for
+`/pdf-to-word.html`, `/pdf-to-excel.html` and the Mac blog line.
+
+### Files touched
+
+- `scripts/content_convert.py` — the content (source of truth).
+- `pdf-to-word.html` — regenerated from the template, **not hand-patched**: it is now byte-identical
+  to `python3 scripts/gen_tool_pages.py` output for that tool, so a future regen cannot undo this work.
+- `scripts/templates.py` — `footer()` now emits the `/what-is-a-pdf.html` link that the 2026-09-23
+  session added to 78 pages by hand (drift: the generator did not know about it).
+- `style.css` — shared `.quick-answer`, `.table-scroll`, `.post-table`.
+- `sitemap.xml` — `<lastmod>` for `/pdf-to-word.html` → 2026-09-25. Hand-edit: `scripts/gen_sitemap.py`
+  writes a single `SITE_DATE` (2026-09-19) for all non-blog pages, so running it would *revert* the
+  09-23 dates too. That script needs per-file dates before the next full regen — open item.
+- `seo/pdf-to-word-audit-2026-09-25.md` (new) — the disposition doc.
+
+### Verification (all run in this sandbox, nothing extrapolated)
+
+- `node tests/audit-seo.mjs` → **PASS, 80/80 pages** (unchanged pass rate; title 55 chars,
+  meta 151, one H1, one canonical).
+- `npm run audit:a11y` (axe 4.13 + jsdom) → **0 violations on `pdf-to-word.html`**; the single
+  reported violation (`what-is-a-pdf.html figure`, `aria-allowed-role`) is pre-existing and untouched.
+- `npm test` → **37/37 pass**.
+- All three JSON-LD blocks on the page parse; the 6 FAQPage `mainEntity` questions are exactly the
+  6 visible `<details>` questions (schema and copy are generated from one list, so they cannot drift).
+- Term coverage re-measured on the rendered `<main>` text: 17/17 (before: 2/17).
+- Generator sync re-checked by rendering all 35 tool pages into a temp copy: `pdf-to-word.html` is
+  identical; the other 34 differ only by the pre-existing `aria-label` drift ("upload" on disk vs
+  "process" in the template) — `pdf-to-word.html` now follows the template, which is also the more
+  truthful label for a tool that uploads nothing. Not silently fixed site-wide; needs one decision.
+
+### Still open from this report
+
+1. Deploy + GSC re-crawl request for `/pdf-to-word.html`, then re-measure after 4–6 weeks (see §5 of the audit doc).
+2. `gen_sitemap.py` lastmod policy (above).
+3. Decide the `aria-label` once and regenerate all 35 tool pages.
+4. The off-page plan in `seo-deliverables/off-page-copy.md` is still 100 % unpublished — it, not this
+   page, is what the Backlinks module is really asking for.
